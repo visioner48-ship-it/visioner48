@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kelola 60 Profil</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+        }
+
+        .header {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 18px 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .profile {
+            background: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+        }
+
+        .profile h3 {
+            margin-top: 0;
+        }
+
+        .preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 10px;
+            background: #ddd;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 11px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            font-size: 15px;
+        }
+
+        .status {
+            margin-top: 8px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    Kelola 60 Profil Member
+</div>
+
+<div class="container" id="profiles"></div>
+
+<script>
+
+const container =
+    document.getElementById("profiles");
+
+const defaultPhoto =
+    "https://via.placeholder.com/150";
+
+for (let nomor = 1; nomor <= 60; nomor++) {
+
+    const profile =
+        document.createElement("div");
+
+    profile.className = "profile";
+
+    profile.innerHTML = `
+
+        <h3>Profil ${nomor}</h3>
+
+        <img
+            id="preview${nomor}"
+            class="preview"
+            src="${defaultPhoto}"
+            alt="Foto Profil ${nomor}"
+        >
+
+        <input
+            type="text"
+            id="name${nomor}"
+            placeholder="Nama member"
+        >
+
+        <input
+            type="file"
+            id="photo${nomor}"
+            accept="image/*"
+        >
+
+        <button
+            onclick="simpanProfil(${nomor})"
+        >
+            Simpan Profil ${nomor}
+        </button>
+
+        <div
+            id="status${nomor}"
+            class="status"
+        ></div>
+
+    `;
+
+    container.appendChild(profile);
+
+
+    const fileInput =
+        document.getElementById(
+            "photo" + nomor
+        );
+
+    fileInput.addEventListener(
+        "change",
+        function() {
+
+            const file = this.files[0];
+
+            if (!file) return;
+
+            const preview =
+                document.getElementById(
+                    "preview" + nomor
+                );
+
+            preview.src =
+                URL.createObjectURL(file);
+        }
+    );
+}
+
+
+function simpanProfil(nomor) {
+
+    const nama =
+        document.getElementById(
+            "name" + nomor
+        ).value.trim();
+
+    const file =
+        document.getElementById(
+            "photo" + nomor
+        ).files[0];
+
+    const status =
+        document.getElementById(
+            "status" + nomor
+        );
+
+    if (!nama && !file) {
+
+        status.textContent =
+            "Isi nama atau pilih foto terlebih dahulu.";
+
+        return;
+    }
+
+    status.textContent =
+        "Profil " + nomor +
+        " siap disimpan.";
+
+}
+
+</script>
+
+</body>
+</html>
