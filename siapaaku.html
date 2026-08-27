@@ -1,0 +1,171 @@
+ <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tebak48Group - Visioner48</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #game,
+        #hasil {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        #nomor-soal {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #soal {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        #pilihan {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pilihan-jawaban {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #eeeeee;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .pilihan-jawaban.benar {
+            background: #4caf50;
+            color: white;
+        }
+
+        .pilihan-jawaban.salah {
+            background: #f44336;
+            color: white;
+        }
+
+        .pilihan-jawaban:disabled {
+            cursor: default;
+        }
+
+        #hasil {
+            display: none;
+        }
+
+        #hasil h2 {
+            margin-top: 0;
+        }
+
+        .nilai {
+            font-size: 45px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .tombol-hasil {
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #333;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .tombol-hasil:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Tebak 48Group</h1>
+
+    <!-- GAME -->
+
+    <div id="game">
+
+        <div id="nomor-soal">
+            Soal 1 dari 5
+        </div>
+
+        <div id="soal">
+            Memuat soal...
+        </div>
+
+        <div id="pilihan">
+        </div>
+
+    </div>
+
+
+    <!-- HASIL -->
+
+    <div id="hasil">
+
+        <h2>Game Selesai!</h2>
+
+        <p>Nilai kamu:</p>
+
+        <div class="nilai" id="nilai">
+            0 / 5
+        </div>
+
+        <p id="pesan"></p>
+
+        <button
+            class="tombol-hasil"
+            onclick="mainLagi()">
+            Main Lagi
+        </button>
+
+        <button
+            class="tombol-hasil"
+            onclick="kembaliKeGame()">
+            Kembali ke Game
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="siapaaku.js"></script>
+
+</body>
+</html>
