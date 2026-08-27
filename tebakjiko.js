@@ -6,13 +6,13 @@
 const daftarSoal = [
 
     {
-        soal: "Jiko siapakah: Matahari yang indah yang akan selalu memberikan kehangatan setiap harinya.?",
+        soal: "Jiko siapakah: Matahari yang indah yang akan selalu memberikan kehangatan setiap harinya.",
         pilihan: ["Alya", "Feni", "Lily", "Gracia"],
         jawaban: "Feni"
     },
 
     {
-        soal: "Jiko siapakah: Diam bukan berarti tak memperhatikanmmu.?",
+        soal: "Jiko siapakah: Diam bukan berarti tak memperhatikanmmu,Aku?",
         pilihan: ["Lily", "Gita", "Muthe", "Christy"],
         jawaban: "Gita"
     },
@@ -24,7 +24,7 @@ const daftarSoal = [
     },
 
     {
-        soal: "Jiko siapakah: Dengan keajaibanku, aku akan membuat kalian selalu tertawa. Halo, Aku...si mechanic girl?",
+        soal: "Jiko siapakah: Dengan keajaibanku, aku akan membuat kalian selalu tertawa. Halo, Aku...si mechanic girl!",
         pilihan: ["Fiony", "Olla", "Freya", "Alya"],
         jawaban: "Olla"
     },
@@ -48,19 +48,19 @@ const daftarSoal = [
     },
 
     {
-        soal: "Jiko siapakah: Bagai lembayung senja, dengan energi kegembiraanku, Aku akan menghangatkan suasana?",
+        soal: "Jiko siapakah: Bagai lembayung senja, dengan energi kegembiraanku, Aku akan menghangatkan suasana,hallo,hallo aku siapa?",
         pilihan: ["Gita", "Marsha", "Eli", "Muthe"],
         jawaban: "Eli"
     },
 
     {
-        soal: "Jiko siapakah: Sepertiteka-teki, kalian akan selalu penasaran denganku.?",
+        soal: "Jiko siapakah: Seperti teka-teki, kalian akan selalu penasaran denganku,Aku?",
         pilihan: ["Alya", "Fiony", "Freya", "Oniel"],
         jawaban: "Oniel"
     },
 
     {
-        soal: "Jiko siapakah: Sepertisimfoni yang menenangkan hati.?",
+        soal: "Jiko siapakah: Seperti simfoni yang menenangkan hati.?",
         pilihan: ["Muthe", "Christy", "Marsha", "Fiony"],
         jawaban: "Fiony"
     },
@@ -72,234 +72,235 @@ const daftarSoal = [
     },
 
     {
-        soal: "Jiko siapakah: Nevermiss a chance to be a sstar",
+        soal: "Jiko siapakah: Never miss a chance to be a star!?",
         pilihan: ["Kathrina", "Alya", "Fiony", "Marsha"],
         jawaban: "Kathrina"
     },
 
     {
-        soal: "Jiko siapakah: Tak banyak bicara bercerita melalui tulisan.?",
+        soal: "Jiko siapakah: Tak banyak bicara, bercerita melalui tulisan.?",
         pilihan: ["Lily", "Lia", "Lulu", "Indah"],
         jawaban: "Indah"
     },
 
     {
-        soal: "Jiko siapakah: Seperti pizza yang selalu dinanti-nantikan semua orang, selalu nantikan aku, ya",
+        soal: "Jiko siapakah: Seperti pizza yang selalu dinanti-nantikan semua orang, selalu nantikan aku, ya?",
         pilihan: ["Fiony", "Erine", "Michie", "Marsha"],
         jawaban: "Marsha"
     },
 
     {
-        soal: "Jiko siapakah: Kalau sakura itu Berkembang Aku itu kembanggaanmu? ",
+        soal: "Jiko siapakah: Kalau sakura itu kembang, Aku itu kembanggaanmu!",
         pilihan: ["Oline", "Raisha", "Aralie", "Muthe"],
         jawaban: "Raisha"
     },
 
     {
-        soal: "Jiko siapakah: Seperti ombak laut yang tenang, tiba-tiba aku akan menyapumu dengan banyak cinta?",
+        soal: "Jiko siapakah: Seperti ombak laut yang tenang, tiba-tiba aku akan menyapumu dengan banyak cinta!",
         pilihan: ["Oniel", "Delynn", "Anindya", "Lyn"],
         jawaban: "Lyn"
     },
 
     {
-        soal: "Jiko siapakah: Ohayo! Konnichiwa! Oyasumi! Aku ingin ada di setiap harimu.?",
+        soal: "Jiko siapakah: Ohayo! Konnichiwa! Oyasumi! Aku ingin ada di setiap harimu?",
         pilihan: ["Auwia", "Kimmy", "Fritzy", "Ella"],
         jawaban: "Ella"
     },
 
     {
-        soal: "Jiko siapakah? Si social butterfly yang energik dan peperiang! ",
+        soal: "Jiko siapakah: Si social butterfly yang energik dan periang!",
         pilihan: ["Levi", "Michie", "Lia", "Lily"],
         jawaban: "Lia"
     },
 
     {
-        soal: "Jiko siapakah: Manis seperti gulali imut seperti kelinci. Cie cie cie!,
+        soal: "Jiko siapakah: Manis seperti gulali, imut seperti kelinci. Cie cie cie,?",
         pilihan: ["Alya", "Anindya", "Greesel", "Gracie"],
         jawaban: "Gracie"
     },
 
     {
-        soal: "Jiko siapakah: 'Semanis permen kapas dan seindah bunga lavender.'?",
+        soal: "Jiko siapakah: Semanis permen kapas dan seindah bunga lavender.?",
         pilihan: ["Elin", "Maxine", "Ribka", "Trisha"],
         jawaban: "Elin"
     },
 
     {
-        soal: "Jiko siapakah: ' Si mungil hadir semanis mangga.'?",
+        soal: "Jiko siapakah: Si mungil hadir semanis mangga?",
         pilihan: ["Freya", "Levi", "Lia", "Anindya"],
         jawaban: "Anindya"
     },
 
     {
-        soal: "Jiko siapakah: 'Jika hatimu sedang menangis, Aku akan datang sebagai pelangi'?",
+        soal: "Jiko siapakah: Jika hatimu sedang menangis, Aku akan datang sebagai pelangi?",
         pilihan: ["Gita", "Mikaeks", "Alya", "Intan"],
         jawaban: "Alya"
     },
 
     {
-        soal: "Jiko siapakah: 'Pandangan mataku akan menyinari hatimu bagaikan kunang-kunang di malam hari.'?",
+        soal: "Jiko siapakah: Pandangan mataku akan menyinari hatimu bagaikan kunang-kunang di malam hari.?",
         pilihan: ["Erine", "Greesel", "Fritzy", "Muthe"],
         jawaban: "Greesel"
     },
 
     {
-        soal: "Jiko siapakah: 'Always your number one, till infinity and beyond. Hello everyone its?",
+        soal: "Jiko siapakah: Always your number one, till infinity and beyond. Hello everyone its?",
         pilihan: ["Marsha", "Nachia", "Gracie", "Michie"],
         jawaban: "Michie"
     },
 
     {
-        soal: "Jiko siapakah: 'Seperti bunga daisy, aku akan memancarkan kesegaran dan kebahagiaan!'?",
+        soal: "Jiko siapakah: Seperti bunga daisy, aku akan memancarkan kesegaran dan kebahagiaan hay hay aku?",
         pilihan: ["Nala", "Aralie", "Danella", "Daisy"],
         jawaban: "Daisy"
     },
 
     {
-        soal: "Jiko siapakah: 'Tok-tok! Si penari yang akan menarikmu ke duniaku!'?",
+        soal: "Jiko siapakah: Tok-tok! Si penari yang akan menarikmu ke duniaku!",
         pilihan: ["Danella", "Eline", "Kathrina", "Fiony"],
         jawaban: "Danella"
     },
 
     {
-        soal: "Jiko siapakah: 'Semangatku terus menerus meluap. POP! POP! Aku...yang selalu semangat!'?",
+        soal: "Jiko siapakah: Semangatku terus menerus meluap. POP! POP! Aku...yang selalu semangat!",
         pilihan: ["Erine", "Cynthia", "Greesel", "Alya"],
         jawaban: "Cynthia"
     },
 
     {
-        soal: "Jiko siapakah: 'Hadir dengan seribu kejutan, Checkmate! Siap memenangkan hatimu.'?",
+        soal: "Jiko siapakah: Hadir dengan seribu kejutan, Checkmate! Siap memenangkan hatimu!",
         pilihan: ["Gita", "Gracie", "Levi", "Erine"],
         jawaban: "Erine"
     },
 
     {
-        soal: "Jiko siapakah: 'Dengan kekuatan bulan, aku akan menyihirmu dengan pesonaku.'?",
+        soal: "Jiko siapakah: Dengan kekuatan bulan, aku akan menyihirmu dengan pesonaku?",
         pilihan: ["Olla", "Fritzy", "Delynn", "Lana"],
         jawaban: "Lana"
     },
 
     {
-        soal: "Jiko siapakah: 'Nyemangatin dan ngangenin, siapa yang kamu pikirin? Pyong pyong.'?",
+        soal: "Jiko siapakah: Nyemangatin dan ngangenin, siapa yang kamu pikirin? Pyong pyong?",
         pilihan: ["Erine", "Delynn", "Oline", "Lily"],
         jawaban: "Delynn"
     },
 
     {
-        soal: "Jiko siapakah: 'Seperti bunga yang mekar, aku akan membuat kamu, kamu, dan kamu terbayang-bayang?",
+        soal: "Jiko siapakah: Seperti bunga yang mekar, aku akan membuat kamu, kamu, dan kamu terbayang-bayang?",
         pilihan: ["Ribka", "Levi", "Aralie", "Daisy"],
         jawaban: "Aralie"
     },
 
     {
-        soal: "Jiko siapakah: 'Are you ready? Jalani hari ini dengan menari bersamaku. Yuhu, Aku Levi!'?",
+        soal: "Jiko siapakah: Are you ready? Jalani hari ini dengan menari bersamaku. Yuhu, Aku?",
         pilihan: ["Heidi", "Maxine", "Levi", "Alya"],
         jawaban: "Levi"
     },
 
     {
-        soal: "Jiko siapakah: 'Pelukis yang hadir di mimpi-mimpi indahmu. One, two, three...sha!'?",
+        soal: "Jiko siapakah: Pelukis yang hadir di mimpi-mimpi indahmu. One, two, three...sha!",
         pilihan: ["Lana", "Nala", "Lia", "Trisha"],
         jawaban: "Trisha"
     },
 
     {
-        soal: "Jiko siapakah: 'Papipapipum! Aku akan mengejutkanmu dengan kehebatanku.'?",
+        soal: "Jiko siapakah: Papipapipum! Aku akan mengejutkanmu dengan kehebatanku.?",
         pilihan: ["Virgi", "Lily", "Freya", "Marsha"],
         jawaban: "Lily"
     },
 
     {
-        soal: "Jiko siapakah: 'Abracadabra! Si pesulap yang siap membuat hatimu terpikat. It's me'?",
+        soal: "Jiko siapakah: Abracadabra! Si pesulap yang siap membuat hatimu terpikat. It's me?",
         pilihan: ["Danella", "Carissa", "Lana", "Fritzy"],
         jawaban: "Fritzy"
     },
 
     {
-        soal: "Jiko siapakah: 'Mirror mirror on the wall, who's the sweetest in here? It's me'?",
+        soal: "Jiko siapakah: Mirror mirror on the wall, who's the sweetest in here? It's me?",
         pilihan: ["Oline", "Ribka", "Indah", "Oniel"],
         jawaban: "Ribka"
     },
 
     {
-        soal: "Jiko siapakah: 'Semangat ku full terus! Gas, gas, gas-'?",
+        soal: "Jiko siapakah: Semangat ku full terus! Gas, gas, gas-?",
         pilihan: ["Ekin", "Oline", "Erine", "Maira"],
         jawaban: "Oline"
     },
 
     {
-        soal: "Jiko siapakah: 'Si panda unyu yang selalu ceria! Aku ..., bikin kamu bahagia!'?",
+        soal: "Jiko siapakah: Si panda unyu yang selalu ceria! Aku ..., bikin kamu bahagia!?",
         pilihan: ["Gracie", "Oline", "Nachia", "Lily"],
         jawaban: "Nachia"
     },
 
     {
-        soal: "Jiko siapakah: 'Moshi moshi, welcome Naylalaland! Halo semuanya, bakkyun!'?",
+        soal: "Jiko siapakah: Moshi moshi, welcome Naylalaland! Halo semuanya, bakkyun!",
         pilihan: ["Alya", "Nala", "Greesel", "Nayla"],
         jawaban: "Nayla"
     },
 
     {
-        soal: "Jiko siapakah: 'Suka berekspresi melalui kreasi! Taraaaa!!! '?",
+        soal: "Jiko siapakah: Suka berekspresi melalui kreasi! Taraaaa,Aku?",
         pilihan: ["Virgi", "Intan", "Virgi", "Giaa"],
         jawaban: "Virgi"
     },
 
     {
-        soal: "Jiko siapakah: 'Sesejuk dan sedingin mint, perkenalkan aku'?",
+        soal: "Jiko siapakah: Sesejuk dan sedingin mint, perkenalkan aku?",
         pilihan: ["Freya", "Ekin", "Gita", "Lyn"],
         jawaban: "Ekin"
     },
 
     {
-        soal: "Jiko siapakah: 'Cii..luu..baaa..! Merpati yang siap membawa kejutan di setiap penampilan ku!'?",
+        soal: "Jiko siapakah: Cii..luu..baaa..! Merpati yang siap membawa kejutan di setiap penampilan ku?",
         pilihan: ["Intan", "Jemima", "Ekin", "Rara"],
         jawaban: "Jemima"
     },
 
     {
-        soal: "Jiko siapakah: 'Baby hamster yang lincah, aku akan berlari-lari di pikiranmu! Haloha, katakan!'?",
+        soal: "Jiko siapakah: Baby hamster yang lincah, aku akan berlari-lari di pikiranmu! Haloha, katakan?",
         pilihan: ["Levi", "Lyn", "Ella", "Kimmy"],
         jawaban: "Kimmy"
     },
 
     {
-        soal: "Jiko siapakah: 'Roar! Si singa pemberani yang siap menyemangati harimu.'?",
+        soal: "Jiko siapakah: Roar! Si singa pemberani yang siap menyemangati harimu.?",
         pilihan: ["Fiony", "Marsha", "Michie", "Nala"],
         jawaban: "Nala"
     },
 
     {
-        soal: "Jiko siapakah: Serigala tangguh dibawah sinar purnama, panggil aku auuu?,
+        soal: "Jiko siapakah: Serigala tangguh dibawah sinar purnama, panggil aku auuuu-?",
         pilihan: ["Auwia", "Intan", "Jemima", "Mikaela"],
-        jawaban: "Auwia,
+        jawaban: "Auwia"
+    },
 
     {
-        soal: "Jiko siapakah: 'Intan Permata yang berkilau temukan cahayaku dihatimu'?",
+        soal: "Jiko siapakah: Intan Permata yang berkilau temukan cahayaku dihatimu, aku?",
         pilihan: ["Lia", "Auwia", "Intan", "Lyn"],
         jawaban: "Intan"
     },
 
     {
-        soal: "Bagai harmoni indah yang berirama di benakmu!'?",
+        soal: "jiko siapakah: Bagai harmoni indah yang berirama di benakmu?",
         pilihan: ["Rilly", "Ekin", "Fritzy", "Freya"],
         jawaban: "Rilly"
     },
 
     {
-        soal: "Jiko siapakah: 'Penceria yang membuatmu tertawa dengan tingkahku!'?",
+        soal: "Jiko siapakah: Penceria yang membuatmu tertawa dengan tingkahku!",
         pilihan: ["Gita", "Oniel", "Maira", "Levi"],
         jawaban: "Maira"
     },
 
     {
-        soal: "Jiko siapakah: 'Ding dong skate, spin, smile'?",
+        soal: "Jiko siapakah: Ding dong skate, spin, smile?",
         pilihan: ["Levi", "Aralie", "Bella", "Fiony"],
         jawaban: "Bella"
     },
 
     {
-        soal: "Jiko siapakah: 'Dengan semangat dengan kerja kerasku aku akan kalian bahaa-'?",
+        soal: "Jiko siapakah: Dengan semangat dengan kerja kerasku aku akan kalian bahaa-?",
         pilihan: ["Muthe", "Olla", "Christy", "Giaa"],
         jawaban: "Giaa"
     }
