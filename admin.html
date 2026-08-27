@@ -1,0 +1,443 @@
+ <!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin News - Visioner48</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #111827;
+    color: white;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+
+.box {
+    background: #1f2937;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #374151;
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+input[type="file"] {
+    padding: 10px;
+}
+
+.preview {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    margin-top: 12px;
+    border-radius: 10px;
+    display: none;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.tambah {
+    background: #16a34a;
+}
+
+.hapus {
+    background: #dc2626;
+}
+
+.kembali {
+    background: #4b5563;
+}
+
+.item {
+    background: #374151;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.item h3 {
+    margin-top: 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+Admin News
+</h1>
+
+<div class="box">
+
+<h2>
+Tambah Berita
+</h2>
+
+<label>
+Judul Berita
+</label>
+
+<input
+    type="text"
+    id="judul"
+    placeholder="Judul berita"
+>
+
+<label>
+Isi Berita
+</label>
+
+<textarea
+    id="isi"
+    placeholder="Tulis berita lengkap..."
+></textarea>
+
+<label>
+Foto Berita
+</label>
+
+<input
+    type="file"
+    id="foto"
+    accept="image/*"
+>
+
+<img
+    id="preview"
+    class="preview"
+>
+
+<button
+    class="tambah"
+    onclick="tambahBerita()"
+>
+    Tambahkan Berita
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h2>
+Daftar Berita
+</h2>
+
+<div id="daftarAdmin"></div>
+
+</div>
+
+
+<button
+    class="kembali"
+    onclick="kembaliAdmin()"
+>
+    Kembali ke Admin
+</button>
+
+</div>
+
+
+<script>
+
+let fotoData = "";
+
+
+/* PILIH FOTO */
+
+document
+.getElementById("foto")
+.addEventListener("change", function(event) {
+
+    const file =
+        event.target.files[0];
+
+    if (!file) return;
+
+    const reader =
+        new FileReader();
+
+    reader.onload = function(e) {
+
+        fotoData =
+            e.target.result;
+
+        const preview =
+            document.getElementById("preview");
+
+        preview.src =
+            fotoData;
+
+        preview.style.display =
+            "block";
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* TAMBAH BERITA */
+
+function tambahBerita() {
+
+    const judul =
+        document.getElementById("judul")
+        .value.trim();
+
+    const isi =
+        document.getElementById("isi")
+        .value.trim();
+
+    if (!judul) {
+        alert("Judul belum diisi.");
+        return;
+    }
+
+    if (!isi) {
+        alert("Isi berita belum diisi.");
+        return;
+    }
+
+    let berita = [];
+
+    const data =
+        localStorage.getItem(
+            "visioner48News"
+        );
+
+    if (data) {
+        berita = JSON.parse(data);
+    }
+
+    const tanggal =
+        new Date().toLocaleDateString(
+            "id-ID",
+            {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+    const beritaBaru = {
+
+        id: Date.now(),
+
+        judul: judul,
+
+        isi: isi,
+
+        gambar: fotoData,
+
+        tanggal: tanggal
+
+    };
+
+    berita.push(beritaBaru);
+
+    try {
+
+        localStorage.setItem(
+            "visioner48News",
+            JSON.stringify(berita)
+        );
+
+        alert(
+            "Berita berhasil ditambahkan."
+        );
+
+        document.getElementById("judul")
+            .value = "";
+
+        document.getElementById("isi")
+            .value = "";
+
+        document.getElementById("foto")
+            .value = "";
+
+        document.getElementById("preview")
+            .style.display = "none";
+
+        fotoData = "";
+
+        tampilkanAdmin();
+
+    } catch(error) {
+
+        alert(
+            "Gagal menyimpan. Foto mungkin terlalu besar."
+        );
+
+    }
+}
+
+
+/* TAMPILKAN DI ADMIN */
+
+function tampilkanAdmin() {
+
+    const container =
+        document.getElementById(
+            "daftarAdmin"
+        );
+
+    container.innerHTML = "";
+
+    const data =
+        localStorage.getItem(
+            "visioner48News"
+        );
+
+    if (!data) {
+
+        container.innerHTML =
+            "<p>Belum ada berita.</p>";
+
+        return;
+    }
+
+    const berita =
+        JSON.parse(data);
+
+    berita
+    .slice()
+    .reverse()
+    .forEach(function(item) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+
+            <h3>
+                ${item.judul}
+            </h3>
+
+            <p>
+                ${item.tanggal}
+            </p>
+
+            <button
+                class="hapus"
+                onclick="hapusBerita(${item.id})"
+            >
+                Hapus
+            </button>
+
+        `;
+
+        container.appendChild(div);
+
+    });
+}
+
+
+/* HAPUS */
+
+function hapusBerita(id) {
+
+    if (
+        !confirm(
+            "Hapus berita ini?"
+        )
+    ) {
+        return;
+    }
+
+    const data =
+        localStorage.getItem(
+            "visioner48News"
+        );
+
+    if (!data) return;
+
+    let berita =
+        JSON.parse(data);
+
+    berita =
+        berita.filter(function(item) {
+
+            return item.id !== id;
+
+        });
+
+    localStorage.setItem(
+        "visioner48News",
+        JSON.stringify(berita)
+    );
+
+    tampilkanAdmin();
+}
+
+
+/* KEMBALI */
+
+function kembaliAdmin() {
+
+    window.location.href =
+        "index.html";
+}
+
+
+tampilkanAdmin();
+
+</script>
+
+</body>
+</html>
