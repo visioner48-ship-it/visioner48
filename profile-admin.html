@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Kelola 60 Profil</title>
 
     <style>
@@ -35,8 +34,9 @@
         .profile {
             background: white;
             padding: 15px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
         }
 
         .profile h3 {
@@ -44,13 +44,13 @@
         }
 
         .preview {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
             margin-bottom: 10px;
-            background: #ddd;
+            border: 2px solid #ddd;
         }
 
         input[type="text"] {
@@ -68,7 +68,7 @@
 
         button {
             width: 100%;
-            padding: 11px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
             background: #111;
@@ -76,9 +76,19 @@
             font-size: 15px;
         }
 
+        button:disabled {
+            opacity: .6;
+        }
+
         .status {
             margin-top: 8px;
             font-size: 13px;
+        }
+
+        .back {
+            margin: 15px;
+            width: auto;
+            padding: 10px 18px;
         }
     </style>
 </head>
@@ -89,9 +99,41 @@
     Kelola 60 Profil Member
 </div>
 
-<div class="container" id="profiles"></div>
+<button
+    class="back"
+    onclick="kembali()"
+>
+    Kembali
+</button>
+
+<div
+    id="profiles"
+    class="container"
+>
+    Memuat profil...
+</div>
+
+
+<!-- Firebase -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+<script src="firebase-config.js"></script>
+
 
 <script>
+
+firebase.initializeApp(firebaseConfig);
+
+const database =
+    firebase.database();
+
+const storage =
+    firebase.storage();
 
 const container =
     document.getElementById("profiles");
@@ -99,16 +141,39 @@ const container =
 const defaultPhoto =
     "https://via.placeholder.com/150";
 
-for (let nomor = 1; nomor <= 60; nomor++) {
 
-    const profile =
+/* =========================
+   BUAT 60 PROFIL
+========================= */
+
+for (
+    let nomor = 1;
+    nomor <= 60;
+    nomor++
+) {
+
+    buatProfil(nomor);
+
+}
+
+
+/* =========================
+   MEMBUAT PROFIL
+========================= */
+
+function buatProfil(nomor) {
+
+    const card =
         document.createElement("div");
 
-    profile.className = "profile";
+    card.className =
+        "profile";
 
-    profile.innerHTML = `
+    card.innerHTML = `
 
-        <h3>Profil ${nomor}</h3>
+        <h3>
+            Profil ${nomor}
+        </h3>
 
         <img
             id="preview${nomor}"
@@ -130,7 +195,8 @@ for (let nomor = 1; nomor <= 60; nomor++) {
         >
 
         <button
-            onclick="simpanProfil(${nomor})"
+            id="save${nomor}"
+            onclick="simpan(${nomor})"
         >
             Simpan Profil ${nomor}
         </button>
@@ -142,62 +208,297 @@ for (let nomor = 1; nomor <= 60; nomor++) {
 
     `;
 
-    container.appendChild(profile);
+    container.appendChild(card);
 
 
-    const fileInput =
-        document.getElementById(
-            "photo" + nomor
+    /* Preview foto */
+
+    document
+        .getElementById("photo" + nomor)
+        .addEventListener(
+            "change",
+            function() {
+
+                const file =
+                    this.files[0];
+
+                if (!file) {
+                    return;
+                }
+
+                document
+                    .getElementById(
+                        "preview" + nomor
+                    )
+                    .src =
+                    URL.createObjectURL(file);
+
+            }
         );
 
-    fileInput.addEventListener(
-        "change",
-        function() {
 
-            const file = this.files[0];
+    /* Ambil data lama */
 
-            if (!file) return;
+    database
+        .ref(
+            "visioner48_profiles/member" +
+            nomor
+        )
+        .once("value")
+        .then(
+            function(snapshot) {
 
-            const preview =
-                document.getElementById(
-                    "preview" + nomor
-                );
+                const data =
+                    snapshot.val();
 
-            preview.src =
-                URL.createObjectURL(file);
-        }
-    );
+                if (!data) {
+                    return;
+                }
+
+                if (data.nama) {
+
+                    document
+                        .getElementById(
+                            "name" + nomor
+                        )
+                        .value =
+                        data.nama;
+
+                }
+
+                if (data.foto) {
+
+                    document
+                        .getElementById(
+                            "preview" + nomor
+                        )
+                        .src =
+                        data.foto;
+
+                }
+
+            }
+        )
+        .catch(
+            function(error) {
+
+                console.log(error);
+
+            }
+        );
+
 }
 
 
-function simpanProfil(nomor) {
+/* =========================
+   SIMPAN
+========================= */
+
+function simpan(nomor) {
 
     const nama =
-        document.getElementById(
-            "name" + nomor
-        ).value.trim();
+        document
+            .getElementById(
+                "name" + nomor
+            )
+            .value
+            .trim();
 
     const file =
-        document.getElementById(
-            "photo" + nomor
-        ).files[0];
+        document
+            .getElementById(
+                "photo" + nomor
+            )
+            .files[0];
+
+    const button =
+        document
+            .getElementById(
+                "save" + nomor
+            );
 
     const status =
-        document.getElementById(
-            "status" + nomor
-        );
+        document
+            .getElementById(
+                "status" + nomor
+            );
 
-    if (!nama && !file) {
+
+    if (!nama) {
 
         status.textContent =
-            "Isi nama atau pilih foto terlebih dahulu.";
+            "Masukkan nama member.";
 
         return;
+
     }
 
+
+    button.disabled = true;
+
     status.textContent =
-        "Profil " + nomor +
-        " siap disimpan.";
+        "Menyimpan...";
+
+
+    const ref =
+        database.ref(
+            "visioner48_profiles/member" +
+            nomor
+        );
+
+
+    /*
+       TANPA FOTO
+    */
+
+    if (!file) {
+
+        ref.once("value")
+            .then(
+                function(snapshot) {
+
+                    const lama =
+                        snapshot.val() || {};
+
+                    return ref.set({
+
+                        nama: nama,
+
+                        foto:
+                            lama.foto ||
+                            defaultPhoto
+
+                    });
+
+                }
+            )
+            .then(
+                function() {
+
+                    status.textContent =
+                        "Nama berhasil disimpan.";
+
+                }
+            )
+            .catch(
+                function(error) {
+
+                    status.textContent =
+                        "Gagal: " +
+                        error.message;
+
+                }
+            )
+            .finally(
+                function() {
+
+                    button.disabled =
+                        false;
+
+                }
+            );
+
+        return;
+
+    }
+
+
+    /*
+       DENGAN FOTO
+    */
+
+    status.textContent =
+        "Mengupload foto...";
+
+
+    const fileName =
+        Date.now() +
+        "_" +
+        file.name;
+
+
+    const uploadRef =
+        storage.ref(
+            "visioner48_profiles/member" +
+            nomor +
+            "/" +
+            fileName
+        );
+
+
+    uploadRef
+        .put(file)
+
+        .then(
+            function(snapshot) {
+
+                status.textContent =
+                    "Foto berhasil diupload.";
+
+                return snapshot
+                    .ref
+                    .getDownloadURL();
+
+            }
+        )
+
+        .then(
+            function(photoURL) {
+
+                status.textContent =
+                    "Menyimpan data...";
+
+                return ref.set({
+
+                    nama: nama,
+
+                    foto: photoURL
+
+                });
+
+            }
+        )
+
+        .then(
+            function() {
+
+                status.textContent =
+                    "Nama dan foto berhasil disimpan.";
+
+            }
+        )
+
+        .catch(
+            function(error) {
+
+                console.error(error);
+
+                status.textContent =
+                    "Gagal: " +
+                    error.message;
+
+            }
+        )
+        .finally(
+            function() {
+
+                button.disabled =
+                    false;
+
+            }
+        );
+
+}
+
+
+/* =========================
+   KEMBALI
+========================= */
+
+function kembali() {
+
+    window.location.href =
+        "privatechat-owner.html";
 
 }
 
