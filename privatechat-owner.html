@@ -20,7 +20,7 @@
         .header {
             background: #111;
             color: white;
-            padding: 18px 12px;
+            padding: 18px 10px;
             text-align: center;
             font-size: 20px;
             font-weight: bold;
@@ -32,26 +32,19 @@
             padding: 15px;
         }
 
-        .top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .top h2 {
-            margin: 0;
-            font-size: 19px;
-        }
-
-        .button {
+        .home {
+            display: block;
+            margin: 0 auto 15px;
+            padding: 10px 18px;
             border: none;
             border-radius: 8px;
-            padding: 10px 14px;
             background: #111;
             color: white;
-            cursor: pointer;
+        }
+
+        .title {
+            text-align: center;
+            margin: 15px 0;
         }
 
         .profiles {
@@ -62,15 +55,11 @@
 
         .profile {
             background: white;
+            padding: 12px 8px;
             border-radius: 14px;
-            padding: 14px 8px;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-        }
-
-        .profile:active {
-            transform: scale(0.97);
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
         }
 
         .profile img {
@@ -97,16 +86,16 @@
         .loading {
             text-align: center;
             padding: 30px;
-            color: #666;
+            color: #777;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
             .profiles {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        @media (max-width: 450px) {
+        @media (max-width: 420px) {
             .profiles {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -122,30 +111,24 @@
 
 <div class="container">
 
-    <div class="top">
-        <h2>60 Private Chat Member</h2>
+    <button class="home" onclick="kembaliKeHome()">
+        Kembali ke Home
+    </button>
 
-        <button
-            class="button"
-            onclick="kembaliKeHome()"
-        >
-            Home
-        </button>
-    </div>
+    <h2 class="title">
+        60 Private Chat Member
+    </h2>
 
-    <div
-        id="profiles"
-        class="profiles"
-    >
+    <div id="profiles" class="profiles">
         <div class="loading">
-            Memuat 60 profil...
+            Memuat profil...
         </div>
     </div>
 
 </div>
 
 
-<!-- Firebase -->
+<!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
@@ -168,10 +151,6 @@ const defaultPhoto =
     "https://via.placeholder.com/150";
 
 
-/* =========================
-   MEMUAT 60 PROFIL
-========================= */
-
 function tampilkanProfil() {
 
     profiles.innerHTML = "";
@@ -185,18 +164,19 @@ function tampilkanProfil() {
         const card =
             document.createElement("div");
 
-        card.className = "profile";
+        card.className =
+            "profile";
 
         card.innerHTML = `
 
             <img
-                id="foto-${nomor}"
+                id="foto${nomor}"
                 src="${defaultPhoto}"
                 alt="Member ${nomor}"
             >
 
             <div
-                id="nama-${nomor}"
+                id="nama${nomor}"
                 class="name"
             >
                 Member ${nomor}
@@ -217,8 +197,6 @@ function tampilkanProfil() {
         profiles.appendChild(card);
 
 
-        /* Ambil data Firebase */
-
         database
             .ref(
                 "visioner48_profiles/member" +
@@ -226,7 +204,7 @@ function tampilkanProfil() {
             )
             .on(
                 "value",
-                snapshot => {
+                function(snapshot) {
 
                     const data =
                         snapshot.val();
@@ -236,24 +214,20 @@ function tampilkanProfil() {
                     }
 
 
-                    /* Nama */
-
                     if (data.nama) {
 
                         document.getElementById(
-                            "nama-" + nomor
+                            "nama" + nomor
                         ).textContent =
                             data.nama;
 
                     }
 
 
-                    /* Foto */
-
                     if (data.foto) {
 
                         document.getElementById(
-                            "foto-" + nomor
+                            "foto" + nomor
                         ).src =
                             data.foto;
 
@@ -265,10 +239,6 @@ function tampilkanProfil() {
 }
 
 
-/* =========================
-   BUKA PRIVATE CHAT
-========================= */
-
 function bukaChat(nomor) {
 
     window.location.href =
@@ -278,21 +248,12 @@ function bukaChat(nomor) {
 }
 
 
-/* =========================
-   KEMBALI HOME
-========================= */
-
 function kembaliKeHome() {
 
     window.location.href =
         "index.html";
 
 }
-
-
-/* =========================
-   MULAI
-========================= */
 
 tampilkanProfil();
 
