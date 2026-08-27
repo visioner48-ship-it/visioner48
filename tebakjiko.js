@@ -133,7 +133,7 @@ const daftarSoal = [
 
     {
         soal: "Jiko siapakah: Jika hatimu sedang menangis, Aku akan datang sebagai pelangi?",
-        pilihan: ["Gita", "Mikaeks", "Alya", "Intan"],
+        pilihan: ["Gita", "Mikaela", "Alya", "Intan"],
         jawaban: "Alya"
     },
 
@@ -241,7 +241,7 @@ const daftarSoal = [
 
     {
         soal: "Jiko siapakah: Suka berekspresi melalui kreasi! Taraaaa,Aku?",
-        pilihan: ["Virgi", "Intan", "Virgi", "Giaa"],
+        pilihan: ["Virgi", "Intan", "Ella", "Giaa"],
         jawaban: "Virgi"
     },
 
@@ -294,9 +294,9 @@ const daftarSoal = [
     },
 
     {
-        soal: "Jiko siapakah: Ding dong skate, spin, smile?",
-        pilihan: ["Levi", "Aralie", "Bella", "Fiony"],
-        jawaban: "Bella"
+        soal: "Jiko siapakah: Camera, Roll, Action! Sutradara yang mewarnai kisah hidupmh dengan penuh warn",
+        pilihan: ["Levi", "Aralie", "Mikaela", "Fiony"],
+        jawaban: "Mikaela"
     },
 
     {
