@@ -1,0 +1,635 @@
+ <!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>News - Visioner48</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#111827,#312E81);
+    color: white;
+    min-height: 100vh;
+}
+
+.header {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    color: #d1d5db;
+}
+
+.container {
+    width: 94%;
+    max-width: 700px;
+    margin: auto;
+}
+
+
+/* =========================
+   KARTU BERITA
+========================= */
+
+.berita-card {
+    background: #1f2937;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 18px;
+    cursor: pointer;
+}
+
+.berita-card:active {
+    transform: scale(0.98);
+}
+
+.berita-foto {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.berita-info {
+    padding: 17px;
+}
+
+.berita-judul {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.berita-tanggal {
+    color: #9ca3af;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.berita-ringkas {
+    color: #d1d5db;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   DETAIL
+========================= */
+
+.detail {
+    display: none;
+    background: #1f2937;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.detail-foto {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    display: none;
+}
+
+.detail-info {
+    padding: 22px;
+}
+
+.detail-judul {
+    margin: 0;
+    font-size: 27px;
+    line-height: 1.35;
+}
+
+.detail-tanggal {
+    color: #9ca3af;
+    font-size: 13px;
+    margin: 10px 0 22px;
+}
+
+.detail-isi {
+    color: #e5e7eb;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+
+/* =========================
+   TOMBOL
+========================= */
+
+.tombol {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.tombol-kembali {
+    background: #4b5563;
+}
+
+.kosong {
+    background: #1f2937;
+    padding: 40px 20px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <h1 id="judulHalaman">
+        News
+    </h1>
+
+    <p id="subjudul">
+        Berita dan informasi Visioner48
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- =========================
+     DAFTAR BERITA
+========================= -->
+
+<div id="daftarBerita"></div>
+
+
+<!-- =========================
+     DETAIL BERITA
+========================= -->
+
+<div
+    id="detail"
+    class="detail"
+>
+
+    <img
+        id="detailFoto"
+        class="detail-foto"
+    >
+
+    <div class="detail-info">
+
+        <h1
+            id="detailJudul"
+            class="detail-judul"
+        ></h1>
+
+        <div
+            id="detailTanggal"
+            class="detail-tanggal"
+        ></div>
+
+        <div
+            id="detailIsi"
+            class="detail-isi"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     TOMBOL KEMBALI
+========================= -->
+
+<button
+    id="tombolKembaliDetail"
+    class="tombol tombol-kembali"
+    style="display:none"
+    onclick="kembaliKeDaftar()"
+>
+    ← Kembali ke News
+</button>
+
+
+<button
+    id="tombolHome"
+    class="tombol tombol-kembali"
+    onclick="kembaliHome()"
+>
+    ← Kembali ke Home
+</button>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================
+   TAMPILKAN DAFTAR BERITA
+========================================= */
+
+function tampilkanDaftar() {
+
+    const container =
+        document.getElementById(
+            "daftarBerita"
+        );
+
+    container.innerHTML = "";
+
+
+    const data =
+        localStorage.getItem(
+            "visioner48News"
+        );
+
+
+    if (!data) {
+
+        container.innerHTML = `
+
+            <div class="kosong">
+
+                <h2>
+                    Belum Ada Berita
+                </h2>
+
+                <p>
+                    Admin belum menambahkan berita.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let berita;
+
+
+    try {
+
+        berita =
+            JSON.parse(data);
+
+    } catch {
+
+        container.innerHTML = `
+
+            <div class="kosong">
+
+                <h2>
+                    Data Berita Bermasalah
+                </h2>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    if (
+        !Array.isArray(berita) ||
+        berita.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="kosong">
+
+                <h2>
+                    Belum Ada Berita
+                </h2>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       Berita terbaru paling atas
+    */
+
+    berita
+    .slice()
+    .reverse()
+    .forEach(function(item) {
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "berita-card";
+
+
+        let foto = "";
+
+
+        if (
+            item.gambar &&
+            item.gambar !== ""
+        ) {
+
+            foto = `
+
+                <img
+                    class="berita-foto"
+                    src="${item.gambar}"
+                >
+
+            `;
+
+        }
+
+
+        let ringkas =
+            item.isi || "";
+
+
+        if (
+            ringkas.length > 160
+        ) {
+
+            ringkas =
+                ringkas.substring(
+                    0,
+                    160
+                ) + "...";
+
+        }
+
+
+        card.innerHTML = `
+
+            ${foto}
+
+            <div class="berita-info">
+
+                <h2 class="berita-judul">
+
+                    ${item.judul || "Tanpa Judul"}
+
+                </h2>
+
+                <div class="berita-tanggal">
+
+                    ${item.tanggal || ""}
+
+                </div>
+
+                <div class="berita-ringkas">
+
+                    ${ringkas}
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        /*
+           KLIK BERITA
+        */
+
+        card.onclick =
+            function() {
+
+                tampilkanDetail(item);
+
+            };
+
+
+        container.appendChild(
+            card
+        );
+
+    });
+
+}
+
+
+/* =========================================
+   TAMPILKAN DETAIL
+========================================= */
+
+function tampilkanDetail(item) {
+
+
+    /*
+       Sembunyikan daftar
+    */
+
+    document.getElementById(
+        "daftarBerita"
+    ).style.display = "none";
+
+
+    /*
+       Tampilkan detail
+    */
+
+    document.getElementById(
+        "detail"
+    ).style.display = "block";
+
+
+    /*
+       Judul halaman
+    */
+
+    document.getElementById(
+        "judulHalaman"
+    ).textContent =
+        "Detail News";
+
+
+    document.getElementById(
+        "subjudul"
+    ).textContent =
+        "Visioner48";
+
+
+    /*
+       Judul berita
+    */
+
+    document.getElementById(
+        "detailJudul"
+    ).textContent =
+        item.judul || "Tanpa Judul";
+
+
+    /*
+       Tanggal
+    */
+
+    document.getElementById(
+        "detailTanggal"
+    ).textContent =
+        item.tanggal || "";
+
+
+    /*
+       Isi berita
+    */
+
+    document.getElementById(
+        "detailIsi"
+    ).textContent =
+        item.isi || "";
+
+
+    /*
+       Foto
+    */
+
+    const foto =
+        document.getElementById(
+            "detailFoto"
+        );
+
+
+    if (
+        item.gambar &&
+        item.gambar !== ""
+    ) {
+
+        foto.src =
+            item.gambar;
+
+        foto.style.display =
+            "block";
+
+    } else {
+
+        foto.style.display =
+            "none";
+
+    }
+
+
+    /*
+       Tombol
+    */
+
+    document.getElementById(
+        "tombolKembaliDetail"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "tombolHome"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   KEMBALI KE DAFTAR
+========================================= */
+
+function kembaliKeDaftar() {
+
+
+    document.getElementById(
+        "detail"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "daftarBerita"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "judulHalaman"
+    ).textContent =
+        "News";
+
+
+    document.getElementById(
+        "subjudul"
+    ).textContent =
+        "Berita dan informasi Visioner48";
+
+
+    document.getElementById(
+        "tombolKembaliDetail"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "tombolHome"
+    ).style.display =
+        "block";
+
+}
+
+
+/* =========================================
+   HOME
+========================================= */
+
+function kembaliHome() {
+
+    window.location.href =
+        "../index.html";
+
+}
+
+
+/* =========================================
+   MULAI
+========================================= */
+
+tampilkanDaftar();
+
+</script>
+
+
+</body>
+
+</html>
