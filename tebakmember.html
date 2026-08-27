@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tebak Member JKT48 - Visioner48</title>
+
+    <link rel="stylesheet" href="tebakmember.css">
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <h1>TEBAK MEMBER JKT48</h1>
+
+        <!-- PILIH JUMLAH SOAL -->
+        <div id="menuGame">
+
+            <p class="subjudul">
+                Pilih jumlah soal yang ingin kamu kerjakan
+            </p>
+
+            <div class="jumlah-soal">
+
+                <button onclick="mulaiGame(5)">
+                    5 Soal
+                </button>
+
+                <button onclick="mulaiGame(10)">
+                    10 Soal
+                </button>
+
+                <button onclick="mulaiGame(15)">
+                    15 Soal
+                </button>
+
+            </div>
+
+            <button class="btn-kembali" onclick="kembaliGame()">
+                Kembali ke Game
+            </button>
+
+        </div>
+
+
+        <!-- AREA PERMAINAN -->
+        <div id="areaGame" style="display:none;">
+
+            <div class="info-game">
+
+                <span id="nomorSoal">
+                    Soal 1
+                </span>
+
+                <span id="skorSementara">
+                    Skor: 0
+                </span>
+
+            </div>
+
+
+            <!-- GAMBAR -->
+            <div class="gambar-soal">
+
+                <img
+                    id="gambarMember"
+                    src=""
+                    alt="Member JKT48"
+                >
+
+            </div>
+
+
+            <!-- PERTANYAAN -->
+            <div class="pertanyaan">
+
+                <h2 id="pertanyaanText">
+                    Pertanyaan
+                </h2>
+
+            </div>
+
+
+            <!-- PILIHAN JAWABAN -->
+            <div
+                id="pilihanJawaban"
+                class="pilihan-jawaban"
+            >
+            </div>
+
+
+            <!-- HASIL JAWABAN -->
+            <div
+                id="hasilJawaban"
+                class="hasil-jawaban"
+            >
+            </div>
+
+
+            <!-- TOMBOL LANJUT -->
+            <button
+                id="btnLanjut"
+                class="btn-lanjut"
+                onclick="soalBerikutnya()"
+                style="display:none;"
+            >
+                Soal Berikutnya
+            </button>
+
+        </div>
+
+
+        <!-- HASIL AKHIR -->
+        <div
+            id="hasilAkhir"
+            style="display:none;"
+        >
+
+            <h2>Permainan Selesai!</h2>
+
+            <div class="hasil-box">
+
+                <p>
+                    Jawaban benar:
+                </p>
+
+                <strong id="jumlahBenar">
+                    0
+                </strong>
+
+                <p>
+                    Nilai kamu:
+                </p>
+
+                <strong id="nilaiAkhir">
+                    0
+                </strong>
+
+            </div>
+
+
+            <button
+                class="btn-main-lagi"
+                onclick="mainLagi()"
+            >
+                Main Lagi
+            </button>
+
+
+            <button
+                class="btn-kembali"
+                onclick="kembaliGame()"
+            >
+                Kembali ke Game
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="tebakmember.js"></script>
+
+</body>
+</html>
