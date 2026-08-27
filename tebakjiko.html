@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Jiko Oshi</title>
+    <link rel="stylesheet" href="tebakjiko.css">
+</head>
+
+<body>
+
+<div class="game-container">
+
+    <h1>🎤 Tebak Jiko Oshi</h1>
+
+    <!-- MENU AWAL -->
+    <div id="menuAwal">
+        <p>Pilih jumlah soal yang ingin kamu kerjakan:</p>
+
+        <button onclick="mulaiGame(5)">5 Soal</button>
+        <button onclick="mulaiGame(10)">10 Soal</button>
+        <button onclick="mulaiGame(15)">15 Soal</button>
+
+        <br><br>
+
+        <button class="kembali" onclick="kembaliKeGame()">
+            Kembali ke Game
+        </button>
+    </div>
+
+    <!-- AREA SOAL -->
+    <div id="areaSoal" style="display:none;">
+
+        <div class="info">
+            <span id="nomorSoal"></span>
+        </div>
+
+        <h2 id="pertanyaan"></h2>
+
+        <div id="pilihan"></div>
+
+        <div id="hasilJawaban"></div>
+
+        <button id="tombolLanjut"
+                onclick="soalBerikutnya()"
+                style="display:none;">
+            Lanjut
+        </button>
+
+    </div>
+
+    <!-- HASIL AKHIR -->
+    <div id="hasilAkhir" style="display:none;">
+
+        <h2>🎉 Hasil Permainan</h2>
+
+        <p>Total Soal:
+            <strong id="totalSoal"></strong>
+        </p>
+
+        <p>Jawaban Benar:
+            <strong id="jumlahBenar"></strong>
+        </p>
+
+        <p>Jawaban Salah:
+            <strong id="jumlahSalah"></strong>
+        </p>
+
+        <p>Nilai:
+            <strong id="nilaiAkhir"></strong>
+        </p>
+
+        <button onclick="mainLagi()">
+            Main Lagi
+        </button>
+
+        <button class="kembali" onclick="kembaliKeGame()">
+            Kembali ke Game
+        </button>
+
+    </div>
+
+</div>
+
+<script src="tebakjiko.js"></script>
+
+</body>
+</html>
