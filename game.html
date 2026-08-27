@@ -20,63 +20,72 @@
         }
 
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #222;
-        }
+     
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
+
+    color: white;
+
+    min-height: 100vh;
+}
 
 
-        /* HEADER */
+      
+/* HEADER */
 
-        header {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 28px 15px;
-        }
+header {
+    text-align: center;
+    padding: 45px 20px 25px;
+}
 
+header h1 {
+    margin: 0;
+    font-size: 34px;
+}
 
-        header h1 {
-            margin: 0 0 8px;
-            font-size: 28px;
-        }
-
-
-        header p {
-            margin: 0;
-            color: #ccc;
-            font-size: 14px;
-        }
+header p {
+    margin-top: 10px;
+    color: #d1d5db;
+    font-size: 15px;
+}
 
 
-        /* CONTAINER */
+       
+/* CONTAINER */
 
-        .container {
-            width: 92%;
-            max-width: 850px;
-            margin: 25px auto;
-        }
-
-
-        /* JUDUL */
-
-        .judul {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+.container {
+    width: 92%;
+    max-width: 650px;
+    margin: auto;
+}
 
 
-        .judul h2 {
-            margin-bottom: 5px;
-        }
+     
+/* JUDUL */
 
+.judul {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .judul p {
-            color: #777;
-            margin-top: 0;
-        }
+.judul h2 {
+    margin-bottom: 5px;
+    color: white;
+}
+
+.judul p {
+    color: #d1d5db;
+    margin-top: 0;
+}
 
 
         /* GRID GAME */
@@ -91,32 +100,49 @@
         }
 
 
-        /* KARTU */
+        
+/* KARTU */
 
-        .game-card {
-            text-decoration: none;
-            color: #222;
+.game-card {
+    text-decoration: none;
 
-            background: white;
+    color: white;
 
-            border-radius: 18px;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
 
-            padding: 20px;
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 
-            min-height: 165px;
+    border-radius: 20px;
 
-            display: flex;
+    padding: 25px 15px;
 
-            flex-direction: column;
+    min-height: 170px;
 
-            justify-content: center;
+    display: flex;
 
-            box-shadow:
-                0 4px 15px
-                rgba(0,0,0,0.08);
+    flex-direction: column;
 
-            transition: 0.2s;
-        }
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    transition: 0.2s;
+}
 
 
         .game-card:active {
@@ -152,59 +178,87 @@
         }
 
 
-        /* HOME */
+/* HOME */
 
-        .home-button {
-            display: block;
+.home-button {
+    display: block;
 
-            width: fit-content;
+    width: fit-content;
 
-            margin: 30px auto 10px;
+    margin: 30px auto 10px;
 
-            padding: 13px 20px;
+    padding: 13px 20px;
 
-            background: #111;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
 
-            color: white;
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 
-            text-decoration: none;
+    color: white;
 
-            border-radius: 10px;
+    text-decoration: none;
 
-            font-weight: bold;
-        }
+    border-radius: 20px;
 
+    font-weight: bold;
 
-        /* HP KECIL */
+    transition: 0.2s;
+}
 
-        @media (max-width: 420px) {
+.home-button:hover {
+    transform:
+        translateY(-3px);
 
-            .game-grid {
-                gap: 10px;
-            }
-
-
-            .game-card {
-                padding: 16px;
-                min-height: 155px;
-            }
-
-
-            .icon {
-                font-size: 32px;
-            }
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+}
 
 
-            .game-card h3 {
-                font-size: 16px;
-            }
 
+/* HP KECIL */
 
-            .game-card p {
-                font-size: 12px;
-            }
+@media (max-width: 420px) {
 
-        }
+    .game-grid {
+        gap: 10px;
+    }
+
+    .game-card {
+        padding: 16px;
+        min-height: 140px;
+    }
+
+    .icon {
+        font-size: 32px;
+    }
+
+    .game-card h3 {
+        font-size: 16px;
+    }
+
+    .game-card p {
+        font-size: 12px;
+        color: #d1d5db;
+    }
+
+}
 
     </style>
 
