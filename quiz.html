@@ -13,17 +13,32 @@
 
 body {
     margin: 0;
+
     font-family: Arial, sans-serif;
-    background: #f2f3f5;
-    color: #222;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
+
+    color: white;
+
+    min-height: 100vh;
 }
 
 .header {
-    background: #075e54;
+    background: transparent;
+
     color: white;
-    padding: 18px;
+
+    padding: 30px 18px;
+
     text-align: center;
+
     font-size: 22px;
+
     font-weight: bold;
 }
 
@@ -34,19 +49,28 @@ body {
 }
 
 .card {
-    background: white;
-    border-radius: 15px;
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 20px;
+
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    text-align: center;
 }
 
 .nomor {
-    color: #075e54;
+    color: #d1d5db;
     font-weight: bold;
     margin-bottom: 12px;
 }
 
 .soal {
+    color: white;
     font-size: 19px;
     font-weight: bold;
     line-height: 1.5;
@@ -58,46 +82,80 @@ body {
     width: 100%;
     margin: 10px 0;
     padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: white;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    color: white;
+
     text-align: left;
     font-size: 16px;
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 .jawaban:hover {
-    background: #f1f1f1;
+    background:
+        rgba(255, 255, 255, 0.17);
 }
 
 .benar {
-    background: #d9f7df !important;
-    border-color: #28a745;
+    background: #198754 !important;
+    border-color: #198754;
+    color: white;
 }
 
 .salah {
-    background: #ffdede !important;
+    background: #dc3545 !important;
     border-color: #dc3545;
+    color: white;
 }
 
 #hasil {
     text-align: center;
+    color: white;
 }
 
 .nilai {
     font-size: 45px;
     font-weight: bold;
-    color: #075e54;
+    color: white;
 }
 
 .btn {
-    border: none;
-    background: #075e54;
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
     color: white;
+
     padding: 14px 20px;
-    border-radius: 10px;
+
+    border-radius: 20px;
+
     font-size: 16px;
+
     cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255, 255, 255, 0.17);
 }
 </style>
 </head>
