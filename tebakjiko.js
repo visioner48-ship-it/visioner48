@@ -6,115 +6,115 @@
 const daftarSoal = [
 
     {
-        soal: "Jiko siapakah: 'Matahari yang indah yang akan selalu memberikan kehangatan setiap harinya.'?",
+        soal: "Jiko siapakah: Matahari yang indah yang akan selalu memberikan kehangatan setiap harinya.?",
         pilihan: ["Alya", "Feni", "Lily", "Gracia"],
         jawaban: "Feni"
     },
 
     {
-        soal: "Jiko siapakah: 'Diam bukan berarti tak memperhatikanmmu.'?",
+        soal: "Jiko siapakah: Diam bukan berarti tak memperhatikanmmu.?",
         pilihan: ["Lily", "Gita", "Muthe", "Christy"],
         jawaban: "Gita"
     },
 
     {
-        soal: "Jiko siapakah: 'Peduli dan berbaik hati, siapakah dia'?",
+        soal: "Jiko siapakah: Peduli dan berbaik hati, siapakah dia?",
         pilihan: ["Christy", "Fiony", "Kathrina", "Gita"],
         jawaban: "Christy"
     },
 
     {
-        soal: "Jiko siapakah: 'Dengan keajaibanku, aku akan membuat kalian selalu tertawa. Halo, Aku...si mechanic girl!'?",
+        soal: "Jiko siapakah: Dengan keajaibanku, aku akan membuat kalian selalu tertawa. Halo, Aku...si mechanic girl?",
         pilihan: ["Fiony", "Olla", "Freya", "Alya"],
         jawaban: "Olla"
     },
 
     {
-        soal: "Jiko siapakah: 'Dengan kelincahanku, Aku akan menari setiap hari. Panggil Aku, Mu mu mu mu'?",
+        soal: "Jiko siapakah: Dengan kelincahanku, Aku akan menari setiap hari. Panggil Aku, Mu mu mu mu?",
         pilihan: ["Muthe", "Gita", "Christy", "Marsha"],
         jawaban: "Muthe"
     },
 
     {
-        soal: "Jiko siapakah: 'Gadis koleris yang suka berimajinasi, terangi harimu dengan senyuman karamelku'?",
+        soal: "Jiko siapakah: Gadis koleris yang suka berimajinasi, terangi harimu dengan senyuman karamelku?",
         pilihan: ["Fiony", "Lily", "Alya", "Freya"],
         jawaban: "Freya"
     },
 
     {
-        soal: "Jiko siapakah: 'ASuka menari dan akan selalu berusaha untuk menjadi sumber energimu'?",
+        soal: "Jiko siapakah: Suka menari dan akan selalu berusaha untuk menjadi sumber energimu?",
         pilihan: ["Christy", "Freya", "Gita", "Jessi"],
         jawaban: "Jessi"
     },
 
     {
-        soal: "Jiko siapakah: 'Bagai lembayung senja, dengan energi kegembiraanku, Aku akan menghangatkan suasana.'?",
+        soal: "Jiko siapakah: Bagai lembayung senja, dengan energi kegembiraanku, Aku akan menghangatkan suasana?",
         pilihan: ["Gita", "Marsha", "Eli", "Muthe"],
         jawaban: "Eli"
     },
 
     {
-        soal: "Jiko siapakah: 'Seperti teka-teki, kalian akan selalu penasaran denganku.'?",
+        soal: "Jiko siapakah: Sepertiteka-teki, kalian akan selalu penasaran denganku.?",
         pilihan: ["Alya", "Fiony", "Freya", "Oniel"],
         jawaban: "Oniel"
     },
 
     {
-        soal: "Jiko siapakah: 'Seperti simfoni yang menenangkan hati.'?",
+        soal: "Jiko siapakah: Sepertisimfoni yang menenangkan hati.?",
         pilihan: ["Muthe", "Christy", "Marsha", "Fiony"],
         jawaban: "Fiony"
     },
 
     {
-        soal: "Jiko siapakah: Terang seperti bulan, bersinar seperti bintang.'?",
+        soal: "Jiko siapakah: Terang seperti bulan, bersinar seperti bintang.?",
         pilihan: ["Freya", "Lily", "Lulu", "Gita"],
         jawaban: "Lulu"
     },
 
     {
-        soal: "Jiko siapakah: 'Never miss a chance to be a star!'?",
+        soal: "Jiko siapakah: Nevermiss a chance to be a sstar",
         pilihan: ["Kathrina", "Alya", "Fiony", "Marsha"],
         jawaban: "Kathrina"
     },
 
     {
-        soal: "Jiko siapakah: 'Tak banyak bicara, bercerita melalui tulisan.'?",
+        soal: "Jiko siapakah: Tak banyak bicara bercerita melalui tulisan.?",
         pilihan: ["Lily", "Lia", "Lulu", "Indah"],
         jawaban: "Indah"
     },
 
     {
-        soal: "Jiko siapakah: 'Seperti pizza yang selalu dinanti-nantikan semua orang, selalu nantikan aku, ya'?",
+        soal: "Jiko siapakah: Seperti pizza yang selalu dinanti-nantikan semua orang, selalu nantikan aku, ya",
         pilihan: ["Fiony", "Erine", "Michie", "Marsha"],
         jawaban: "Marsha"
     },
 
     {
-        soal: "Jiko siapakah: 'Kalau sakura itu kembang, Aku itu kembanggaanmu!'?",
+        soal: "Jiko siapakah: Kalau sakura itu Berkembang Aku itu kembanggaanmu? ",
         pilihan: ["Oline", "Raisha", "Aralie", "Muthe"],
         jawaban: "Raisha"
     },
 
     {
-        soal: "Jiko siapakah: 'Seperti ombak laut yang tenang, tiba-tiba aku akan menyapumu dengan banyak cinta!'?",
+        soal: "Jiko siapakah: Seperti ombak laut yang tenang, tiba-tiba aku akan menyapumu dengan banyak cinta?",
         pilihan: ["Oniel", "Delynn", "Anindya", "Lyn"],
         jawaban: "Lyn"
     },
 
     {
-        soal: "Jiko siapakah: 'Ohayo! Konnichiwa! Oyasumi! Aku ingin ada di setiap harimu.'?",
+        soal: "Jiko siapakah: Ohayo! Konnichiwa! Oyasumi! Aku ingin ada di setiap harimu.?",
         pilihan: ["Auwia", "Kimmy", "Fritzy", "Ella"],
         jawaban: "Ella"
     },
 
     {
-        soal: "Jiko siapakah: 'Si social butterfly yang energik dan periang!?",
+        soal: "Jiko siapakah? Si social butterfly yang energik dan peperiang! ",
         pilihan: ["Levi", "Michie", "Lia", "Lily"],
         jawaban: "Lia"
     },
 
     {
-        soal: "Jiko siapakah: 'Manis seperti gulali, imut seperti kelinci. Cie cie cie,'?",
+        soal: "Jiko siapakah: Manis seperti gulali imut seperti kelinci. Cie cie cie!,
         pilihan: ["Alya", "Anindya", "Greesel", "Gracie"],
         jawaban: "Gracie"
     },
@@ -270,10 +270,9 @@ const daftarSoal = [
     },
 
     {
-        soal: "Jiko siapakah: 'Serigala tangguh dibawah sinar purnama, panggil aku auuuu-'?",
+        soal: "Jiko siapakah: Serigala tangguh dibawah sinar purnama, panggil aku auuu?,
         pilihan: ["Auwia", "Intan", "Jemima", "Mikaela"],
-        jawaban: "Auwiw"
-    },
+        jawaban: "Auwia,
 
     {
         soal: "Jiko siapakah: 'Intan Permata yang berkilau temukan cahayaku dihatimu'?",
