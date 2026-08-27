@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Visioner48</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #312e81
+                );
+
+            color: white;
+
+            min-height: 100vh;
+        }
+
+
+        /* HEADER */
+
+        .header {
+
+            text-align: center;
+
+            padding: 45px 20px 25px;
+        }
+
+
+        .header h1 {
+
+            margin: 0;
+
+            font-size: 34px;
+        }
+
+
+        .header p {
+
+            margin-top: 10px;
+
+            color: #d1d5db;
+
+            font-size: 15px;
+        }
+
+
+        /* MENU */
+
+        .menu-container {
+
+            width: 92%;
+
+            max-width: 650px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .menu-card {
+
+            min-height: 170px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.10
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.18
+                );
+
+            border-radius: 20px;
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+
+        .menu-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.17
+                );
+        }
+
+
+        .menu-icon {
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .menu-card h2 {
+
+            font-size: 18px;
+
+            margin: 5px 0 8px;
+        }
+
+
+        .menu-card p {
+
+            margin: 0;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            color: #d1d5db;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+
+            text-align: center;
+
+            padding: 35px 10px 25px;
+
+            color: #9ca3af;
+
+            font-size: 13px;
+        }
+
+
+        /* HP */
+
+        @media (max-width: 500px) {
+
+            .header {
+
+                padding-top: 35px;
+            }
+
+
+            .header h1 {
+
+                font-size: 29px;
+            }
+
+
+            .menu-container {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .menu-card {
+
+                min-height: 140px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            Visioner48
+        </h1>
+
+        <p>
+            Selamat datang di Visioner48
+        </p>
+
+    </div>
+
+
+
+    <!-- MENU -->
+
+    <div class="menu-container">
+
+
+        <!-- MEMBER -->
+
+        <div
+            class="menu-card"
+            onclick="bukaHalaman('member.html')"
+        >
+
+            <div class="menu-icon">
+                👤
+            </div>
+
+            <h2>
+                Member JKT48
+            </h2>
+
+            <p>
+                Foto, biodata dan jiko
+                member JKT48
+            </p>
+
+        </div>
+
+
+
+        <!-- GAME -->
+
+        <div
+            class="menu-card"
+            onclick="bukaHalaman('game.html')"
+        >
+
+            <div class="menu-icon">
+                🎮
+            </div>
+
+            <h2>
+                Game
+            </h2>
+
+            <p>
+                Main berbagai game
+                JKT48
+            </p>
+
+        </div>
+
+
+
+        <!-- News -->
+
+<div
+    class="menu-card"
+    onclick="bukaHalaman('news.html')"
+>
+    <div class="menu-icon">
+        📰
+    </div>
+
+    <h2>
+        News
+    </h2>
+
+    <p>
+        Berita dan informasi terbaru
+    </p>
+</div>
+
+
+        <!-- REPLAY LIVE -->
+
+   <div
+    class="menu-card"
+    onclick="window.location.href='replay.html'"
+>
+
+    <h2>
+        Replay Live
+    </h2>
+
+    <p>
+        Tonton replay live JKT48
+    </p>
+
+</div>
+
+ <div
+    class="menu-card"
+    onclick="window.location.href='privatechat.html'"
+>
+
+    <div class="menu-icon">
+        💬
+    </div>
+
+    <h2>
+        Private Message
+    </h2>
+
+    <p>
+        Pesan Member JKT48
+    </p>
+
+</div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Visioner48
+
+    </div>
+
+
+
+    <script>
+
+        function bukaHalaman(
+            namaFile
+        ) {
+
+            window.location.href =
+                namaFile;
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
