@@ -1,0 +1,340 @@
+ * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #1f2937
+        );
+
+    color: white;
+
+    min-height: 100vh;
+}
+
+
+.game-container {
+    width: 95%;
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 25px 15px 40px;
+
+    text-align: center;
+}
+
+
+h1 {
+    font-size: 27px;
+
+    margin-bottom: 10px;
+}
+
+
+.subjudul {
+    color: #d1d5db;
+
+    margin-bottom: 25px;
+}
+
+
+/* MENU JUMLAH SOAL */
+
+.jumlah-soal {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.jumlah-soal button,
+.btn-kembali,
+.btn-main-lagi,
+.btn-lanjut {
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.jumlah-soal button {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+.jumlah-soal button:hover {
+    transform: scale(1.02);
+}
+
+
+/* INFO GAME */
+
+.info-game {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    background: #374151;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+
+    font-weight: bold;
+}
+
+
+/* GAMBAR */
+
+.gambar-soal {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+
+.gambar-soal img {
+
+    width: 100%;
+
+    max-width: 350px;
+
+    height: 350px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    border: 3px solid #374151;
+
+    background: #111827;
+}
+
+
+/* PERTANYAAN */
+
+.pertanyaan {
+
+    background: #374151;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+.pertanyaan h2 {
+
+    font-size: 18px;
+
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+
+/* JAWABAN */
+
+.pilihan-jawaban {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.jawaban {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 2px solid #4b5563;
+
+    background: #1f2937;
+
+    color: white;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+
+.jawaban:hover {
+
+    background: #374151;
+}
+
+
+.jawaban:disabled {
+
+    cursor: default;
+
+    opacity: 0.9;
+}
+
+
+.jawaban.benar {
+
+    background: #166534;
+
+    border-color: #22c55e;
+}
+
+
+.jawaban.salah {
+
+    background: #991b1b;
+
+    border-color: #ef4444;
+}
+
+
+/* HASIL JAWABAN */
+
+.hasil-jawaban {
+
+    margin-top: 15px;
+
+    font-weight: bold;
+
+    min-height: 25px;
+}
+
+
+.hasil-benar {
+    color: #4ade80;
+}
+
+
+.hasil-salah {
+    color: #f87171;
+}
+
+
+/* TOMBOL */
+
+.btn-lanjut {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    background: #7c3aed;
+
+    color: white;
+}
+
+
+.btn-main-lagi {
+
+    width: 100%;
+
+    background: #2563eb;
+
+    color: white;
+
+    margin-bottom: 10px;
+}
+
+
+.btn-kembali {
+
+    width: 100%;
+
+    background: #4b5563;
+
+    color: white;
+
+    margin-top: 10px;
+}
+
+
+/* HASIL AKHIR */
+
+.hasil-box {
+
+    background: #374151;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    margin: 20px 0;
+}
+
+
+.hasil-box p {
+
+    margin-bottom: 5px;
+
+    color: #d1d5db;
+}
+
+
+.hasil-box strong {
+
+    display: block;
+
+    font-size: 35px;
+
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 400px) {
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .gambar-soal img {
+        height: 280px;
+    }
+
+}
