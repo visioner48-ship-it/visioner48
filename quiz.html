@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz JKT48</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f3f5;
+    color: #222;
+}
+
+.header {
+    background: #075e54;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.nomor {
+    color: #075e54;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.soal {
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.jawaban {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.jawaban:hover {
+    background: #f1f1f1;
+}
+
+.benar {
+    background: #d9f7df !important;
+    border-color: #28a745;
+}
+
+.salah {
+    background: #ffdede !important;
+    border-color: #dc3545;
+}
+
+#hasil {
+    text-align: center;
+}
+
+.nilai {
+    font-size: 45px;
+    font-weight: bold;
+    color: #075e54;
+}
+
+.btn {
+    border: none;
+    background: #075e54;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    Quiz JKT48
+</div>
+
+<div class="container">
+
+    <div id="quiz" class="card">
+
+        <div id="nomor" class="nomor"></div>
+
+        <div id="soal" class="soal"></div>
+
+        <div id="pilihan"></div>
+
+    </div>
+
+    <div id="hasil" class="card" style="display:none;">
+
+        <h2>Quiz Selesai!</h2>
+
+        <p>Jawaban benar:</p>
+
+        <div id="benar" class="nilai"></div>
+
+        <p id="keterangan"></p>
+
+        <button class="btn" onclick="mulaiQuiz()">
+            Main Lagi
+        </button>
+        
+        <a href="game.html" class="back-button">
+    ← Kembali ke Game
+</a>
+
+    </div>
+
+</div>
+
+<script>
+
+const semuaSoal = [
+
+{
+    soal: "JKT48 merupakan grup saudari dari grup idol Jepang yang mana?",
+    pilihan: [
+        "AKB48",
+        "SKE48",
+        "NMB48",
+        "HKT48"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Apa nama tempat pertunjukan khusus JKT48?",
+    pilihan: [
+        "JKT48 Theater",
+        "JKT48 Arena",
+        "JKT48 Hall",
+        "JKT48 Stage"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "JKT48 Theater berada di gedung apa?",
+    pilihan: [
+        "fX Sudirman",
+        "Grand Indonesia",
+        "Plaza Indonesia",
+        "Senayan City"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "JKT48 Theater berada di lantai berapa di fX Sudirman?",
+    pilihan: [
+        "F1",
+        "F2",
+        "F3",
+        "F4"
+    ],
+    jawaban: 3
+},
+
+{
+    soal: "Menurut konsep JKT48, Theater merupakan tempat para member untuk...",
+    pilihan: [
+        "Tampil secara rutin di depan penggemar",
+        "Berlatih tanpa penonton",
+        "Menjual merchandise saja",
+        "Mengadakan audisi saja"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Pada 2026, JKT48 menggunakan tiga nama team utama berikut...",
+    pilihan: [
+        "Love, Dream, Passion",
+        "Red, Blue, Green",
+        "Star, Moon, Sun",
+        "Alpha, Beta, Gamma"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Team manakah yang termasuk dalam sistem team JKT48 tahun 2026?",
+    pilihan: [
+        "Team Love",
+        "Team Sakura",
+        "Team Rainbow",
+        "Team Melody"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Team manakah yang termasuk dalam sistem team JKT48 tahun 2026?",
+    pilihan: [
+        "Team Dream",
+        "Team Hope",
+        "Team Angel",
+        "Team Victory"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Team manakah yang termasuk dalam sistem team JKT48 tahun 2026?",
+    pilihan: [
+        "Team Passion",
+        "Team Power",
+        "Team Future",
+        "Team Victory"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Siapa yang ditunjuk sebagai Kapten JKT48 baru pada pengumuman Desember 2025?",
+    pilihan: [
+        "Freya Jayawardana",
+        "Gita Sekar Andarini",
+        "Fiony Alveria",
+        "Alya Amanda"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "JKT48 adalah grup idol yang berbasis di negara mana?",
+    pilihan: [
+        "Indonesia",
+        "Jepang",
+        "Korea Selatan",
+        "Thailand"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Apa kepanjangan dari JKT pada nama JKT48?",
+    pilihan: [
+        "Jakarta",
+        "Jawa Timur",
+        "Jawa Tengah",
+        "Jaya Kota"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Apa angka yang terdapat pada nama grup JKT48?",
+    pilihan: [
+        "46",
+        "47",
+        "48",
+        "49"
+    ],
+    jawaban: 2
+},
+
+{
+    soal: "JKT48 terinspirasi dari konsep grup idol...",
+    pilihan: [
+        "AKB48",
+        "Nogizaka46",
+        "Morning Musume",
+        "Perfume"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Apa nama konsep terkenal AKB48 yang juga menjadi inspirasi JKT48?",
+    pilihan: [
+        "Idola yang bisa ditemui",
+        "Idola tanpa panggung",
+        "Idola di televisi",
+        "Idola virtual"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Salah satu fungsi JKT48 Theater adalah tempat untuk...",
+    pilihan: [
+        "Show ulang tahun member",
+        "Pertandingan sepak bola",
+        "Pameran mobil",
+        "Sekolah umum"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Pada 2026, salah satu team JKT48 adalah...",
+    pilihan: [
+        "Team Love",
+        "Team Snow",
+        "Team Ocean",
+        "Team Fire"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Pada 2026, salah satu team JKT48 adalah...",
+    pilihan: [
+        "Team Dream",
+        "Team Crystal",
+        "Team Star",
+        "Team Magic"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Pada 2026, salah satu team JKT48 adalah...",
+    pilihan: [
+        "Team Passion",
+        "Team Moon",
+        "Team Gold",
+        "Team Silver"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "JKT48 Theater merupakan tempat pertunjukan yang terinspirasi dari...",
+    pilihan: [
+        "AKB48 Theater",
+        "Tokyo Dome",
+        "Budokan",
+        "NHK Hall"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Situs resmi JKT48 menyediakan bagian untuk melihat...",
+    pilihan: [
+        "Profil lengkap member",
+        "Harga kendaraan",
+        "Jadwal sekolah",
+        "Berita olahraga"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Di situs resmi JKT48, member dapat dikelompokkan berdasarkan...",
+    pilihan: [
+        "Team",
+        "Warna rambut",
+        "Kota asal saja",
+        "Hobi saja"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Salah satu kategori member yang tersedia di situs resmi JKT48 adalah...",
+    pilihan: [
+        "Trainee",
+        "Senior Manager",
+        "Coach",
+        "Producer"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Selain member dan team, situs resmi JKT48 menyediakan informasi mengenai...",
+    pilihan: [
+        "Theater",
+        "Liga sepak bola",
+        "Film Hollywood",
+        "Balapan"
+    ],
+    jawaban: 0
+},
+
+{
+    soal: "Apa nama situs resmi JKT48?",
+    pilihan: [
+        "JKT48 Official Website",
+        "JKT48 Fan Wiki",
+        "JKT48 Game Center",
+        "JKT48 News Hub"
+    ],
+    jawaban: 0
+}
+
+];
+
+let soalAktif = [];
+let nomorSoal = 0;
+let skor = 0;
+
+function acak(array) {
+
+    return array.sort(function() {
+        return Math.random() - 0.5;
+    });
+
+}
+
+function mulaiQuiz() {
+
+    soalAktif =
+        acak([...semuaSoal]).slice(0, 10);
+
+    nomorSoal = 0;
+    skor = 0;
+
+    document.getElementById("quiz").style.display =
+        "block";
+
+    document.getElementById("hasil").style.display =
+        "none";
+
+    tampilkanSoal();
+
+}
+
+function tampilkanSoal() {
+
+    const data =
+        soalAktif[nomorSoal];
+
+    document.getElementById("nomor").textContent =
+        "Soal " + (nomorSoal + 1) +
+        " dari " + soalAktif.length;
+
+    document.getElementById("soal").textContent =
+        data.soal;
+
+    const pilihan =
+        document.getElementById("pilihan");
+
+    pilihan.innerHTML = "";
+
+    data.pilihan.forEach(function(teks, index) {
+
+        const tombol =
+            document.createElement("button");
+
+        tombol.className =
+            "jawaban";
+
+        tombol.textContent =
+            String.fromCharCode(65 + index) +
+            ". " + teks;
+
+        tombol.onclick = function() {
+
+            jawab(tombol, index);
+
+        };
+
+        pilihan.appendChild(tombol);
+
+    });
+
+}
+
+function jawab(tombol, index) {
+
+    const data =
+        soalAktif[nomorSoal];
+
+    const semuaTombol =
+        document.querySelectorAll(".jawaban");
+
+    semuaTombol.forEach(function(btn) {
+
+        btn.disabled = true;
+
+    });
+
+    if (index === data.jawaban) {
+
+        tombol.classList.add("benar");
+
+        skor++;
+
+    } else {
+
+        tombol.classList.add("salah");
+
+        semuaTombol[
+            data.jawaban
+        ].classList.add("benar");
+
+    }
+
+    setTimeout(function() {
+
+        nomorSoal++;
+
+        if (nomorSoal < soalAktif.length) {
+
+            tampilkanSoal();
+
+        } else {
+
+            tampilkanHasil();
+
+        }
+
+    }, 800);
+
+}
+
+function tampilkanHasil() {
+
+    document.getElementById("quiz").style.display =
+        "none";
+
+    document.getElementById("hasil").style.display =
+        "block";
+
+    document.getElementById("benar").textContent =
+        skor + " / " + soalAktif.length;
+
+    let nilai =
+        Math.round(
+            (skor / soalAktif.length) * 100
+        );
+
+    document.getElementById("keterangan").textContent =
+        "Nilai kamu: " + nilai;
+
+}
+
+mulaiQuiz();
+
+</script>
+
+</body>
+</html>
