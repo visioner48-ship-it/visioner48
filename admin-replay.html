@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin Replay - Visioner48</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+
+    background: #111827;
+
+    color: white;
+}
+
+
+.container {
+
+    max-width: 700px;
+
+    margin: auto;
+}
+
+
+.box {
+
+    background: #1f2937;
+
+    padding: 20px;
+
+    border-radius: 16px;
+}
+
+
+h1 {
+
+    margin-top: 0;
+
+    text-align: center;
+}
+
+
+label {
+
+    display: block;
+
+    margin-top: 20px;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+
+input[type="text"] {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #374151;
+
+    color: white;
+
+    font-size: 15px;
+}
+
+
+input[type="file"] {
+
+    width: 100%;
+
+    padding: 10px;
+
+    background: #374151;
+
+    border-radius: 9px;
+
+    color: white;
+}
+
+
+video {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+
+    display: none;
+
+    background: black;
+}
+
+
+button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-weight: bold;
+
+    margin-top: 15px;
+}
+
+
+.simpan {
+
+    background: #16a34a;
+}
+
+
+.hapus {
+
+    background: #dc2626;
+}
+
+
+.kembali {
+
+    background: #4b5563;
+}
+
+
+.status {
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background: #374151;
+
+    color: #d1d5db;
+
+    display: none;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="box">
+
+
+<h1>
+Admin Replay Live
+</h1>
+
+
+<label>
+Judul Replay
+</label>
+
+
+<input
+    type="text"
+    id="judul"
+    placeholder="Masukkan judul replay"
+/>
+
+
+<label>
+Pilih Video dari Galeri HP
+</label>
+
+
+<input
+    type="file"
+    id="videoInput"
+    accept="video/*"
+/>
+
+
+<video
+    id="preview"
+    controls
+></video>
+
+
+<div
+    id="status"
+    class="status"
+>
+</div>
+
+
+<button
+    class="simpan"
+    onclick="simpanReplay()"
+>
+    Simpan Replay
+</button>
+
+
+<button
+    class="hapus"
+    onclick="hapusReplay()"
+>
+    Hapus Replay
+</button>
+
+
+<button
+    class="kembali"
+    onclick="kembaliAdmin()"
+>
+    ← Kembali ke Admin
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/*
+   DATA VIDEO
+*/
+
+let videoData = "";
+
+let videoType = "";
+
+
+/*
+   PILIH VIDEO
+*/
+
+document
+.getElementById("videoInput")
+.addEventListener(
+    "change",
+    function(event) {
+
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) {
+
+            return;
+
+        }
+
+
+        /*
+           Simpan tipe video
+        */
+
+        videoType =
+            file.type ||
+            "video/mp4";
+
+
+        /*
+           Baca video
+        */
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e) {
+
+
+                videoData =
+                    e.target.result;
+
+
+                /*
+                   Tampilkan preview
+                */
+
+                const preview =
+                    document.getElementById(
+                        "preview"
+                    );
+
+
+                preview.src =
+                    videoData;
+
+
+                preview.style.display =
+                    "block";
+
+
+                tampilkanStatus(
+                    "Video berhasil dipilih."
+                );
+
+            };
+
+
+        reader.onerror =
+            function() {
+
+                tampilkanStatus(
+                    "Video gagal dibaca."
+                );
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
+);
+
+
+/*
+   SIMPAN REPLAY
+*/
+
+function simpanReplay() {
+
+
+    const judul =
+        document
+        .getElementById("judul")
+        .value
+        .trim();
+
+
+    /*
+       Cek judul
+    */
+
+    if (!judul) {
+
+        alert(
+            "Masukkan judul replay terlebih dahulu."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Cek video
+    */
+
+    if (!videoData) {
+
+        alert(
+            "Pilih video dari galeri terlebih dahulu."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Buat data replay
+    */
+
+    const replay = {
+
+        judul: judul,
+
+        video: videoData,
+
+        type: videoType,
+
+        tanggal:
+            new Date().toLocaleDateString(
+                "id-ID",
+                {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            )
+
+    };
+
+
+    try {
+
+
+        /*
+           Simpan
+        */
+
+        localStorage.setItem(
+
+            "visioner48Replay",
+
+            JSON.stringify(replay)
+
+        );
+
+
+        alert(
+            "Replay Live berhasil disimpan!"
+        );
+
+
+        tampilkanStatus(
+            "Replay sudah tersedia di menu Replay Live."
+        );
+
+
+    } catch(error) {
+
+
+        alert(
+            "Video terlalu besar untuk disimpan di browser."
+        );
+
+
+        tampilkanStatus(
+            "Gagal menyimpan. Coba gunakan video yang lebih kecil."
+        );
+
+    }
+
+}
+
+
+/*
+   HAPUS REPLAY
+*/
+
+function hapusReplay() {
+
+
+    const yakin =
+        confirm(
+            "Yakin ingin menghapus replay?"
+        );
+
+
+    if (!yakin) {
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "visioner48Replay"
+    );
+
+
+    videoData = "";
+
+    videoType = "";
+
+
+    document
+    .getElementById("judul")
+    .value = "";
+
+
+    document
+    .getElementById("videoInput")
+    .value = "";
+
+
+    const preview =
+        document.getElementById(
+            "preview"
+        );
+
+
+    preview.pause();
+
+    preview.removeAttribute(
+        "src"
+    );
+
+    preview.load();
+
+    preview.style.display =
+        "none";
+
+
+    tampilkanStatus(
+        "Replay berhasil dihapus."
+    );
+
+}
+
+
+/*
+   STATUS
+*/
+
+function tampilkanStatus(teks) {
+
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    status.textContent =
+        teks;
+
+
+    status.style.display =
+        "block";
+
+}
+
+
+/*
+   KEMBALI ADMIN
+*/
+
+function kembaliAdmin() {
+
+
+    window.location.href =
+        "admin.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
