@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.game-container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    background: #222;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.pilihan {
+    background: #555;
+}
+
+.pilihan:hover {
+    background: #333;
+}
+
+.pilihan.benar {
+    background: #198754;
+}
+
+.pilihan.salah {
+    background: #dc3545;
+}
+
+.jawaban-benar {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.jawaban-salah {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8d7da;
+    color: #842029;
+}
+
+#tombolLanjut {
+    background: #0069d9;
+}
+
+.kembali {
+    background: #777;
+}
+
+#hasilAkhir p {
+    font-size: 18px;
+    margin: 12px;
+}
+
+#nomorSoal {
+    font-weight: bold;
+    font-size: 18px;
+}
