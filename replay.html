@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Replay Live - Visioner48</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
+
+    color: white;
+
+    min-height: 100vh;
+}
+
+
+.header {
+
+    text-align: center;
+
+    padding: 30px 15px 20px;
+}
+
+
+.header h1 {
+
+    margin: 0;
+
+    font-size: 30px;
+}
+
+
+.header p {
+
+    color: #d1d5db;
+}
+
+
+.container {
+
+    width: 94%;
+
+    max-width: 750px;
+
+    margin: auto;
+}
+
+
+.video-box {
+
+    background: #1f2937;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+}
+
+
+video {
+
+    width: 100%;
+
+    display: block;
+
+    background: black;
+}
+
+
+.info {
+
+    padding: 20px;
+}
+
+
+.judul {
+
+    margin: 0 0 10px;
+
+    font-size: 24px;
+}
+
+
+.tanggal {
+
+    color: #9ca3af;
+
+    font-size: 13px;
+}
+
+
+.tidak-ada {
+
+    background: #1f2937;
+
+    border-radius: 16px;
+
+    padding: 40px 20px;
+
+    text-align: center;
+}
+
+
+.tombol {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4b5563;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <h1>
+        Replay Live
+    </h1>
+
+    <p>
+        Visioner48
+    </p>
+
+</header>
+
+
+<main
+    id="container"
+    class="container"
+>
+
+</main>
+
+
+<script>
+
+
+function tampilkanReplay() {
+
+
+    const container =
+        document.getElementById(
+            "container"
+        );
+
+
+    /*
+       Ambil data dari admin
+    */
+
+    const data =
+        localStorage.getItem(
+            "visioner48Replay"
+        );
+
+
+    /*
+       Kalau belum ada video
+    */
+
+    if (!data) {
+
+        container.innerHTML = `
+
+            <div class="tidak-ada">
+
+                <h2>
+                    Belum Ada Replay
+                </h2>
+
+                <p>
+                    Admin belum menambahkan
+                    replay live.
+                </p>
+
+            </div>
+
+            <button
+                class="tombol"
+                onclick="kembaliHome()"
+            >
+                ← Kembali ke Home
+            </button>
+
+        `;
+
+        return;
+
+    }
+
+
+    let replay;
+
+
+    try {
+
+        replay =
+            JSON.parse(data);
+
+    } catch {
+
+        container.innerHTML = `
+
+            <div class="tidak-ada">
+
+                <h2>
+                    Data Replay Bermasalah
+                </h2>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       Tampilkan video
+    */
+
+    container.innerHTML = `
+
+        <div class="video-box">
+
+            <video
+                controls
+                playsinline
+                preload="metadata"
+            >
+
+                <source
+                    src="${replay.video}"
+                    type="${replay.type || 'video/mp4'}"
+                >
+
+                Browser kamu tidak mendukung
+                video.
+
+            </video>
+
+
+            <div class="info">
+
+                <h2 class="judul">
+
+                    ${replay.judul || "Replay Live"}
+
+                </h2>
+
+
+                <div class="tanggal">
+
+                    ${replay.tanggal || ""}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="tombol"
+            onclick="kembaliHome()"
+        >
+            ← Kembali ke Home
+        </button>
+
+    `;
+
+}
+
+
+function kembaliHome() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+tampilkanReplay();
+
+</script>
+
+
+</body>
+
+</html>
