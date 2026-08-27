@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visioner48 Private Chat Owner</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+        }
+
+        .header {
+            background: #111;
+            color: white;
+            padding: 18px 12px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .top h2 {
+            margin: 0;
+            font-size: 19px;
+        }
+
+        .button {
+            border: none;
+            border-radius: 8px;
+            padding: 10px 14px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+        .profiles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .profile {
+            background: white;
+            border-radius: 14px;
+            padding: 14px 8px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+
+        .profile:active {
+            transform: scale(0.97);
+        }
+
+        .profile img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ddd;
+        }
+
+        .name {
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .number {
+            margin-top: 4px;
+            color: #777;
+            font-size: 11px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+
+        @media (max-width: 700px) {
+            .profiles {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .profiles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    Visioner48 Private Chat Owner
+</div>
+
+<div class="container">
+
+    <div class="top">
+        <h2>60 Private Chat Member</h2>
+
+        <button
+            class="button"
+            onclick="kembaliKeHome()"
+        >
+            Home
+        </button>
+    </div>
+
+    <div
+        id="profiles"
+        class="profiles"
+    >
+        <div class="loading">
+            Memuat 60 profil...
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Firebase -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script src="firebase-config.js"></script>
+
+
+<script>
+
+firebase.initializeApp(firebaseConfig);
+
+const database =
+    firebase.database();
+
+const profiles =
+    document.getElementById("profiles");
+
+const defaultPhoto =
+    "https://via.placeholder.com/150";
+
+
+/* =========================
+   MEMUAT 60 PROFIL
+========================= */
+
+function tampilkanProfil() {
+
+    profiles.innerHTML = "";
+
+    for (
+        let nomor = 1;
+        nomor <= 60;
+        nomor++
+    ) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "profile";
+
+        card.innerHTML = `
+
+            <img
+                id="foto-${nomor}"
+                src="${defaultPhoto}"
+                alt="Member ${nomor}"
+            >
+
+            <div
+                id="nama-${nomor}"
+                class="name"
+            >
+                Member ${nomor}
+            </div>
+
+            <div class="number">
+                Profil ${nomor}
+            </div>
+
+        `;
+
+        card.onclick = function() {
+
+            bukaChat(nomor);
+
+        };
+
+        profiles.appendChild(card);
+
+
+        /* Ambil data Firebase */
+
+        database
+            .ref(
+                "visioner48_profiles/member" +
+                nomor
+            )
+            .on(
+                "value",
+                snapshot => {
+
+                    const data =
+                        snapshot.val();
+
+                    if (!data) {
+                        return;
+                    }
+
+
+                    /* Nama */
+
+                    if (data.nama) {
+
+                        document.getElementById(
+                            "nama-" + nomor
+                        ).textContent =
+                            data.nama;
+
+                    }
+
+
+                    /* Foto */
+
+                    if (data.foto) {
+
+                        document.getElementById(
+                            "foto-" + nomor
+                        ).src =
+                            data.foto;
+
+                    }
+
+                }
+            );
+    }
+}
+
+
+/* =========================
+   BUKA PRIVATE CHAT
+========================= */
+
+function bukaChat(nomor) {
+
+    window.location.href =
+        "privatechat.html?member=member" +
+        nomor;
+
+}
+
+
+/* =========================
+   KEMBALI HOME
+========================= */
+
+function kembaliKeHome() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =========================
+   MULAI
+========================= */
+
+tampilkanProfil();
+
+</script>
+
+</body>
+</html>
