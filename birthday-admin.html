@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Jadwal Ulang Tahun Member</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f3f3;
+}
+
+.header {
+    background: #111;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 15px;
+}
+
+.box {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #111;
+    color: white;
+    font-size: 16px;
+}
+
+.hapus {
+    background: #777;
+}
+
+.preview {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
+    border-radius: 12px;
+}
+
+.status {
+    background: #eee;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    word-break: break-word;
+}
+
+.member {
+    border: 1px solid #ddd;
+}
+
+.info {
+    text-align: center;
+    font-size: 18px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+    Admin Jadwal Ulang Tahun Member
+</div>
+
+
+<div class="container">
+
+
+<div id="status" class="status">
+    Menghubungkan ke Firebase...
+</div>
+
+
+<div class="box info">
+
+    Bulan Aktif:
+
+    <strong id="bulanTampil">
+        Agustus
+    </strong>
+
+</div>
+
+
+<div class="box">
+
+    <button onclick="tambahMember()">
+        + Tambah Member
+    </button>
+
+</div>
+
+
+<div id="daftar"></div>
+
+
+</div>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
+<script>
+
+
+/* =========================
+   BULAN AKTIF
+========================= */
+
+const bulanAktif = "Agustus";
+
+
+/*
+
+   BULAN DEPAN CUKUP GANTI:
+
+   const bulanAktif = "September";
+
+*/
+
+
+document.getElementById(
+    "bulanTampil"
+).textContent =
+    bulanAktif;
+
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDvHngeBgcjPgdIVtlR5w_3apGiornP-W4",
+
+    authDomain:
+        "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL:
+        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+        "visioner48-9b51e",
+
+    storageBucket:
+        "visioner48-9b51e.firebasestorage.app",
+
+    messagingSenderId:
+        "691930246088",
+
+    appId:
+        "1:691930246088:web:efd50a623e8321d97feefd"
+
+};
+
+
+
+/* =========================
+   HUBUNGKAN FIREBASE
+========================= */
+
+try {
+
+    firebase.initializeApp(
+        firebaseConfig
+    );
+
+}
+catch (error) {
+
+    document.getElementById(
+        "status"
+    ).innerHTML =
+        "Firebase ERROR:<br>" +
+        error.message;
+
+}
+
+
+const database =
+    firebase.database();
+
+
+
+document.getElementById(
+    "status"
+).innerHTML =
+    "Firebase berhasil terhubung.";
+
+
+
+/* =========================
+   PATH DATABASE
+========================= */
+
+function getPath() {
+
+    return (
+        "visioner48_birthdays/" +
+        bulanAktif
+    );
+
+}
+
+
+
+/* =========================
+   TAMPILKAN DATA
+========================= */
+
+function tampilkanData() {
+
+
+    const daftar =
+        document.getElementById(
+            "daftar"
+        );
+
+
+    daftar.innerHTML = `
+
+        <div class="box">
+            Memuat profil member...
+        </div>
+
+    `;
+
+
+    database
+        .ref(getPath())
+        .once("value")
+
+
+        .then(
+            function(snapshot) {
+
+
+                daftar.innerHTML = "";
+
+
+                const data =
+                    snapshot.val();
+
+
+                if (!data) {
+
+
+                    daftar.innerHTML = `
+
+                        <div class="box">
+
+                            Belum ada member
+                            ulang tahun bulan
+                            ${bulanAktif}.
+
+                        </div>
+
+                    `;
+
+
+                    return;
+
+                }
+
+
+
+                let nomor = 1;
+
+
+
+                Object.keys(data)
+                    .forEach(
+                        function(key) {
+
+
+                            buatKartu(
+                                key,
+                                data[key],
+                                nomor
+                            );
+
+
+                            nomor++;
+
+
+                        }
+                    );
+
+
+            }
+        )
+
+
+        .catch(
+            function(error) {
+
+
+                daftar.innerHTML = `
+
+                    <div class="box">
+
+                        Gagal memuat data:
+
+                        <br><br>
+
+                        ${error.message}
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+}
+
+
+
+/* =========================
+   BUAT KARTU MEMBER
+========================= */
+
+function buatKartu(
+    key,
+    member,
+    nomor
+) {
+
+
+    const box =
+        document.createElement(
+            "div"
+        );
+
+
+    box.className =
+        "box member";
+
+
+
+    let foto =
+        member.foto
+        ?
+        "birthday-image/" +
+        member.foto
+        :
+        "";
+
+
+
+    box.innerHTML = `
+
+        <h3>
+            Member ${nomor}
+        </h3>
+
+
+        <img
+            id="preview-${key}"
+            class="preview"
+            src="${foto}"
+            style="
+                ${
+                    foto
+                    ? ""
+                    : "display:none;"
+                }
+            "
+            onerror="
+                this.style.display='none';
+            "
+        >
+
+
+        <label>
+            Nama Member
+        </label>
+
+
+        <input
+            id="nama-${key}"
+            type="text"
+            value="${member.nama || ""}"
+            placeholder="Masukkan nama member"
+        >
+
+
+
+        <label>
+            Tanggal Ulang Tahun
+        </label>
+
+
+        <input
+            id="tanggal-${key}"
+            type="date"
+            value="${member.tanggal || ""}"
+        >
+
+
+
+        <label>
+            Nama File Foto
+        </label>
+
+
+        <input
+            id="foto-${key}"
+            type="text"
+            value="${member.foto || ""}"
+            placeholder="Contoh: member1.jpg"
+            oninput="
+                previewFoto('${key}')
+            "
+        >
+
+
+
+        <button
+            onclick="
+                simpanMember('${key}')
+            "
+        >
+
+            Simpan
+
+        </button>
+
+
+
+        <button
+            class="hapus"
+            onclick="
+                hapusMember('${key}')
+            "
+        >
+
+            Hapus
+
+        </button>
+
+
+
+        <div
+            id="status-${key}"
+            class="status"
+        ></div>
+
+    `;
+
+
+
+    document
+        .getElementById(
+            "daftar"
+        )
+        .appendChild(box);
+
+}
+
+
+
+/* =========================
+   PREVIEW FOTO
+========================= */
+
+function previewFoto(key) {
+
+
+    const namaFile =
+        document
+        .getElementById(
+            "foto-" + key
+        )
+        .value
+        .trim();
+
+
+
+    const preview =
+        document
+        .getElementById(
+            "preview-" + key
+        );
+
+
+
+    if (!namaFile) {
+
+        preview.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+
+    preview.src =
+        "birthday-image/" +
+        namaFile;
+
+
+    preview.style.display =
+        "block";
+
+}
+
+
+
+/* =========================
+   TAMBAH MEMBER
+========================= */
+
+function tambahMember() {
+
+
+    database
+        .ref(getPath())
+        .push({
+
+            nama: "",
+
+            tanggal: "",
+
+            foto: ""
+
+        })
+
+
+        .then(
+            function() {
+
+
+                document.getElementById(
+                    "status"
+                ).innerHTML =
+                    "Member berhasil ditambahkan.";
+
+
+                tampilkanData();
+
+
+            }
+        )
+
+
+        .catch(
+            function(error) {
+
+
+                document.getElementById(
+                    "status"
+                ).innerHTML =
+                    "Gagal menambah member:<br>" +
+                    error.message;
+
+
+            }
+        );
+
+}
+
+
+
+/* =========================
+   SIMPAN MEMBER
+========================= */
+
+function simpanMember(key) {
+
+
+    const nama =
+        document
+        .getElementById(
+            "nama-" + key
+        )
+        .value
+        .trim();
+
+
+
+    const tanggal =
+        document
+        .getElementById(
+            "tanggal-" + key
+        )
+        .value;
+
+
+
+    const foto =
+        document
+        .getElementById(
+            "foto-" + key
+        )
+        .value
+        .trim();
+
+
+
+    const status =
+        document
+        .getElementById(
+            "status-" + key
+        );
+
+
+
+    if (!nama) {
+
+        status.innerHTML =
+            "Nama member belum diisi.";
+
+        return;
+
+    }
+
+
+
+    if (!tanggal) {
+
+        status.innerHTML =
+            "Tanggal ulang tahun belum diisi.";
+
+        return;
+
+    }
+
+
+
+    status.innerHTML =
+        "Menyimpan...";
+
+
+
+    database
+        .ref(
+            getPath() +
+            "/" +
+            key
+        )
+
+
+        .update({
+
+            nama:
+                nama,
+
+            tanggal:
+                tanggal,
+
+            foto:
+                foto
+
+        })
+
+
+        .then(
+            function() {
+
+
+                status.innerHTML =
+                    "Data berhasil disimpan.";
+
+
+                tampilkanData();
+
+
+            }
+        )
+
+
+        .catch(
+            function(error) {
+
+
+                status.innerHTML =
+                    "Gagal menyimpan:<br>" +
+                    error.message;
+
+
+            }
+        );
+
+}
+
+
+
+/* =========================
+   HAPUS MEMBER
+========================= */
+
+function hapusMember(key) {
+
+
+    if (
+        !confirm(
+            "Yakin ingin menghapus member ini?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+
+    database
+        .ref(
+            getPath() +
+            "/" +
+            key
+        )
+
+
+        .remove()
+
+
+        .then(
+            function() {
+
+                tampilkanData();
+
+            }
+        )
+
+
+        .catch(
+            function(error) {
+
+                alert(
+                    "Gagal menghapus:<br>" +
+                    error.message
+                );
+
+            }
+        );
+
+}
+
+
+
+/* =========================
+   MULAI
+========================= */
+
+tampilkanData();
+
+
+</script>
+
+</body>
+</html>
