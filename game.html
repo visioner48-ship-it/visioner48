@@ -1,0 +1,361 @@
+ <!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Game JKT48 - Visioner48</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 28px 15px;
+        }
+
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+
+        header p {
+            margin: 0;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: 92%;
+            max-width: 850px;
+            margin: 25px auto;
+        }
+
+
+        /* JUDUL */
+
+        .judul {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .judul h2 {
+            margin-bottom: 5px;
+        }
+
+
+        .judul p {
+            color: #777;
+            margin-top: 0;
+        }
+
+
+        /* GRID GAME */
+
+        .game-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 15px;
+        }
+
+
+        /* KARTU */
+
+        .game-card {
+            text-decoration: none;
+            color: #222;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            min-height: 165px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0,0,0,0.08);
+
+            transition: 0.2s;
+        }
+
+
+        .game-card:active {
+            transform: scale(0.97);
+        }
+
+
+        .icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+
+        .game-card h3 {
+            margin: 0 0 7px;
+            font-size: 18px;
+        }
+
+
+        .game-card p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+
+        /* QUIZ LEBAR */
+
+        .game-wide {
+            grid-column: span 2;
+            min-height: 140px;
+        }
+
+
+        /* HOME */
+
+        .home-button {
+            display: block;
+
+            width: fit-content;
+
+            margin: 30px auto 10px;
+
+            padding: 13px 20px;
+
+            background: #111;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+
+        /* HP KECIL */
+
+        @media (max-width: 420px) {
+
+            .game-grid {
+                gap: 10px;
+            }
+
+
+            .game-card {
+                padding: 16px;
+                min-height: 155px;
+            }
+
+
+            .icon {
+                font-size: 32px;
+            }
+
+
+            .game-card h3 {
+                font-size: 16px;
+            }
+
+
+            .game-card p {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>
+        🎮 Game Visioner48
+    </h1>
+
+    <p>
+        Seberapa kenal kamu dengan JKT48?
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- JUDUL -->
+
+    <div class="judul">
+
+        <h2>
+            Pilih Permainan
+        </h2>
+
+        <p>
+            Mainkan dan pecahkan rekor kamu!
+        </p>
+
+    </div>
+
+
+
+    <!-- GAME -->
+
+    <div class="game-grid">
+
+
+        <!-- 1 -->
+
+        <a
+            href="tebakmember.html"
+            class="game-card"
+        >
+
+            <div class="icon">
+                🖼️
+            </div>
+
+            <h3>
+                Tebak Member
+            </h3>
+
+            <p>
+                Tebak siapa member
+                dari foto yang muncul.
+            </p>
+
+        </a>
+
+
+
+        <!-- 2 -->
+
+        <a
+            href="tebakjiko.html"
+            class="game-card"
+        >
+
+            <div class="icon">
+                💬
+            </div>
+
+            <h3>
+                Tebak Jiko
+            </h3>
+
+            <p>
+                Tebak member berdasarkan
+                Jiko mereka.
+            </p>
+
+        </a>
+
+
+
+        <!-- 4 -->
+
+        <a href="siapaaku.html" class="game-card">
+            
+                  <div class="icon">
+                👩
+            </div>
+    <h3>
+        Tebak tentang 48 Group</h3>
+    <p>tebak pertanyaan tentang JKT48, AKB48, dan sister group</p>
+</a>
+
+
+        <!-- 5 -->
+
+        <a
+            href="quiz.html"
+            class="game-card"
+        >
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h3>
+                Quiz JKT48
+            </h3>
+
+            <p>
+                Jawab pertanyaan,
+                dapatkan nilai,
+                dan pecahkan rekor!
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- KEMBALI HOME -->
+
+    <a
+        href="index.html"
+        class="home-button"
+    >
+        🏠 Kembali ke Home
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>
