@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Ulang Tahun Member</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #302A64;
+}
+
+.header {
+    background: #111;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 15px;
+}
+
+.info {
+    background: #312e81;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.member {
+    background: #312e81;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.member img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    margin: auto;
+}
+
+.member h2 {
+    margin-bottom: 8px;
+}
+
+.tanggal {
+    font-size: 16px;
+}
+
+.status {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.error {
+    color: #b00020;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <a href="index.html"
+       style="
+       display:inline-block;
+       color:white;
+       text-decoration:none;
+       margin-bottom:10px;
+       font-size:16px;
+       ">
+        ← Home
+    </a>
+
+    <div>
+        Jadwal Ulang Tahun Member
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+<div class="info">
+
+    Ulang Tahun Bulan
+
+    <h2 id="bulanTampil">
+        Agustus
+    </h2>
+
+</div>
+
+
+<div id="status" class="status">
+    Memuat jadwal ulang tahun...
+</div>
+
+
+<div id="daftar"></div>
+
+
+</div>
+
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
+<script>
+
+
+/* =================================
+   BULAN AKTIF
+================================= */
+
+const bulanAktif = "Agustus";
+
+
+/*
+   BULAN DEPAN:
+
+   const bulanAktif = "September";
+*/
+
+
+document.getElementById(
+    "bulanTampil"
+).textContent =
+    bulanAktif;
+
+
+
+/* =================================
+   FIREBASE CONFIG
+================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDvHngeBgcjPgdIVtlR5w_3apGiornP-W4",
+
+    authDomain:
+        "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL:
+        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+        "visioner48-9b51e",
+
+    storageBucket:
+        "visioner48-9b51e.firebasestorage.app",
+
+    messagingSenderId:
+        "691930246088",
+
+    appId:
+        "1:691930246088:web:efd50a623e8321d97feefd"
+
+};
+
+
+
+/* =================================
+   FIREBASE
+================================= */
+
+firebase.initializeApp(
+    firebaseConfig
+);
+
+
+const database =
+    firebase.database();
+
+
+
+/* =================================
+   AMBIL DATA
+================================= */
+
+database
+    .ref(
+        "visioner48_birthdays/" +
+        bulanAktif
+    )
+
+    .once("value")
+
+    .then(function(snapshot) {
+
+
+        const status =
+            document.getElementById(
+                "status"
+            );
+
+
+        const daftar =
+            document.getElementById(
+                "daftar"
+            );
+
+
+        const data =
+            snapshot.val();
+
+
+        status.style.display =
+            "none";
+
+
+        daftar.innerHTML =
+            "";
+
+
+
+        if (!data) {
+
+            daftar.innerHTML = `
+
+                <div class="status">
+
+                    Belum ada member
+                    ulang tahun bulan
+                    ${bulanAktif}.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        Object.keys(data)
+            .forEach(function(key) {
+
+
+                const member =
+                    data[key];
+
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "member";
+
+
+
+                /*
+                   FOTO DIAMBIL DARI:
+
+                   birthday-image/
+                */
+
+
+                let foto =
+                    member.foto
+                    ?
+                    "birthday-image/" +
+                    member.foto
+                    :
+                    "";
+
+
+
+                let tanggal =
+                    member.tanggal
+                    ?
+                    formatTanggal(
+                        member.tanggal
+                    )
+                    :
+                    "Tanggal belum diisi";
+
+
+
+                div.innerHTML = `
+
+                    ${
+                        foto
+                        ?
+                        `
+                        <img
+                            src="${foto}"
+                            alt="${member.nama || ""}"
+                            onerror="
+                                this.style.display='none';
+                                document.getElementById(
+                                    'foto-error-${key}'
+                                ).style.display='block';
+                            "
+                        >
+
+                        <div
+                            id="foto-error-${key}"
+                            style="display:none;"
+                            class="error"
+                        >
+                            Foto tidak ditemukan:
+                            ${foto}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <h2>
+                        ${
+                            member.nama ||
+                            "Nama Member"
+                        }
+                    </h2>
+
+
+                    <div class="tanggal">
+
+                        Ulang tahun:
+
+                        <strong>
+                            ${tanggal}
+                        </strong>
+
+                    </div>
+
+                `;
+
+
+
+                daftar.appendChild(
+                    div
+                );
+
+
+            });
+
+
+    })
+
+
+    .catch(function(error) {
+
+
+        document.getElementById(
+            "status"
+        ).innerHTML = `
+
+            <span class="error">
+
+                Gagal memuat data:<br>
+
+                ${error.message}
+
+            </span>
+
+        `;
+
+    });
+
+
+
+/* =================================
+   FORMAT TANGGAL
+================================= */
+
+function formatTanggal(tanggal) {
+
+
+    const bagian =
+        tanggal.split("-");
+
+
+    const tahun =
+        bagian[0];
+
+
+    const bulan =
+        bagian[1];
+
+
+    const hari =
+        bagian[2];
+
+
+    const namaBulan = [
+
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember"
+
+    ];
+
+
+    return (
+
+        parseInt(hari) +
+
+        " " +
+
+        namaBulan[
+            parseInt(bulan) - 1
+        ] +
+
+        " " +
+
+        tahun
+
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
