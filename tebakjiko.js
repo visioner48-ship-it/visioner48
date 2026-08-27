@@ -241,7 +241,7 @@ const daftarSoal = [
 
     {
         soal: "Jiko siapakah: Suka berekspresi melalui kreasi! Taraaaa,Aku?",
-        pilihan: ["Virgi", "Intan", "Ella", "Giaa"],
+        pilihan: ["Virgi", "Intan", "Rilly", "Giaa"],
         jawaban: "Virgi"
     },
 
@@ -294,8 +294,8 @@ const daftarSoal = [
     },
 
     {
-        soal: "Jiko siapakah: Camera, Roll, Action! Sutradara yang mewarnai kisah hidupmh dengan penuh warn",
-        pilihan: ["Levi", "Aralie", "Mikaela", "Fiony"],
+        soal: "Jiko siapakah: Camera, Roll, Action! Sutradara yang akan mewarnai kisah hidupmu dengan penuh warna.",
+        pilihan: ["Levi", "Mikaela", "Bella", "Fiony"],
         jawaban: "Mikaela"
     },
 
