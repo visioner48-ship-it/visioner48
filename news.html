@@ -1,10 +1,17 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>News - Visioner48</title>
+
 
 <style>
 
@@ -12,76 +19,181 @@
     box-sizing: border-box;
 }
 
+
 body {
     margin: 0;
+
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#111827,#312E81);
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312E81
+        );
+
     color: white;
+
     min-height: 100vh;
 }
 
+
 .header {
     text-align: center;
+
     padding: 30px 15px;
 }
 
+
 .header h1 {
     margin: 0;
+
     font-size: 30px;
 }
+
 
 .header p {
     color: #d1d5db;
 }
 
+
 .container {
     width: 94%;
+
     max-width: 700px;
+
     margin: auto;
 }
 
 
 /* =========================
-   KARTU BERITA
+   TOMBOL HOME
 ========================= */
 
-.berita-card {
-    background: #1f2937;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 18px;
+#tombolHome,
+#tombolKembaliDetail {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #e91e63;
+
+    color: white;
+
+    text-decoration: none;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
     cursor: pointer;
 }
 
-.berita-card:active {
-    transform: scale(0.98);
+
+#tombolKembaliDetail {
+
+    display: none;
+
+    background: #4b5563;
 }
 
+
+/* =========================
+   DAFTAR BERITA
+========================= */
+
+.berita-card {
+
+    background: #1f2937;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.25);
+
+    transition: 0.2s;
+}
+
+
+.berita-card:active {
+
+    transform:
+        scale(0.98);
+}
+
+
 .berita-foto {
+
     width: 100%;
+
     height: 220px;
+
     object-fit: cover;
+
     display: block;
 }
 
+
 .berita-info {
+
     padding: 17px;
 }
 
+
 .berita-judul {
-    margin: 0 0 8px;
+
+    margin:
+        0 0 8px;
+
     font-size: 20px;
 }
 
+
 .berita-tanggal {
+
     color: #9ca3af;
+
     font-size: 13px;
+
     margin-bottom: 10px;
 }
 
+
 .berita-ringkas {
-    color: #d1d5db;
+
+    color: #e5e7eb;
+
     line-height: 1.6;
+}
+
+
+.kosong {
+
+    background: #1f2937;
+
+    padding: 30px 20px;
+
+    border-radius: 16px;
+
+    text-align: center;
 }
 
 
@@ -89,77 +201,125 @@ body {
    DETAIL
 ========================= */
 
-.detail {
+#detail {
+
     display: none;
+}
+
+
+.detail-box {
+
     background: #1f2937;
+
+    padding: 20px;
+
     border-radius: 16px;
-    overflow: hidden;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,0.25);
+}
+
+
+#detailFoto {
+
+    width: 100%;
+
+    max-height: 400px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    margin-bottom: 20px;
+
+    display: none;
+}
+
+
+#detailJudul {
+
+    margin:
+        0 0 8px;
+
+    font-size: 26px;
+}
+
+
+#detailTanggal {
+
+    color: #9ca3af;
+
+    font-size: 14px;
+
     margin-bottom: 20px;
 }
 
-.detail-foto {
-    width: 100%;
-    max-height: 450px;
-    object-fit: cover;
-    display: none;
-}
 
-.detail-info {
-    padding: 22px;
-}
+#detailIsi {
 
-.detail-judul {
-    margin: 0;
-    font-size: 27px;
-    line-height: 1.35;
-}
+    color: #f3f4f6;
 
-.detail-tanggal {
-    color: #9ca3af;
-    font-size: 13px;
-    margin: 10px 0 22px;
-}
-
-.detail-isi {
-    color: #e5e7eb;
     line-height: 1.8;
+
     white-space: pre-wrap;
+
+    font-size: 16px;
 }
 
 
 /* =========================
-   TOMBOL
+   RESPONSIVE
 ========================= */
 
-.tombol {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+@media (max-width: 480px) {
 
-.tombol-kembali {
-    background: #4b5563;
-}
+    .header {
 
-.kosong {
-    background: #1f2937;
-    padding: 40px 20px;
-    border-radius: 16px;
-    text-align: center;
+        padding:
+            25px 10px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 26px;
+
+    }
+
+
+    .berita-foto {
+
+        height: 190px;
+
+    }
+
+
+    .berita-judul {
+
+        font-size: 18px;
+
+    }
+
+
+    #detailJudul {
+
+        font-size: 22px;
+
+    }
+
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<header class="header">
+<div class="header">
 
     <h1 id="judulHalaman">
         News
@@ -169,49 +329,39 @@ body {
         Berita dan informasi Visioner48
     </p>
 
-</header>
+</div>
 
 
 <div class="container">
+
+
+<a
+    id="tombolHome"
+    href="../index.html"
+>
+    Kembali ke Home
+</a>
+
+
+<button
+    id="tombolKembaliDetail"
+    onclick="kembaliKeDaftar()"
+>
+    Kembali ke Daftar Berita
+</button>
 
 
 <!-- =========================
      DAFTAR BERITA
 ========================= -->
 
-<div id="daftarBerita"></div>
+<div id="daftarBerita">
 
+    <div class="kosong">
 
-<!-- =========================
-     DETAIL BERITA
-========================= -->
-
-<div
-    id="detail"
-    class="detail"
->
-
-    <img
-        id="detailFoto"
-        class="detail-foto"
-    >
-
-    <div class="detail-info">
-
-        <h1
-            id="detailJudul"
-            class="detail-judul"
-        ></h1>
-
-        <div
-            id="detailTanggal"
-            class="detail-tanggal"
-        ></div>
-
-        <div
-            id="detailIsi"
-            class="detail-isi"
-        ></div>
+        <h2>
+            Memuat berita...
+        </h2>
 
     </div>
 
@@ -219,32 +369,96 @@ body {
 
 
 <!-- =========================
-     TOMBOL KEMBALI
+     DETAIL BERITA
 ========================= -->
 
-<button
-    id="tombolKembaliDetail"
-    class="tombol tombol-kembali"
-    style="display:none"
-    onclick="kembaliKeDaftar()"
->
-    ← Kembali ke News
-</button>
+<div id="detail">
+
+    <div class="detail-box">
+
+        <img
+            id="detailFoto"
+            alt="Foto berita"
+        >
 
 
-<button
-    id="tombolHome"
-    class="tombol tombol-kembali"
-    onclick="kembaliHome()"
->
-    ← Kembali ke Home
-</button>
+        <h1 id="detailJudul">
+            Judul Berita
+        </h1>
+
+
+        <div id="detailTanggal">
+            Tanggal
+        </div>
+
+
+        <div id="detailIsi">
+            Isi berita
+        </div>
+
+    </div>
+
+</div>
 
 
 </div>
 
 
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
 <script>
+
+
+/* =========================================
+   FIREBASE CONFIG
+========================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDvHngeBgcjPgdIVtlR5w_3apGiornP-W4",
+
+    authDomain:
+        "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL:
+        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+        "visioner48-9b51e",
+
+    storageBucket:
+        "visioner48-9b51e.firebasestorage.app",
+
+    messagingSenderId:
+        "691930246088",
+
+    appId:
+        "1:691930246088:web:efd50a623e8321d97feefd"
+
+};
+
+
+firebase.initializeApp(
+    firebaseConfig
+);
+
+
+const database =
+    firebase.database();
+
+
+const beritaRef =
+    database.ref(
+        "visioner48_news"
+    );
 
 
 /* =========================================
@@ -258,190 +472,206 @@ function tampilkanDaftar() {
             "daftarBerita"
         );
 
-    container.innerHTML = "";
+
+    container.innerHTML = `
+
+        <div class="kosong">
+
+            <h2>
+                Memuat berita...
+            </h2>
+
+        </div>
+
+    `;
 
 
-    const data =
-        localStorage.getItem(
-            "visioner48News"
+    beritaRef
+        .once("value")
+
+        .then(
+            function(snapshot) {
+
+                container.innerHTML =
+                    "";
+
+
+                const data =
+                    snapshot.val();
+
+
+                if (!data) {
+
+                    container.innerHTML = `
+
+                        <div class="kosong">
+
+                            <h2>
+                                Belum Ada Berita
+                            </h2>
+
+                            <p>
+                                Admin belum menambahkan berita.
+                            </p>
+
+                        </div>
+
+                    `;
+
+                    return;
+                }
+
+
+                const berita =
+                    Object.values(data);
+
+
+                /* Berita terbaru paling atas */
+
+                berita.sort(
+                    function(a, b) {
+
+                        return (
+                            (b.waktu || 0) -
+                            (a.waktu || 0)
+                        );
+
+                    }
+                );
+
+
+                berita.forEach(
+                    function(item) {
+
+
+                        const card =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        card.className =
+                            "berita-card";
+
+
+                        let foto = "";
+
+
+                        if (
+                            item.gambar &&
+                            item.gambar !== ""
+                        ) {
+
+                            foto = `
+
+                                <img
+                                    class="berita-foto"
+                                    src="${item.gambar}"
+                                    alt="Foto berita"
+                                >
+
+                            `;
+
+                        }
+
+
+                        let ringkas =
+                            item.isi || "";
+
+
+                        if (
+                            ringkas.length > 160
+                        ) {
+
+                            ringkas =
+                                ringkas.substring(
+                                    0,
+                                    160
+                                ) + "...";
+
+                        }
+
+
+                        card.innerHTML = `
+
+                            ${foto}
+
+                            <div class="berita-info">
+
+                                <h2
+                                    class="berita-judul"
+                                >
+                                    ${escapeHTML(
+                                        item.judul ||
+                                        "Tanpa Judul"
+                                    )}
+                                </h2>
+
+
+                                <div
+                                    class="berita-tanggal"
+                                >
+                                    ${escapeHTML(
+                                        item.tanggal ||
+                                        ""
+                                    )}
+                                </div>
+
+
+                                <div
+                                    class="berita-ringkas"
+                                >
+                                    ${escapeHTML(
+                                        ringkas
+                                    )}
+                                </div>
+
+                            </div>
+
+                        `;
+
+
+                        card.onclick =
+                            function() {
+
+                                tampilkanDetail(
+                                    item
+                                );
+
+                            };
+
+
+                        container.appendChild(
+                            card
+                        );
+
+                    }
+                );
+
+            }
+        )
+
+        .catch(
+            function(error) {
+
+                container.innerHTML = `
+
+                    <div class="kosong">
+
+                        <h2>
+                            Gagal Memuat Berita
+                        </h2>
+
+                        <p>
+                            ${error.message}
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
         );
-
-
-    if (!data) {
-
-        container.innerHTML = `
-
-            <div class="kosong">
-
-                <h2>
-                    Belum Ada Berita
-                </h2>
-
-                <p>
-                    Admin belum menambahkan berita.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    let berita;
-
-
-    try {
-
-        berita =
-            JSON.parse(data);
-
-    } catch {
-
-        container.innerHTML = `
-
-            <div class="kosong">
-
-                <h2>
-                    Data Berita Bermasalah
-                </h2>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    if (
-        !Array.isArray(berita) ||
-        berita.length === 0
-    ) {
-
-        container.innerHTML = `
-
-            <div class="kosong">
-
-                <h2>
-                    Belum Ada Berita
-                </h2>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    /*
-       Berita terbaru paling atas
-    */
-
-    berita
-    .slice()
-    .reverse()
-    .forEach(function(item) {
-
-
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className =
-            "berita-card";
-
-
-        let foto = "";
-
-
-        if (
-            item.gambar &&
-            item.gambar !== ""
-        ) {
-
-            foto = `
-
-                <img
-                    class="berita-foto"
-                    src="${item.gambar}"
-                >
-
-            `;
-
-        }
-
-
-        let ringkas =
-            item.isi || "";
-
-
-        if (
-            ringkas.length > 160
-        ) {
-
-            ringkas =
-                ringkas.substring(
-                    0,
-                    160
-                ) + "...";
-
-        }
-
-
-        card.innerHTML = `
-
-            ${foto}
-
-            <div class="berita-info">
-
-                <h2 class="berita-judul">
-
-                    ${item.judul || "Tanpa Judul"}
-
-                </h2>
-
-                <div class="berita-tanggal">
-
-                    ${item.tanggal || ""}
-
-                </div>
-
-                <div class="berita-ringkas">
-
-                    ${ringkas}
-
-                </div>
-
-            </div>
-
-        `;
-
-
-        /*
-           KLIK BERITA
-        */
-
-        card.onclick =
-            function() {
-
-                tampilkanDetail(item);
-
-            };
-
-
-        container.appendChild(
-            card
-        );
-
-    });
 
 }
 
@@ -453,27 +683,23 @@ function tampilkanDaftar() {
 function tampilkanDetail(item) {
 
 
-    /*
-       Sembunyikan daftar
-    */
+    /* Sembunyikan daftar */
 
     document.getElementById(
         "daftarBerita"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
-    /*
-       Tampilkan detail
-    */
+    /* Tampilkan detail */
 
     document.getElementById(
         "detail"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 
-    /*
-       Judul halaman
-    */
+    /* Judul halaman */
 
     document.getElementById(
         "judulHalaman"
@@ -487,39 +713,34 @@ function tampilkanDetail(item) {
         "Visioner48";
 
 
-    /*
-       Judul berita
-    */
+    /* Judul berita */
 
     document.getElementById(
         "detailJudul"
     ).textContent =
-        item.judul || "Tanpa Judul";
+        item.judul ||
+        "Tanpa Judul";
 
 
-    /*
-       Tanggal
-    */
+    /* Tanggal */
 
     document.getElementById(
         "detailTanggal"
     ).textContent =
-        item.tanggal || "";
+        item.tanggal ||
+        "";
 
 
-    /*
-       Isi berita
-    */
+    /* Isi berita */
 
     document.getElementById(
         "detailIsi"
     ).textContent =
-        item.isi || "";
+        item.isi ||
+        "";
 
 
-    /*
-       Foto
-    */
+    /* Foto */
 
     const foto =
         document.getElementById(
@@ -546,9 +767,7 @@ function tampilkanDetail(item) {
     }
 
 
-    /*
-       Tombol
-    */
+    /* Tombol */
 
     document.getElementById(
         "tombolKembaliDetail"
@@ -614,7 +833,46 @@ function kembaliKeDaftar() {
 ========================================= */
 
 function kembaliHome() {
-    window.location.href = "index.html";
+
+    window.location.href =
+        "../index.html";
+
+}
+
+
+/* =========================================
+   AMANKAN TEKS
+========================================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
 
 

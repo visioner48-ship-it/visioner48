@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin News - Visioner48</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
+
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+
+.box {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    background: rgba(0,0,0,0.20);
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+input[type="file"] {
+    padding: 10px;
+}
+
+.preview {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    margin-top: 12px;
+    border-radius: 12px;
+    display: none;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tambah {
+    background: #16a34a;
+}
+
+.hapus {
+    background: #dc2626;
+}
+
+.kembali {
+    background: #4b5563;
+}
+
+.item {
+    background: rgba(0,0,0,0.20);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.item h3 {
+    margin-top: 0;
+}
+
+.status {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    display: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Admin News</h1>
+
+<div class="box">
+
+<h2>Tambah Berita</h2>
+
+<label>
+Judul Berita
+</label>
+
+<input
+    type="text"
+    id="judul"
+    placeholder="Judul berita"
+>
+
+<label>
+Isi Berita
+</label>
+
+<textarea
+    id="isi"
+    placeholder="Tulis berita lengkap..."
+></textarea>
+
+<label>
+Foto Berita
+</label>
+
+<input
+    type="file"
+    id="foto"
+    accept="image/*"
+>
+
+<img
+    id="preview"
+    class="preview"
+>
+
+<button
+    class="tambah"
+    onclick="tambahBerita()"
+>
+Tambahkan Berita
+</button>
+
+<div
+    id="status"
+    class="status"
+></div>
+
+</div>
+
+
+<div class="box">
+
+<h2>Daftar Berita</h2>
+
+<div id="daftarAdmin"></div>
+
+</div>
+
+
+<button
+    class="kembali"
+    onclick="kembaliAdmin()"
+>
+Kembali ke Admin
+</button>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
+<script>
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDvHngeBgcjPgdIVtlR5w_3apGiornP-W4",
+
+    authDomain:
+        "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL:
+        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app/",
+
+    projectId:
+        "visioner48-9b51e",
+
+    storageBucket:
+        "visioner48-9b51e.firebasestorage.app",
+
+    messagingSenderId:
+        "691930246088",
+
+    appId:
+        "1:691930246088:web:efd50a623e8321d97feefd"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const database =
+    firebase.database();
+
+const beritaRef =
+    database.ref(
+        "visioner48_news"
+    );
+
+
+/* =========================
+   FOTO
+========================= */
+
+let fotoData = "";
+
+document
+    .getElementById("foto")
+    .addEventListener(
+        "change",
+        function(event) {
+
+            const file =
+                event.target.files[0];
+
+            if (!file) {
+
+                fotoData = "";
+
+                document
+                    .getElementById("preview")
+                    .style.display = "none";
+
+                return;
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(e) {
+
+                    fotoData =
+                        e.target.result;
+
+                    const preview =
+                        document.getElementById(
+                            "preview"
+                        );
+
+                    preview.src =
+                        fotoData;
+
+                    preview.style.display =
+                        "block";
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+/* =========================
+   TAMBAH BERITA
+========================= */
+
+function tambahBerita() {
+
+    const judul =
+        document
+            .getElementById("judul")
+            .value
+            .trim();
+
+
+    const isi =
+        document
+            .getElementById("isi")
+            .value
+            .trim();
+
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    if (!judul) {
+
+        alert(
+            "Judul belum diisi."
+        );
+
+        return;
+
+    }
+
+
+    if (!isi) {
+
+        alert(
+            "Isi berita belum diisi."
+        );
+
+        return;
+
+    }
+
+
+    status.style.display =
+        "block";
+
+    status.innerHTML =
+        "Menyimpan berita...";
+
+
+    const beritaBaru = {
+
+        judul:
+            judul,
+
+        isi:
+            isi,
+
+        gambar:
+            fotoData,
+
+        tanggal:
+            new Date().toLocaleDateString(
+                "id-ID",
+                {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            ),
+
+        waktu:
+            Date.now()
+
+    };
+
+
+    beritaRef
+        .push(beritaBaru)
+
+        .then(
+            function() {
+
+                alert(
+                    "Berita berhasil ditambahkan."
+                );
+
+
+                document
+                    .getElementById("judul")
+                    .value = "";
+
+
+                document
+                    .getElementById("isi")
+                    .value = "";
+
+
+                document
+                    .getElementById("foto")
+                    .value = "";
+
+
+                document
+                    .getElementById("preview")
+                    .style.display =
+                    "none";
+
+
+                fotoData = "";
+
+
+                status.innerHTML =
+                    "Berita tersimpan di Firebase.";
+
+
+                tampilkanAdmin();
+
+            }
+        )
+
+        .catch(
+            function(error) {
+
+                status.innerHTML =
+                    "Gagal menyimpan:<br>" +
+                    error.message;
+
+                alert(
+                    "Gagal menyimpan berita."
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================
+   TAMPILKAN ADMIN
+========================= */
+
+function tampilkanAdmin() {
+
+    const container =
+        document.getElementById(
+            "daftarAdmin"
+        );
+
+
+    container.innerHTML =
+        "Memuat berita...";
+
+
+    beritaRef
+        .once("value")
+
+        .then(
+            function(snapshot) {
+
+                container.innerHTML =
+                    "";
+
+
+                const data =
+                    snapshot.val();
+
+
+                if (!data) {
+
+                    container.innerHTML =
+                        "<p>Belum ada berita.</p>";
+
+                    return;
+
+                }
+
+
+                const daftar =
+                    Object.entries(data);
+
+
+                daftar
+                    .sort(
+                        function(a,b) {
+
+                            return (
+                                (b[1].waktu || 0) -
+                                (a[1].waktu || 0)
+                            );
+
+                        }
+                    )
+
+
+                    .forEach(
+                        function(entry) {
+
+                            const key =
+                                entry[0];
+
+                            const item =
+                                entry[1];
+
+
+                            const div =
+                                document.createElement(
+                                    "div"
+                                );
+
+
+                            div.className =
+                                "item";
+
+
+                            div.innerHTML = `
+
+                                <h3>
+                                    ${escapeHTML(
+                                        item.judul ||
+                                        "Tanpa Judul"
+                                    )}
+                                </h3>
+
+                                <p>
+                                    ${escapeHTML(
+                                        item.tanggal ||
+                                        ""
+                                    )}
+                                </p>
+
+                                <button
+                                    class="hapus"
+                                    onclick="
+                                        hapusBerita(
+                                            '${key}'
+                                        )
+                                    "
+                                >
+                                    Hapus
+                                </button>
+
+                            `;
+
+
+                            container.appendChild(
+                                div
+                            );
+
+                        }
+                    );
+
+            }
+        )
+
+        .catch(
+            function(error) {
+
+                container.innerHTML =
+                    "Gagal membaca berita:<br>" +
+                    error.message;
+
+            }
+        );
+
+}
+
+
+/* =========================
+   HAPUS
+========================= */
+
+function hapusBerita(key) {
+
+    if (
+        !confirm(
+            "Hapus berita ini?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    beritaRef
+        .child(key)
+        .remove()
+
+        .then(
+            function() {
+
+                alert(
+                    "Berita berhasil dihapus."
+                );
+
+                tampilkanAdmin();
+
+            }
+        )
+
+        .catch(
+            function(error) {
+
+                alert(
+                    "Gagal menghapus:<br>" +
+                    error.message
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================
+   AMANKAN TEKS
+========================= */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================
+   KEMBALI
+========================= */
+
+function kembaliAdmin() {
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+/* =========================
+   MULAI
+========================= */
+
+tampilkanAdmin();
+
+</script>
+
+</body>
+</html>
