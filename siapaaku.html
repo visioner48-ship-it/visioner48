@@ -11,102 +11,182 @@
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background: #f3f3f3;
-            text-align: center;
-        }
+     
+body {
+    margin: 0;
+    padding: 20px;
 
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
+    font-family: Arial, sans-serif;
 
-        h1 {
-            margin-bottom: 20px;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
 
-        #game,
-        #hasil {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        }
+    background-attachment: fixed;
 
-        #nomor-soal {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
+    min-height: 100vh;
 
-        #soal {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
+    color: white;
 
-        #pilihan {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    text-align: center;
+}
 
-        .pilihan-jawaban {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #eeeeee;
-            font-size: 16px;
-            cursor: pointer;
-        }
+    
+.container {
+    max-width: 600px;
+    margin: auto;
+}
 
-        .pilihan-jawaban.benar {
-            background: #4caf50;
-            color: white;
-        }
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
 
-        .pilihan-jawaban.salah {
-            background: #f44336;
-            color: white;
-        }
+#game,
+#hasil {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.10
+    );
 
-        .pilihan-jawaban:disabled {
-            cursor: default;
-        }
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.18
+    );
 
-        #hasil {
-            display: none;
-        }
+    padding: 25px;
 
-        #hasil h2 {
-            margin-top: 0;
-        }
+    border-radius: 20px;
 
-        .nilai {
-            font-size: 45px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
+    color: white;
+}
 
-        .tombol-hasil {
-            width: 100%;
-            padding: 15px;
-            margin-top: 12px;
-            border: none;
-            border-radius: 10px;
-            background: #333;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
+#nomor-soal {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #d1d5db;
+}
 
-        .tombol-hasil:hover {
-            opacity: 0.9;
-        }
+#soal {
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    line-height: 1.5;
+
+    color: white;
+}
+
+#pilihan {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+      
+.pilihan-jawaban {
+    width: 100%;
+
+    padding: 15px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.pilihan-jawaban:hover {
+    background:
+        rgba(255, 255, 255, 0.17);
+
+    transform:
+        translateY(-2px);
+}
+
+.pilihan-jawaban.benar {
+    background: #22c55e;
+    color: white;
+}
+
+.pilihan-jawaban.salah {
+    background: #ef4444;
+    color: white;
+}
+
+.pilihan-jawaban:disabled {
+    cursor: default;
+}
+
+#hasil {
+    display: none;
+}
+
+#hasil h2 {
+    margin-top: 0;
+    color: white;
+}
+
+.nilai {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: white;
+}
+
+.tombol-hasil {
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 12px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.tombol-hasil:hover {
+    opacity: 1;
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(255, 255, 255, 0.17);
+}
     </style>
 </head>
 
