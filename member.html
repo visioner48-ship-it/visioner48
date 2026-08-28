@@ -9,92 +9,245 @@
 
     <style>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #E68DD3;
-        }
+   
+body {
+    margin: 0;
 
-        header {
-            background: #E68DD3;
-            color: width: #000;hite;
-            text-align: center;
-            padding: 20px;
-        }
+    font-family: Arial, sans-serif;
 
-        header h1 {
-            margin: 0 0 15px;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
 
-        .home {
-            display: inline-block;
-            background: #e3e3e3;
-            color: white: #FFF3F7;
-            padding: 10px 18px;
-            border-radius: 10px;
-            text-decoration: none;
-        }
+    color: white;
 
-        .title {
-            text-align: center;
-            padding: 25px 10px;
-        }
+    min-height: 100vh;
+}
 
-        .members {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
+header {
+    background: transparent;
 
-        .member {
-            background: #D47AC4white;
-            color: #222;
-            text-decoration: none;
-            padding: 8px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        }
+    color: white;
 
-        .member img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+    text-align: center;
 
-        .member h3 {
-            font-size: 14px;
-            margin: 8px 2px;
-        }
+    padding: 25px 20px;
+}
 
-        .pages {
-            text-align: center;
-            padding: 30px;
-        }
+header h1 {
+    margin: 0 0 15px;
+}
 
-        .pages a {
-            display: inline-block;
-            background: #e91e63;
-            color: white;
-            text-decoration: none;
-            padding: 12px 18px;
-            margin: 5px;
-            border-radius: 10px;
-        }
+.home {
+    display: inline-block;
 
-        @media (max-width: 700px) {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
 
-            .members {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 10px;
-                gap: 10px;
-            }
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
 
-        }
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.home:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+      ```css
+.title {
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.title h2,
+.title p {
+    color: white;
+}
+
+/* GRID MEMBER */
+
+.members {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 20px;
+}
+
+/* KARTU MEMBER */
+
+.member {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 8px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+.member:hover {
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+}
+
+/* FOTO */
+
+.member img {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+/* NAMA */
+
+.member h3 {
+    font-size: 14px;
+
+    margin: 8px 2px;
+
+    color: white;
+}
+
+/* NOMOR HALAMAN */
+
+.pages {
+    text-align: center;
+
+    padding: 30px;
+}
+
+.pages a {
+    display: inline-block;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 18px;
+
+    margin: 5px;
+
+    border-radius: 20px;
+
+    transition: 0.2s;
+}
+
+.pages a:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+/* HP */
+
+@media (max-width: 700px) {
+
+    .members {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        padding: 10px;
+
+        gap: 10px;
+    }
+}
 
     </style>
 </head>
@@ -118,7 +271,7 @@
 
     <h2>👥 Tim Love JKT48</h2>
 
-    <p>Halaman 1 — 14 Member</p>
+    <p>14 Member</p>
 
 </section>
 

@@ -11,85 +11,243 @@
     <style>
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #3789CF;
-        }
+    margin: 0;
 
-        header {
-            background: #3789CF;
-            color: width: #3F6DCC;hite;
-            text-align: center;
-            padding: 20px;
-        }
+    font-family: Arial, sans-serif;
 
-        .home {
-            display: inline-block;
-            background: #E3E3E3;
-            color: width: #FFF7F7;hite;
-            padding: 10px 18px;
-            border-radius: 10px;
-            text-decoration: none;
-        }
+    background:
+        linear-gradient(
+            135deg,
+            #111827,
+            #312e81
+        );
 
-        .title {
-            text-align: center;
-            padding: 25px;
-        }
+    color: white;
 
-        .members {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
+    min-height: 100vh;
+}
 
-        .member {
-            background: width: #74ABDA;hite;
-            color: #000000;
-            text-decoration: none;
-            padding: 8px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-        }
+header {
+    background: transparent;
 
-        .member img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+    color: white;
 
-        .member h3 {
-            font-size: 14px;
-        }
+    text-align: center;
 
-        .pages {
-            text-align: center;
-            padding: 30px;
-        }
+    padding: 25px 20px;
+}
 
-        .pages a {
-            display: inline-block;
-            background: #e91e63;
-            color: white;
-            padding: 12px 18px;
-            margin: 5px;
-            border-radius: 10px;
-            text-decoration: none;
-        }
+header h1 {
+    margin: 0 0 15px;
+}
 
-        @media (max-width: 700px) {
+.home {
+    display: inline-block;
 
-            .members {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 10px;
-            }
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
 
-        }
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.home:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+      ```css
+.title {
+    text-align: center;
+    padding: 25px 10px;
+}
+
+.title h2,
+.title p {
+    color: white;
+}
+
+/* GRID MEMBER */
+
+.members {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 15px;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 20px;
+}
+
+/* KARTU MEMBER */
+
+.member {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 8px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+.member:hover {
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+}
+
+/* FOTO */
+
+.member img {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+/* NAMA */
+
+.member h3 {
+    font-size: 14px;
+
+    margin: 8px 2px;
+
+    color: white;
+}
+
+/* NOMOR HALAMAN */
+
+.pages {
+    text-align: center;
+
+    padding: 30px;
+}
+
+.pages a {
+    display: inline-block;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.10
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.18
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 12px 18px;
+
+    margin: 5px;
+
+    border-radius: 20px;
+
+    transition: 0.2s;
+}
+
+.pages a:hover {
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.17
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+/* HP */
+
+@media (max-width: 700px) {
+
+    .members {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        padding: 10px;
+
+        gap: 10px;
+    }
+}
 
     </style>
 
@@ -114,7 +272,7 @@
 
     <h2>👥 Tim Dream JKT48</h2>
 
-    <p>Halaman 2 — 12 Member</p>
+    <p>12 Member</p>
 
 </section>
 
