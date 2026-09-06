@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -10,8 +10,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Admin Replay - Visioner48</title>
-
+<title>Admin Replay Live</title>
 
 <style>
 
@@ -19,154 +18,100 @@
     box-sizing: border-box;
 }
 
-
 body {
-
     margin: 0;
-
     padding: 20px;
-
-    font-family: Arial, sans-serif;
-
-    background: #111827;
-
+    background: #080808;
     color: white;
+    font-family: Arial, sans-serif;
 }
 
-
 .container {
-
     max-width: 700px;
-
     margin: auto;
 }
 
-
 .box {
-
-    background: #1f2937;
-
-    padding: 20px;
-
-    border-radius: 16px;
+    background: #151515;
+    border: 1px solid #e00000;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
 }
 
-
 h1 {
-
     margin-top: 0;
+    text-align: center;
+    color: #ff1a1a;
+}
 
+label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background: #222;
+    color: white;
+    outline: none;
+}
+
+input:focus {
+    border-color: #e00000;
+}
+
+#preview {
+    display: none;
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 15px;
+}
+
+.status {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    background: #222;
+    border-radius: 10px;
     text-align: center;
 }
 
-
-label {
-
-    display: block;
-
-    margin-top: 20px;
-
-    margin-bottom: 8px;
-
-    font-weight: bold;
-}
-
-
-input[type="text"] {
-
-    width: 100%;
-
-    padding: 13px;
-
-    border: none;
-
-    border-radius: 9px;
-
-    background: #374151;
-
-    color: white;
-
-    font-size: 15px;
-}
-
-
-input[type="file"] {
-
-    width: 100%;
-
-    padding: 10px;
-
-    background: #374151;
-
-    border-radius: 9px;
-
-    color: white;
-}
-
-
-video {
-
-    width: 100%;
-
-    margin-top: 15px;
-
-    border-radius: 10px;
-
-    display: none;
-
-    background: black;
-}
-
-
 button {
-
     width: 100%;
-
     padding: 14px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    color: white;
-
-    font-weight: bold;
-
     margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
-
 
 .simpan {
-
-    background: #16a34a;
+    background: #e00000;
+    color: white;
 }
-
 
 .hapus {
-
-    background: #dc2626;
+    background: #333;
+    color: white;
 }
-
 
 .kembali {
-
-    background: #4b5563;
+    background: transparent;
+    border: 1px solid #e00000;
+    color: white;
 }
 
-
-.status {
-
-    margin-top: 15px;
-
-    padding: 12px;
-
-    border-radius: 8px;
-
-    background: #374151;
-
-    color: #d1d5db;
-
-    display: none;
+button:hover {
+    opacity: 0.85;
 }
 
 </style>
@@ -176,12 +121,9 @@ button {
 
 <body>
 
-
 <div class="container">
 
-
 <div class="box">
-
 
 <h1>
 Admin Replay Live
@@ -192,7 +134,6 @@ Admin Replay Live
 Judul Replay
 </label>
 
-
 <input
     type="text"
     id="judul"
@@ -201,27 +142,26 @@ Judul Replay
 
 
 <label>
-Pilih Video dari Galeri HP
+Link Video YouTube
 </label>
 
-
 <input
-    type="file"
-    id="videoInput"
-    accept="video/*"
+    type="text"
+    id="youtubeUrl"
+    placeholder="Masukkan link YouTube"
 />
 
 
-<video
+<iframe
     id="preview"
-    controls
-></video>
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
 
 
 <div
     id="status"
-    class="status"
->
+    class="status">
 </div>
 
 
@@ -245,116 +185,102 @@ Pilih Video dari Galeri HP
     class="kembali"
     onclick="kembaliAdmin()"
 >
-    ← Kembali ke Admin
+    Kembali Admin
 </button>
 
-
 </div>
-
 
 </div>
 
 
 <script>
 
-
 /*
-   DATA VIDEO
+   AMBIL LINK YOUTUBE
 */
 
-let videoData = "";
+function getYoutubeId(link) {
 
-let videoType = "";
+    try {
 
+        const url =
+            new URL(link);
 
-/*
-   PILIH VIDEO
-*/
-
-document
-.getElementById("videoInput")
-.addEventListener(
-    "change",
-    function(event) {
+        let id = "";
 
 
-        const file =
-            event.target.files[0];
+        if (
+            url.hostname.includes(
+                "youtu.be"
+            )
+        ) {
 
-
-        if (!file) {
-
-            return;
+            id =
+                url.pathname
+                    .substring(1)
+                    .split("/")[0];
 
         }
 
 
-        /*
-           Simpan tipe video
-        */
+        else if (
+            url.hostname.includes(
+                "youtube.com"
+            )
+        ) {
 
-        videoType =
-            file.type ||
-            "video/mp4";
+            if (
+                url.pathname ===
+                "/watch"
+            ) {
 
+                id =
+                    url.searchParams.get(
+                        "v"
+                    ) || "";
 
-        /*
-           Baca video
-        */
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e) {
+            }
 
 
-                videoData =
-                    e.target.result;
+            else if (
+                url.pathname.startsWith(
+                    "/shorts/"
+                )
+            ) {
+
+                id =
+                    url.pathname
+                        .split("/")[2] || "";
+
+            }
 
 
-                /*
-                   Tampilkan preview
-                */
+            else if (
+                url.pathname.startsWith(
+                    "/embed/"
+                )
+            ) {
 
-                const preview =
-                    document.getElementById(
-                        "preview"
-                    );
+                id =
+                    url.pathname
+                        .split("/")[2] || "";
 
+            }
 
-                preview.src =
-                    videoData;
-
-
-                preview.style.display =
-                    "block";
+        }
 
 
-                tampilkanStatus(
-                    "Video berhasil dipilih."
-                );
-
-            };
-
-
-        reader.onerror =
-            function() {
-
-                tampilkanStatus(
-                    "Video gagal dibaca."
-                );
-
-            };
-
-
-        reader.readAsDataURL(
-            file
-        );
+        return id;
 
     }
-);
+
+    catch {
+
+        return "";
+
+    }
+
+}
 
 
 /*
@@ -363,108 +289,114 @@ document
 
 function simpanReplay() {
 
-
     const judul =
         document
-        .getElementById("judul")
-        .value
-        .trim();
+            .getElementById("judul")
+            .value
+            .trim();
 
 
-    /*
-       Cek judul
-    */
+    const youtubeUrl =
+        document
+            .getElementById("youtubeUrl")
+            .value
+            .trim();
+
 
     if (!judul) {
 
-        alert(
-            "Masukkan judul replay terlebih dahulu."
+        tampilkanStatus(
+            "Judul belum diisi."
         );
 
         return;
-
     }
 
 
-    /*
-       Cek video
-    */
+    if (!youtubeUrl) {
 
-    if (!videoData) {
-
-        alert(
-            "Pilih video dari galeri terlebih dahulu."
+        tampilkanStatus(
+            "Link YouTube belum diisi."
         );
 
         return;
-
     }
 
 
-    /*
-       Buat data replay
-    */
+    const videoId =
+        getYoutubeId(
+            youtubeUrl
+        );
+
+
+    if (!videoId) {
+
+        tampilkanStatus(
+            "Link YouTube tidak valid."
+        );
+
+        return;
+    }
+
 
     const replay = {
 
-        judul: judul,
+        judul:
+            judul,
 
-        video: videoData,
+        youtubeUrl:
+            youtubeUrl,
 
-        type: videoType,
+        videoId:
+            videoId,
 
-        tanggal:
-            new Date().toLocaleDateString(
-                "id-ID",
-                {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric"
-                }
-            )
+        embedUrl:
+            "https://www.youtube.com/embed/" +
+            videoId
 
     };
 
 
-    try {
+    localStorage.setItem(
+        "visioner48Replay",
+        JSON.stringify(
+            replay
+        )
+    );
 
 
-        /*
-           Simpan
-        */
+    tampilkanPreview(
+        replay.embedUrl
+    );
 
-        localStorage.setItem(
 
-            "visioner48Replay",
+    tampilkanStatus(
+        "Replay berhasil disimpan."
+    );
 
-            JSON.stringify(replay)
+}
 
+
+/*
+   TAMPILKAN PREVIEW
+*/
+
+function tampilkanPreview(
+    embedUrl
+) {
+
+    const preview =
+        document.getElementById(
+            "preview"
         );
 
 
-        alert(
-            "Replay Live berhasil disimpan!"
-        );
+    preview.src =
+        embedUrl;
 
 
-        tampilkanStatus(
-            "Replay sudah tersedia di menu Replay Live."
-        );
-
-
-    } catch(error) {
-
-
-        alert(
-            "Video terlalu besar untuk disimpan di browser."
-        );
-
-
-        tampilkanStatus(
-            "Gagal menyimpan. Coba gunakan video yang lebih kecil."
-        );
-
-    }
+    preview.style.display =
+        "block";
 
 }
 
@@ -474,7 +406,6 @@ function simpanReplay() {
 */
 
 function hapusReplay() {
-
 
     const yakin =
         confirm(
@@ -494,19 +425,18 @@ function hapusReplay() {
     );
 
 
-    videoData = "";
-
-    videoType = "";
+    document
+        .getElementById(
+            "judul"
+        )
+        .value = "";
 
 
     document
-    .getElementById("judul")
-    .value = "";
-
-
-    document
-    .getElementById("videoInput")
-    .value = "";
+        .getElementById(
+            "youtubeUrl"
+        )
+        .value = "";
 
 
     const preview =
@@ -515,13 +445,7 @@ function hapusReplay() {
         );
 
 
-    preview.pause();
-
-    preview.removeAttribute(
-        "src"
-    );
-
-    preview.load();
+    preview.src = "";
 
     preview.style.display =
         "none";
@@ -538,8 +462,9 @@ function hapusReplay() {
    STATUS
 */
 
-function tampilkanStatus(teks) {
-
+function tampilkanStatus(
+    teks
+) {
 
     const status =
         document.getElementById(
@@ -558,19 +483,86 @@ function tampilkanStatus(teks) {
 
 
 /*
+   LOAD DATA
+*/
+
+function loadReplay() {
+
+    const data =
+        localStorage.getItem(
+            "visioner48Replay"
+        );
+
+
+    if (!data) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const replay =
+            JSON.parse(
+                data
+            );
+
+
+        document
+            .getElementById(
+                "judul"
+            )
+            .value =
+            replay.judul || "";
+
+
+        document
+            .getElementById(
+                "youtubeUrl"
+            )
+            .value =
+            replay.youtubeUrl || "";
+
+
+        if (
+            replay.embedUrl
+        ) {
+
+            tampilkanPreview(
+                replay.embedUrl
+            );
+
+        }
+
+    }
+
+    catch {
+
+        localStorage.removeItem(
+            "visioner48Replay"
+        );
+
+    }
+
+}
+
+
+/*
    KEMBALI ADMIN
 */
 
 function kembaliAdmin() {
-
 
     window.location.href =
         "admin.html";
 
 }
 
-</script>
 
+loadReplay();
+
+</script>
 
 </body>
 

@@ -10,8 +10,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>Replay Live - Visioner48</title>
-
+<title>Replay Live</title>
 
 <style>
 
@@ -19,133 +18,76 @@
     box-sizing: border-box;
 }
 
-
 body {
-
     margin: 0;
-
-    font-family: Arial, sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #111827,
-            #312e81
-        );
-
+    padding: 20px;
+    background: #080808;
     color: white;
-
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
 }
-
-
-.header {
-
-    text-align: center;
-
-    padding: 30px 15px 20px;
-}
-
-
-.header h1 {
-
-    margin: 0;
-
-    font-size: 30px;
-}
-
-
-.header p {
-
-    color: #d1d5db;
-}
-
 
 .container {
-
-    width: 94%;
-
-    max-width: 750px;
-
+    max-width: 900px;
     margin: auto;
 }
 
-
-.video-box {
-
-    background: #1f2937;
-
-    border-radius: 16px;
-
-    overflow: hidden;
-
-    margin-bottom: 20px;
+h1 {
+    text-align: center;
+    color: #ff1a1a;
+    margin-bottom: 25px;
 }
 
-
-video {
-
-    width: 100%;
-
-    display: block;
-
-    background: black;
-}
-
-
-.info {
-
+.replay-box {
+    background: #151515;
+    border: 1px solid #e00000;
+    border-radius: 18px;
     padding: 20px;
 }
 
-
 .judul {
-
-    margin: 0 0 10px;
-
-    font-size: 24px;
-}
-
-
-.tanggal {
-
-    color: #9ca3af;
-
-    font-size: 13px;
-}
-
-
-.tidak-ada {
-
-    background: #1f2937;
-
-    border-radius: 16px;
-
-    padding: 40px 20px;
-
-    text-align: center;
-}
-
-
-.tombol {
-
-    width: 100%;
-
-    padding: 14px;
-
-    margin-bottom: 20px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #4b5563;
-
-    color: white;
-
+    font-size: 22px;
     font-weight: bold;
+    margin-bottom: 15px;
+}
 
-    font-size: 15px;
+iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+    border-radius: 15px;
+}
+
+.kosong {
+    text-align: center;
+    padding: 40px 20px;
+    color: #aaa;
+}
+
+.kembali {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #e00000;
+    border-radius: 10px;
+    color: white;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    iframe {
+        height: 230px;
+    }
+
+    .judul {
+        font-size: 18px;
+    }
 
 }
 
@@ -156,43 +98,32 @@ video {
 
 <body>
 
+<div class="container">
 
-<header class="header">
-
-    <h1>
-        Replay Live
-    </h1>
-
-    <p>
-        Visioner48
-    </p>
-
-</header>
+<h1>
+Replay Live
+</h1>
 
 
-<main
-    id="container"
-    class="container"
+<div
+    id="replay"
+    class="replay-box">
+</div>
+
+
+<a
+    href="index.html"
+    class="kembali"
 >
+    Kembali
+</a>
 
-</main>
+</div>
 
 
 <script>
 
-
 function tampilkanReplay() {
-
-
-    const container =
-        document.getElementById(
-            "container"
-        );
-
-
-    /*
-       Ambil data dari admin
-    */
 
     const data =
         localStorage.getItem(
@@ -200,129 +131,119 @@ function tampilkanReplay() {
         );
 
 
-    /*
-       Kalau belum ada video
-    */
+    const replay =
+        document.getElementById(
+            "replay"
+        );
+
 
     if (!data) {
 
-        container.innerHTML = `
+        replay.innerHTML = `
 
-            <div class="tidak-ada">
+            <div class="kosong">
 
-                <h2>
-                    Belum Ada Replay
-                </h2>
-
-                <p>
-                    Admin belum menambahkan
-                    replay live.
-                </p>
+                Belum ada Replay Live.
 
             </div>
-
-            <button
-                class="tombol"
-                onclick="kembaliHome()"
-            >
-                ← Kembali ke Home
-            </button>
 
         `;
 
         return;
 
     }
-
-
-    let replay;
 
 
     try {
 
-        replay =
-            JSON.parse(data);
+        const item =
+            JSON.parse(
+                data
+            );
 
-    } catch {
 
-        container.innerHTML = `
+        if (
+            !item.embedUrl
+        ) {
 
-            <div class="tidak-ada">
+            replay.innerHTML = `
 
-                <h2>
-                    Data Replay Bermasalah
-                </h2>
+                <div class="kosong">
+
+                    Replay tidak tersedia.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        replay.innerHTML = `
+
+            <div class="judul">
+
+                ${escapeHtml(
+                    item.judul
+                )}
+
+            </div>
+
+
+            <iframe
+
+                src="${item.embedUrl}"
+
+                title="Replay Live"
+
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+
+                allowfullscreen>
+
+            </iframe>
+
+        `;
+
+    }
+
+    catch {
+
+        replay.innerHTML = `
+
+            <div class="kosong">
+
+                Gagal membaca Replay Live.
 
             </div>
 
         `;
 
-        return;
-
     }
-
-
-    /*
-       Tampilkan video
-    */
-
-    container.innerHTML = `
-
-        <div class="video-box">
-
-            <video
-                controls
-                playsinline
-                preload="metadata"
-            >
-
-                <source
-                    src="${replay.video}"
-                    type="${replay.type || 'video/mp4'}"
-                >
-
-                Browser kamu tidak mendukung
-                video.
-
-            </video>
-
-
-            <div class="info">
-
-                <h2 class="judul">
-
-                    ${replay.judul || "Replay Live"}
-
-                </h2>
-
-
-                <div class="tanggal">
-
-                    ${replay.tanggal || ""}
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="tombol"
-            onclick="kembaliHome()"
-        >
-            ← Kembali ke Home
-        </button>
-
-    `;
 
 }
 
 
-function kembaliHome() {
+/*
+   AMANKAN JUDUL
+*/
 
-    window.location.href =
-        "index.html";
+function escapeHtml(
+    teks
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        teks;
+
+
+    return div.innerHTML;
 
 }
 
@@ -330,7 +251,6 @@ function kembaliHome() {
 tampilkanReplay();
 
 </script>
-
 
 </body>
 
