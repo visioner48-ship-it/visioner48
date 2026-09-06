@@ -19,300 +19,186 @@
     box-sizing: border-box;
 }
 
-
 body {
     margin: 0;
-
     font-family: Arial, sans-serif;
-
-    background:
-        linear-gradient(
-            135deg,
-            #111827,
-            #312E81
-        );
-
+    background: #0b0b0b;
     color: white;
-
     min-height: 100vh;
 }
 
-
 .header {
     text-align: center;
-
     padding: 30px 15px;
+    background: #000000;
+    border-bottom: 3px solid #e00000;
 }
-
 
 .header h1 {
     margin: 0;
-
     font-size: 30px;
 }
 
-
 .header p {
-    color: #d1d5db;
+    color: #aaaaaa;
 }
-
 
 .container {
     width: 94%;
-
     max-width: 700px;
-
     margin: auto;
 }
 
-
-/* =========================
-   TOMBOL HOME
-========================= */
+/* TOMBOL HOME */
 
 #tombolHome,
 #tombolKembaliDetail {
-
     display: block;
-
     width: 100%;
-
     padding: 13px;
-
     margin-bottom: 20px;
-
     border: none;
-
-    border-radius: 12px;
-
-    background: #e91e63;
-
+    border-radius: 8px;
+    background: #e00000;
     color: white;
-
     text-decoration: none;
-
     text-align: center;
-
     font-size: 16px;
-
     font-weight: bold;
-
     cursor: pointer;
 }
-
 
 #tombolKembaliDetail {
-
     display: none;
-
-    background: #4b5563;
+    background: #333333;
 }
 
-
-/* =========================
-   DAFTAR BERITA
-========================= */
+/* DAFTAR BERITA */
 
 .berita-card {
-
-    background: #1f2937;
-
-    border-radius: 16px;
-
+    width: 100%;
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 10px;
     overflow: hidden;
-
-    margin-bottom: 18px;
-
+    margin-bottom: 20px;
     cursor: pointer;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.25);
-
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     transition: 0.2s;
 }
 
-
 .berita-card:active {
-
-    transform:
-        scale(0.98);
+    transform: scale(0.98);
 }
 
-
 .berita-foto {
-
     width: 100%;
-
     height: 220px;
-
     object-fit: cover;
-
     display: block;
 }
 
-
 .berita-info {
-
-    padding: 17px;
+    padding: 18px;
 }
-
 
 .berita-judul {
-
-    margin:
-        0 0 8px;
-
+    margin: 0 0 8px;
     font-size: 20px;
+    line-height: 1.45;
+    color: white;
 }
-
 
 .berita-tanggal {
-
-    color: #9ca3af;
-
+    color: #e00000;
     font-size: 13px;
-
-    margin-bottom: 10px;
+    margin: 0 0 12px;
 }
-
 
 .berita-ringkas {
-
-    color: #e5e7eb;
-
-    line-height: 1.6;
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
 }
-
 
 .kosong {
-
-    background: #1f2937;
-
+    background: #151515;
     padding: 30px 20px;
-
-    border-radius: 16px;
-
+    border-radius: 10px;
     text-align: center;
+    border: 1px solid #292929;
 }
 
-
-/* =========================
-   DETAIL
-========================= */
+/* DETAIL */
 
 #detail {
-
     display: none;
 }
-
 
 .detail-box {
-
-    background: #1f2937;
-
+    background: #151515;
     padding: 20px;
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,0.25);
+    border-radius: 10px;
+    border: 1px solid #292929;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-
 #detailFoto {
-
     width: 100%;
-
     max-height: 400px;
-
     object-fit: cover;
-
-    border-radius: 14px;
-
+    border-radius: 8px;
     margin-bottom: 20px;
-
     display: none;
 }
 
-
 #detailJudul {
-
-    margin:
-        0 0 8px;
-
+    margin: 0 0 8px;
     font-size: 26px;
+    line-height: 1.4;
 }
 
-
 #detailTanggal {
-
-    color: #9ca3af;
-
+    color: #e00000;
     font-size: 14px;
-
     margin-bottom: 20px;
 }
 
-
 #detailIsi {
-
-    color: #f3f4f6;
-
+    color: #dddddd;
     line-height: 1.8;
-
     white-space: pre-wrap;
-
     font-size: 16px;
 }
 
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE */
 
 @media (max-width: 480px) {
 
     .header {
-
-        padding:
-            25px 10px;
-
+        padding: 25px 10px;
     }
-
 
     .header h1 {
-
         font-size: 26px;
-
     }
-
 
     .berita-foto {
-
         height: 190px;
-
     }
-
 
     .berita-judul {
-
         font-size: 18px;
-
     }
 
-
     #detailJudul {
-
         font-size: 22px;
-
     }
 
 }
 
 </style>
-
 </head>
 
 
