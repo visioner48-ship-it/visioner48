@@ -1,378 +1,330 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Visioner48</title>
-
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-
-        body {
-
-            margin: 0;
-
-            font-family: Arial, sans-serif;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #111827,
-                    #312e81
-                );
-
-            color: white;
-
-            min-height: 100vh;
-        }
-
-
-        /* HEADER */
-
-        .header {
-
-            text-align: center;
-
-            padding: 45px 20px 25px;
-        }
-
-
-        .header h1 {
-
-            margin: 0;
-
-            font-size: 34px;
-        }
-
-
-        .header p {
-
-            margin-top: 10px;
-
-            color: #d1d5db;
-
-            font-size: 15px;
-        }
-
-
-        /* MENU */
-
-        .menu-container {
-
-            width: 92%;
-
-            max-width: 650px;
-
-            margin: auto;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 15px;
-        }
-
-
-        .menu-card {
-
-            min-height: 170px;
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.10
-                );
-
-            border:
-                1px solid
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.18
-                );
-
-            border-radius: 20px;
-
-            padding: 25px 15px;
-
-            text-align: center;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-
-            align-items: center;
-        }
-
-
-        .menu-card:hover {
-
-            transform:
-                translateY(-5px);
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.17
-                );
-        }
-
-
-        .menu-icon {
-
-            font-size: 42px;
-
-            margin-bottom: 10px;
-        }
-
-
-        .menu-card h2 {
-
-            font-size: 18px;
-
-            margin: 5px 0 8px;
-        }
-
-
-        .menu-card p {
-
-            margin: 0;
-
-            font-size: 13px;
-
-            line-height: 1.5;
-
-            color: #d1d5db;
-        }
-
-
-        /* FOOTER */
-
-        .footer {
-
-            text-align: center;
-
-            padding: 35px 10px 25px;
-
-            color: #9ca3af;
-
-            font-size: 13px;
-        }
-
-
-        /* HP */
-
-        @media (max-width: 500px) {
-
-            .header {
-
-                padding-top: 35px;
-            }
-
-
-            .header h1 {
-
-                font-size: 29px;
-            }
-
-
-            .menu-container {
-
-                grid-template-columns: 1fr;
-
-            }
-
-
-            .menu-card {
-
-                min-height: 140px;
-
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Visioner48</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: white;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #000000, #180000, #b00000);
+    padding: 25px 15px;
+    text-align: center;
+    border-bottom: 3px solid #d00000;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.25);
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ff2020;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.header p {
+    color: #dddddd;
+    font-size: 14px;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* WELCOME */
+.welcome {
+    background: linear-gradient(145deg, #171717, #0d0d0d);
+    border: 1px solid #3a0000;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.5);
+}
+
+.welcome h2 {
+    color: #ff3030;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #cfcfcf;
+    line-height: 1.6;
+}
+
+/* MENU */
+.menu-title {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-left: 4px solid #e00000;
+    padding-left: 10px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.menu-card {
+    background: linear-gradient(145deg, #191919, #0d0d0d);
+    border: 1px solid #3d0000;
+    border-radius: 17px;
+    padding: 22px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,.4);
+}
+
+.menu-card:hover {
+    transform: translateY(-3px);
+    border-color: #d00000;
+    box-shadow: 0 5px 20px rgba(255,0,0,.2);
+}
+
+.menu-card:active {
+    transform: scale(.97);
+}
+
+.menu-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.menu-card h3 {
+    font-size: 17px;
+    margin-bottom: 6px;
+    color: white;
+}
+
+.menu-card p {
+    color: #999;
+    font-size: 12px;
+}
+
+/* SECTION */
+.section {
+    background: linear-gradient(145deg, #171717, #0c0c0c);
+    border: 1px solid #3a0000;
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.4);
+}
+
+.section h2 {
+    color: #ff3030;
+    margin-bottom: 10px;
+}
+
+.section p {
+    color: #cfcfcf;
+    line-height: 1.6;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    padding: 30px 10px;
+    border-top: 1px solid #250000;
+    margin-top: 30px;
+}
+
+/* DESKTOP */
+@media (min-width: 700px) {
+    .menu {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+</style>
 </head>
-
 
 <body>
 
+<header class="header">
 
-    <!-- HEADER -->
+    <!-- FOTO LOGO -->
+    <div class="logo">
+        <img src="image/Visioner48.jpg" alt="Visioner48">
+    </div>
 
-    <div class="header">
+    <h1>Visioner48</h1>
+    <p>Jelajahi dunia JKT48 dalam satu aplikasi</p>
 
-        <h1>
-            Visioner48
-        </h1>
+</header>
+
+<main class="container">
+
+    <!-- WELCOME -->
+    <section class="welcome">
+        <h2>Selamat Datang di Visioner48</h2>
 
         <p>
-            Selamat datang di Visioner48
+            Selamat datang di Visioner48.
+            Jelajahi berbagai informasi, member,
+            game, berita, dan konten menarik seputar JKT48.
         </p>
-
-    </div>
-
-
+    </section>
 
     <!-- MENU -->
+    <div class="menu-title">
+        Menu Visioner48
+    </div>
 
-    <div class="menu-container">
-
+    <section class="menu">
 
         <!-- MEMBER -->
+        <div class="menu-card"
+             onclick="location.href='member.html'">
 
-        <div
-            class="menu-card"
-            onclick="bukaHalaman('member.html')"
-        >
+            <div class="menu-icon">👥</div>
 
-            <div class="menu-icon">
-                👤
-            </div>
-
-            <h2>
-                Member JKT48
-            </h2>
+            <h3>Member JKT48</h3>
 
             <p>
-                Foto, biodata dan jiko
-                member JKT48
+                Lihat daftar dan biodata member
             </p>
 
         </div>
-
-
 
         <!-- GAME -->
+        <div class="menu-card"
+             onclick="location.href='game.html'">
 
-        <div
-            class="menu-card"
-            onclick="bukaHalaman('game.html')"
-        >
+            <div class="menu-icon">🎮</div>
 
-            <div class="menu-icon">
-                🎮
-            </div>
-
-            <h2>
-                Game
-            </h2>
+            <h3>Game</h3>
 
             <p>
-                Main berbagai game
-                JKT48
+                Main berbagai game JKT48
             </p>
 
         </div>
 
+        <!-- NEWS -->
+        <div class="menu-card"
+             onclick="location.href='news.html'">
 
+            <div class="menu-icon">📰</div>
 
-        <!-- News -->
+            <h3>News</h3>
 
-<div
-    class="menu-card"
-    onclick="bukaHalaman('news.html')"
->
-    <div class="menu-icon">
-        📰
-    </div>
+            <p>
+                Berita dan informasi terbaru
+            </p>
 
-    <h2>
-        News
-    </h2>
-
-    <p>
-        Berita dan informasi terbaru
-    </p>
-</div>
-
+        </div>
 
         <!-- REPLAY LIVE -->
+        <div class="menu-card"
+             onclick="location.href='replay.html'">
 
-   <div
-    class="menu-card"
-    onclick="window.location.href='replay.html'"
->
+            <div class="menu-icon">🎥</div>
 
-    <h2>
-        Replay Live
-    </h2>
+            <h3>Replay Live</h3>
 
-    <p>
-        Tonton replay live JKT48
-    </p>
+            <p>
+                Replay Live/IDN
+            </p>
 
-</div>
+        </div>
+        
+                <!-- BIRTHDAY -->
+        <div class="menu-card"
+             onclick="location.href='birtday.html'">
 
- <div
-class="menu-card"
-    onclick="window.location.href='birtday.html'"
->
+            <div class="menu-icon">🎂</div>
 
-    <div class="menu-icon">
-        🎂
-    </div>
+            <h3>Birthday</h3>
 
-    <h2>
-        Jadwal ulang tahun
-    </h2>
+            <p>
+                Ulang Tahun Member JKT48
+            </p>
 
-    <p>
-        Jadwal ulang tahun member jkt48
-    </p>
+        </div>
+        
+                        <!-- SCHEDULE -->
+        <div class="menu-card"
+             onclick="location.href='schedule.html'">
 
-</div>
+            <div class="menu-icon">📅</div>
 
+            <h3>Schedule</h3>
 
-    <!-- FOOTER -->
+            <p>
+                Jadwal JKT48
+            </p>
 
-    <div class="footer">
+        </div>
+        
+                                <!-- SCHEDULE -->
+        <div class="menu-card"
+             onclick="location.href='donate.html'">
 
-        Visioner48
+            <div class="menu-icon">🏧</div>
 
-    </div>
+            <h3>Donate</h3>
 
+            <p>
+                Donate ini untuk dikasih buat orang yang membutuhkan
+            </p>
 
+        </div>
 
-    <script>
+    </section>
 
-        function bukaHalaman(
-            namaFile
-        ) {
+    <!-- ABOUT -->
+    <section class="section">
 
-            window.location.href =
-                namaFile;
+        <h2>Tentang Visioner48</h2>
 
-        }
+        <p>
+            Visioner48 merupakan fan project bertema JKT48
+            yang menyediakan berbagai informasi,
+            permainan, berita, dan fitur menarik lainnya.
+        </p>
 
-    </script>
+    </section>
 
+</main>
+
+<footer class="footer">
+    © 2026 Visioner48
+</footer>
 
 </body>
-
 </html>
