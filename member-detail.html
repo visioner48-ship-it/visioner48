@@ -1,177 +1,280 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Detail Member - Visioner48</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Member Detail - Visioner48</title>
 
     <style>
-       
-body {
-    margin: 0;
 
-    font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
+        }
 
-    background:
-        linear-gradient(
-            135deg,
-            #111827,
-            #312e81
-        );
+        body {
+            margin: 0;
 
-    color: white;
+            font-family: Arial, sans-serif;
 
-    min-height: 100vh;
-}
+            background:
+                radial-gradient(
+                    circle at top,
+                    #5c0a0a 0%,
+                    #1a0505 35%,
+                    #050505 75%,
+                    #000000 100%
+                );
 
-header {
-    background: transparent;
+            color: white;
 
-    color: white;
+            min-height: 100vh;
+        }
 
-    text-align: center;
+        header {
+            position: relative;
 
-    padding: 25px 20px;
-}
+            padding: 30px 20px 35px;
 
-.detail {
-    max-width: 600px;
+            text-align: center;
 
-    margin: 30px auto;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(120, 0, 0, 0.75),
+                    rgba(10, 10, 10, 0.95)
+                );
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+            border-bottom:
+                2px solid
+                rgba(220, 20, 20, 0.65);
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+            box-shadow:
+                0 8px 30px
+                rgba(120, 0, 0, 0.35);
+        }
 
-    padding: 25px;
+        header h1 {
+            margin: 0;
 
-    border-radius: 20px;
+            color: white;
 
-    text-align: center;
-}
+            font-size: 28px;
 
-#fotoMember {
-    width: 300px;
+            font-weight: 700;
 
-    max-width: 100%;
+            letter-spacing: 1px;
 
-    border-radius: 20px;
+            text-shadow:
+                0 0 12px
+                rgba(255, 0, 0, 0.55);
+        }
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
-}
+        header p {
+            margin: 8px 0 0;
 
-.biodata {
-    text-align: left;
+            color:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.70
+                );
 
-    margin-top: 20px;
+            font-size: 14px;
+        }
 
-    line-height: 1.8;
+        .detail {
+            max-width: 600px;
 
-    color: white;
-}
+            margin: 30px auto;
 
-    
-.jiko {
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+            background:
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.55
+                );
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+            border:
+                1px solid
+                rgba(
+                    220,
+                    20,
+                    20,
+                    0.35
+                );
 
-    color: white;
+            padding: 25px;
 
-    padding: 15px;
+            border-radius: 20px;
 
-    border-radius: 20px;
+            text-align: center;
 
-    margin-top: 20px;
-}
+            box-shadow:
+                0 10px 35px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+        }
 
-.kembali {
-    display: inline-block;
+        #fotoMember {
+            width: 300px;
 
-    margin-top: 20px;
+            height: 360px;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+            max-width: 100%;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+            object-fit: cover;
 
-    color: white;
+            border-radius: 12px;
 
-    text-decoration: none;
+            border:
+                2px solid
+                rgba(
+                    220,
+                    20,
+                    20,
+                    0.55
+                );
 
-    padding: 12px 20px;
+            display: block;
 
-    border-radius: 20px;
+            margin: 0 auto;
 
-    transition: 0.2s;
-}
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    120,
+                    0,
+                    0,
+                    0.40
+                );
+        }
 
-.kembali:hover {
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.17
-        );
+        .biodata {
+            text-align: left;
 
-    transform:
-        translateY(-2px);
-}
+            margin-top: 20px;
+
+            line-height: 1.8;
+
+            color: white;
+        }
+
+        .jiko {
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.06
+                );
+
+            border:
+                1px solid
+                rgba(
+                    220,
+                    20,
+                    20,
+                    0.30
+                );
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 15px;
+
+            margin-top: 20px;
+
+            line-height: 1.7;
+        }
+
+        .kembali {
+            display: inline-block;
+
+            margin-top: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b0000,
+                    #d00000
+                );
+
+            border: none;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            transition: 0.2s;
+        }
+
+        .kembali:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #b00000,
+                    #ef0000
+                );
+
+            transform:
+                translateY(-2px);
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding:
+                    25px 15px 30px;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            .detail {
+                width:
+                    calc(100% - 20px);
+
+                margin: 20px auto;
+
+                padding: 20px;
+            }
+
+            #fotoMember {
+                width: 100%;
+
+                max-width: 300px;
+
+                height: 360px;
+            }
+        }
+
     </style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>VISIONER48</h1>
+    <h1>Member JKT48</h1>
 </header>
 
 <div class="detail">
@@ -245,31 +348,20 @@ header {
     const members = {
 
     1: {
-        nama: "Alya Amanda",
-        namaLengkap: "Alya Amanda Fatihah",
-        foto: "images/members/member1.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "26 Agustus 2006",
-        asal: "Jakarta",
-        golonganDarah: "A",
-        jiko: "Jika Hatimu Sedang Menangis Aku Akan Datang Sebagai Pelangi"
-    },
-
-    2: {
         nama: "Anindya Ramadhani",
         namaLengkap: "Anindya Ramadhani Purnomo",
-        foto: "images/members/member2.jpg",
+        foto: "images/members/member1.jpg",
         generasi: "Ke-11",
         tanggalLahir: "18 Oktober 2005",
         asal: "Depok",
         golonganDarah: "O",
-        jiko: "Si Mungil Hadir Semangis Mangga"
+        jiko: "Si Mungil Hadir, Semanis Mangga"
     },
 
-    3: {
+    2: {
         nama: "Aurellia",
         namaLengkap: "Aurellia",
-        foto: "images/members/member3.jpg",
+        foto: "images/members/member2.jpg",
         generasi: "Ke-10",
         tanggalLahir: "29 Oktober 2002",
         asal: "Jakarta",
@@ -277,32 +369,32 @@ header {
         jiko: "Si Social Butterfly Energic Dan Periang"
     },
 
-    4: {
+    3: {
         nama: "Aurhel Alana",
         namaLengkap: "Aurhel Alana Tirta",
-        foto: "images/members/member4.jpg",
+        foto: "images/members/member3.jpg",
         generasi: "Ke-12",
-        tanggalLahir: "14 September 2006",
-        asal: "Jakarta",
-        golonganDarah: "A",
-        jiko: "Dengan Kekuatan Bulan Aku Akan Menyihirmu Dengan Pesonaku"
+        tanggalLahir: "24 September 2006",
+        asal: "Bekasi",
+        golonganDarah: "O",
+        jiko: "Dengan Kekuatan Bulan Aku Akan Menyihir mu, Dengan Pesonaku"
     },
 
-    5: {
+    4: {
         nama: "Celline Thefani",
-        namaLengkap: "Celline Thefannie",
-        foto: "images/members/member5.jpg",
+        namaLengkap: "Celline Thefani",
+        foto: "images/members/member4.jpg",
         generasi: "Ke-11",
         tanggalLahir: "09 April 2007",
         asal: "Tanggerang",
         golonganDarah: "O",
-        jiko: "Semanis Permen Kapas Seindah Bunga Lavender"
+        jiko: "Semanis Permen Kapas Seharum Bunga Lavender"
     },
 
-    6: {
+    5: {
         nama: "Cynthia Yaputera",
         namaLengkap: "Cynthia Yaputera",
-        foto: "images/members/member6.jpg",
+        foto: "images/members/member5.jpg",
         generasi: "Ke-11",
         tanggalLahir: "22 November 2003",
         asal: "Jakarta",
@@ -310,99 +402,99 @@ header {
         jiko: "Semangatku Terus Menerus Meluap.POP!POP"
     },
 
-    7: {
+    6: {
         nama: "Fiony Alveria",
         namaLengkap: "Fiony Alveria Tantri",
-        foto: "images/members/member7.jpg",
+        foto: "images/members/member6.jpg",
         generasi: "Ke-8",
         tanggalLahir: "04 Febuari 2002",
         asal: "Tanggerang",
         golonganDarah: "O",
-        jiko: "Seperti Symphony Yang Menenanngkan Hati"
+        jiko: "Seperti Symphony Yang Memenangkan Hati"
     },
 
-    8: {
+    7: {
         nama: "Fritzy Rosmerian",
         namaLengkap: "Fritzy Rosmerian",
-        foto: "images/members/member8.jpg",
+        foto: "images/members/member7.jpg",
         generasi: "Ke-12",
         tanggalLahir: "28 Juli 2008",
         asal: "Jakarta",
-        golonganDarah: "A",
-        jiko: "Abracadabra!Si Pesulap Yang Siap Membuat Hatimu Terpikat"
+        golonganDarah: "O",
+        jiko: "Abracadabrac!Si Persulap Yang Siap Membuat Hatimu Terpikat"
+    },
+
+    8: {
+        nama: "Grace Octaviani",
+        namaLengkap: "Grace Octaviani Tunajaya",
+        foto: "images/members/member8.jpg",
+        generasi: "Ke-11",
+        tanggalLahir: "18 Oktober 2007",
+        asal: "Tanggerang",
+        golonganDarah: "B",
+        jiko: "Manis Seperti Gulali, Imut Seperti Kelinci! Xi, Xi, Gracie"
     },
 
     9: {
-        nama: "Grace Octaviani",
-        namaLengkap: "Grace OctavianibTanujaya",
-        foto: "images/members/member9.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "18 Oktober 2006",
-        asal: "Tanggerang",
-        golonganDarah: "B",
-        jiko: "Manis Seperti Gulali,Imut Seperti Kelinci!Xi,Xi,Gracie"
-    },
-
-    10: {
         nama: "Hillary Abigail",
         namaLengkap: "Hillary Abigail Mantiri",
-        foto: "images/members/member10.jpg",
+        foto: "images/members/member9.jpg",
         generasi: "Ke-12",
         tanggalLahir: "19 Oktober 2007",
         asal: "Jakarta",
-        golonganDarah: "-",
+        golonganDarah: "O",
         jiko: "Papipapipum! Aku Akan Mengejutkanmu Dengan Kehebatanku"
     },
 
-    11: {
+    10: {
         nama: "Indah Cahya",
         namaLengkap: "Indah Cahya Nabilla",
-        foto: "images/members/member11.jpg",
+        foto: "images/members/member10.jpg",
         generasi: "Ke-9",
         tanggalLahir: "20 Maret 2001",
         asal: "Jambi",
         golonganDarah: "A",
-        jiko: "Tak Banyak Bicara, Bercerita Melalu Tulisan"
+        jiko: "Tak Banyak Bicara, Bercerita Melalui Tulisan"
     },
 
-    12: {
+    11: {
         nama: "Jazzlyn Trisha",
         namaLengkap: "Jazzlyn Agatha Trisha",
-        foto: "images/members/member12.jpg",
+        foto: "images/members/member11.jpg",
         generasi: "Ke-12",
         tanggalLahir: "16 Febuari 2011",
         asal: "Jakarta",
-        golonganDarah: "-",
-        jiko: "Pelukis Yang Hadir Di Mimpi-Mimpi Indahmu.One..Two..Tri..Sha"
+        golonganDarah: "O",
+        jiko: "Pelukis yang Hadir Di Mimpi-Mimpi Indahmu,One..Two..Tri..Sha"
     },
 
-    13: {
+    12: {
         nama: "Michelle Alexandra",
         namaLengkap: "Michelle Alexandra Suandi",
-        foto: "images/members/member13.jpg",
+        foto: "images/members/member12.jpg",
         generasi: "Ke-11",
         tanggalLahir: "22 April 2009",
         asal: "Palembang",
         golonganDarah: "-",
-        jiko: "Always Your Number One, Till Infinity And Beyond Hello Everyone"
+        jiko: "Always Your Number One, Till Infinity And Beyond Hallo Everyone,Its Michie"
     },
 
-    14: {
+    13: {
         nama: "Nayla Suji",
         namaLengkap: "Araki Nayla Suji Aurellia",
-        foto: "images/members/member14.jpg",
+        foto: "images/members/member13.jpg",
         generasi: "Ke-12",
         tanggalLahir: "18 Juni 2007",
         asal: "Kunamoto Jepang",
         golonganDarah: "AB",
-        jiko: "Moshi,Moshi Welcome Naylaland Hallo Semuanya Bakyund!"
-        
-    }, 
+        jiko: "Moshi, Moshi Welcome Naylaland Hallo Semuanya Bakyund! "
+    },
+
        
-   16: {
+   14: {
     nama: "Adeline Wijaya",
     namaLengkap: "Adeline Wijaya",
-    foto: "images/members/member16.jpg",
+    foto: "images/members/member14.jpg",
     generasi: "Ke-12",
     tanggalLahir: "01 September 2007",
     asal: "Jakarta",
@@ -410,10 +502,10 @@ header {
     jiko: "Nyemangatin dan ngangenin, siapa yang kamu pikirin? Delynn! Pyong pyong, aku Delynn."
 },
 
-17: {
+15: {
     nama: "Febriola Sinambela",
     namaLengkap: "Febriola Sinambela",
-    foto: "images/members/member17.jpg",
+    foto: "images/members/member15.jpg",
     generasi: "Ke-7",
     tanggalLahir: "26 Febuari 2005",
     asal: "Jakarta",
@@ -421,10 +513,10 @@ header {
     jiko: "Dengan Keajaibanku Aku Akan Membuat Kalian Tertawa. Hallo Aku Olla Si Mekanik Girll"
 },
 
-18: {
+16: {
     nama: "Freya Jayawardana",
     namaLengkap: "Freyana Syifa Jayawardana",
-    foto: "images/members/member18.jpg",
+    foto: "images/members/member16.jpg",
     generasi: "Ke-7",
     tanggalLahir: "13 Febuari 2006",
     asal: "Tanggerang",
@@ -432,21 +524,21 @@ header {
     jiko: "Gadis Koleris Yang Suka Berimajinasi Terangi Harimu Dengan Senyum Karamelku"
 },
 
-19: {
+17: {
     nama: "Gabriela Abigail",
     namaLengkap: "Gabriela Abigail Mawengkang",
-    foto: "images/members/member19.jpg",
-    generasi: "Ke-11",
+    foto: "images/members/member17.jpg",
+    generasi: "Ke-10",
     tanggalLahir: "07 Agustus 2006",
     asal: "Jakarta",
     golonganDarah: "B",
     jiko: "Ohayo!Konichiwa!Oyasumi! Aku Ingin Ada Di Setiap Harimu. "
 },
 
-20: {
+18: {
     nama: "Gita Sekar",
     namaLengkap: "Gita Sekar Andarini",
-    foto: "images/members/member20.jpg",
+    foto: "images/members/member18.jpg",
     generasi: "Ke-6",
     tanggalLahir: "30 Juni 2001",
     asal: "Bekasi",
@@ -454,10 +546,10 @@ header {
     jiko: "Diam Bukan Berarti Tak Memperhatikanmu"
 },
 
-21: {
+19: {
     nama: "Greesella Adhalia",
     namaLengkap: "Greesella Sophina Adhalia",
-    foto: "images/members/member21.jpg",
+    foto: "images/members/member19.jpg",
     generasi: "Ke-11",
     tanggalLahir: "10 Januari 2006",
     asal: "Bogor",
@@ -465,10 +557,10 @@ header {
     jiko: "Pandangan Mataku Akan Menyinari Hatimu Bagaikan Kunang Kunang Di Malam Hari"
 },
 
-22: {
+20: {
     nama: "Helisma Putri",
     namaLengkap: "Helisma Mauludzunia Putri Kurnia",
-    foto: "images/members/member22.jpg",
+    foto: "images/members/member20.jpg",
     generasi: "Ke-7",
     tanggalLahir: "15 Juni 2000",
     asal: "Bandung",
@@ -476,10 +568,10 @@ header {
     jiko: "Bagai Lembayung Senja,Dengan Energi Kegembiraanku,Aku Akan Menghangatkan Suasana, Halo Halo, Aku Helisma (Eli!Eli!Eli) "
 },
 
-23: {
+21: {
     nama: "Jesslyn Elly",
     namaLengkap: "Jesslyn Septiani",
-    foto: "images/members/member23.jpg",
+    foto: "images/members/member21.jpg",
     generasi: "Ke-10",
     tanggalLahir: "13 September 2001",
     asal: "Jakarta",
@@ -487,10 +579,10 @@ header {
     jiko: "Seperti Ombak Laut Yang Tenang, Tiba-Tiba Aku Akan Menyapumu Dengan Penuh Cinta"
 },
 
-24: {
+22: {
     nama: "Marsha Lenathea",
     namaLengkap: "Marsha Lenathea Lapian",
-    foto: "images/members/member24.jpg",
+    foto: "images/members/member22.jpg",
     generasi: "Ke-9",
     tanggalLahir: "09 Januari 2006",
     asal: "Jakarta",
@@ -498,32 +590,32 @@ header {
     jiko: "Seperti Pizza Yang Selalu Di Nantikan Semua Orang.Nantikan Aku Ya"
 },
 
-25: {
-    nama: "Oline Manuel",
-    namaLengkap: "Oline Manuel Chay",
-    foto: "images/members/member25.jpg",
-    generasi: "Ke-12",
-    tanggalLahir: "03 November 2007",
-    asal: "Jakarta",
-    golonganDarah: "B",
-    jiko: "Semangatku Full Terus.Gas Gas Gas Oline! "
-},
-
-26: {
+23: {
     nama: "Nina Tutachia",
     namaLengkap: "Nina Tutachia Browning Chapman",
-    foto: "images/members/member26.jpg",
+    foto: "images/members/member23.jpg",
     generasi: "Ke-12",
     tanggalLahir: "16 Oktober 2009",
     asal: "Denpasar",
     golonganDarah: "O",
-    jiko: "Si Panda Unyu Yang Selalu Ceria.Hai Aku Nachia,Bikin Kamu Bahagia."
+    jiko: "Si Panda Unyu Yang Selalu Ceria, Hai Aku Nachia Bikin Kamu Bahagia."
 },
 
-27: {
+24: {
+    nama: "Oline Manuel",
+    namaLengkap: "Oline Manuel Chay",
+    foto: "images/members/member24.jpg",
+    generasi: "Ke-12",
+    tanggalLahir: "03 November 2007",
+    asal: "Jakarta",
+    golonganDarah: "B",
+    jiko: "Semangatku Full Terus Gas, Gas,Gas, Oline!"
+},
+
+25: {
     nama: "Shabilqis Naila",
     namaLengkap: "Shabilqis Naila Bustomi",
-    foto: "images/members/member27.jpg",
+    foto: "images/members/member25.jpg",
     generasi: "Ke-12",
     tanggalLahir: "01 September 2008",
     asal: "Depok",
@@ -531,10 +623,10 @@ header {
     jiko: "ROAR! Si Singa Pemberani Yang Siap Menyemangati Harimu"
 }, 
 
-     28: {
+     26: {
         nama: "Abigail Rachel",
         namaLengkap: "Abigail Rachel Lie",
-        foto: "images/members/member28.jpg",
+        foto: "images/members/member26.jpg",
         generasi: "Ke-12",
         tanggalLahir: "06 Agustus 2008",
         asal: "Jakarta",
@@ -542,10 +634,10 @@ header {
         jiko: "Seperti Bunga Yang Mekar,Aku Akan Membuat Kamu, Kamu, Dan Kamu Terbayang-Bayang.Aku Ara-Aralie"
     },
 
-    29: {
+    27: {
         nama: "Angelina Christy",
         namaLengkap: "Angelina Christy",
-        foto: "images/members/member29.jpg",
+        foto: "images/members/member27.jpg",
         generasi: "Ke-12",
         tanggalLahir: "05 Desember 2005",
         asal: "Jakarta",
@@ -553,10 +645,10 @@ header {
         jiko: "Peduli Dan Berbaik Hati. Siapakah Dia? Kriis-ty"
     },
 
-    30: {
+    28: {
         nama: "Catherine Vallencia",
         namaLengkap: "Catherine Vallencia Kurniawan",
-        foto: "images/members/member30.jpg",
+        foto: "images/members/member28.jpg",
         generasi: "12",
         tanggalLahir: "21 Agustus 2007",
         asal: "Bekasi",
@@ -564,10 +656,10 @@ header {
         jiko: "Hadir Dengann 1000 Kejutan, Chekmate! Siap Memenangkan Hatimu"
     },
 
-    31: {
+    29: {
         nama: "Cornelia Vanisa",
         namaLengkap: "Cornelia Syafa Vanisa",
-        foto: "images/members/member31.jpg",
+        foto: "images/members/member29.jpg",
         generasi: "Ke-8",
         tanggalLahir: "26 Juli 2002",
         asal: "Tanggerang",
@@ -575,10 +667,10 @@ header {
         jiko: "Seperti Teka-Teki Kalian Akan Penasaran Denganku."
     },
 
-    32: {
+    30: {
         nama: "Dena Natalia Ang",
         namaLengkap: "Dena Natalia",
-        foto: "images/members/member32.jpg",
+        foto: "images/members/member30.jpg",
         generasi: "Ke-11",
         tanggalLahir: "16 Desember 2005",
         asal: "Bandung",
@@ -586,10 +678,10 @@ header {
         jiko: "Tok!Tok, Siapa? Si Penari Yang Akan Menarikmu Ke Duniaku"
     },
 
-    33: {
+    31: {
         nama: "Desy Natalia Ang",
         namaLengkap: "Daisy Natalia",
-        foto: "images/members/member33.jpg",
+        foto: "images/members/member31.jpg",
         generasi: "Ke-11",
         tanggalLahir: "16 Desember 2005",
         asal: "Bandung",
@@ -597,10 +689,10 @@ header {
         jiko: "Seperti Bunga Daisy, Aku Akan Memancarkan Kesegaran Dan Kebahagiaan! "
     },
 
-    34: {
+    32: {
         nama: "Feni Fitriyanti",
         namaLengkap: "Feni Fitriyanti",
-        foto: "images/members/member34.jpg",
+        foto: "images/members/member32.jpg",
         generasi: "Ke-3",
         tanggalLahir: "16 Agustus 1999",
         asal: "Bandung",
@@ -608,10 +700,10 @@ header {
         jiko: "Matahari Yang Indah,Yang Memberikan Kehangatan Setiap Harinya"
     },
 
-    35: {
+    33: {
         nama: "Jessica Chandra",
         namaLengkap: "Jessica Rich Chandra",
-        foto: "images/members/member35.jpg",
+        foto: "images/members/member33.jpg",
         generasi: "Ke-7",
         tanggalLahir: "23 September 2005",
         asal: "Tanggerang",
@@ -619,10 +711,10 @@ header {
         jiko: "Suka Menari Dan Akan Selalu Berusaha Menjadu Sumber Energimu."
     },
 
-    36: {
+    34: {
         nama: "Kathrina Irene",
         namaLengkap: "Kathrina Irene Indarto Putri",
-        foto: "images/members/member36.jpg",
+        foto: "images/members/member34.jpg",
         generasi: "Ke-9",
         tanggalLahir: "26 Juli 2006",
         asal: "Bekasi",
@@ -630,10 +722,10 @@ header {
         jiko: "Never Miss A Chance To Be A Star"
     },
 
-    37: {
+    35: {
         nama: "Lulu Salsabila",
         namaLengkap: "Lulu Azkiya Salsabila",
-        foto: "images/members/member37.jpg",
+        foto: "images/members/member35.jpg",
         generasi: "Ke-8",
         tanggalLahir: "23 Oktober 2002",
         asal: "Bengkulu",
@@ -641,10 +733,10 @@ header {
         jiko: "Terang Seperti Bulan,Bersinar Seperti Bintang"
     },
 
-    38: {
+    36: {
         nama: "Michelle Levia",
         namaLengkap: "Michelle Levia Arifin",
-        foto: "images/members/member38.jpg",
+        foto: "images/members/member36.jpg",
         generasi: "Ke-12",
         tanggalLahir: "24 Januari 2009",
         asal: "Tangerang",
@@ -652,10 +744,10 @@ header {
         jiko: "Are You Ready? Jalani Hari Ini Dengan Menari Bersama ku! Yuhu"
     },
 
-    39: {
+    37: {
         nama: "Mutiara Azzahra",
         namaLengkap: "Mutiara Azzahra Umandana",
-        foto: "images/members/member39.jpg",
+        foto: "images/members/member37.jpg",
         generasi: "Ke-7",
         tanggalLahir: "12 Juli 2004",
         asal: "Bekasi",
@@ -663,10 +755,10 @@ header {
         jiko: "Dengan Kelincahanku Aku Akan Menari Setiap Hari.Panggil Aku Mu-Mu-Mu-Mu-The"
     },
 
-    40: {
+    38: {
         nama: "Raisha Syifa",
         namaLengkap: "Raisha Syifa Wardhana",
-        foto: "images/members/member40.jpg",
+        foto: "images/members/member38.jpg",
         generasi: "Ke-10",
         tanggalLahir: "11 November 2007",
         asal: "Tanggerang",
@@ -674,10 +766,10 @@ header {
         jiko: "Kalau Sakura Itu Berkembang,Aku Itu Kebanggaanmu!"
     },
 
-    41: {
+    39: {
         nama: "Ribka Budiman",
         namaLengkap: "Ribka Budiman",
-        foto: "images/members/member41.jpg",
+        foto: "images/members/member39.jpg",
         generasi: "Ke-12",
         tanggalLahir: "13 Januari 2009",
         asal: "Bandung",
@@ -685,10 +777,10 @@ header {
         jiko: "Miror Miror On The Wall,Who's The Sweetest In Her? Its Me Ribka"
     },
 
-    42: {
+    40: {
         nama: "Victoria Kimberly",
         namaLengkap: "Victoria Kimberly Lukitama",
-        foto: "images/members/member42.jpg",
+        foto: "images/members/member40.jpg",
         generasi: "Ke-12",
         tanggalLahir: "08 Maret 2010",
         asal: "Jakarta",
@@ -696,109 +788,10 @@ header {
         jiko: "Baby Hamster Yang Lincah, Aku Akan Berlari-Lari Di Pikiranmu. Halo-Ha Katakan Kimmy"
     },
 
-     43: {
-        nama: "Astrella Virgiananda",
-        namaLengkap: "Astrella Virgiananda",
-        foto: "images/members/member43.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "06 Agustus 2010",
-        asal: "Bandung",
-        golonganDarah: "AB",
-        jiko: "Suka berekspresi melalui kreasi, Taraa!"
-    },
-
-    44: {
-        nama: "Aulia Riza",
-        namaLengkap: "Aulia Riza Firdausy Effendi",
-        foto: "images/members/member44.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "14 Juli 2007",
-        asal: "Surabaya",
-        golonganDarah: "O",
-        jiko: "Serigala tangguh di bawah sinar purnama. Panggil aku Auuuwia!"
-    },
-
-    45: {
-        nama: "Bong Aprilli",
-        namaLengkap: "Bong Aprilli Paskah",
-        foto: "images/members/member45.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "01 April 2010",
-        asal: "Jakarta",
-        golonganDarah: "A",
-        jiko: "Bagai Harmoni Indah,Yang Berirama Di Benakmu"
-    },
-
-    46: {
-        nama: "Hagia Sopia",
-        namaLengkap: "Hagia Sopia",
-        foto: "images/members/member46.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "01 Juli 2008",
-        asal: "Bekasi",
-        golonganDarah: "O",
-        jiko: "Dengan semangat dan kerja kerasku, aku akan membuat kalian baha~giaa~!"
-    },
-
-    47: {
-        nama: "Humairah Ramadhani",
-        namaLengkap: "Humairah Ramadhani Salfandi",
-        foto: "images/members/member47.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "13 Augustus 2011",
-        asal: "Tanggerang",
-        golonganDarah: "A",
-        jiko: "Penceria yang membuatmu tertawa dengan tingkahku."
-    },
-
-    48: {
-        nama: "Jacqueline Immanuela",
-        namaLengkap: "Jacqueline Immanuela Jonathan",
-        foto: "images/members/member48.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "09 Juli 2009",
-        asal: "Jakarta",
-        golonganDarah: "B",
-        jiko: "Sesejuk Dan Sedingin Mint, Panggil Aku Ekin"
-    },
-
-    49: {
-        nama: "Jemima Evodie",
-        namaLengkap: "Jemima Evodie Mayra Lijaya",
-        foto: "images/members/member49.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "09 November 2009",
-        asal: "Lombok",
-        golonganDarah: "O",
-        jiko: "Cii~luk~baa~! Merpati yang akan membawa kejutan di setiap penampilanku"
-    },
-
-    50: {
-        nama: "Mikaela Kusjanto",
-        namaLengkap: "Mikaela Kusjanto",
-        foto: "images/members/member50.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "15 Desember 2007",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Camera, Roll, Action! Sutradara yang akan mewarnai kisah hidupmu dengan penuh warna. "
-    },
-
-    51: {
-        nama: "Nur Intan",
-        namaLengkap: "Nur Intan",
-        foto: "images/members/member51.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "24 Febuari 2006",
-        asal: "Bogor",
-        golonganDarah: "B",
-        jiko: "Intan permata yang berkilau, temukan cahayaku di hatimu!"
-    },
-
-    52: {
+     41: {
         nama: "Afera Thalia",
         namaLengkap: "Afera Thalia Putri Eysteinn",
-        foto: "images/members/member52.jpg",
+        foto: "images/members/member41.jpg",
         generasi: "Ke-14",
         tanggalLahir: "20 Oktober 2012",
         asal: "Bogor",
@@ -806,76 +799,165 @@ header {
         jiko: "Satu shoot ku menciptakan three-point di hati kamu."
     },
 
-    53: {
-        nama: "Carissa Dini",
-        namaLengkap: "Carissa Dini Asmaranti",
-        foto: "images/members/member53.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "02 Febuari 2012",
+    42: {
+        nama: "Astrella Virgiananda",
+        namaLengkap: "Astrella Virgiananda",
+        foto: "images/members/member42.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "06 Agustus 2010",
+        asal: "Bandung",
+        golonganDarah: "AB",
+        jiko: "Suka berekspresi melalui kreasi, Tara! "
+    },
+
+    43: {
+        nama: "Bong Aprilli",
+        namaLengkap: "Bong Aprilli Paskah",
+        foto: "images/members/member43.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "01 April 2010",
         asal: "Jakarta",
         golonganDarah: "A",
-        jiko: "Aku adalah pemberi ramuan kedamaian. Only for you!"
+        jiko: "Bagai harmoni indah yang berirama di benakmu"
     },
 
-    54: {
-        nama: "Christabella Bonita",
-        namaLengkap: "Christabella Bonita Claura Chandra",
-        foto: "images/members/member54.jpg",
+    44: {
+        nama: "Carissa Dini",
+        namaLengkap: "Carissa Dini Asmaranti",
+        foto: "images/members/member44.jpg",
         generasi: "Ke-14",
-        tanggalLahir: "02 Maret 2011",
-        asal: "Tangerang",
+        tanggalLahir: "02 Febuari 2011",
+        asal: "Jakarta",
         golonganDarah: "A",
-        jiko: "Ding Dong! Skate, Spin, Smile"
+        jiko: "Aku adalah pemberi ramuan kedamaian. only for you!"
     },
 
-    55: {
-        nama: "Fahira Putri",
+    45: {
+        nama: "Cristabella Bonita",
+        namaLengkap: "Christabella Bonita Claura Chandra",
+        foto: "images/members/member45.jpg",
+        generasi: "Ke-14",
+        tanggalLahir: "02 Maret 2012",
+        asal: "Tanggerang",
+        golonganDarah: "B",
+        jiko: "Ding dong! skate, spin, smile"
+    },
+
+    46: {
+        nama: "Fahira putri",
         namaLengkap: "Fahira Putri Kirana",
-        foto: "images/members/member55.jpg",
+        foto: "images/members/member46.jpg",
         generasi: "Ke-14",
         tanggalLahir: "13 Agustus 2012",
         asal: "Jakarta",
         golonganDarah: "O",
-        jiko: "Sekali Senyum langsung Membuatmu Jatuh Cinta"
+        jiko: "Sekali senyum buatmu jatuh cinta"
     },
 
-    56: {
+    47: {
         nama: "Fatimah Azzahra",
         namaLengkap: "Fatimah Azzahra",
-        foto: "images/members/member56.jpg",
+        foto: "images/members/member47.jpg",
         generasi: "Ke-14",
         tanggalLahir: "30 Agustus 2010",
         asal: "Depok",
         golonganDarah: "AB",
-        jiko: "Datang Bawa Tawa, Pulang Bawa Rindu"
+        jiko: "Datang bawa tawa, pulang bawa rindu"
     },
 
-    57: {
+    48: {
+        nama: "Hagia Sophia",
+        namaLengkap: "Hagia Sophia",
+        foto: "images/members/member48.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "01 Juli 2008",
+        asal: "Bekasi",
+        golonganDarah: "O",
+        jiko: "Dengan semangat dan kerja kerasku ini aku akan membuat kalian bahaa-giaa!"
+    },
+
+    49: {
         nama: "Heidi Suyangga",
         namaLengkap: "Heidi Suyangga",
-        foto: "images/members/member57.jpg",
+        foto: "images/members/member49.jpg",
         generasi: "Ke-14",
         tanggalLahir: "27 Agustus 2008",
         asal: "Jakarta",
         golonganDarah: "O",
-        jiko: "Happy terus tanpa batas, Seno! Hei.. Hei.. Heidi!"
+        jiko: "Happy terus tanpa batas,seno! Hei, Hei, Heidi"
     },
 
-    58: {
+    50: {
+        nama: "Humaira Ramadhani",
+        namaLengkap: "Humaira Ramadhani",
+        foto: "images/members/member50.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "13 Agustus 2011",
+        asal: "Tanggerang",
+        golonganDarah: "A",
+        jiko: "Penceria yang membuatmu ketawa dengan tingkahku"
+    },
+
+    
+    51: {
+        nama: "Jacqueline Imanuela",
+        namaLengkap: "Jacqueline Imanuela Jonathan",
+        foto: "images/members/member51.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "09 Juli 2009",
+        asal: "Jakarta",
+        golonganDarah: "B",
+        jiko: "Sesejuk dan sedingin mint, Panggik aku ekin"
+    },
+
+    52: {
+        nama: "Jemima Evodie",
+        namaLengkap: "Jemima Evodie Mayra Lijaya",
+        foto: "images/members/member52.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "09 November 2009",
+        asal: "Lombok",
+        golonganDarah: "O",
+        jiko: "Cii~luk~baa~! Merpati yang akan membawa kejutan di setiap penampilanku"
+    },
+
+    53: {
         nama: "Maxine Faye",
         namaLengkap: "Maxine Faye Lee",
-        foto: "images/members/member58.jpg",
+        foto: "images/members/member53.jpg",
         generasi: "Ke-14",
         tanggalLahir: "02 Desember 2011",
         asal: "Jakarta",
         golonganDarah: "B",
-        jiko: "Faith, Trust, and Magical pixie dust."
+        jiko: "Faith,Trust, and Magical pixie dust."
     },
 
-    59: {
-        nama: "Putry Jazyta",
+    54: {
+        nama: "Mikaela Kusjanto",
+        namaLengkap: "Mikaela Kusjanto",
+        foto: "images/members/member54.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "15 Desember 2007",
+        asal: "Jakarta",
+        golonganDarah: "O",
+        jiko: "Camera, Roll, Action! Sutradara yang akan mewarnai kisah hidupmu dengan penuh warna"
+    },
+
+    55: {
+        nama: "Nur Intan",
+        namaLengkap: "Nur Intan",
+        foto: "images/members/member55.jpg",
+        generasi: "Ke-13",
+        tanggalLahir: "24 Febuari 2006",
+        asal: "Bogor",
+        golonganDarah: "B",
+        jiko: "Intan permata yang berikilau, temukan cahayaku dihatimu"
+    },
+
+    56: {
+        nama: "Putry Jazzyta",
         namaLengkap: "Putry Jazyta",
-        foto: "images/members/member59.jpg",
+        foto: "images/members/member56.jpg",
         generasi: "Ke-14",
         tanggalLahir: "12 Maret 2011",
         asal: "Bogor",
@@ -883,23 +965,23 @@ header {
         jiko: "Musik Jazz On, Semangat On"
     },
 
-    60: {
+    57: {
         nama: "Ralyne Van Irwan",
-        namaLengkap: "Nama Lengkap Member 60",
-        foto: "images/members/member60.jpg",
-        generasi: "-",
-        tanggalLahir: "14 Oktober 2011",
+        namaLengkap: "Ralyne Van Irwan",
+        foto: "images/members/member57.jpg",
+        generasi: "Ke-14",
+        tanggalLahir: "15 Oktober 2011",
         asal: "Medan",
         golonganDarah: "AB",
         jiko: "Gameplay Aku Akan Menghiburmu"
     },
 
-    61: {
-        nama: "Sona Kalyana Purboraseptiyani",
-        namaLengkap: "Nama Lengkap Member 61",
-        foto: "images/members/member61.jpg",
+    58: {
+        nama: "Sona Kalyana",
+        namaLengkap: "$ona Kalyana Purbo Septiyani",
+        foto: "images/members/member58.jpg",
         generasi: "Ke-14",
-        tanggalLahir: "01 September 2011",
+        tanggalLahir: "01 Desember 2011",
         asal: "Jakarta",
         golonganDarah: "O",
         jiko: "Hip!Hop Aku Sona Membuat Kamu Terpesona"
