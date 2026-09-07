@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dukungan - Visioner48</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #0b0b0b;
+            color: white;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .donate-box {
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff2020;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .nominal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .nominal {
+            padding: 14px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            background: #202020;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nominal.active {
+            background: #d90000;
+            border-color: #ff3333;
+        }
+
+        .custom-box {
+            margin-bottom: 20px;
+        }
+
+        .custom-box input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            background: #0d0d0d;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .custom-box input:focus {
+            border-color: #ff2020;
+        }
+
+        .payment {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .payment-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            background: #202020;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .payment-btn.aktif {
+            background: #d90000;
+            border-color: #ff3333;
+        }
+
+        .gift-box {
+            margin: 20px 0;
+        }
+
+        .gift-box select {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            background: #202020;
+            border: 2px solid #333;
+            color: white;
+            font-size: 16px;
+        }
+
+        .total-box {
+            background: #0d0d0d;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .total-box span {
+            display: block;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        #totalNominal {
+            font-size: 28px;
+            color: #ff2020;
+        }
+
+        #lanjutPembayaran {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: #e00000;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #lanjutPembayaran:hover {
+            background: #ff2020;
+        }
+
+        .qris-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            text-align: center;
+            background: #202020;
+            border-radius: 15px;
+        }
+
+        .qris-box.show {
+            display: block;
+        }
+
+        .qris-box h3 {
+            color: #ff2020;
+            margin-top: 0;
+        }
+
+        .qris-box p {
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .qris-box img {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            border-radius: 10px;
+            background: white;
+            padding: 10px;
+        }
+
+        #qrisNominal {
+            display: block;
+            font-size: 24px;
+            color: #ff2020;
+            margin: 10px 0;
+        }
+
+        .back {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 12px;
+            }
+
+            .donate-box {
+                padding: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="donate-box">
+
+        <h1>Dukungan</h1>
+
+
+        <!-- NOMINAL -->
+
+        <label>
+            Nominal:
+        </label>
+
+        <div class="nominal-grid">
+
+            <button
+                type="button"
+                class="nominal"
+                data-value="5000"
+                onclick="pilihNominal(this)"
+            >
+                Rp5K
+            </button>
+
+            <button
+                type="button"
+                class="nominal"
+                data-value="10000"
+                onclick="pilihNominal(this)"
+            >
+                Rp10K
+            </button>
+
+            <button
+                type="button"
+                class="nominal"
+                data-value="20000"
+                onclick="pilihNominal(this)"
+            >
+                Rp20K
+            </button>
+
+            <button
+                type="button"
+                class="nominal"
+                data-value="50000"
+                onclick="pilihNominal(this)"
+            >
+                Rp50K
+            </button>
+
+            <button
+                type="button"
+                class="nominal"
+                data-value="100000"
+                onclick="pilihNominal(this)"
+            >
+                Rp100K
+            </button>
+
+            <button
+                type="button"
+                class="nominal"
+                data-value="200000"
+                onclick="pilihNominal(this)"
+            >
+                Rp200K
+            </button>
+
+        </div>
+
+
+        <!-- NOMINAL CUSTOM -->
+
+        <div class="custom-box">
+
+            <label>
+                Nominal lainnya:
+            </label>
+
+            <input
+                type="number"
+                id="customNominal"
+                placeholder="Masukkan nominal"
+                min="1000"
+                oninput="nominalCustom()"
+            >
+
+        </div>
+
+
+        <!-- PEMBAYARAN -->
+
+        <label>
+            Metode pembayaran:
+        </label>
+
+        <div class="payment">
+
+            <button
+                type="button"
+                class="payment-btn aktif"
+                data-method="QRIS"
+            >
+                QRIS
+            </button>
+
+            <button
+                type="button"
+                class="payment-btn"
+                data-method="DANA"
+            >
+                DANA
+            </button>
+
+            <button
+                type="button"
+                class="payment-btn"
+                data-method="GoPay"
+            >
+                GoPay
+            </button>
+
+            <button
+                type="button"
+                class="payment-btn"
+                data-method="Bank"
+            >
+                Bank
+            </button>
+
+        </div>
+
+
+        <!-- GIFT -->
+
+        <div class="gift-box">
+
+            <label>
+                Gift:
+            </label>
+
+            <select
+                id="gift"
+                onchange="updateTotal()"
+            >
+
+                <option value="0">
+                    Tidak ada gift
+                </option>
+
+                <option value="5000">
+                    Gift Rp5K
+                </option>
+
+                <option value="10000">
+                    Gift Rp10K
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="total-box">
+
+            <span>
+                Total Dukungan
+            </span>
+
+            <strong id="totalNominal">
+                Rp0
+            </strong>
+
+        </div>
+
+
+        <!-- LANJUT -->
+
+        <button
+            type="button"
+            id="lanjutPembayaran"
+            onclick="lanjutPembayaran()"
+        >
+            Lanjut Pembayaran
+        </button>
+
+
+        <!-- QRIS -->
+
+        <div
+            class="qris-box"
+            id="qrisBox"
+        >
+
+            <h3>
+                Scan QRIS
+            </h3>
+
+            <p>
+                Scan QRIS menggunakan DANA,
+                GoPay, mobile banking, atau
+                aplikasi pembayaran lain yang
+                mendukung QRIS.
+            </p>
+
+            <img
+                src="qris.png"
+                alt="QRIS Visioner48"
+            >
+
+            <strong id="qrisNominal">
+                Rp0
+            </strong>
+
+            <p>
+                Pastikan nominal pembayaran
+                sesuai dengan jumlah dukungan.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+        ← Kembali ke Home
+    </a>
+
+</div>
+
+
+<script>
+
+let nominalDipilih = 0;
+
+let metode = "QRIS";
+
+
+/* =========================
+   PILIH NOMINAL
+========================= */
+
+function pilihNominal(button) {
+
+    document
+        .querySelectorAll(".nominal")
+        .forEach(function(btn) {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    nominalDipilih =
+        Number(button.dataset.value);
+
+
+    document.getElementById(
+        "customNominal"
+    ).value = "";
+
+
+    updateTotal();
+
+}
+
+
+/* =========================
+   NOMINAL CUSTOM
+========================= */
+
+function nominalCustom() {
+
+    const input =
+        document.getElementById(
+            "customNominal"
+        );
+
+
+    const value =
+        Number(input.value);
+
+
+    if (value > 0) {
+
+        nominalDipilih = value;
+
+
+        document
+            .querySelectorAll(".nominal")
+            .forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+    }
+
+
+    updateTotal();
+
+}
+
+
+/* =========================
+   FORMAT RUPIAH
+========================= */
+
+function formatRupiah(angka) {
+
+    return "Rp" +
+        angka.toLocaleString("id-ID");
+
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+function updateTotal() {
+
+    const gift =
+        Number(
+            document.getElementById(
+                "gift"
+            ).value
+        );
+
+
+    const total =
+        nominalDipilih + gift;
+
+
+    document.getElementById(
+        "totalNominal"
+    ).textContent =
+        formatRupiah(total);
+
+
+    document.getElementById(
+        "qrisNominal"
+    ).textContent =
+        formatRupiah(total);
+
+}
+
+
+/* =========================
+   METODE PEMBAYARAN
+========================= */
+
+document
+    .querySelectorAll(".payment-btn")
+    .forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                metode =
+                    button.dataset.method;
+
+
+                document
+                    .querySelectorAll(
+                        ".payment-btn"
+                    )
+                    .forEach(function(btn) {
+
+                        btn.classList.remove(
+                            "aktif"
+                        );
+
+                    });
+
+
+                button.classList.add(
+                    "aktif"
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   LANJUT PEMBAYARAN
+========================= */
+
+function lanjutPembayaran() {
+
+    if (nominalDipilih <= 0) {
+
+        alert(
+            "Silakan pilih nominal dukungan terlebih dahulu."
+        );
+
+        return;
+
+    }
+
+
+    const gift =
+        Number(
+            document.getElementById(
+                "gift"
+            ).value
+        );
+
+
+    const total =
+        nominalDipilih + gift;
+
+
+    document.getElementById(
+        "qrisNominal"
+    ).textContent =
+        formatRupiah(total);
+
+
+    /* =====================
+       QRIS
+    ===================== */
+
+    if (metode === "QRIS") {
+
+        document.getElementById(
+            "qrisBox"
+        ).classList.add("show");
+
+        return;
+
+    }
+
+
+    /* =====================
+       DANA
+    ===================== */
+
+    if (metode === "DANA") {
+
+        window.location.href =
+            "https://link.dana.id/p2mlink?params=[orderId=z5gpp246]";
+
+        return;
+
+    }
+
+
+    /* =====================
+       GOPAY
+    ===================== */
+
+    if (metode === "GoPay") {
+
+        document.getElementById(
+            "qrisBox"
+        ).classList.add("show");
+
+        return;
+
+    }
+
+
+    /* =====================
+       BANK
+    ===================== */
+
+    if (metode === "Bank") {
+
+        document.getElementById(
+            "qrisBox"
+        ).classList.add("show");
+
+        return;
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
