@@ -13,53 +13,48 @@
     <title>Game JKT48 - Visioner48</title>
 
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-
-     
 body {
     margin: 0;
-
     font-family: Arial, sans-serif;
-
     background:
         linear-gradient(
             135deg,
-            #111827,
-            #312e81
+            #000000,
+            #170000,
+            #000000
         );
-
     color: white;
-
     min-height: 100vh;
 }
 
 
-      
 /* HEADER */
 
 header {
     text-align: center;
-    padding: 45px 20px 25px;
+    padding: 35px 20px 25px;
 }
 
 header h1 {
     margin: 0;
     font-size: 34px;
+    font-weight: bold;
+    color: #ff2222;
 }
 
 header p {
     margin-top: 10px;
-    color: #d1d5db;
+    color: #dddddd;
     font-size: 15px;
 }
 
 
-       
 /* CONTAINER */
 
 .container {
@@ -69,7 +64,6 @@ header p {
 }
 
 
-     
 /* JUDUL */
 
 .judul {
@@ -83,99 +77,96 @@ header p {
 }
 
 .judul p {
-    color: #d1d5db;
+    color: #cccccc;
     margin-top: 0;
 }
 
 
-        /* GRID GAME */
+/* GRID GAME */
 
-        .game-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 15px;
-        }
+.game-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
 
 
-        
 /* KARTU */
 
 .game-card {
     text-decoration: none;
-
     color: white;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
+        linear-gradient(
+            145deg,
+            #1a1a1a,
+            #050505
         );
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+    border: 1px solid #e00000;
 
-    border-radius: 20px;
+    border-radius: 18px;
 
     padding: 25px 15px;
 
     min-height: 170px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
 
     transition: 0.2s;
+
+    box-shadow:
+        0 0 10px rgba(255, 0, 0, 0.15);
 }
 
 
-        .game-card:active {
-            transform: scale(0.97);
-        }
+/* SAAT DITEKAN */
+
+.game-card:active {
+    transform: scale(0.97);
+}
 
 
-        .icon {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
+/* ICON */
+
+.icon {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
 
 
-        .game-card h3 {
-            margin: 0 0 7px;
-            font-size: 18px;
-        }
+/* JUDUL KARTU */
+
+.game-card h3 {
+    margin: 0 0 7px;
+    font-size: 18px;
+    color: #ff3333;
+}
 
 
-        .game-card p {
-            margin: 0;
-            color: #777;
-            font-size: 13px;
-            line-height: 1.5;
-        }
+/* DESKRIPSI */
+
+.game-card p {
+    margin: 0;
+    color: #bbbbbb;
+    font-size: 13px;
+    line-height: 1.5;
+}
 
 
-        /* QUIZ LEBAR */
+/* QUIZ LEBAR */
 
-        .game-wide {
-            grid-column: span 2;
-            min-height: 140px;
-        }
+.game-wide {
+    grid-column: span 2;
+    min-height: 140px;
+}
 
 
 /* HOME */
@@ -190,21 +181,13 @@ header p {
     padding: 13px 20px;
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
+        linear-gradient(
+            145deg,
+            #e00000,
+            #800000
         );
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+    border: 1px solid #ff3333;
 
     color: white;
 
@@ -215,21 +198,24 @@ header p {
     font-weight: bold;
 
     transition: 0.2s;
+
+    box-shadow:
+        0 0 12px rgba(255, 0, 0, 0.25);
 }
+
+
+/* HOME HOVER */
 
 .home-button:hover {
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
 
     background:
-        rgba(
-            255,
-            255,
-            255,
-            0.17
+        linear-gradient(
+            145deg,
+            #ff1111,
+            #a00000
         );
 }
-
 
 
 /* HP KECIL */
@@ -255,12 +241,12 @@ header p {
 
     .game-card p {
         font-size: 12px;
-        color: #d1d5db;
+        color: #aaaaaa;
     }
 
 }
 
-    </style>
+</style>
 
 </head>
 
@@ -391,9 +377,36 @@ header p {
             </p>
 
         </a>
+        
+                <!-- 5 -->
+
+        <a
+            href="sorter.html"
+            class="game-card"
+        >
+
+            <div class="icon">
+                🖇
+            </div>
+
+            <h3>
+                sorter JKT48
+            </h3>
+
+            <p>
+                Pilih oshi kesukaan mu
+               agar mendapatkan peringkat 
+              yang kamu inginkan
+              
+            </p>
+
+        </a>
+
 
 
     </div>
+    
+    
 
 
 
