@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sorter Oshi - Visioner48</title>
+
+    <link rel="stylesheet" href="sorter.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>Sorter Oshi</h1>
+    <p>Urutkan member dari yang paling kamu suka!</p>
+</header>
+
+<main class="container">
+
+    <a href="index.html" class="home-btn">
+        ← Kembali ke Home
+    </a>
+
+    <section class="generation-box">
+
+        <h2>Pilih Generasi</h2>
+
+        <p class="hint">
+            Bisa pilih lebih dari satu generasi
+        </p>
+
+        <div class="generation-grid">
+
+            <button class="generation-btn" data-gen="3">
+                Gen 3
+            </button>
+
+            <button class="generation-btn" data-gen="6">
+                Gen 6
+            </button>
+
+            <button class="generation-btn" data-gen="7">
+                Gen 7
+            </button>
+
+            <button class="generation-btn" data-gen="8">
+                Gen 8
+            </button>
+
+            <button class="generation-btn" data-gen="9">
+                Gen 9
+            </button>
+
+            <button class="generation-btn" data-gen="10">
+                Gen 10
+            </button>
+
+            <button class="generation-btn" data-gen="11">
+                Gen 11
+            </button>
+
+            <button class="generation-btn" data-gen="12">
+                Gen 12
+            </button>
+
+            <button class="generation-btn" data-gen="13">
+                Gen 13
+            </button>
+
+            <button class="generation-btn" data-gen="14">
+                Gen 14
+            </button>
+
+            <button
+                class="generation-btn all"
+                data-gen="all">
+                Semua Generasi
+            </button>
+
+        </div>
+
+        <button
+            id="startButton"
+            class="start-button">
+            Mulai Sorter
+        </button>
+
+    </section>
+
+
+    <!-- GAME -->
+
+    <section
+        id="gameArea"
+        class="game-area">
+
+        <div class="progress-box">
+
+            <div class="progress-text">
+                <span>Progress</span>
+                <span id="progressText">0%</span>
+            </div>
+
+            <div class="progress">
+                <div
+                    id="progressBar"
+                    class="progress-bar">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="choice-container">
+
+            <button
+                id="choiceA"
+                class="choice">
+            </button>
+
+            <button
+                id="choiceB"
+                class="choice">
+            </button>
+
+        </div>
+
+
+        <div class="game-buttons">
+
+            <button
+                id="undoButton"
+                class="undo-button"
+                disabled>
+                ↩ Undo
+            </button>
+
+            <button
+                id="tieButton"
+                class="tie-button">
+                TIE
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- HASIL -->
+
+    <section
+        id="resultArea"
+        class="result-area">
+
+        <h2>Ranking</h2>
+
+        <div
+            id="rankingList"
+            class="ranking-list">
+        </div>
+
+        <button
+            class="restart-btn"
+            onclick="location.reload()">
+            Main Lagi
+        </button>
+
+    </section>
+
+</main>
+
+<script src="sorter.js"></script>
+
+</body>
+</html>
