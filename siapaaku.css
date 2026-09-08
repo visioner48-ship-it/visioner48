@@ -1,59 +1,119 @@
- * {
+/* =========================
+   TEBAK48GROUP
+   FILE: siapaaku.css
+   TEMA: HITAM MERAH
+========================= */
+
+* {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
+
+/* BODY */
+
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #111827, #312e81);
+    margin: 0;
     min-height: 100vh;
-    color: white;
     padding: 20px;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #000000,
+        #1a0000,
+        #450000
+    );
+
+    background-attachment: fixed;
+
+    color: white;
 }
+
+
+/* CONTAINER */
 
 .game-container {
     width: 100%;
     max-width: 600px;
+
     margin: 30px auto;
-    background: rgba(255, 255, 255, 0.1);
     padding: 25px;
+
+    background: rgba(15, 15, 15, 0.95);
+
+    border: 1px solid #b00000;
+
     border-radius: 20px;
+
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+    box-shadow:
+        0 0 20px rgba(180, 0, 0, 0.25);
 }
+
+
+/* JUDUL */
 
 h1 {
     font-size: 32px;
     margin-bottom: 8px;
+    color: white;
 }
 
 .subtitle {
-    color: #ddd;
+    color: #d1d1d1;
     margin-bottom: 25px;
 }
+
+
+/* INFO */
 
 .info {
     display: flex;
     justify-content: space-between;
-    background: rgba(0, 0, 0, 0.2);
+
+    background: #111111;
+
+    border: 1px solid #b00000;
+
     padding: 15px;
-    border-radius: 12px;
+
+    border-radius: 20px;
+
     margin-bottom: 20px;
+
+    box-shadow:
+        0 0 12px rgba(180, 0, 0, 0.20);
 }
 
+
+/* PERTANYAAN */
+
 .question-box {
-    background: white;
-    color: #222;
+    background: #111111;
+
+    color: white;
+
+    border: 1px solid #b00000;
+
     padding: 25px;
-    border-radius: 15px;
+
+    border-radius: 20px;
+
     margin-bottom: 20px;
+
+    box-shadow:
+        0 0 15px rgba(180, 0, 0, 0.20);
 }
 
 .question-box h2 {
     font-size: 20px;
     line-height: 1.5;
 }
+
+
+/* JAWABAN */
 
 .answers {
     display: flex;
@@ -63,76 +123,159 @@ h1 {
 
 .answers button {
     width: 100%;
-    border: none;
+
+    border: 1px solid #700000;
+
     padding: 16px;
-    border-radius: 12px;
-    background: white;
-    color: #222;
+
+    border-radius: 20px;
+
+    background: #171717;
+
+    color: white;
+
     font-size: 16px;
     font-weight: bold;
+
     text-align: left;
+
     cursor: pointer;
+
     transition: 0.2s;
 }
 
 .answers button:hover {
-    transform: scale(1.02);
-    background: #eeeeee;
+    transform: translateY(-3px);
+
+    background: #2a0000;
+
+    border-color: #ff0000;
+
+    box-shadow:
+        0 0 12px rgba(255, 0, 0, 0.25);
 }
 
 .answers button:disabled {
     cursor: default;
 }
 
+
+/* BENAR */
+
 .answers button.benar {
-    background: #22c55e;
+    background: #16a34a;
+    border-color: #22c55e;
     color: white;
 }
+
+
+/* SALAH */
 
 .answers button.salah {
-    background: #ef4444;
+    background: #b00000;
+    border-color: #ff0000;
     color: white;
 }
 
+
+/* HASIL */
+
 #hasil {
+    color: white;
+
     font-size: 22px;
     font-weight: bold;
+
     margin: 20px 0;
 }
+
+
+/* TOMBOL */
 
 #lanjutBtn,
 .kembali,
 .final-score + button {
     width: 100%;
-    border: none;
+
+    border: 1px solid #b00000;
+
     padding: 15px;
-    border-radius: 12px;
+
+    border-radius: 20px;
+
     margin-top: 12px;
-    background: #f59e0b;
+
+    background: #171717;
+
     color: white;
+
     font-size: 16px;
     font-weight: bold;
+
     cursor: pointer;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 0 10px rgba(180, 0, 0, 0.15);
 }
+
+
+#lanjutBtn:hover,
+.kembali:hover,
+.final-score + button:hover {
+    transform: translateY(-3px);
+
+    background: #2a0000;
+
+    border-color: #ff0000;
+
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, 0.30);
+}
+
+
+/* KEMBALI */
 
 .kembali {
-    background: rgba(255, 255, 255, 0.2);
+    background: #171717;
 }
 
+
+/* NILAI AKHIR */
+
 .final-score {
-    background: white;
-    color: #222;
+    background: #111111;
+
+    color: white;
+
+    border: 1px solid #b00000;
+
     padding: 25px;
-    border-radius: 15px;
+
+    border-radius: 20px;
+
     font-size: 20px;
+
     margin: 25px 0;
+
+    box-shadow:
+        0 0 15px rgba(180, 0, 0, 0.20);
 }
+
 
 .final-score strong {
     display: block;
+
     font-size: 40px;
+
     margin-top: 10px;
+
+    color: #ff3333;
 }
+
+
+/* HP */
 
 @media (max-width: 480px) {
 
@@ -156,5 +299,13 @@ h1 {
     .answers button {
         font-size: 15px;
         padding: 14px;
+    }
+
+    .final-score {
+        padding: 20px;
+    }
+
+    .final-score strong {
+        font-size: 35px;
     }
 }
