@@ -1,3 +1,8 @@
+/* =========================
+   TEBAK JIKO
+   TEMA HITAM MERAH
+========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -11,8 +16,9 @@ body {
     background:
         linear-gradient(
             135deg,
-            #111827,
-            #312e81
+            #000000,
+            #180000,
+            #400000
         );
 
     color: white;
@@ -20,62 +26,53 @@ body {
     min-height: 100vh;
 }
 
+
+/* CONTAINER */
+
 .game-container {
     max-width: 600px;
+
     margin: auto;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+    background: #0d0d0d;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+    border: 1px solid #b00000;
 
     padding: 25px;
 
     border-radius: 20px;
 
     text-align: center;
+
+    box-shadow:
+        0 0 25px
+        rgba(180, 0, 0, 0.35);
 }
 
+
+/* JUDUL */
 
 h1 {
     margin-bottom: 20px;
+
+    color: white;
 }
+
+
+/* SEMUA BUTTON */
 
 button {
     width: 100%;
+
     padding: 14px;
+
     margin: 8px 0;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+    border: 1px solid #700000;
 
     border-radius: 20px;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+    background: #171717;
 
     color: white;
 
@@ -86,116 +83,187 @@ button {
     transition: 0.2s;
 }
 
+
+/* HOVER BUTTON */
+
 button:hover {
     transform:
         translateY(-3px);
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.17
-        );
+    background: #300000;
+
+    border-color: #ff0000;
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 0, 0, 0.3);
 }
+
+
+/* ACTIVE */
 
 button:active {
     transform:
         scale(0.98);
 }
 
+
+/* DISABLED */
+
 button:disabled {
     cursor: not-allowed;
+
     opacity: 0.5;
 }
 
-.pilihan {
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+/* PILIHAN */
+
+.pilihan {
+    background: #171717;
+
+    border: 1px solid #700000;
 
     color: white;
 }
 
+
+/* HOVER PILIHAN */
+
 .pilihan:hover {
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.17
-        );
+    background: #2b0000;
+
+    border-color: #ff0000;
+
+    box-shadow:
+        0 0 12px
+        rgba(255, 0, 0, 0.3);
 }
+
+
+/* JAWABAN BENAR */
 
 .pilihan.benar {
-    background: #198754;
+    background: #16803c;
+
+    border-color: #22c55e;
 }
 
+
+/* JAWABAN SALAH */
+
 .pilihan.salah {
-    background: #dc3545;
+    background: #a00000;
+
+    border-color: #ff0000;
 }
+
+
+/* HASIL JAWABAN BENAR */
 
 .jawaban-benar {
     margin: 15px 0;
+
     padding: 15px;
 
     border-radius: 20px;
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.10
-        );
+    background: #111111;
 
-    border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.18
-        );
+    border: 1px solid #b00000;
 
     color: white;
 }
 
+
+/* HASIL JAWABAN SALAH */
+
 .jawaban-salah {
     margin: 15px 0;
+
     padding: 15px;
+
     border-radius: 10px;
-    background: #f8d7da;
-    color: #842029;
+
+    background: #300000;
+
+    border: 1px solid #ff0000;
+
+    color: #ff6666;
 }
+
+
+/* TOMBOL LANJUT */
 
 #tombolLanjut {
-    background: #0069d9;
+    background: #171717;
+
+    border: 1px solid #b00000;
+
+    color: white;
 }
 
+
+/* TOMBOL KEMBALI */
+
 .kembali {
-    background: #777;
+    background: #171717;
+
+    border: 1px solid #700000;
+
+    color: white;
 }
+
+
+/* HASIL AKHIR */
 
 #hasilAkhir p {
     font-size: 18px;
+
     margin: 12px;
+
+    color: white;
 }
+
+
+/* NOMOR SOAL */
 
 #nomorSoal {
     font-weight: bold;
+
     font-size: 18px;
+
+    color: #ff3333;
+}
+
+
+/* HP */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .game-container {
+        padding: 18px;
+
+        border-radius: 16px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    button {
+        padding: 13px;
+
+        font-size: 15px;
+    }
+
+    .jawaban-benar,
+    .jawaban-salah {
+        padding: 13px;
+    }
+
 }
