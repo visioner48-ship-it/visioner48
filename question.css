@@ -1,0 +1,280 @@
+ * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000000,
+            #180000,
+            #700000
+        );
+
+    color: white;
+
+    min-height: 100vh;
+}
+
+
+/* HEADER */
+
+header {
+    text-align: center;
+
+    padding: 25px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000000,
+            #180000,
+            #b00000
+        );
+
+    border-bottom: 2px solid #ff0000;
+
+    box-shadow:
+        0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+header h1 {
+    margin: 0;
+
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+header p {
+    margin: 7px 0 0;
+
+    color: #ffb3b3;
+
+    font-size: 14px;
+}
+
+
+/* MAIN */
+
+main {
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: auto;
+
+    padding: 25px 15px 40px;
+}
+
+
+/* CARD */
+
+.question-card {
+
+    background: rgba(20, 0, 0, 0.95);
+
+    border: 1px solid #7d0000;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.question-card h2 {
+
+    text-align: center;
+
+    margin-top: 0;
+
+    color: #ff3333;
+}
+
+.description {
+
+    text-align: center;
+
+    color: #cccccc;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+}
+
+
+/* LABEL */
+
+label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+
+    color: #ffb3b3;
+}
+
+
+/* INPUT */
+
+input,
+textarea {
+
+    width: 100%;
+
+    border: 1px solid #700000;
+
+    background: #0c0c0c;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 13px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+
+    border-color: #ff0000;
+
+    box-shadow:
+        0 0 8px rgba(255, 0, 0, 0.35);
+}
+
+
+textarea {
+
+    min-height: 150px;
+
+    resize: vertical;
+}
+
+
+/* BUTTON */
+
+#kirimBtn {
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #700000,
+            #d00000
+        );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#kirimBtn:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #a00000,
+            #ff0000
+        );
+
+    transform: translateY(-1px);
+}
+
+#kirimBtn:disabled {
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* STATUS */
+
+#status {
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    min-height: 20px;
+
+    font-size: 14px;
+}
+
+
+/* HOME */
+
+.home-btn {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border: 1px solid #800000;
+
+    border-radius: 10px;
+
+    background: #120000;
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.home-btn:hover {
+
+    background: #300000;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 26px;
+    }
+
+    .question-card {
+        padding: 18px;
+    }
+
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Visioner48 - Question</title>
+
+    <link rel="stylesheet" href="question.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Visioner48</h1>
+    <p>Kirim Pertanyaan</p>
+</header>
+
+<main>
+
+    <div class="question-card">
+
+        <h2>💬 Kirim Pertanyaan</h2>
+
+        <p class="description">
+            Punya pertanyaan tentang JKT48 atau Visioner48?
+            Kirim pertanyaan kamu di sini.
+        </p>
+
+        <label for="nama">Nama</label>
+
+        <input
+            type="text"
+            id="nama"
+            placeholder="Masukkan nama kamu"
+            maxlength="50"
+        >
+
+        <label for="pertanyaan">Pertanyaan</label>
+
+        <textarea
+            id="pertanyaan"
+            placeholder="Tulis pertanyaan kamu..."
+            maxlength="500"
+        ></textarea>
+
+        <button id="kirimBtn" onclick="kirimPertanyaan()">
+            KIRIM PERTANYAAN
+        </button>
+
+        <p id="status"></p>
+
+    </div>
+
+    <button class="home-btn" onclick="kembaliHome()">
+        ← Kembali ke Home
+    </button>
+
+</main>
+
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script src="question.js"></script>
+
+</body>
+</html>
