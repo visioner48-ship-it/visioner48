@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Visioner48 - Admin Question</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000000,
+            #180000,
+            #700000
+        );
+
+    color: white;
+    min-height: 100vh;
+}
+
+
+/* HEADER */
+
+header {
+    padding: 24px 15px;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000000,
+            #180000,
+            #b00000
+        );
+
+    border-bottom: 2px solid #ff0000;
+
+    box-shadow:
+        0 4px 15px rgba(255,0,0,.25);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 6px 0 0;
+    color: #ffaaaa;
+}
+
+
+/* MAIN */
+
+main {
+    width: 100%;
+    max-width: 750px;
+
+    margin: auto;
+
+    padding: 20px 15px 40px;
+}
+
+
+/* TOP */
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+.top-bar h2 {
+    margin: 0;
+    font-size: 21px;
+    color: #ff3333;
+}
+
+
+/* NOTIFICATION */
+
+.notification {
+    display: none;
+
+    margin-bottom: 18px;
+
+    padding: 13px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #500000,
+            #a00000
+        );
+
+    border: 1px solid #ff3333;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    box-shadow:
+        0 4px 15px rgba(255,0,0,.2);
+
+    animation: muncul .3s ease;
+}
+
+@keyframes muncul {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* REFRESH */
+
+.refresh-btn {
+    padding: 9px 14px;
+
+    border: 1px solid #900000;
+
+    border-radius: 8px;
+
+    background: #180000;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.refresh-btn:hover {
+    background: #500000;
+}
+
+
+/* LIST */
+
+#questionList {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* QUESTION CARD */
+
+.question-card {
+
+    position: relative;
+
+    background:
+        rgba(15, 0, 0, .96);
+
+    border: 1px solid #650000;
+
+    border-radius: 13px;
+
+    padding: 16px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.45);
+}
+
+.question-card:hover {
+
+    border-color: #d00000;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 20px rgba(255,0,0,.15);
+}
+
+
+/* NEW BADGE */
+
+.new-badge {
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding: 4px 8px;
+
+    border-radius: 20px;
+
+    background: #e00000;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+/* NAME */
+
+.question-name {
+
+    color: #ff4d4d;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+
+    padding-right: 50px;
+}
+
+
+/* PREVIEW */
+
+.question-preview {
+
+    color: #dddddd;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* TIME */
+
+.question-time {
+
+    margin-top: 10px;
+
+    color: #888;
+
+    font-size: 11px;
+}
+
+
+/* EMPTY */
+
+.empty {
+
+    text-align: center;
+
+    padding: 45px 10px;
+
+    color: #999;
+}
+
+
+/* HOME */
+
+.home-btn {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 20px;
+
+    border: 1px solid #800000;
+
+    border-radius: 10px;
+
+    background: #150000;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.home-btn:hover {
+    background: #350000;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 999;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        rgba(0,0,0,.78);
+
+    padding: 20px;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal-box {
+
+    width: 100%;
+
+    max-width: 550px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #100000,
+            #260000
+        );
+
+    border: 1px solid #a00000;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.7);
+
+    animation: modalMuncul .2s ease;
+}
+
+
+@keyframes modalMuncul {
+
+    from {
+        opacity: 0;
+        transform: scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* MODAL HEADER */
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+.modal-header h3 {
+
+    margin: 0;
+
+    color: #ff4444;
+}
+
+
+.close-btn {
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #500000;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    background: #b00000;
+}
+
+
+/* MODAL CONTENT */
+
+.detail-label {
+
+    color: #999;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+
+.detail-name {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: white;
+
+    margin-bottom: 16px;
+}
+
+
+.detail-time {
+
+    color: #999;
+
+    font-size: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.detail-question {
+
+    padding: 15px;
+
+    background: #090909;
+
+    border: 1px solid #500000;
+
+    border-radius: 10px;
+
+    color: #eeeeee;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* DELETE */
+
+.delete-btn {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #900000;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #d00000;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 500px) {
+
+    main {
+        padding: 18px 12px 35px;
+    }
+
+    .top-bar h2 {
+        font-size: 19px;
+    }
+
+    .question-card {
+        padding: 14px;
+    }
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-box {
+        padding: 17px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>Visioner48</h1>
+
+    <p>Admin Question</p>
+
+</header>
+
+
+<main>
+
+
+    <div class="top-bar">
+
+        <h2>📩 Pertanyaan Masuk</h2>
+
+        <button
+            class="refresh-btn"
+            onclick="loadQuestions()"
+        >
+            ↻ Refresh
+        </button>
+
+    </div>
+
+
+    <!-- NOTIFIKASI -->
+
+    <div
+        id="notification"
+        class="notification"
+    ></div>
+
+
+    <!-- LIST -->
+
+    <div id="questionList">
+
+        <div class="empty">
+            Memuat pertanyaan...
+        </div>
+
+    </div>
+
+
+    <button
+        class="home-btn"
+        onclick="kembaliAdmin()"
+    >
+        ← Kembali ke Question
+    </button>
+
+
+</main>
+
+
+<!-- =========================
+     MODAL DETAIL
+========================= -->
+
+<div
+    id="questionModal"
+    class="modal"
+    onclick="tutupModal(event)"
+>
+
+    <div
+        class="modal-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="modal-header">
+
+            <h3>📩 Detail Pertanyaan</h3>
+
+            <button
+                class="close-btn"
+                onclick="tutupModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="detail-label">
+            Nama
+        </div>
+
+        <div
+            id="detailNama"
+            class="detail-name"
+        ></div>
+
+
+        <div
+            id="detailWaktu"
+            class="detail-time"
+        ></div>
+
+
+        <div class="detail-label">
+            Pertanyaan
+        </div>
+
+        <div
+            id="detailPertanyaan"
+            class="detail-question"
+        ></div>
+
+
+        <button
+            id="detailDelete"
+            class="delete-btn"
+            onclick="hapusDariModal()"
+        >
+            🗑 Hapus Pertanyaan
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
+<script>
+
+
+// ==========================================
+// FIREBASE CONFIG
+// ==========================================
+
+const firebaseConfig = {
+
+    apiKey: "",
+
+    authDomain:
+        "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL:
+        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId:
+        "visioner48-9b51e",
+
+    storageBucket:
+        "visioner48-9b51e.appspot.com",
+
+    messagingSenderId: "",
+
+    appId: ""
+
+};
+
+
+// ==========================================
+// FIREBASE INIT
+// ==========================================
+
+firebase.initializeApp(firebaseConfig);
+
+const database =
+    firebase.database();
+
+
+// ==========================================
+// VARIABEL
+// ==========================================
+
+let pertanyaanTerpilih = null;
+
+let jumlahSebelumnya = 0;
+
+
+// ==========================================
+// LOAD QUESTIONS
+// ==========================================
+
+function loadQuestions() {
+
+    const container =
+        document.getElementById("questionList");
+
+
+    container.innerHTML =
+        '<div class="empty">Memuat pertanyaan...</div>';
+
+
+    database
+        .ref("visioner48_questions")
+        .once("value")
+
+        .then(function(snapshot) {
+
+            container.innerHTML = "";
+
+
+            if (!snapshot.exists()) {
+
+                container.innerHTML =
+                    '<div class="empty">Belum ada pertanyaan.</div>';
+
+                jumlahSebelumnya = 0;
+
+                return;
+            }
+
+
+            const data =
+                snapshot.val();
+
+
+            const questions = [];
+
+
+            Object.keys(data).forEach(function(key) {
+
+                questions.push({
+
+                    id: key,
+
+                    ...data[key]
+
+                });
+
+            });
+
+
+            // TERBARU DI ATAS
+
+            questions.sort(function(a, b) {
+
+                return (
+                    (b.waktu || 0) -
+                    (a.waktu || 0)
+                );
+
+            });
+
+
+            // NOTIFIKASI
+
+            if (
+                jumlahSebelumnya > 0 &&
+                questions.length > jumlahSebelumnya
+            ) {
+
+                const selisih =
+                    questions.length -
+                    jumlahSebelumnya;
+
+
+                tampilkanNotif(
+                    "🔔 Ada " +
+                    selisih +
+                    " pertanyaan baru!"
+                );
+
+            }
+
+
+            jumlahSebelumnya =
+                questions.length;
+
+
+            questions.forEach(function(item, index) {
+
+                buatCard(
+                    item,
+                    container,
+                    index
+                );
+
+            });
+
+        })
+
+        .catch(function(error) {
+
+            console.error(error);
+
+            container.innerHTML =
+                '<div class="empty">Gagal memuat pertanyaan.</div>';
+
+        });
+
+}
+
+
+// ==========================================
+// BUAT CARD
+// ==========================================
+
+function buatCard(item, container, index) {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "question-card";
+
+
+    // BADGE BARU
+
+    if (index === 0) {
+
+        const badge =
+            document.createElement("div");
+
+        badge.className =
+            "new-badge";
+
+        badge.textContent =
+            "TERBARU";
+
+        card.appendChild(badge);
+
+    }
+
+
+    // NAMA
+
+    const nama =
+        document.createElement("div");
+
+    nama.className =
+        "question-name";
+
+    nama.textContent =
+        item.nama || "Anonim";
+
+
+    // PREVIEW
+
+    const preview =
+        document.createElement("div");
+
+    preview.className =
+        "question-preview";
+
+    preview.textContent =
+        item.pertanyaan || "";
+
+
+    // WAKTU
+
+    const waktu =
+        document.createElement("div");
+
+    waktu.className =
+        "question-time";
+
+    waktu.textContent =
+        formatWaktu(item.waktu);
+
+
+    card.appendChild(nama);
+
+    card.appendChild(preview);
+
+    card.appendChild(waktu);
+
+
+    // KLIK CARD
+
+    card.onclick =
+        function() {
+
+            bukaPertanyaan(item);
+
+        };
+
+
+    container.appendChild(card);
+
+}
+
+
+// ==========================================
+// BUKA PERTANYAAN
+// ==========================================
+
+function bukaPertanyaan(item) {
+
+    pertanyaanTerpilih =
+        item.id;
+
+
+    document.getElementById(
+        "detailNama"
+    ).textContent =
+        item.nama || "Anonim";
+
+
+    document.getElementById(
+        "detailWaktu"
+    ).textContent =
+        formatWaktu(item.waktu);
+
+
+    document.getElementById(
+        "detailPertanyaan"
+    ).textContent =
+        item.pertanyaan || "";
+
+
+    document.getElementById(
+        "questionModal"
+    ).style.display =
+        "flex";
+
+}
+
+
+// ==========================================
+// TUTUP MODAL
+// ==========================================
+
+function tutupModal(event) {
+
+    if (
+        event &&
+        event.target !==
+        document.getElementById("questionModal")
+    ) {
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "questionModal"
+    ).style.display =
+        "none";
+
+
+    pertanyaanTerpilih =
+        null;
+
+}
+
+
+// ==========================================
+// HAPUS DARI MODAL
+// ==========================================
+
+function hapusDariModal() {
+
+    if (!pertanyaanTerpilih) {
+        return;
+    }
+
+
+    const yakin =
+        confirm(
+            "Yakin ingin menghapus pertanyaan ini?"
+        );
+
+
+    if (!yakin) {
+        return;
+    }
+
+
+    database
+        .ref(
+            "visioner48_questions/" +
+            pertanyaanTerpilih
+        )
+        .remove()
+
+        .then(function() {
+
+            document.getElementById(
+                "questionModal"
+            ).style.display =
+                "none";
+
+
+            pertanyaanTerpilih =
+                null;
+
+
+            tampilkanNotif(
+                "✓ Pertanyaan berhasil dihapus."
+            );
+
+
+            loadQuestions();
+
+        })
+
+        .catch(function(error) {
+
+            console.error(error);
+
+            alert(
+                "Gagal menghapus pertanyaan."
+            );
+
+        });
+
+}
+
+
+// ==========================================
+// NOTIFIKASI
+// ==========================================
+
+function tampilkanNotif(pesan) {
+
+    const notif =
+        document.getElementById(
+            "notification"
+        );
+
+
+    notif.textContent =
+        pesan;
+
+
+    notif.style.display =
+        "block";
+
+
+    setTimeout(function() {
+
+        notif.style.display =
+            "none";
+
+    }, 4000);
+
+}
+
+
+// ==========================================
+// FORMAT WAKTU
+// ==========================================
+
+function formatWaktu(timestamp) {
+
+    if (!timestamp) {
+
+        return "Waktu tidak diketahui";
+
+    }
+
+
+    const date =
+        new Date(timestamp);
+
+
+    return date.toLocaleString(
+        "id-ID",
+        {
+
+            day: "2-digit",
+
+            month: "2-digit",
+
+            year: "numeric",
+
+            hour: "2-digit",
+
+            minute: "2-digit"
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// KEMBALI ADMIN
+// ==========================================
+
+function kembaliAdmin() {
+
+    window.location.href =
+        "question.html";
+
+}
+
+
+// ==========================================
+// LOAD PERTAMA
+// ==========================================
+
+loadQuestions();
+
+
+// ==========================================
+// CEK PERTANYAAN BARU
+// SETIAP 5 DETIK
+// ==========================================
+
+setInterval(function() {
+
+    cekPertanyaanBaru();
+
+}, 5000);
+
+
+function cekPertanyaanBaru() {
+
+    database
+        .ref("visioner48_questions")
+        .once("value")
+
+        .then(function(snapshot) {
+
+            let jumlah = 0;
+
+
+            if (snapshot.exists()) {
+
+                jumlah =
+                    Object.keys(
+                        snapshot.val()
+                    ).length;
+
+            }
+
+
+            if (
+                jumlah > jumlahSebelumnya
+            ) {
+
+                const selisih =
+                    jumlah -
+                    jumlahSebelumnya;
+
+
+                jumlahSebelumnya =
+                    jumlah;
+
+
+                tampilkanNotif(
+                    "🔔 Ada " +
+                    selisih +
+                    " pertanyaan baru!"
+                );
+
+
+                loadQuestions();
+
+            }
+
+        });
+
+}
+
+
+// ==========================================
+// TOMBOL ESC UNTUK TUTUP MODAL
+// ==========================================
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            document.getElementById(
+                "questionModal"
+            ).style.display =
+                "none";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
