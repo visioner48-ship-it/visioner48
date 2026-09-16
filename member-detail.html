@@ -2,335 +2,560 @@
 <html lang="id">
 
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Member Detail - Visioner48</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-
-            font-family: Arial, sans-serif;
-
-            background:
-                radial-gradient(
-                    circle at top,
-                    #5c0a0a 0%,
-                    #1a0505 35%,
-                    #050505 75%,
-                    #000000 100%
-                );
-
-            color: white;
-
-            min-height: 100vh;
-        }
-
-        header {
-            position: relative;
-
-            padding: 30px 20px 35px;
-
-            text-align: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(120, 0, 0, 0.75),
-                    rgba(10, 10, 10, 0.95)
-                );
-
-            border-bottom:
-                2px solid
-                rgba(220, 20, 20, 0.65);
-
-            box-shadow:
-                0 8px 30px
-                rgba(120, 0, 0, 0.35);
-        }
-
-        header h1 {
-            margin: 0;
-
-            color: white;
-
-            font-size: 28px;
-
-            font-weight: 700;
-
-            letter-spacing: 1px;
-
-            text-shadow:
-                0 0 12px
-                rgba(255, 0, 0, 0.55);
-        }
-
-        header p {
-            margin: 8px 0 0;
-
-            color:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.70
-                );
-
-            font-size: 14px;
-        }
-
-        .detail {
-            max-width: 600px;
-
-            margin: 30px auto;
-
-            background:
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.55
-                );
-
-            border:
-                1px solid
-                rgba(
-                    220,
-                    20,
-                    20,
-                    0.35
-                );
-
-            padding: 25px;
-
-            border-radius: 20px;
-
-            text-align: center;
-
-            box-shadow:
-                0 10px 35px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.45
-                );
-        }
-
-        #fotoMember {
-            width: 300px;
-
-            height: 360px;
-
-            max-width: 100%;
-
-            object-fit: cover;
-
-            border-radius: 12px;
-
-            border:
-                2px solid
-                rgba(
-                    220,
-                    20,
-                    20,
-                    0.55
-                );
-
-            display: block;
-
-            margin: 0 auto;
-
-            box-shadow:
-                0 8px 25px
-                rgba(
-                    120,
-                    0,
-                    0,
-                    0.40
-                );
-        }
-
-        .biodata {
-            text-align: left;
-
-            margin-top: 20px;
-
-            line-height: 1.8;
-
-            color: white;
-        }
-
-        .jiko {
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    0.06
-                );
-
-            border:
-                1px solid
-                rgba(
-                    220,
-                    20,
-                    20,
-                    0.30
-                );
-
-            color: white;
-
-            padding: 15px;
-
-            border-radius: 15px;
-
-            margin-top: 20px;
-
-            line-height: 1.7;
-        }
-
-        .kembali {
-            display: inline-block;
-
-            margin-top: 20px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #8b0000,
-                    #d00000
-                );
-
-            border: none;
-
-            color: white;
-
-            text-decoration: none;
-
-            padding: 12px 22px;
-
-            border-radius: 12px;
-
-            transition: 0.2s;
-        }
-
-        .kembali:hover {
-            background:
-                linear-gradient(
-                    135deg,
-                    #b00000,
-                    #ef0000
-                );
-
-            transform:
-                translateY(-2px);
-        }
-
-        @media (max-width: 700px) {
-
-            header {
-                padding:
-                    25px 15px 30px;
-            }
-
-            header h1 {
-                font-size: 24px;
-            }
-
-            .detail {
-                width:
-                    calc(100% - 20px);
-
-                margin: 20px auto;
-
-                padding: 20px;
-            }
-
-            #fotoMember {
-                width: 100%;
-
-                max-width: 300px;
-
-                height: 360px;
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Member Detail - JKT48</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:
+    radial-gradient(
+        circle at top,
+        #5c0a0a 0%,
+        #1a0505 35%,
+        #050505 75%,
+        #000000 100%
+    );
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    padding:30px 20px 35px;
+    text-align:center;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(120,0,0,.75),
+        rgba(10,10,10,.95)
+    );
+    border-bottom:2px solid rgba(220,20,20,.65);
+    box-shadow:0 8px 30px rgba(120,0,0,.35);
+}
+
+header h1{
+    margin:0;
+    color:white;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-shadow:0 0 12px rgba(255,0,0,.55);
+}
+
+header p{
+    margin:8px 0 0;
+    color:rgba(255,255,255,.7);
+    font-size:14px;
+}
+
+.detail{
+    max-width:600px;
+    margin:30px auto;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(220,20,20,.35);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.45);
+}
+
+#fotoMember{
+    width:300px;
+    height:360px;
+    max-width:100%;
+    object-fit:cover;
+    border-radius:12px;
+    border:2px solid rgba(220,20,20,.55);
+    display:block;
+    margin:0 auto;
+    box-shadow:0 8px 25px rgba(120,0,0,.4);
+}
+
+/* NAMA LENGKAP */
+
+.nama-lengkap{
+    margin-top:22px;
+    padding:18px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(130,0,0,.35),
+        rgba(30,0,0,.55)
+    );
+    border:1px solid rgba(220,20,20,.35);
+    border-radius:15px;
+}
+
+.nama-lengkap h2{
+    margin:0 0 8px;
+    font-size:14px;
+    color:#ff5a5a;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+.nama-lengkap p{
+    margin:0;
+    font-size:21px;
+    font-weight:bold;
+}
+
+/* BAGIAN */
+
+.section{
+    margin-top:20px;
+    padding:18px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(220,20,20,.3);
+    border-radius:15px;
+    text-align:left;
+}
+
+.section-title{
+    margin:0 0 15px;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(220,20,20,.3);
+    color:#ff4d4d;
+    font-size:18px;
+}
+
+/* BIODATA */
+
+.biodata{
+    text-align:left;
+    line-height:1.8;
+    color:white;
+}
+
+.biodata p{
+    margin:8px 0;
+}
+
+.biodata b{
+    color:#ff5a5a;
+}
+
+/* SOCIAL MEDIA */
+
+.social{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.social-button{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:13px;
+    border-radius:12px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(100,0,0,.5),
+        rgba(20,20,20,.8)
+    );
+    border:1px solid rgba(220,20,20,.35);
+    color:white;
+    text-decoration:none;
+    transition:.2s;
+    min-height:55px;
+}
+
+.social-button:hover{
+    background:
+    linear-gradient(
+        135deg,
+        #b00000,
+        #250000
+    );
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(150,0,0,.35);
+}
+
+.social-icon{
+    width:34px;
+    height:34px;
+    min-width:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:9px;
+    background:#b00000;
+    color:white;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.social-name{
+    font-size:14px;
+    font-weight:bold;
+}
+
+.social-username{
+    display:block;
+    margin-top:3px;
+    font-size:11px;
+    color:#aaa;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+/* JIKO */
+
+.jiko{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(220,20,20,.3);
+    color:white;
+    padding:15px;
+    border-radius:15px;
+    margin-top:20px;
+    line-height:1.7;
+}
+
+.jiko h3{
+    margin-top:0;
+    color:#ff4d4d;
+}
+
+/* KEMBALI */
+
+.kembali{
+    display:inline-block;
+    margin-top:20px;
+    background:
+    linear-gradient(
+        135deg,
+        #8b0000,
+        #d00000
+    );
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:12px;
+    transition:.2s;
+}
+
+.kembali:hover{
+    background:
+    linear-gradient(
+        135deg,
+        #b00000,
+        #ef0000
+    );
+    transform:translateY(-2px);
+}
+
+@media(max-width:700px){
+
+    header{
+        padding:25px 15px 30px;
+    }
+
+    header h1{
+        font-size:24px;
+    }
+
+    .detail{
+        width:calc(100% - 20px);
+        margin:20px auto;
+        padding:20px;
+    }
+
+    #fotoMember{
+        width:100%;
+        max-width:300px;
+        height:360px;
+    }
+
+    .social{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
 <header>
+
     <h1>Member JKT48</h1>
+
+    <p>Profil lengkap member JKT48</p>
+
 </header>
+
 
 <div class="detail">
 
     <!-- FOTO MEMBER -->
-    <img id="fotoMember"
-         src="images/members/member1.jpg"
-         alt="Foto Member">
+
+    <img
+        id="fotoMember"
+        src="images/members/member1.jpg"
+        alt="Foto Member"
+    >
+
 
     <!-- NAMA -->
-    <h2 id="namaMember">
-        Alya Amanda
-    </h2>
+
+    <div class="nama-lengkap">
+
+        <h2>Nama member</h2>
+
+        <p id="namaLengkap">
+            -
+        </p>
+
+    </div>
+
 
     <!-- BIODATA -->
-    <div class="biodata">
 
-        <p>
-            <b>Nama lengkap:</b>
-            <span id="namaLengkap">Alya Amanda Fatihah</span>
-        </p>
+    <div class="section">
 
-        <p>
-            <b>Generasi:</b>
-            <span id="generasi">Ke-11</span>
-        </p>
+        <h3 class="section-title">
+            📋 Biodata Lengkap
+        </h3>
 
-        <p>
-            <b>Tanggal lahir:</b>
-            <span id="tanggalLahir">26 Agustus 2006</span>
-        </p>
+        <div class="biodata">
 
-        <p>
-            <b>Asal:</b>
-            <span id="asal">Jakarta</span>
-        </p>
+            <p>
+                <b>Nama lengkap:</b>
+                <span id="namaMember">-</span>
+            </p>
 
-        <p>
-            <b>Golongan darah:</b>
-            <span id="golonganDarah">A</span>
-        </p>
+            <p>
+                <b>Generasi:</b>
+                <span id="generasi">-</span>
+            </p>
+
+            <p>
+                <b>Tanggal lahir:</b>
+                <span id="tanggalLahir">-</span>
+            </p>
+
+            <p>
+                <b>Asal:</b>
+                <span id="asal">-</span>
+            </p>
+
+            <p>
+                <b>Golongan darah:</b>
+                <span id="golonganDarah">-</span>
+            </p>
+
+            <p>
+                <b>Tinggi badan:</b>
+                <span id="tinggiBadan">-</span>
+            </p>
+
+            <p>
+                <b>Zodiac:</b>
+                <span id="zodiac">-</span>
+            </p>
+
+        </div>
 
     </div>
+
+
+    <!-- SOSIAL MEDIA -->
+
+    <div class="section">
+
+        <h3 class="section-title">
+            📱 Sosial Media
+        </h3>
+
+        <div class="social">
+
+            <!-- INSTAGRAM -->
+
+            <a
+                id="instagramLink"
+                class="social-button"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="social-icon">
+                    ◎
+                </span>
+
+                <span>
+                    <span class="social-name">
+                        Instagram
+                    </span>
+
+                    <span
+                        class="social-username"
+                        id="instagram"
+                    >
+                        -
+                    </span>
+                </span>
+
+            </a>
+
+
+            <!-- TIKTOK -->
+
+            <a
+                id="tiktokLink"
+                class="social-button"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="social-icon">
+                    ♪
+                </span>
+
+                <span>
+                    <span class="social-name">
+                        TikTok
+                    </span>
+
+                    <span
+                        class="social-username"
+                        id="tiktok"
+                    >
+                        -
+                    </span>
+                </span>
+
+            </a>
+
+
+            <!-- X -->
+
+            <a
+                id="twitterLink"
+                class="social-button"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="social-icon">
+                    𝕏
+                </span>
+
+                <span>
+                    <span class="social-name">
+                        X / Twitter
+                    </span>
+
+                    <span
+                        class="social-username"
+                        id="twitter"
+                    >
+                        -
+                    </span>
+                </span>
+
+            </a>
+
+
+            <!-- SHOWROOM -->
+
+            <a
+                id="showroomLink"
+                class="social-button"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="social-icon">
+                    ▣
+                </span>
+
+                <span>
+                    <span class="social-name">
+                        Showroom
+                    </span>
+
+                    <span
+                        class="social-username"
+                        id="showroom"
+                    >
+                        -
+                    </span>
+                </span>
+
+            </a>
+
+
+            <!-- IDN -->
+
+            <a
+                id="idnLink"
+                class="social-button"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span class="social-icon">
+                    IDN
+                </span>
+
+                <span>
+                    <span class="social-name">
+                        IDN
+                    </span>
+
+                    <span
+                        class="social-username"
+                        id="idn"
+                    >
+                        -
+                    </span>
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
 
     <!-- JIKO -->
+
     <div class="jiko">
 
-        <h3>🎤 Jiko</h3>
+        <h3>
+            🎤 Jiko
+        </h3>
 
         <p id="jikoMember">
-            Jika Hatimu Sedang Menangis Aku Akan Datang Sebagai Pelangi
+            -
         </p>
 
     </div>
 
-    <a class="kembali" href="member.html">
+
+    <!-- KEMBALI -->
+
+    <a
+        class="kembali"
+        href="member.html"
+    >
         ← Kembali ke Member
     </a>
 
@@ -339,705 +564,1412 @@
 
 <script>
 
-    /*
-       DATA MEMBER
-       Untuk sekarang kita isi 2 member
-       sebagai percobaan.
-    */
+/* ==================================================
+   DATA MEMBER
+   ==================================================
 
-    const members = {
+   Link sosial tinggal diganti.
 
-    1: {
-        nama: "Anindya Ramadhani",
-        namaLengkap: "Anindya Ramadhani Purnomo",
-        foto: "images/members/member1.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "18 Oktober 2005",
-        asal: "Depok",
-        golonganDarah: "O",
-        jiko: "Si Mungil Hadir, Semanis Mangga"
-    },
+   Contoh:
 
-    2: {
-        nama: "Aurellia",
-        namaLengkap: "Aurellia",
-        foto: "images/members/member2.jpg",
-        generasi: "Ke-10",
-        tanggalLahir: "29 Oktober 2002",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Si Social Butterfly Energic Dan Periang"
-    },
+   instagram:
+   "https://www.instagram.com/username/"
 
-    3: {
-        nama: "Aurhel Alana",
-        namaLengkap: "Aurhel Alana Tirta",
-        foto: "images/members/member3.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "24 September 2006",
-        asal: "Bekasi",
-        golonganDarah: "O",
-        jiko: "Dengan Kekuatan Bulan Aku Akan Menyihir mu, Dengan Pesonaku"
-    },
+   tiktok:
+   "https://www.tiktok.com/@username"
 
-    4: {
-        nama: "Celline Thefani",
-        namaLengkap: "Celline Thefani",
-        foto: "images/members/member4.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "09 April 2007",
-        asal: "Tanggerang",
-        golonganDarah: "O",
-        jiko: "Semanis Permen Kapas Seharum Bunga Lavender"
-    },
+   twitter:
+   "https://x.com/username"
 
-    5: {
-        nama: "Cynthia Yaputera",
-        namaLengkap: "Cynthia Yaputera",
-        foto: "images/members/member5.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "22 November 2003",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Semangatku Terus Menerus Meluap.POP!POP"
-    },
+   showroom:
+   "https://www.showroom-live.com/username"
 
-    6: {
-        nama: "Fiony Alveria",
-        namaLengkap: "Fiony Alveria Tantri",
-        foto: "images/members/member6.jpg",
-        generasi: "Ke-8",
-        tanggalLahir: "04 Febuari 2002",
-        asal: "Tanggerang",
-        golonganDarah: "O",
-        jiko: "Seperti Symphony Yang Memenangkan Hati"
-    },
+   idn:
+   "https://www.idn.app/username"
 
-    7: {
-        nama: "Fritzy Rosmerian",
-        namaLengkap: "Fritzy Rosmerian",
-        foto: "images/members/member7.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "28 Juli 2008",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Abracadabrac!Si Persulap Yang Siap Membuat Hatimu Terpikat"
-    },
+   ================================================== */
 
-    8: {
-        nama: "Grace Octaviani",
-        namaLengkap: "Grace Octaviani Tunajaya",
-        foto: "images/members/member8.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "18 Oktober 2007",
-        asal: "Tanggerang",
-        golonganDarah: "B",
-        jiko: "Manis Seperti Gulali, Imut Seperti Kelinci! Xi, Xi, Gracie"
-    },
 
-    9: {
-        nama: "Hillary Abigail",
-        namaLengkap: "Hillary Abigail Mantiri",
-        foto: "images/members/member9.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "19 Oktober 2007",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Papipapipum! Aku Akan Mengejutkanmu Dengan Kehebatanku"
-    },
+const members = {
 
-    10: {
-        nama: "Indah Cahya",
-        namaLengkap: "Indah Cahya Nabilla",
-        foto: "images/members/member10.jpg",
-        generasi: "Ke-9",
-        tanggalLahir: "20 Maret 2001",
-        asal: "Jambi",
-        golonganDarah: "A",
-        jiko: "Tak Banyak Bicara, Bercerita Melalui Tulisan"
-    },
+1:{
+    nama:"Anindya Ramadhani Purnomo",
+    namaLengkap:"Anindya Ramadhani",
+    foto:"images/members/member1.jpg",
+    generasi:"11",
+    tanggalLahir:"18 Oktober 2005",
+    asal:"Depok",
+    golonganDarah:"O",
+    tinggiBadan:"153",
+    zodiac:"Libra",
 
-    11: {
-        nama: "Jazzlyn Trisha",
-        namaLengkap: "Jazzlyn Agatha Trisha",
-        foto: "images/members/member11.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "16 Febuari 2011",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Pelukis yang Hadir Di Mimpi-Mimpi Indahmu,One..Two..Tri..Sha"
-    },
+    instagram:"https://www.instagram.com/jkt48.anindya_",
+    tiktok:"https://www.tiktok.com/@anindyajkt48",
+    twitter:"https://x.com/AR_AnindyaJKT48",
+    showroom:"https://www.showroom-live.com/JKT48_Anindya",
+    idn:"https://www.idn.app/jkt48_anindya",
 
-    12: {
-        nama: "Michelle Alexandra",
-        namaLengkap: "Michelle Alexandra Suandi",
-        foto: "images/members/member12.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "22 April 2009",
-        asal: "Palembang",
-        golonganDarah: "-",
-        jiko: "Always Your Number One, Till Infinity And Beyond Hallo Everyone,Its Michie"
-    },
-
-    13: {
-        nama: "Nayla Suji",
-        namaLengkap: "Araki Nayla Suji Aurellia",
-        foto: "images/members/member13.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "18 Juni 2007",
-        asal: "Kunamoto Jepang",
-        golonganDarah: "AB",
-        jiko: "Moshi, Moshi Welcome Naylaland Hallo Semuanya Bakyund! "
-    },
-
-       
-   14: {
-    nama: "Adeline Wijaya",
-    namaLengkap: "Adeline Wijaya",
-    foto: "images/members/member14.jpg",
-    generasi: "Ke-12",
-    tanggalLahir: "01 September 2007",
-    asal: "Jakarta",
-    golonganDarah: "B",
-    jiko: "Nyemangatin dan ngangenin, siapa yang kamu pikirin? Delynn! Pyong pyong, aku Delynn."
+    jiko:"Si Mungil Hadir, Semanis Mangga"
 },
 
-15: {
-    nama: "Febriola Sinambela",
-    namaLengkap: "Febriola Sinambela",
-    foto: "images/members/member15.jpg",
-    generasi: "Ke-7",
-    tanggalLahir: "26 Febuari 2005",
-    asal: "Jakarta",
-    golonganDarah: "B",
-    jiko: "Dengan Keajaibanku Aku Akan Membuat Kalian Tertawa. Hallo Aku Olla Si Mekanik Girll"
+2:{
+    nama:"Aurellia",
+    namaLengkap:"Aurellia",
+    foto:"images/members/member2.jpg",
+    generasi:"10",
+    tanggalLahir:"29 Oktober 2002",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"157",
+    zodiac:"Scorpio",
+
+    instagram:"https://www.instagram.com/jkt48.aurellia_",
+    tiktok:"https://www.tiktok.com/@jkt48.aurellia_",
+    twitter:"https://x.com/AU_LiaJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Lia",
+    idn:"https://www.idn.app/jkt48_lia",
+
+    jiko:"Si Social Butterfly Energic Dan Periang"
 },
 
-16: {
-    nama: "Freya Jayawardana",
-    namaLengkap: "Freyana Syifa Jayawardana",
-    foto: "images/members/member16.jpg",
-    generasi: "Ke-7",
-    tanggalLahir: "13 Febuari 2006",
-    asal: "Tanggerang",
-    golonganDarah: "B",
-    jiko: "Gadis Koleris Yang Suka Berimajinasi Terangi Harimu Dengan Senyum Karamelku"
+3:{
+    nama:"Aurhel Alana Tirta",
+    namaLengkap:"Aurhel Alana",
+    foto:"images/members/member3.jpg",
+    generasi:"12",
+    tanggalLahir:"24 September 2006",
+    asal:"Bekasi",
+    golonganDarah:"O",
+    tinggiBadan:"162",
+    zodiac:"Virgo",
+
+    instagram:"https://www.instagram.com/jkt48.lana.a",
+    tiktok:"https://www.tiktok.com/@jkt48.lana",
+    twitter:"https://x.com/AR_LanaJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Lana",
+    idn:"https://www.idn.app/jkt48_lana",
+
+    jiko:"Dengan Kekuatan Bulan Aku Akan Menyihir mu, Dengan Pesonaku"
 },
 
-17: {
-    nama: "Gabriela Abigail",
-    namaLengkap: "Gabriela Abigail Mawengkang",
-    foto: "images/members/member17.jpg",
-    generasi: "Ke-10",
-    tanggalLahir: "07 Agustus 2006",
-    asal: "Jakarta",
-    golonganDarah: "B",
-    jiko: "Ohayo!Konichiwa!Oyasumi! Aku Ingin Ada Di Setiap Harimu. "
+4:{
+    nama:"Celline Thefani",
+    namaLengkap:"Celline Thefani",
+    foto:"images/members/member4.jpg",
+    generasi:"11",
+    tanggalLahir:"09 April 2007",
+    asal:"Tanggerang",
+    golonganDarah:"O",
+    tinggiBadan:"164",
+    zodiac:"Aries",
+
+    instagram:"https://www.instagram.com/jkt48.elin_",
+    tiktok:"https://www.tiktok.com/@elinjkt48",
+    twitter:"https://x.com/Elin_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Elin",
+    idn:"https://www.idn.app/jkt48_elin",
+
+    jiko:"Semanis Permen Kapas Seharum Bunga Lavender"
 },
 
-18: {
-    nama: "Gita Sekar",
-    namaLengkap: "Gita Sekar Andarini",
-    foto: "images/members/member18.jpg",
-    generasi: "Ke-6",
-    tanggalLahir: "30 Juni 2001",
-    asal: "Bekasi",
-    golonganDarah: "-",
-    jiko: "Diam Bukan Berarti Tak Memperhatikanmu"
+5:{
+    nama:"Cynthia Yaputera",
+    namaLengkap:"Cynthia Yaputera",
+    foto:"images/members/member5.jpg",
+    generasi:"11",
+    tanggalLahir:"22 November 2003",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"160",
+    zodiac:"Sagitarius",
+
+    instagram:"https://www.instagram.com/jkt48.cynthia",
+    tiktok:"https://www.tiktok.com/@cynthiajkt48",
+    twitter:"https://x.com/Y_CynthiaJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Cynthia",
+    idn:"https://www.idn.app/jkt48_cynthia",
+
+    jiko:"Semangatku Terus Menerus Meluap.POP!POP"
 },
 
-19: {
-    nama: "Greesella Adhalia",
-    namaLengkap: "Greesella Sophina Adhalia",
-    foto: "images/members/member19.jpg",
-    generasi: "Ke-11",
-    tanggalLahir: "10 Januari 2006",
-    asal: "Bogor",
-    golonganDarah: "O",
-    jiko: "Pandangan Mataku Akan Menyinari Hatimu Bagaikan Kunang Kunang Di Malam Hari"
+6:{
+    nama:"Fiony Alveria Tantri",
+    namaLengkap:"Fiony Alveria",
+    foto:"images/members/member6.jpg",
+    generasi:"8",
+    tanggalLahir:"04 Febuari 2002",
+    asal:"Tanggerang",
+    golonganDarah:"O",
+    tinggiBadan:"164",
+    zodiac:"Aquarius",
+
+    instagram:"https://www.instagram.com/jkt48.fiony",
+    tiktok:"https://tiktok.com/@fionyjkt48",
+    twitter:"https://x.com/A_FionyJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Fiony",
+    idn:"https://www.idn.app/jkt48_fiony",
+
+    jiko:"Seperti Symphony Yang Memenangkan Hati"
 },
 
-20: {
-    nama: "Helisma Putri",
-    namaLengkap: "Helisma Mauludzunia Putri Kurnia",
-    foto: "images/members/member20.jpg",
-    generasi: "Ke-7",
-    tanggalLahir: "15 Juni 2000",
-    asal: "Bandung",
-    golonganDarah: "O",
-    jiko: "Bagai Lembayung Senja,Dengan Energi Kegembiraanku,Aku Akan Menghangatkan Suasana, Halo Halo, Aku Helisma (Eli!Eli!Eli) "
+7:{
+    nama:"Fritzy Rosmerian",
+    namaLengkap:"Fritzy Rosmerian",
+    foto:"images/members/member7.jpg",
+    generasi:"12",
+    tanggalLahir:"28 Juli 2008",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"155",
+    zodiac:"Leo",
+
+    instagram:"https://www.instagram.com/jkt48.fritzy.r",
+    tiktok:"https://tiktok.com/@jkt48.fritzy",
+    twitter:"https://x.com/RFritzy_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Fritzy",
+    idn:"https://www.idn.app/jkt48_fritzy",
+
+    jiko:"Abracadabrac!Si Persulap Yang Siap Membuat Hatimu Terpikat"
 },
 
-21: {
-    nama: "Jesslyn Elly",
-    namaLengkap: "Jesslyn Septiani",
-    foto: "images/members/member21.jpg",
-    generasi: "Ke-10",
-    tanggalLahir: "13 September 2001",
-    asal: "Jakarta",
-    golonganDarah: "O",
-    jiko: "Seperti Ombak Laut Yang Tenang, Tiba-Tiba Aku Akan Menyapumu Dengan Penuh Cinta"
+8:{
+    nama:"Grace Octaviani Tunajaya",
+    namaLengkap:"Grace Octaviani",
+    foto:"images/members/member8.jpg",
+    generasi:"11",
+    tanggalLahir:"18 Oktober 2007",
+    asal:"Tanggerang",
+    golonganDarah:"B",
+    tinggiBadan:"166",
+    zodiac:"Libra",
+
+    instagram:"https://www.instagram.com/jkt48.gracie",
+    tiktok:"https://tiktok.com/@graciejkt48",
+    twitter:"https://x.com/Gracie_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Gracie",
+    idn:"https://www.idn.app/jkt48_gracie",
+
+    jiko:"Manis Seperti Gulali, Imut Seperti Kelinci! Xi, Xi, Gracie"
 },
 
-22: {
-    nama: "Marsha Lenathea",
-    namaLengkap: "Marsha Lenathea Lapian",
-    foto: "images/members/member22.jpg",
-    generasi: "Ke-9",
-    tanggalLahir: "09 Januari 2006",
-    asal: "Jakarta",
-    golonganDarah: "O",
-    jiko: "Seperti Pizza Yang Selalu Di Nantikan Semua Orang.Nantikan Aku Ya"
+9:{
+    nama:"Hillary Abigail Mantiri",
+    namaLengkap:"Hillary Abigail",
+    foto:"images/members/member9.jpg",
+    generasi:"12",
+    tanggalLahir:"19 Oktober 2007",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"163",
+    zodiac:"Libra",
+
+    instagram:"https://www.instagram.com/jkt48.lily_",
+    tiktok:"https://tiktok.com/@jkt48.lily",
+    twitter:"https://x.com/Lily_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Lily",
+    idn:"https://www.idn.app/jkt48_lily",
+
+    jiko:"Papipapipum! Aku Akan Mengejutkanmu Dengan Kehebatanku"
 },
 
-23: {
-    nama: "Nina Tutachia",
-    namaLengkap: "Nina Tutachia Browning Chapman",
-    foto: "images/members/member23.jpg",
-    generasi: "Ke-12",
-    tanggalLahir: "16 Oktober 2009",
-    asal: "Denpasar",
-    golonganDarah: "O",
-    jiko: "Si Panda Unyu Yang Selalu Ceria, Hai Aku Nachia Bikin Kamu Bahagia."
+10:{
+    nama:"Indah Cahya Nabilla",
+    namaLengkap:"Indah Cahya",
+    foto:"images/members/member10.jpg",
+    generasi:"9",
+    tanggalLahir:"20 Maret 2001",
+    asal:"Jambi",
+    golonganDarah:"A",
+    tinggiBadan:"169",
+    zodiac:"Pisces",
+
+    instagram:"https://www.instagram.com/jkt48indah_",
+    tiktok:"https://tiktok.com/@indahjkt48",
+    twitter:"https://x.com/C_IndahJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Indah",
+    idn:"https://www.idn.app/jkt48_indah",
+
+    jiko:"Tak Banyak Bicara, Bercerita Melalui Tulisan"
 },
 
-24: {
-    nama: "Oline Manuel",
-    namaLengkap: "Oline Manuel Chay",
-    foto: "images/members/member24.jpg",
-    generasi: "Ke-12",
-    tanggalLahir: "03 November 2007",
-    asal: "Jakarta",
-    golonganDarah: "B",
-    jiko: "Semangatku Full Terus Gas, Gas,Gas, Oline!"
+11:{
+    nama:"Jazzlyn Agatha Trisha",
+    namaLengkap:"Jazzlyn Trisha",
+    foto:"images/members/member11.jpg",
+    generasi:"12",
+    tanggalLahir:"16 Febuari 2011",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"161",
+    zodiac:"Aquarius",
+
+    instagram:"https://www.instagram.com/jkt48.trisha",
+    tiktok:"https://tiktok.com/@jkt48.trisha",
+    twitter:"https://x.com/JTrisha_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Trisha",
+    idn:"https://www.idn.app/jkt48_trisha",
+
+    jiko:"Pelukis yang Hadir Di Mimpi-Mimpi Indahmu,One..Two..Tri..Sha"
 },
 
-25: {
-    nama: "Shabilqis Naila",
-    namaLengkap: "Shabilqis Naila Bustomi",
-    foto: "images/members/member25.jpg",
-    generasi: "Ke-12",
-    tanggalLahir: "01 September 2008",
-    asal: "Depok",
-    golonganDarah: "B",
-    jiko: "ROAR! Si Singa Pemberani Yang Siap Menyemangati Harimu"
-}, 
+12:{
+    nama:"Michelle Alexandra Suandi",
+    namaLengkap:"Michelle Alexandra",
+    foto:"images/members/member12.jpg",
+    generasi:"11",
+    tanggalLahir:"22 April 2009",
+    asal:"Palembang",
+    golonganDarah:"O",
+    tinggiBadan:"162",
+    zodiac:"Taurus",
 
-     26: {
-        nama: "Abigail Rachel",
-        namaLengkap: "Abigail Rachel Lie",
-        foto: "images/members/member26.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "06 Agustus 2008",
-        asal: "Jakarta",
-        golonganDarah: "B",
-        jiko: "Seperti Bunga Yang Mekar,Aku Akan Membuat Kamu, Kamu, Dan Kamu Terbayang-Bayang.Aku Ara-Aralie"
-    },
+    instagram:"https://www.instagram.com/jkt48.michie_",
+    tiktok:"https://tiktok.com/@michiejkt48",
+    twitter:"https://x.com/Michie_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Michie",
+    idn:"https://www.idn.app/jkt48_michie",
 
-    27: {
-        nama: "Angelina Christy",
-        namaLengkap: "Angelina Christy",
-        foto: "images/members/member27.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "05 Desember 2005",
-        asal: "Jakarta",
-        golonganDarah: "-",
-        jiko: "Peduli Dan Berbaik Hati. Siapakah Dia? Kriis-ty"
-    },
+    jiko:"Always Your Number One, Till Infinity And Beyond Hallo Everyone,Its Michie"
+},
 
-    28: {
-        nama: "Catherine Vallencia",
-        namaLengkap: "Catherine Vallencia Kurniawan",
-        foto: "images/members/member28.jpg",
-        generasi: "12",
-        tanggalLahir: "21 Agustus 2007",
-        asal: "Bekasi",
-        golonganDarah: "B",
-        jiko: "Hadir Dengann 1000 Kejutan, Chekmate! Siap Memenangkan Hatimu"
-    },
+13:{
+    nama:"Araki Nayla Suji Aurellia",
+    namaLengkap:"Nayla Suji",
+    foto:"images/members/member13.jpg",
+    generasi:"12",
+    tanggalLahir:"18 Juni 2007",
+    asal:"Kunamoto Jepang",
+    golonganDarah:"AB",
+    tinggiBadan:"163",
+    zodiac:"Gemini",
 
-    29: {
-        nama: "Cornelia Vanisa",
-        namaLengkap: "Cornelia Syafa Vanisa",
-        foto: "images/members/member29.jpg",
-        generasi: "Ke-8",
-        tanggalLahir: "26 Juli 2002",
-        asal: "Tanggerang",
-        golonganDarah: "-",
-        jiko: "Seperti Teka-Teki Kalian Akan Penasaran Denganku."
-    },
+    instagram:"https://www.instagram.com/jkt48.nayla.s",
+    tiktok:"https://tiktok.com/@jkt48.nayla",
+    twitter:"https://x.com/SNayla_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Nayla",
+    idn:"https://www.idn.app/jkt48_nayla",
 
-    30: {
-        nama: "Dena Natalia Ang",
-        namaLengkap: "Dena Natalia",
-        foto: "images/members/member30.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "16 Desember 2005",
-        asal: "Bandung",
-        golonganDarah: "O",
-        jiko: "Tok!Tok, Siapa? Si Penari Yang Akan Menarikmu Ke Duniaku"
-    },
+    jiko:"Moshi, Moshi Welcome Naylaland Hallo Semuanya Bakyund!"
+},
 
-    31: {
-        nama: "Desy Natalia Ang",
-        namaLengkap: "Daisy Natalia",
-        foto: "images/members/member31.jpg",
-        generasi: "Ke-11",
-        tanggalLahir: "16 Desember 2005",
-        asal: "Bandung",
-        golonganDarah: "B",
-        jiko: "Seperti Bunga Daisy, Aku Akan Memancarkan Kesegaran Dan Kebahagiaan! "
-    },
+14:{
+    nama:"Adeline Wijaya",
+    namaLengkap:"Adeline Wijaya",
+    foto:"images/members/member14.jpg",
+    generasi:"12",
+    tanggalLahir:"01 September 2007",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"167",
+    zodiac:"Virgo",
 
-    32: {
-        nama: "Feni Fitriyanti",
-        namaLengkap: "Feni Fitriyanti",
-        foto: "images/members/member32.jpg",
-        generasi: "Ke-3",
-        tanggalLahir: "16 Agustus 1999",
-        asal: "Bandung",
-        golonganDarah: "O",
-        jiko: "Matahari Yang Indah,Yang Memberikan Kehangatan Setiap Harinya"
-    },
+    instagram:"https://www.instagram.com/jkt48.delynn",
+    tiktok:"https://tiktok.com/@jkt48.delynn",
+    twitter:"https://x.com/Delynn_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Delynn",
+    idn:"https://www.idn.app/jkt48_delynn",
 
-    33: {
-        nama: "Jessica Chandra",
-        namaLengkap: "Jessica Rich Chandra",
-        foto: "images/members/member33.jpg",
-        generasi: "Ke-7",
-        tanggalLahir: "23 September 2005",
-        asal: "Tanggerang",
-        golonganDarah: "-",
-        jiko: "Suka Menari Dan Akan Selalu Berusaha Menjadu Sumber Energimu."
-    },
+    jiko:"Nyemangatin dan ngangenin, siapa yang kamu pikirin? Delynn! Pyong pyong, aku Delynn."
+},
 
-    34: {
-        nama: "Kathrina Irene",
-        namaLengkap: "Kathrina Irene Indarto Putri",
-        foto: "images/members/member34.jpg",
-        generasi: "Ke-9",
-        tanggalLahir: "26 Juli 2006",
-        asal: "Bekasi",
-        golonganDarah: "A",
-        jiko: "Never Miss A Chance To Be A Star"
-    },
+15:{
+    nama:"Febriola Sinambela",
+    namaLengkap:"Febriola Sinambela",
+    foto:"images/members/member15.jpg",
+    generasi:"7",
+    tanggalLahir:"26 Febuari 2005",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"157",
+    zodiac:"Pisces",
 
-    35: {
-        nama: "Lulu Salsabila",
-        namaLengkap: "Lulu Azkiya Salsabila",
-        foto: "images/members/member35.jpg",
-        generasi: "Ke-8",
-        tanggalLahir: "23 Oktober 2002",
-        asal: "Bengkulu",
-        golonganDarah: "B",
-        jiko: "Terang Seperti Bulan,Bersinar Seperti Bintang"
-    },
+    instagram:"https://www.instagram.com/jkt48.olla",
+    tiktok:"https://tiktok.com/@ollajkt48",
+    twitter:"https://x.com/F_Ollajkt48",
+    showroom:"http://www.showroom-live.com/JKT48_Olla",
+    idn:"https://www.idn.app/jkt48_olla",
 
-    36: {
-        nama: "Michelle Levia",
-        namaLengkap: "Michelle Levia Arifin",
-        foto: "images/members/member36.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "24 Januari 2009",
-        asal: "Tangerang",
-        golonganDarah: "-",
-        jiko: "Are You Ready? Jalani Hari Ini Dengan Menari Bersama ku! Yuhu"
-    },
+    jiko:"Dengan Keajaibanku Aku Akan Membuat Kalian Tertawa. Hallo Aku Olla Si Mekanik Girll"
+},
 
-    37: {
-        nama: "Mutiara Azzahra",
-        namaLengkap: "Mutiara Azzahra Umandana",
-        foto: "images/members/member37.jpg",
-        generasi: "Ke-7",
-        tanggalLahir: "12 Juli 2004",
-        asal: "Bekasi",
-        golonganDarah: "B",
-        jiko: "Dengan Kelincahanku Aku Akan Menari Setiap Hari.Panggil Aku Mu-Mu-Mu-Mu-The"
-    },
+16:{
+    nama:"Freya Syifa Jayawardana",
+    namaLengkap:"Freyana Jayawardana",
+    foto:"images/members/member16.jpg",
+    generasi:"7",
+    tanggalLahir:"13 Febuari 2006",
+    asal:"Tanggerang",
+    golonganDarah:"B",
+    tinggiBadan:"161",
+    zodiac:"Aquarius",
 
-    38: {
-        nama: "Raisha Syifa",
-        namaLengkap: "Raisha Syifa Wardhana",
-        foto: "images/members/member38.jpg",
-        generasi: "Ke-10",
-        tanggalLahir: "11 November 2007",
-        asal: "Tanggerang",
-        golonganDarah: "AB",
-        jiko: "Kalau Sakura Itu Berkembang,Aku Itu Kebanggaanmu!"
-    },
+    instagram:"https://www.instagram.com/jkt48.freya",
+    tiktok:"https://tiktok.com/@freyajkt48",
+    twitter:"https://x.com/Freya_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Freya",
+    idn:"https://www.idn.app/jkt48_freya",
 
-    39: {
-        nama: "Ribka Budiman",
-        namaLengkap: "Ribka Budiman",
-        foto: "images/members/member39.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "13 Januari 2009",
-        asal: "Bandung",
-        golonganDarah: "-",
-        jiko: "Miror Miror On The Wall,Who's The Sweetest In Her? Its Me Ribka"
-    },
+    jiko:"Gadis Koleris Yang Suka Berimajinasi Terangi Harimu Dengan Senyum Karamelku"
+},
 
-    40: {
-        nama: "Victoria Kimberly",
-        namaLengkap: "Victoria Kimberly Lukitama",
-        foto: "images/members/member40.jpg",
-        generasi: "Ke-12",
-        tanggalLahir: "08 Maret 2010",
-        asal: "Jakarta",
-        golonganDarah: "AB",
-        jiko: "Baby Hamster Yang Lincah, Aku Akan Berlari-Lari Di Pikiranmu. Halo-Ha Katakan Kimmy"
-    },
+17:{
+    nama:"Gabriela Abigail Mawengkang",
+    namaLengkap:"Gabriela Abigail",
+    foto:"images/members/member17.jpg",
+    generasi:"10",
+    tanggalLahir:"07 Agustus 2006",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"161",
+    zodiac:"Leo",
 
-     41: {
-        nama: "Afera Thalia",
-        namaLengkap: "Afera Thalia Putri Eysteinn",
-        foto: "images/members/member41.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "20 Oktober 2012",
-        asal: "Bogor",
-        golonganDarah: "O",
-        jiko: "Satu shoot ku menciptakan three-point di hati kamu."
-    },
+    instagram:"https://www.instagram.com/jkt48.ella.a",
+    tiktok:"https://tiktok.com/@jkt48.ella.a",
+    twitter:"https://x.com/AM_EllaJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Ella",
+    idn:"https://www.idn.app/jkt48_ella",
 
-    42: {
-        nama: "Astrella Virgiananda",
-        namaLengkap: "Astrella Virgiananda",
-        foto: "images/members/member42.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "06 Agustus 2010",
-        asal: "Bandung",
-        golonganDarah: "AB",
-        jiko: "Suka berekspresi melalui kreasi, Tara! "
-    },
+    jiko:"Ohayo!Konichiwa!Oyasumi! Aku Ingin Ada Di Setiap Harimu."
+},
 
-    43: {
-        nama: "Bong Aprilli",
-        namaLengkap: "Bong Aprilli Paskah",
-        foto: "images/members/member43.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "01 April 2010",
-        asal: "Jakarta",
-        golonganDarah: "A",
-        jiko: "Bagai harmoni indah yang berirama di benakmu"
-    },
+18:{
+    nama:"Gita Sekar Andarini",
+    namaLengkap:"Gita Sekar Andarini",
+    foto:"images/members/member18.jpg",
+    generasi:"6",
+    tanggalLahir:"30 Juni 2001",
+    asal:"Bekasi",
+    golonganDarah:"O",
+    tinggiBadan:"165",
+    zodiac:"Cancer",
 
-    44: {
-        nama: "Carissa Dini",
-        namaLengkap: "Carissa Dini Asmaranti",
-        foto: "images/members/member44.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "02 Febuari 2011",
-        asal: "Jakarta",
-        golonganDarah: "A",
-        jiko: "Aku adalah pemberi ramuan kedamaian. only for you!"
-    },
+    instagram:"https://www.instagram.com/jkt48gita",
+    tiktok:"https://tiktok.com/@gitajkt48",
+    twitter:"https://x.com/A_GitaJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Gita",
+    idn:"https://www.idn.app/jkt48_gita",
 
-    45: {
-        nama: "Cristabella Bonita",
-        namaLengkap: "Christabella Bonita Claura Chandra",
-        foto: "images/members/member45.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "02 Maret 2012",
-        asal: "Tanggerang",
-        golonganDarah: "B",
-        jiko: "Ding dong! skate, spin, smile"
-    },
+    jiko:"Diam Bukan Berarti Tak Memperhatikanmu"
+},
 
-    46: {
-        nama: "Fahira putri",
-        namaLengkap: "Fahira Putri Kirana",
-        foto: "images/members/member46.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "13 Agustus 2012",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Sekali senyum buatmu jatuh cinta"
-    },
+19:{
+    nama:"Greesella Sophina Adhalia",
+    namaLengkap:"Greesella Adhalia",
+    foto:"images/members/member19.jpg",
+    generasi:"11",
+    tanggalLahir:"10 Januari 2006",
+    asal:"Bogor",
+    golonganDarah:"O",
+    tinggiBadan:"165",
+    zodiac:"Capricorn",
 
-    47: {
-        nama: "Fatimah Azzahra",
-        namaLengkap: "Fatimah Azzahra",
-        foto: "images/members/member47.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "30 Agustus 2010",
-        asal: "Depok",
-        golonganDarah: "AB",
-        jiko: "Datang bawa tawa, pulang bawa rindu"
-    },
+    instagram:"https://www.instagram.com/jkt48.greesel",
+    tiktok:"https://tiktok.com/@greeseljkt48",
+    twitter:"https://x.com/Greesel_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Greesel",
+    idn:"http://www.showroom-live.com/JKT48_Greesel",
 
-    48: {
-        nama: "Hagia Sophia",
-        namaLengkap: "Hagia Sophia",
-        foto: "images/members/member48.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "01 Juli 2008",
-        asal: "Bekasi",
-        golonganDarah: "O",
-        jiko: "Dengan semangat dan kerja kerasku ini aku akan membuat kalian bahaa-giaa!"
-    },
+    jiko:"Pandangan Mataku Akan Menyinari Hatimu Bagaikan Kunang Kunang Di Malam Hari"
+},
 
-    49: {
-        nama: "Heidi Suyangga",
-        namaLengkap: "Heidi Suyangga",
-        foto: "images/members/member49.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "27 Agustus 2008",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Happy terus tanpa batas,seno! Hei, Hei, Heidi"
-    },
+20:{
+    nama:"Helisma Mauludzunia Putri Kurnia",
+    namaLengkap:"Helisma Putri",
+    foto:"images/members/member20.jpg",
+    generasi:"7",
+    tanggalLahir:"15 Juni 2000",
+    asal:"Bandung",
+    golonganDarah:"A",
+    tinggiBadan:"167",
+    zodiac:"Gemini",
 
-    50: {
-        nama: "Humaira Ramadhani",
-        namaLengkap: "Humaira Ramadhani",
-        foto: "images/members/member50.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "13 Agustus 2011",
-        asal: "Tanggerang",
-        golonganDarah: "A",
-        jiko: "Penceria yang membuatmu ketawa dengan tingkahku"
-    },
+    instagram:"https://www.instagram.com/jkt48.eli",
+    tiktok:"https://tiktok.com/@elijkt48",
+    twitter:"https://x.com/H_EliJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Eli",
+    idn:"https://www.idn.app/jkt48_eli",
 
-    
-    51: {
-        nama: "Jacqueline Imanuela",
-        namaLengkap: "Jacqueline Imanuela Jonathan",
-        foto: "images/members/member51.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "09 Juli 2009",
-        asal: "Jakarta",
-        golonganDarah: "B",
-        jiko: "Sesejuk dan sedingin mint, Panggik aku ekin"
-    },
+    jiko:"Bagai Lembayung Senja,Dengan Energi Kegembiraanku,Aku Akan Menghangatkan Suasana, Halo Halo, Aku Helisma (Eli!Eli!Eli)"
+},
 
-    52: {
-        nama: "Jemima Evodie",
-        namaLengkap: "Jemima Evodie Mayra Lijaya",
-        foto: "images/members/member52.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "09 November 2009",
-        asal: "Lombok",
-        golonganDarah: "O",
-        jiko: "Cii~luk~baa~! Merpati yang akan membawa kejutan di setiap penampilanku"
-    },
+21:{
+    nama:"Jesslyn Septiani",
+    namaLengkap:"Jesslyn Elly",
+    foto:"images/members/member21.jpg",
+    generasi:"10",
+    tanggalLahir:"13 September 2001",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"155",
+    zodiac:"Virgo",
 
-    53: {
-        nama: "Maxine Faye",
-        namaLengkap: "Maxine Faye Lee",
-        foto: "images/members/member53.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "02 Desember 2011",
-        asal: "Jakarta",
-        golonganDarah: "B",
-        jiko: "Faith,Trust, and Magical pixie dust."
-    },
+    instagram:"https://www.instagram.com/jkt48.lyn.s",
+    tiktok:"https://tiktok.com/@jkt48.lyn.s",
+    twitter:"https://x.com/SE_LynJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Lyn",
+    idn:"https://www.idn.app/jkt48_lyn",
 
-    54: {
-        nama: "Mikaela Kusjanto",
-        namaLengkap: "Mikaela Kusjanto",
-        foto: "images/members/member54.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "15 Desember 2007",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Camera, Roll, Action! Sutradara yang akan mewarnai kisah hidupmu dengan penuh warna"
-    },
+    jiko:"Seperti Ombak Laut Yang Tenang, Tiba-Tiba Aku Akan Menyapumu Dengan Penuh Cinta"
+},
 
-    55: {
-        nama: "Nur Intan",
-        namaLengkap: "Nur Intan",
-        foto: "images/members/member55.jpg",
-        generasi: "Ke-13",
-        tanggalLahir: "24 Febuari 2006",
-        asal: "Bogor",
-        golonganDarah: "B",
-        jiko: "Intan permata yang berikilau, temukan cahayaku dihatimu"
-    },
+22:{
+    nama:"Marsha Lenathea Lapian",
+    namaLengkap:"Marsha Lenathea",
+    foto:"images/members/member22.jpg",
+    generasi:"9",
+    tanggalLahir:"09 Januari 2006",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"165",
+    zodiac:"Capricorn",
 
-    56: {
-        nama: "Putry Jazzyta",
-        namaLengkap: "Putry Jazyta",
-        foto: "images/members/member56.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "12 Maret 2011",
-        asal: "Bogor",
-        golonganDarah: "A",
-        jiko: "Musik Jazz On, Semangat On"
-    },
+    instagram:"https://www.instagram.com/jkt48.marsha",
+    tiktok:"https://tiktok.com/@marsha.jkt48",
+    twitter:"https://x.com/L_MarshaJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Marsha",
+    idn:"https://www.idn.app/jkt48_marsha",
 
-    57: {
-        nama: "Ralyne Van Irwan",
-        namaLengkap: "Ralyne Van Irwan",
-        foto: "images/members/member57.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "15 Oktober 2011",
-        asal: "Medan",
-        golonganDarah: "AB",
-        jiko: "Gameplay Aku Akan Menghiburmu"
-    },
+    jiko:"Seperti Pizza Yang Selalu Di Nantikan Semua Orang.Nantikan Aku Ya"
+},
 
-    58: {
-        nama: "Sona Kalyana",
-        namaLengkap: "$ona Kalyana Purbo Septiyani",
-        foto: "images/members/member58.jpg",
-        generasi: "Ke-14",
-        tanggalLahir: "01 Desember 2011",
-        asal: "Jakarta",
-        golonganDarah: "O",
-        jiko: "Hip!Hop Aku Sona Membuat Kamu Terpesona"
-    }
+23:{
+    nama:"Nina Tutachia Browning Chapman",
+    namaLengkap:"Nina Tutachia",
+    foto:"images/members/member23.jpg",
+    generasi:"12",
+    tanggalLahir:"16 Oktober 2009",
+    asal:"Denpasar",
+    golonganDarah:"O",
+    tinggiBadan:"164",
+    zodiac:"Libra",
+
+    instagram:"https://www.instagram.com/jkt48.nachia.t/",
+    tiktok:"https://tiktok.com/@jkt48.nachia",
+    twitter:"https://x.com/Nachia_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Nachia",
+    idn:"https://www.idn.app/jkt48_nachia",
+
+    jiko:"Si Panda Unyu Yang Selalu Ceria, Hai Aku Nachia Bikin Kamu Bahagia."
+},
+
+24:{
+    nama:"Oline Manuel Chay",
+    namaLengkap:"Oline Manuel",
+    foto:"images/members/member24.jpg",
+    generasi:"12",
+    tanggalLahir:"03 November 2007",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"169",
+    zodiac:"Scorpio",
+
+    instagram:"https://www.instagram.com/jkt48.oline",
+    tiktok:"https://tiktok.com/@jkt48.oline",
+    twitter:"https://x.com/M_OlineJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_OlineM",
+    idn:"https://www.idn.app/jkt48_oline",
+
+    jiko:"Semangatku Full Terus Gas, Gas,Gas, Oline!"
+},
+
+25:{
+    nama:"Shabilqis Naila Bustomi",
+    namaLengkap:"Shabilqis Naila",
+    foto:"images/members/member25.jpg",
+    generasi:"12",
+    tanggalLahir:"01 September 2008",
+    asal:"Depok",
+    golonganDarah:"B",
+    tinggiBadan:"160",
+    zodiac:"Virgo",
+
+    instagram:"https://www.instagram.com/jkt48.nala",
+    tiktok:"https://tiktok.com/@jkt48.nala",
+    twitter:"https://x.com/Nala_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Nala",
+    idn:"https://www.idn.app/jkt48_nala",
+
+    jiko:"ROAR! Si Singa Pemberani Yang Siap Menyemangati Harimu"
+},
+
+26:{
+    nama:"Abigail Rachel Lie",
+    namaLengkap:"Abigail Rachel",
+    foto:"images/members/member26.jpg",
+    generasi:"12",
+    tanggalLahir:"06 Agustus 2008",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"164",
+    zodiac:"Leo",
+
+    instagram:"https://www.instagram.com/jkt48.aralie",
+    tiktok:"https://tiktok.com/@jkt48.aralie",
+    twitter:"https://x.com/Aralie_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Aralie",
+    idn:"https://www.idn.app/jkt48_aralie",
+
+    jiko:"Seperti Bunga Yang Mekar,Aku Akan Membuat Kamu, Kamu, Dan Kamu Terbayang-Bayang.Aku Ara-Aralie"
+},
+
+27:{
+    nama:"Angelina Christy",
+    namaLengkap:"Angelina Christy",
+    foto:"images/members/member27.jpg",
+    generasi:"12",
+    tanggalLahir:"05 Desember 2005",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"166",
+    zodiac:"Sagittarius",
+
+    instagram:"https://www.instagram.com/jkt48.christy",
+    tiktok:"https://tiktok.com/@christyjkt48",
+    twitter:"https://x.com/A_ChristyJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Christy",
+    idn:"https://www.idn.app/jkt48_christy",
+
+    jiko:"Peduli Dan Berbaik Hati. Siapakah Dia? Kriis-ty"
+},
+
+28:{
+    nama:"Catherine Vallencia",
+    namaLengkap:"Catherine Vallencia Kurniawan",
+    foto:"images/members/member28.jpg",
+    generasi:"12",
+    tanggalLahir:"21 Agustus 2007",
+    asal:"Bekasi",
+    golonganDarah:"B",
+    tinggiBadan:"162",
+    zodiac:"Leo",
+
+    instagram:"https://www.instagram.com/jkt48.erine",
+    tiktok:"https://tiktok.com/@jkt48.erine_",
+    twitter:"https://x.com/CErine_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Erine",
+    idn:"https://www.idn.app/jkt48_erine",
+
+    jiko:"Hadir Dengann 1000 Kejutan, Chekmate! Siap Memenangkan Hatimu"
+},
+
+29:{
+    nama:"Cornelia Syafa Vanisa",
+    namaLengkap:"Cornelia Syafa Vanisa",
+    foto:"images/members/member29.jpg",
+    generasi:"8",
+    tanggalLahir:"26 Juli 2002",
+    asal:"Tanggerang",
+    golonganDarah:"O",
+    tinggiBadan:"Leo",
+    zodiac:"165",
+
+    instagram:"https://www.instagram.com/jkt48.oniel",
+    tiktok:"https://tiktok.com/@onieljkt48",
+    twitter:"https://x.com/C_OnielJKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Oniel",
+    idn:"https://www.idn.app/jkt48_oniel",
+
+    jiko:"Seperti Teka-Teki Kalian Akan Penasaran Denganku."
+},
+
+30:{
+    nama:"Dena Natalia Ang",
+    namaLengkap:"Dena Natalia",
+    foto:"images/members/member30.jpg",
+    generasi:"11",
+    tanggalLahir:"16 Desember 2005",
+    asal:"Bandung",
+    golonganDarah:"O",
+    tinggiBadan:"163",
+    zodiac:"Sagittarius",
+
+    instagram:"https://www.instagram.com/jkt48.danella",
+    tiktok:"https://tiktok.com/@danellajkt48",
+    twitter:"https://x.com/Danella_JKT48",
+    showroom:"http://www.showroom-live.com/JKT48_Danella",
+    idn:"https://www.idn.app/jkt48_danella",
+
+    jiko:"Tok!Tok, Siapa? Si Penari Yang Akan Menarikmu Ke Duniaku"
+},
+
+31:{
+    nama:"Desy Natalia Ang",
+    namaLengkap:"Daisy Natalia",
+    foto:"images/members/member31.jpg",
+    generasi:"Ke-11",
+    tanggalLahir:"16 Desember 2005",
+    asal:"Bandung",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Seperti Bunga Daisy, Aku Akan Memancarkan Kesegaran Dan Kebahagiaan!"
+},
+
+32:{
+    nama:"Feni Fitriyanti",
+    namaLengkap:"Feni Fitriyanti",
+    foto:"images/members/member32.jpg",
+    generasi:"Ke-3",
+    tanggalLahir:"16 Agustus 1999",
+    asal:"Bandung",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Matahari Yang Indah,Yang Memberikan Kehangatan Setiap Harinya"
+},
+
+33:{
+    nama:"Jessica Chandra",
+    namaLengkap:"Jessica Rich Chandra",
+    foto:"images/members/member33.jpg",
+    generasi:"Ke-7",
+    tanggalLahir:"23 September 2005",
+    asal:"Tanggerang",
+    golonganDarah:"-",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Suka Menari Dan Akan Selalu Berusaha Menjadu Sumber Energimu."
+},
+
+34:{
+    nama:"Kathrina Irene",
+    namaLengkap:"Kathrina Irene Indarto Putri",
+    foto:"images/members/member34.jpg",
+    generasi:"Ke-9",
+    tanggalLahir:"26 Juli 2006",
+    asal:"Bekasi",
+    golonganDarah:"A",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Never Miss A Chance To Be A Star"
+},
+
+35:{
+    nama:"Lulu Salsabila",
+    namaLengkap:"Lulu Azkiya Salsabila",
+    foto:"images/members/member35.jpg",
+    generasi:"Ke-8",
+    tanggalLahir:"23 Oktober 2002",
+    asal:"Bengkulu",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Terang Seperti Bulan,Bersinar Seperti Bintang"
+},
+
+36:{
+    nama:"Michelle Levia",
+    namaLengkap:"Michelle Levia Arifin",
+    foto:"images/members/member36.jpg",
+    generasi:"Ke-12",
+    tanggalLahir:"24 Januari 2009",
+    asal:"Tangerang",
+    golonganDarah:"-",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Are You Ready? Jalani Hari Ini Dengan Menari Bersama ku! Yuhu"
+},
+
+37:{
+    nama:"Mutiara Azzahra",
+    namaLengkap:"Mutiara Azzahra Umandana",
+    foto:"images/members/member37.jpg",
+    generasi:"Ke-7",
+    tanggalLahir:"12 Juli 2004",
+    asal:"Bekasi",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Dengan Kelincahanku Aku Akan Menari Setiap Hari.Panggil Aku Mu-Mu-Mu-Mu-The"
+},
+
+38:{
+    nama:"Raisha Syifa",
+    namaLengkap:"Raisha Syifa Wardhana",
+    foto:"images/members/member38.jpg",
+    generasi:"Ke-10",
+    tanggalLahir:"11 November 2007",
+    asal:"Tanggerang",
+    golonganDarah:"AB",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Kalau Sakura Itu Berkembang,Aku Itu Kebanggaanmu!"
+},
+
+39:{
+    nama:"Ribka Budiman",
+    namaLengkap:"Ribka Budiman",
+    foto:"images/members/member39.jpg",
+    generasi:"Ke-12",
+    tanggalLahir:"13 Januari 2009",
+    asal:"Bandung",
+    golonganDarah:"-",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Miror Miror On The Wall,Who's The Sweetest In Her? Its Me Ribka"
+},
+
+40:{
+    nama:"Victoria Kimberly",
+    namaLengkap:"Victoria Kimberly Lukitama",
+    foto:"images/members/member40.jpg",
+    generasi:"Ke-12",
+    tanggalLahir:"08 Maret 2010",
+    asal:"Jakarta",
+    golonganDarah:"AB",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Baby Hamster Yang Lincah, Aku Akan Berlari-Lari Di Pikiranmu. Halo-Ha Katakan Kimmy"
+},
+
+41:{
+    nama:"Afera Thalia",
+    namaLengkap:"Afera Thalia Putri Eysteinn",
+    foto:"images/members/member41.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"20 Oktober 2012",
+    asal:"Bogor",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Satu shoot ku menciptakan three-point di hati kamu."
+},
+
+42:{
+    nama:"Astrella Virgiananda",
+    namaLengkap:"Astrella Virgiananda",
+    foto:"images/members/member42.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"06 Agustus 2010",
+    asal:"Bandung",
+    golonganDarah:"AB",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Suka berekspresi melalui kreasi, Tara!"
+},
+
+43:{
+    nama:"Bong Aprilli",
+    namaLengkap:"Bong Aprilli Paskah",
+    foto:"images/members/member43.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"01 April 2010",
+    asal:"Jakarta",
+    golonganDarah:"A",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Bagai harmoni indah yang berirama di benakmu"
+},
+
+44:{
+    nama:"Carissa Dini",
+    namaLengkap:"Carissa Dini Asmaranti",
+    foto:"images/members/member44.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"02 Febuari 2011",
+    asal:"Jakarta",
+    golonganDarah:"A",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Aku adalah pemberi ramuan kedamaian. only for you!"
+},
+
+45:{
+    nama:"Cristabella Bonita",
+    namaLengkap:"Christabella Bonita Claura Chandra",
+    foto:"images/members/member45.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"02 Maret 2012",
+    asal:"Tanggerang",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Ding dong! skate, spin, smile"
+},
+
+46:{
+    nama:"Fahira putri",
+    namaLengkap:"Fahira Putri Kirana",
+    foto:"images/members/member46.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"13 Agustus 2012",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Sekali senyum buatmu jatuh cinta"
+},
+
+47:{
+    nama:"Fatimah Azzahra",
+    namaLengkap:"Fatimah Azzahra",
+    foto:"images/members/member47.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"30 Agustus 2010",
+    asal:"Depok",
+    golonganDarah:"AB",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Datang bawa tawa, pulang bawa rindu"
+},
+
+48:{
+    nama:"Hagia Sophia",
+    namaLengkap:"Hagia Sophia",
+    foto:"images/members/member48.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"01 Juli 2008",
+    asal:"Bekasi",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Dengan semangat dan kerja kerasku ini aku akan membuat kalian bahaa-giaa!"
+},
+
+49:{
+    nama:"Heidi Suyangga",
+    namaLengkap:"Heidi Suyangga",
+    foto:"images/members/member49.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"27 Agustus 2008",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Happy terus tanpa batas,seno! Hei, Hei, Heidi"
+},
+
+50:{
+    nama:"Humaira Ramadhani",
+    namaLengkap:"Humaira Ramadhani",
+    foto:"images/members/member50.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"13 Agustus 2011",
+    asal:"Tanggerang",
+    golonganDarah:"A",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Penceria yang membuatmu ketawa dengan tingkahku"
+},
+
+51:{
+    nama:"Jacqueline Imanuela",
+    namaLengkap:"Jacqueline Imanuela Jonathan",
+    foto:"images/members/member51.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"09 Juli 2009",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Sesejuk dan sedingin mint, Panggik aku ekin"
+},
+
+52:{
+    nama:"Jemima Evodie",
+    namaLengkap:"Jemima Evodie Mayra Lijaya",
+    foto:"images/members/member52.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"09 November 2009",
+    asal:"Lombok",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Cii~luk~baa~! Merpati yang akan membawa kejutan di setiap penampilanku"
+},
+
+53:{
+    nama:"Maxine Faye",
+    namaLengkap:"Maxine Faye Lee",
+    foto:"images/members/member53.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"02 Desember 2011",
+    asal:"Jakarta",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Faith,Trust, and Magical pixie dust."
+},
+
+54:{
+    nama:"Mikaela Kusjanto",
+    namaLengkap:"Mikaela Kusjanto",
+    foto:"images/members/member54.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"15 Desember 2007",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Camera, Roll, Action! Sutradara yang akan mewarnai kisah hidupmu dengan penuh warna"
+},
+
+55:{
+    nama:"Nur Intan",
+    namaLengkap:"Nur Intan",
+    foto:"images/members/member55.jpg",
+    generasi:"Ke-13",
+    tanggalLahir:"24 Febuari 2006",
+    asal:"Bogor",
+    golonganDarah:"B",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Intan permata yang berikilau, temukan cahayaku dihatimu"
+},
+
+56:{
+    nama:"Putry Jazzyta",
+    namaLengkap:"Putry Jazyta",
+    foto:"images/members/member56.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"12 Maret 2011",
+    asal:"Bogor",
+    golonganDarah:"A",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Musik Jazz On, Semangat On"
+},
+
+57:{
+    nama:"Ralyne Van Irwan",
+    namaLengkap:"Ralyne Van Irwan",
+    foto:"images/members/member57.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"15 Oktober 2011",
+    asal:"Medan",
+    golonganDarah:"AB",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Gameplay Aku Akan Menghiburmu"
+},
+
+58:{
+    nama:"Sona Kalyana",
+    namaLengkap:"$ona Kalyana Purbo Septiyani",
+    foto:"images/members/member58.jpg",
+    generasi:"Ke-14",
+    tanggalLahir:"01 Desember 2011",
+    asal:"Jakarta",
+    golonganDarah:"O",
+    tinggiBadan:"-",
+    zodiac:"-",
+
+    instagram:"#",
+    tiktok:"#",
+    twitter:"#",
+    showroom:"#",
+    idn:"#",
+
+    jiko:"Hip!Hop Aku Sona Membuat Kamu Terpesona"
+}
 
 };
 
 
+/* ==================================================
+   AMBIL ID MEMBER
+   ================================================== */
 
-    /*
-       MENGAMBIL ID MEMBER
-       dari link:
-       member-detail.html?id=1
-    */
+const url =
+    new URLSearchParams(
+        window.location.search
+    );
 
-    const url =
-        new URLSearchParams(window.location.search);
+let id =
+    url.get("id");
 
-    const id =
-        url.get("id");
+if(!id){
+    id="1";
+}
 
 
-    /*
-       MENAMPILKAN DATA
-    */
+/* ==================================================
+   FUNGSI SOSIAL MEDIA
+   ================================================== */
 
-    if (members[id]) {
+function setSocial(
+    linkId,
+    textId,
+    url
+){
 
-        document.getElementById("fotoMember").src =
-            members[id].foto;
+    const link =
+        document.getElementById(linkId);
 
-        document.getElementById("namaMember").textContent =
-            members[id].nama;
+    const text =
+        document.getElementById(textId);
 
-        document.getElementById("namaLengkap").textContent =
-            members[id].namaLengkap;
+    if(
+        !url ||
+        url === "#" ||
+        url.trim() === ""
+    ){
 
-        document.getElementById("generasi").textContent =
-            members[id].generasi;
+        text.textContent="-";
 
-        document.getElementById("tanggalLahir").textContent =
-            members[id].tanggalLahir;
+        link.href="javascript:void(0)";
 
-        document.getElementById("asal").textContent =
-            members[id].asal;
+        link.style.opacity=".55";
 
-        document.getElementById("golonganDarah").textContent =
-            members[id].golonganDarah;
+        link.onclick=function(e){
+            e.preventDefault();
+        };
 
-        document.getElementById("jikoMember").textContent =
-            members[id].jiko;
+    }else{
 
+        text.textContent=url;
+
+        link.href=url;
+
+        link.style.opacity="1";
+
+        link.onclick=null;
     }
+}
+
+
+/* ==================================================
+   TAMPILKAN DATA
+   ================================================== */
+
+if(members[id]){
+
+    const member =
+        members[id];
+
+
+    /* FOTO */
+
+    document.getElementById(
+        "fotoMember"
+    ).src =
+        member.foto;
+
+
+    /* NAMA LENGKAP */
+
+    document.getElementById(
+        "namaLengkap"
+    ).textContent =
+        member.namaLengkap;
+
+
+    /* NAMA PANGGILAN */
+
+    document.getElementById(
+        "namaMember"
+    ).textContent =
+        member.nama;
+
+
+    /* BIODATA */
+
+    document.getElementById(
+        "generasi"
+    ).textContent =
+        member.generasi;
+
+
+    document.getElementById(
+        "tanggalLahir"
+    ).textContent =
+        member.tanggalLahir;
+
+
+    document.getElementById(
+        "asal"
+    ).textContent =
+        member.asal;
+
+
+    document.getElementById(
+        "golonganDarah"
+    ).textContent =
+        member.golonganDarah;
+
+
+    /* TINGGI BADAN */
+
+    document.getElementById(
+        "tinggiBadan"
+    ).textContent =
+        member.tinggiBadan || "-";
+
+
+    /* ZODIAC */
+
+    document.getElementById(
+        "zodiac"
+    ).textContent =
+        member.zodiac || "-";
+
+
+    /* SOCIAL MEDIA */
+
+    setSocial(
+        "instagramLink",
+        "instagram",
+        member.instagram
+    );
+
+
+    setSocial(
+        "tiktokLink",
+        "tiktok",
+        member.tiktok
+    );
+
+
+    setSocial(
+        "twitterLink",
+        "twitter",
+        member.twitter
+    );
+
+
+    setSocial(
+        "showroomLink",
+        "showroom",
+        member.showroom
+    );
+
+
+    setSocial(
+        "idnLink",
+        "idn",
+        member.idn
+    );
+
+
+    /* JIKO */
+
+    document.getElementById(
+        "jikoMember"
+    ).textContent =
+        member.jiko;
+
+}
+
+
+/* ==================================================
+   MEMBER TIDAK DITEMUKAN
+   ================================================== */
+
+else{
+
+    document.querySelector(
+        ".detail"
+    ).innerHTML = `
+
+        <h2>
+            Member tidak ditemukan
+        </h2>
+
+        <p>
+            Data member tidak tersedia.
+        </p>
+
+        <a
+            class="kembali"
+            href="member.html"
+        >
+            ← Kembali ke Member
+        </a>
+
+    `;
+
+}
 
 </script>
 
 </body>
-
 </html>
