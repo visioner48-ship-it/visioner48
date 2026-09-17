@@ -67,16 +67,92 @@ header p{
     box-shadow:0 10px 35px rgba(0,0,0,.45);
 }
 
-#fotoMember{
-    width:300px;
-    height:360px;
-    max-width:100%;
-    object-fit:cover;
-    border-radius:12px;
-    border:2px solid rgba(220,20,20,.55);
-    display:block;
-    margin:0 auto;
-    box-shadow:0 8px 25px rgba(120,0,0,.4);
+.member-frame {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 3 / 4;
+
+    max-width: 00px;
+
+    padding: 5px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff526b,
+            #b90022,
+            #65000e
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.55);
+
+    overflow: hidden;
+
+    margin: 0 auto 35px;
+
+    box-sizing: border-box;
+}
+
+.member-star {
+    position: absolute;
+    color: #fff36a;
+    font-size: 25px;
+    line-height: 1;
+    z-index: 10;
+}
+
+.star-top {
+    top: 18px;
+    left: 18px;
+}
+
+.star-bottom {
+    right: 18px;
+    bottom: 18px;
+}
+
+@media (max-width: 700px) {
+    .member-frame {
+        width: calc(100vw - 30px);
+        height: calc((100vw - 30px) * 1.183);
+        max-width: none;
+        padding: 8px;
+        border-radius: 26px;
+    }
+
+    #fotoMember {
+        border-radius: 19px;
+    }
+
+    .member-star {
+        font-size: 25px;
+    }
+
+    .star-top {
+        top: 18px;
+        left: 18px;
+    }
+
+    .star-bottom {
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+
+/* HP */
+@media (max-width: 700px) {
+
+    .member-frame {
+        width: 330px;
+        height: 390px;
+        max-width: calc(100vw - 40px);
+    }
+
 }
 
 /* NAMA LENGKAP */
@@ -299,13 +375,18 @@ header p{
 
 <div class="detail">
 
-    <!-- FOTO MEMBER -->
+   <!-- FOTO MEMBER -->
+<div class="member-frame">
+
+    <span class="member-star star-top">★</span>
 
     <img
         id="fotoMember"
         src="images/members/member1.jpg"
         alt="Foto Member"
     >
+
+</div>
 
 
     <!-- NAMA -->
@@ -554,7 +635,7 @@ header p{
 
     <a
         class="kembali"
-        href="member.html"
+        href="member.html "
     >
         ← Kembali ke Member
     </a>
