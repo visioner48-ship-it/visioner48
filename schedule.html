@@ -1,17 +1,11 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Schedule - Visioner48</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visioner48 - Schedule</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -19,356 +13,603 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #000;
-    color: white;
+    background: #080808;
+    color: #fff;
 }
 
-header {
-    background: #111;
-    border-bottom: 2px solid #e00000;
-    padding: 20px;
+.header {
+    background: linear-gradient(135deg, #000000, #180000, #b00000);
+    padding: 25px 15px;
     text-align: center;
+    border-bottom: 2px solid #e00000;
 }
 
-header h1 {
+.header h1 {
     margin: 0;
-    color: #ff1a1a;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.header p {
+    margin: 7px 0 0;
+    color: #ddd;
+    font-size: 14px;
 }
 
 .container {
-    width: 94%;
-    max-width: 800px;
-    margin: 20px auto;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px 15px 40px;
 }
 
-#status {
-    background: #151515;
-    border: 1px solid #333;
-    border-left: 4px solid #e00000;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+.back-home {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: #b00000;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.back-home:hover {
+    background: #e00000;
 }
 
 .schedule-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
 }
 
 .schedule-card {
-    background: #151515;
-    border: 1px solid #333;
-    border-left: 5px solid #e00000;
-    border-radius: 12px;
-    padding: 18px;
+    background: #111;
+    border: 1px solid #292929;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .2s;
 }
 
-.schedule-title {
-    font-size: 21px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    color: white;
+.schedule-card:hover {
+    transform: translateY(-3px);
+    border-color: #d00000;
 }
 
-.schedule-date {
-    color: #ff2020;
-    font-size: 18px;
-    font-weight: bold;
+.poster {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #1a1a1a;
+    overflow: hidden;
+}
+
+.poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-info {
+    padding: 15px;
+}
+
+.team {
+    font-size: 13px;
+    color: #aaa;
     margin-bottom: 8px;
 }
 
-.schedule-info {
-    color: #ccc;
-    margin: 7px 0;
-}
-
-.schedule-info strong {
-    color: white;
-}
-
-.schedule-link {
+.type {
     display: inline-block;
-    margin-top: 12px;
-    padding: 10px 15px;
-    background: #e00000;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+    background: #b00000;
+    color: #fff;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.empty {
-    background: #151515;
-    padding: 30px;
+.type.sts {
+    background: #8b0000;
+}
+
+.type.last {
+    background: #5e0000;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.3;
+}
+
+.empty,
+.loading,
+.error {
     text-align: center;
+    padding: 40px 15px;
     color: #aaa;
-    border-radius: 12px;
 }
 
-.kembali-home {
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    z-index: 999;
+    overflow-y: auto;
+    padding: 25px 15px;
+}
+
+.modal.show {
     display: block;
-    width: fit-content;
-    margin: 15px auto;
-    padding: 10px 18px;
-    background: #e00000;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.modal-poster {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #1a1a1a;
+}
+
+.modal-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-content {
+    padding: 20px;
+}
+
+.close {
+    float: right;
+    border: 0;
+    background: #333;
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.detail-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 5px 50px 18px 0;
+}
+
+.detail-row {
+    border-bottom: 1px solid #292929;
+    padding: 12px 0;
+}
+
+.detail-label {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-size: 16px;
     font-weight: bold;
 }
 
-.kembali-home:hover {
-    background: #ff2020;
+.lineup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 10px;
 }
 
-.error {
-    color: #ff3030;
+.member-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: #202020;
+    border: 1px solid #3a3a3a;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 13px;
 }
 
+.member-link:hover {
+    background: #b00000;
+    border-color: #e00000;
+}
+
+.jkt-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #c00000;
+    color: #fff;
+    padding: 13px;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.jkt-link:hover {
+    background: #e00000;
+}
+
+@media(max-width: 500px) {
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .schedule-list {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
-<header>
-
-    <h1>Schedule JKT48</h1>
-
+<header class="header">
+    <h1>Schedule</h1>
+    <p>Jadwal pertunjukan JKT48</p>
 </header>
-
- <a href="index.html" class="kembali-home">
-    ← Kembali ke Home
-</a>
-
 
 <div class="container">
 
-    <div id="status">
-        Memuat jadwal...
-    </div>
+    <a href="index.html" class="back-home">
+        ← Kembali ke Home
+    </a>
 
-    <div
-        id="scheduleList"
-        class="schedule-list">
+    <div id="scheduleList" class="schedule-list">
+        <div class="loading">Memuat jadwal...</div>
     </div>
 
 </div>
 
+<div id="modal" class="modal">
+    <div class="modal-box">
 
-<!-- FIREBASE -->
+        <div class="modal-poster">
+            <img id="detailImage" src="" alt="Poster pertunjukan">
+        </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+        <div class="modal-content">
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+            <button class="close" onclick="closeDetail()">×</button>
 
+            <div id="detailTitle" class="detail-title"></div>
+
+            <div class="detail-row">
+                <div class="detail-label">TIM</div>
+                <div id="detailTeam" class="detail-value"></div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">JENIS PERTUNJUKAN</div>
+                <div id="detailType" class="detail-value"></div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">TANGGAL</div>
+                <div id="detailDate" class="detail-value"></div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">WAKTU</div>
+                <div id="detailTime" class="detail-value"></div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">LINE UP MEMBER</div>
+
+                <div id="detailLineup" class="lineup"></div>
+            </div>
+
+            <a
+                id="jktLink"
+                class="jkt-link"
+                href="#"
+                target="_blank"
+                rel="noopener"
+            >
+                Lihat selengkapnya di JKT48
+            </a>
+
+        </div>
+    </div>
+</div>
 
 <script>
+const FIREBASE_URL =
+"https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app";
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+const DATABASE_PATH = "visioner48_schedule";
 
-const firebaseConfig = {
+const list = document.getElementById("scheduleList");
 
-    apiKey:
-        "AIzaSyDvHngeBgcjPgdIVtlR5w_3apGiornP-W4",
+let schedules = {};
 
-    authDomain:
-        "visioner48-9b51e.firebaseapp.com",
+function escapeHTML(value) {
+    if (value === null || value === undefined) return "";
 
-    databaseURL:
-        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app/",
-
-    projectId:
-        "visioner48-9b51e",
-
-    storageBucket:
-        "visioner48-9b51e.firebasestorage.app",
-
-    messagingSenderId:
-        "691930246088",
-
-    appId:
-        "1:691930246088:web:efd50a623e8321d97feefd"
-};
-
-
-/* =========================
-   HUBUNGKAN FIREBASE
-========================= */
-
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.database();
-
-
-/* =========================
-   AMBIL SCHEDULE
-========================= */
-
-const scheduleRef =
-    db.ref("visioner48_schedule");
-
-
-scheduleRef.on(
-    "value",
-
-    function(snapshot) {
-
-        const status =
-            document.getElementById("status");
-
-        const list =
-            document.getElementById("scheduleList");
-
-
-        list.innerHTML = "";
-
-
-        if (!snapshot.exists()) {
-
-            status.innerHTML =
-                "Belum ada jadwal.";
-
-            list.innerHTML = `
-                <div class="empty">
-                    Belum ada jadwal yang tersedia.
-                </div>
-            `;
-
-            return;
-        }
-
-
-        status.innerHTML =
-            "Jadwal berhasil dimuat.";
-
-
-        const data =
-            snapshot.val();
-
-
-        Object.keys(data).forEach(
-            function(key) {
-
-                const item =
-                    data[key];
-
-
-                const title =
-                    item.title ||
-                    item.name ||
-                    item.event ||
-                    "Jadwal JKT48";
-
-
-                const date =
-                    item.date || "-";
-
-
-                const time =
-                    item.time || "-";
-
-
-                const location =
-                    item.location || "-";
-
-
-                const link =
-                    item.link ||
-                    item.url ||
-                    item.jkt48Link ||
-                    "";
-
-
-                const card =
-                    document.createElement("div");
-
-
-                card.className =
-                    "schedule-card";
-
-
-                card.innerHTML = `
-
-                    <div class="schedule-title">
-                        ${safe(title)}
-                    </div>
-
-                    <div class="schedule-date">
-                        ${safe(date)}
-                    </div>
-
-                    <div class="schedule-info">
-                        <strong>Waktu:</strong>
-                        ${safe(time)}
-                    </div>
-
-                    <div class="schedule-info">
-                        <strong>Lokasi:</strong>
-                        ${safe(location)}
-                    </div>
-
-                    ${
-                        link
-                        ?
-                        `
-                        <a
-                            class="schedule-link"
-                            href="${safe(link)}"
-                            target="_blank">
-                            Lihat JKT48
-                        </a>
-                        `
-                        :
-                        ""
-                    }
-
-                `;
-
-
-                list.appendChild(card);
-
-            }
-        );
-
-    },
-
-
-    function(error) {
-
-        document.getElementById("status")
-            .innerHTML = `
-                <span class="error">
-                    Gagal membaca database:
-                    ${safe(error.message)}
-                </span>
-            `;
-
-        console.error(error);
-
-    }
-);
-
-
-/* =========================
-   AMANKAN TEKS
-========================= */
-
-function safe(text) {
-
-    return String(text)
+    return String(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
 }
 
+function formatDate(dateString) {
+
+    if (!dateString) return "-";
+
+    const parts = dateString.split("-");
+
+    if (parts.length !== 3) return dateString;
+
+    const date = new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+
+    return date.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+}
+
+function typeClass(type) {
+
+    if (type === "STS") return "sts";
+
+    if (type === "LAST SHOW") return "last";
+
+    return "";
+}
+
+function normalizeLineup(lineup) {
+
+    if (!lineup) return [];
+
+    if (Array.isArray(lineup)) {
+        return lineup;
+    }
+
+    return Object.values(lineup);
+}
+
+async function loadSchedule() {
+
+    try {
+
+        const response = await fetch(
+            FIREBASE_URL + "/" + DATABASE_PATH + ".json"
+        );
+
+        if (!response.ok) {
+            throw new Error("Gagal mengambil data Firebase");
+        }
+
+        const data = await response.json();
+
+        schedules = data || {};
+
+        renderSchedule();
+
+    } catch (error) {
+
+        console.error(error);
+
+        list.innerHTML = `
+            <div class="error">
+                Gagal membaca jadwal.
+                <br><br>
+                Pastikan Firebase Rules sudah benar.
+            </div>
+        `;
+    }
+}
+
+function renderSchedule() {
+
+    const items = Object.entries(schedules);
+
+    if (!items.length) {
+
+        list.innerHTML = `
+            <div class="empty">
+                Belum ada jadwal pertunjukan.
+            </div>
+        `;
+
+        return;
+    }
+
+    items.sort((a, b) => {
+
+        const dateA =
+            (a[1].date || "") + " " + (a[1].time || "");
+
+        const dateB =
+            (b[1].date || "") + " " + (b[1].time || "");
+
+        return dateA.localeCompare(dateB);
+
+    });
+
+    list.innerHTML = items.map(([id, item]) => {
+
+        const type = item.type || "SHOW";
+
+        return `
+            <div class="schedule-card"
+                 onclick="openDetail('${escapeHTML(id)}')">
+
+                <div class="poster">
+
+                    <img
+                        src="${escapeHTML(item.image || "https://via.placeholder.com/800x450?text=Visioner48")}"
+                        alt="${escapeHTML(item.title || "Pertunjukan")}"
+                        onerror="this.src='https://via.placeholder.com/800x450?text=Visioner48'"
+                    >
+
+                </div>
+
+                <div class="card-info">
+
+                    <div class="team">
+                        ${escapeHTML(item.team || "JKT48")}
+                    </div>
+
+                    <div class="type ${typeClass(type)}">
+                        ${escapeHTML(type)}
+                    </div>
+
+                    <div class="title">
+                        ${escapeHTML(item.title || "Pertunjukan")}
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    }).join("");
+}
+
+function openDetail(id) {
+
+    const item = schedules[id];
+
+    if (!item) return;
+
+    document.getElementById("detailImage").src =
+        item.image || "https://via.placeholder.com/800x450?text=Visioner48";
+
+    document.getElementById("detailTitle").textContent =
+        item.title || "-";
+
+    document.getElementById("detailTeam").textContent =
+        item.team || "-";
+
+    document.getElementById("detailType").textContent =
+        item.type || "SHOW";
+
+    document.getElementById("detailDate").textContent =
+        formatDate(item.date);
+
+    document.getElementById("detailTime").textContent =
+        item.time ? item.time + " WIB" : "-";
+
+    const lineupBox =
+        document.getElementById("detailLineup");
+
+    const lineup = normalizeLineup(item.lineup);
+
+    if (!lineup.length) {
+
+        lineupBox.innerHTML =
+            `<span style="color:#888;">Belum ada line up.</span>`;
+
+    } else {
+
+        lineupBox.innerHTML = lineup.map(member => {
+
+            let name = "";
+            let link = "";
+
+            if (typeof member === "string") {
+
+                name = member;
+
+            } else {
+
+                name = member.name || "Member";
+                link = member.link || "";
+            }
+
+            if (!link) {
+
+                link =
+                    "member-detail.html?member=" +
+                    encodeURIComponent(name);
+            }
+
+            return `
+                <a
+                    class="member-link"
+                    href="${escapeHTML(link)}"
+                    onclick="event.stopPropagation()"
+                >
+                    ${escapeHTML(name)}
+                </a>
+            `;
+
+        }).join("");
+    }
+
+    const jktLink =
+        document.getElementById("jktLink");
+
+    if (item.jktLink) {
+
+        jktLink.href = item.jktLink;
+        jktLink.style.display = "block";
+
+    } else {
+
+        jktLink.style.display = "none";
+    }
+
+    document.getElementById("modal")
+        .classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+function closeDetail() {
+
+    document.getElementById("modal")
+        .classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+document.getElementById("modal")
+    .addEventListener("click", function(e) {
+
+        if (e.target === this) {
+            closeDetail();
+        }
+
+    });
+
+document.addEventListener("keydown", function(e) {
+
+    if (e.key === "Escape") {
+        closeDetail();
+    }
+
+});
+
+loadSchedule();
 </script>
 
 </body>
-
 </html>
