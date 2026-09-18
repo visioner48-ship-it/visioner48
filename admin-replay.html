@@ -126,12 +126,12 @@ button:hover {
 <div class="box">
 
 <h1>
-Admin Replay Live
+    Admin Replay Live
 </h1>
 
 
 <label>
-Judul Replay
+    Judul Replay
 </label>
 
 <input
@@ -142,7 +142,7 @@ Judul Replay
 
 
 <label>
-Link Video YouTube
+    Link Video YouTube
 </label>
 
 <input
@@ -193,7 +193,46 @@ Link Video YouTube
 </div>
 
 
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
 <script>
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey: "ISI_API_KEY_KAMU",
+
+    authDomain: "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL: "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId: "visioner48-9b51e",
+
+    storageBucket: "visioner48-9b51e.appspot.com",
+
+    messagingSenderId: "ISI_MESSAGING_SENDER_ID",
+
+    appId: "ISI_APP_ID"
+
+};
+
+
+/* =========================
+   INIT FIREBASE
+========================= */
+
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+
 
 /*
    AMBIL LINK YOUTUBE
@@ -210,9 +249,7 @@ function getYoutubeId(link) {
 
 
         if (
-            url.hostname.includes(
-                "youtu.be"
-            )
+            url.hostname.includes("youtu.be")
         ) {
 
             id =
@@ -224,28 +261,21 @@ function getYoutubeId(link) {
 
 
         else if (
-            url.hostname.includes(
-                "youtube.com"
-            )
+            url.hostname.includes("youtube.com")
         ) {
 
             if (
-                url.pathname ===
-                "/watch"
+                url.pathname === "/watch"
             ) {
 
                 id =
-                    url.searchParams.get(
-                        "v"
-                    ) || "";
+                    url.searchParams.get("v") || "";
 
             }
 
 
             else if (
-                url.pathname.startsWith(
-                    "/shorts/"
-                )
+                url.pathname.startsWith("/shorts/")
             ) {
 
                 id =
@@ -256,9 +286,7 @@ function getYoutubeId(link) {
 
 
             else if (
-                url.pathname.startsWith(
-                    "/embed/"
-                )
+                url.pathname.startsWith("/embed/")
             ) {
 
                 id =
@@ -284,7 +312,7 @@ function getYoutubeId(link) {
 
 
 /*
-   SIMPAN REPLAY
+   SIMPAN REPLAY KE FIREBASE
 */
 
 function simpanReplay() {
@@ -324,9 +352,7 @@ function simpanReplay() {
 
 
     const videoId =
-        getYoutubeId(
-            youtubeUrl
-        );
+        getYoutubeId(youtubeUrl);
 
 
     if (!videoId) {
@@ -357,22 +383,32 @@ function simpanReplay() {
     };
 
 
-    localStorage.setItem(
-        "visioner48Replay",
-        JSON.stringify(
-            replay
-        )
-    );
+    database
+        .ref("visioner48_replay")
+        .set(replay)
+        .then(function() {
+
+            tampilkanPreview(
+                replay.embedUrl
+            );
 
 
-    tampilkanPreview(
-        replay.embedUrl
-    );
+            tampilkanStatus(
+                "Replay berhasil disimpan."
+            );
 
+        })
 
-    tampilkanStatus(
-        "Replay berhasil disimpan."
-    );
+        .catch(function(error) {
+
+            console.error(error);
+
+            tampilkanStatus(
+                "Gagal menyimpan Replay: " +
+                error.message
+            );
+
+        });
 
 }
 
@@ -420,40 +456,49 @@ function hapusReplay() {
     }
 
 
-    localStorage.removeItem(
-        "visioner48Replay"
-    );
+    database
+        .ref("visioner48_replay")
+        .remove()
+        .then(function() {
+
+            document
+                .getElementById("judul")
+                .value = "";
 
 
-    document
-        .getElementById(
-            "judul"
-        )
-        .value = "";
+            document
+                .getElementById("youtubeUrl")
+                .value = "";
 
 
-    document
-        .getElementById(
-            "youtubeUrl"
-        )
-        .value = "";
+            const preview =
+                document.getElementById(
+                    "preview"
+                );
 
 
-    const preview =
-        document.getElementById(
-            "preview"
-        );
+            preview.src = "";
+
+            preview.style.display =
+                "none";
 
 
-    preview.src = "";
+            tampilkanStatus(
+                "Replay berhasil dihapus."
+            );
 
-    preview.style.display =
-        "none";
+        })
 
+        .catch(function(error) {
 
-    tampilkanStatus(
-        "Replay berhasil dihapus."
-    );
+            console.error(error);
+
+            tampilkanStatus(
+                "Gagal menghapus Replay: " +
+                error.message
+            );
+
+        });
 
 }
 
@@ -483,67 +528,57 @@ function tampilkanStatus(
 
 
 /*
-   LOAD DATA
+   LOAD DATA DARI FIREBASE
 */
 
 function loadReplay() {
 
-    const data =
-        localStorage.getItem(
-            "visioner48Replay"
-        );
+    database
+        .ref("visioner48_replay")
+        .once("value")
+        .then(function(snapshot) {
+
+            const replay =
+                snapshot.val();
 
 
-    if (!data) {
+            if (!replay) {
 
-        return;
+                return;
 
-    }
+            }
 
 
-    try {
+            document
+                .getElementById("judul")
+                .value =
+                replay.judul || "";
 
-        const replay =
-            JSON.parse(
-                data
+
+            document
+                .getElementById("youtubeUrl")
+                .value =
+                replay.youtubeUrl || "";
+
+
+            if (replay.embedUrl) {
+
+                tampilkanPreview(
+                    replay.embedUrl
+                );
+
+            }
+
+        })
+
+        .catch(function(error) {
+
+            console.error(
+                "Gagal memuat Replay:",
+                error
             );
 
-
-        document
-            .getElementById(
-                "judul"
-            )
-            .value =
-            replay.judul || "";
-
-
-        document
-            .getElementById(
-                "youtubeUrl"
-            )
-            .value =
-            replay.youtubeUrl || "";
-
-
-        if (
-            replay.embedUrl
-        ) {
-
-            tampilkanPreview(
-                replay.embedUrl
-            );
-
-        }
-
-    }
-
-    catch {
-
-        localStorage.removeItem(
-            "visioner48Replay"
-        );
-
-    }
+        });
 
 }
 
@@ -559,6 +594,10 @@ function kembaliAdmin() {
 
 }
 
+
+/*
+   MULAI
+*/
 
 loadReplay();
 

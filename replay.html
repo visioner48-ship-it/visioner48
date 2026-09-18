@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -95,21 +95,23 @@ iframe {
 
 </head>
 
-
 <body>
 
 <div class="container">
 
 <h1>
-Replay Live
+    Replay Live
 </h1>
-
 
 <div
     id="replay"
     class="replay-box">
-</div>
+    
+    <div class="kosong">
+        Memuat Replay Live...
+    </div>
 
+</div>
 
 <a
     href="index.html"
@@ -121,132 +123,177 @@ Replay Live
 </div>
 
 
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
 <script>
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey: "ISI_API_KEY_KAMU",
+
+    authDomain: "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL: "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId: "visioner48-9b51e",
+
+    storageBucket: "visioner48-9b51e.appspot.com",
+
+    messagingSenderId: "ISI_MESSAGING_SENDER_ID",
+
+    appId: "ISI_APP_ID"
+
+};
+
+
+/* =========================
+   INIT FIREBASE
+========================= */
+
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+
+
+/* =========================
+   TAMPILKAN REPLAY
+========================= */
 
 function tampilkanReplay() {
 
-    const data =
-        localStorage.getItem(
-            "visioner48Replay"
-        );
-
-
     const replay =
-        document.getElementById(
-            "replay"
-        );
+        document.getElementById("replay");
 
 
-    if (!data) {
+    database
+        .ref("visioner48_replay")
+        .on("value", function(snapshot) {
 
-        replay.innerHTML = `
-
-            <div class="kosong">
-
-                Belum ada Replay Live.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
+            const item = snapshot.val();
 
 
-    try {
+            if (!item) {
 
-        const item =
-            JSON.parse(
-                data
-            );
+                replay.innerHTML = `
+
+                    <div class="kosong">
+
+                        Belum ada Replay Live.
+
+                    </div>
+
+                `;
+
+                return;
+            }
 
 
-        if (
-            !item.embedUrl
-        ) {
+            if (!item.embedUrl) {
+
+                replay.innerHTML = `
+
+                    <div class="kosong">
+
+                        Replay tidak tersedia.
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            replay.innerHTML = `
+
+                <div class="judul">
+
+                    ${escapeHtml(
+                        item.judul || "Replay Live"
+                    )}
+
+                </div>
+
+
+                <iframe
+
+                    src="${escapeAttribute(
+                        item.embedUrl
+                    )}"
+
+                    title="Replay Live"
+
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+
+                    allowfullscreen>
+
+                </iframe>
+
+            `;
+
+        }, function(error) {
+
+            console.error(error);
 
             replay.innerHTML = `
 
                 <div class="kosong">
 
-                    Replay tidak tersedia.
+                    Gagal membaca Replay Live.
 
                 </div>
 
             `;
 
-            return;
-
-        }
-
-
-        replay.innerHTML = `
-
-            <div class="judul">
-
-                ${escapeHtml(
-                    item.judul
-                )}
-
-            </div>
-
-
-            <iframe
-
-                src="${item.embedUrl}"
-
-                title="Replay Live"
-
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-
-                allowfullscreen>
-
-            </iframe>
-
-        `;
-
-    }
-
-    catch {
-
-        replay.innerHTML = `
-
-            <div class="kosong">
-
-                Gagal membaca Replay Live.
-
-            </div>
-
-        `;
-
-    }
+        });
 
 }
 
 
-/*
+/* =========================
    AMANKAN JUDUL
-*/
+========================= */
 
-function escapeHtml(
-    teks
-) {
+function escapeHtml(teks) {
 
     const div =
-        document.createElement(
-            "div"
-        );
-
+        document.createElement("div");
 
     div.textContent =
         teks;
-
 
     return div.innerHTML;
 
 }
 
+
+/* =========================
+   AMANKAN URL
+========================= */
+
+function escapeAttribute(teks) {
+
+    return String(teks)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+}
+
+
+/* =========================
+   MULAI
+========================= */
 
 tampilkanReplay();
 
