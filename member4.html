@@ -2,209 +2,450 @@
 <html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Member JKT48 - Visioner48</title>
+<title>Visioner48 - Trainee</title>
 
-     <style>
+<style>
 
-/* =========================
-   DASAR
-========================= */
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background:
-        linear-gradient(
-            135deg,
-            #000000,
-            #240000,
-            #8b0000
-        );
+        radial-gradient(circle at 50% 0%,
+        #3a0000 0%,
+        #160000 35%,
+        #050505 75%);
     color: white;
     min-height: 100vh;
 }
 
-
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header {
-    background: linear-gradient(
-        135deg,
-        #000000,
-        #180000,
-        #a00000
-    );
-    color: white;
     text-align: center;
-    padding: 25px 20px;
-    border-bottom: 3px solid #d00000;
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+    padding: 25px 15px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000000,
+            #180000,
+            #9b0000
+        );
+
+    border-bottom: 2px solid #d00000;
+
+    box-shadow:
+        0 5px 20px rgba(255,0,0,0.25);
 }
 
-header h1 {
-    margin: 0 0 15px;
-    color: white;
+.logo {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
+.logo span {
+    color: #ff1d35;
+}
 
-/* =========================
-   TOMBOL HOME
-========================= */
+.subtitle {
+    margin-top: 7px;
+    color: #d8d8d8;
+    font-size: 13px;
+}
+
+/* HOME */
 
 .home {
     display: inline-block;
-    background: #8b0000;
-    border: 1px solid #d00000;
+
+    margin-top: 15px;
+
+    padding: 9px 20px;
+
+    border-radius: 25px;
+
+    border: 1px solid #ff2945;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7d0000,
+            #d00000
+        );
+
     color: white;
-    padding: 10px 18px;
-    border-radius: 20px;
     text-decoration: none;
-    transition: 0.2s;
-    box-shadow: 0 3px 10px rgba(255, 0, 0, 0.2);
+
+    font-size: 13px;
+    font-weight: bold;
+
+    transition: 0.25s;
 }
 
 .home:hover {
-    background: #c00000;
-    border-color: #ff3030;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    background: #f00020;
 }
 
-
-/* =========================
-   JUDUL
-========================= */
+/* JUDUL */
 
 .title {
     text-align: center;
-    padding: 25px 10px;
+    padding: 30px 15px 20px;
 }
 
-.title h2 {
-    color: #ff3030;
+.title small {
+    display: block;
+
+    color: #d0d0d0;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
+
     margin-bottom: 8px;
 }
 
+.title h2 {
+    margin: 0;
+
+    font-size: 32px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff3155,
+            #ff8a9b,
+            #ff3155
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .title p {
-    color: #cccccc;
+    margin-top: 8px;
+    color: #aaa;
+    font-size: 13px;
 }
 
-
-/* =========================
-   GRID MEMBER
-========================= */
-
-.members {
-    display: grid;
-    grid-template-columns:
-        repeat(5, 1fr);
-    gap: 15px;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-
-/* =========================
-   KARTU MEMBER
-========================= */
-
-.member {
-    background: #151515;
-    border: 1px solid #4a0000;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-
-    color: white;
-    text-decoration: none;
-    padding: 8px;
-    text-align: center;
-}
-
-.member:hover {
-    transform: translateY(-4px);
-    background: #220000;
-    border-color: #d00000;
-    box-shadow: 0 6px 18px rgba(255, 0, 0, 0.25);
-}
-
-
-/* =========================
-   FOTO
-========================= */
-
-.member img {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 10px;
-    display: block;
-}
-
-
-/* =========================
-   NAMA
-========================= */
-
-.member h3 {
-    font-size: 14px;
-    margin: 10px 2px;
-    color: #ffffff;
-    font-weight: bold;
-}
-
-
-/* =========================
-   NOMOR HALAMAN
-========================= */
+/* TOMBOL TIM */
 
 .pages {
-    text-align: center;
-    padding: 30px;
+    max-width: 1100px;
+
+    margin: 0 auto 25px;
+
+    padding: 0 15px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.pages::-webkit-scrollbar {
+    display: none;
 }
 
 .pages a {
-    display: inline-block;
-    background: #151515;
-    border: 1px solid #4a0000;
+    flex: 0 0 auto;
+
+    min-width: 145px;
+
+    padding: 10px 22px;
+
+    border-radius: 30px;
+
+    border: 1.5px solid #d00030;
+
+    background: #080808;
+
     color: white;
-    padding: 8px 12px;
-    margin: 3px;
-    border-radius: 8px;
+
     text-decoration: none;
-    transition: 0.2s;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+/* Trainee AKTIF */
+
+.pages a.Trainee-active {
+    background:
+        linear-gradient(
+            90deg,
+            #e40035,
+            #c50025
+        );
+
+    border-color: #ff6b82;
+
+    box-shadow:
+        0 4px 15px rgba(255,0,50,0.25);
 }
 
 .pages a:hover {
-    background: #8b0000;
-    border-color: #d00000;
-    color: white;
+    background:
+        linear-gradient(
+            90deg,
+            #a50020,
+            #e00035
+        );
+
+    border-color: #ff506d;
+
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.25);
 }
 
+/* GRID MEMBER */
 
-/* =========================
-   HP
-========================= */
+.members {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 10px 20px 40px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 28px 18px;
+}
+
+/* KARTU */
+
+.member {
+    display: block;
+
+    color: white;
+
+    text-decoration: none;
+
+    text-align: center;
+
+    transition: 0.25s;
+}
+
+.member:hover {
+    transform: translateY(-5px);
+}
+
+/* FRAME FOTO */
+
+.photo-frame {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 3 / 4;
+
+    padding: 5px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff526b,
+            #b90022,
+            #65000e
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 7px 18px rgba(0,0,0,0.55);
+
+    overflow: hidden;
+}
+
+/* BINTANG */
+
+.photo-frame::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 7px;
+    left: 8px;
+
+    z-index: 3;
+
+    color: #ffe66d;
+
+    font-size: 15px;
+}
+
+.photo-frame::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 8px;
+    bottom: 6px;
+
+    z-index: 3;
+
+    color: #ffe66d;
+
+    font-size: 15px;
+}
+
+/* FOTO */
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 4px;
+
+    background: #eee;
+}
+
+/* NAMA */
+
+.member h3 {
+    margin: 9px 2px 0;
+
+    font-size: 14px;
+
+    line-height: 1.25;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+/* HOVER */
+
+.member:hover .photo-frame {
+    box-shadow:
+        0 10px 25px rgba(255,0,40,0.35);
+
+    transform: scale(1.02);
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 20px;
+
+    padding: 30px 20px 40px;
+
+    text-align: center;
+
+    border-top: 1px solid #610000;
+
+    background:
+        linear-gradient(
+            135deg,
+            #080000,
+            #1b0000,
+            #050505
+        );
+
+    color: #777;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .members {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 22px 14px;
+    }
+}
+
+/* HP */
 
 @media (max-width: 700px) {
 
-    .members {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 10px;
-        gap: 10px;
+    .logo {
+        font-size: 29px;
     }
 
-    .member {
-        border-radius: 10px;
+    .title {
+        padding-top: 25px;
+    }
+
+    .title h2 {
+        font-size: 30px;
+    }
+
+    .pages {
+        justify-content: flex-start;
+
+        gap: 8px;
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .pages a {
+        min-width: auto;
+
+        padding: 9px 17px;
+
+        font-size: 13px;
+    }
+
+    .members {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        padding:
+            8px 15px 35px;
+
+        gap:
+            25px 22px;
+    }
+
+    .member h3 {
+        font-size: 14px;
+    }
+}
+
+/* HP KECIL */
+
+@media (max-width: 380px) {
+
+    .pages a {
+        padding: 8px 13px;
+        font-size: 12px;
+    }
+
+    .members {
+        gap: 20px 12px;
     }
 
     .member h3 {
@@ -221,148 +462,321 @@ header h1 {
 
 <header>
 
-    <h1>Member JKT48</h1>
+    <div class="logo">
+        Visioner<span>48</span>
+    </div>
 
-    <a class="home" href="index.html">
+    <div class="subtitle">
+        Jelajahi dunia JKT48 dalam satu aplikasi
+    </div>
+
+    <a href="index.html" class="home">
         🏠 HOME
     </a>
 
 </header>
 
- <div class="pages">
 
-    <a href="member.html">Tim Love</a>
+<section class="title">
 
-    <a href="member2.html">Tim Dream</a>
+    <small>MEMBER JKT48</small>
 
-    <a href="member3.html">Tim Passion</a>
+    <h2>Trainee</h2>
 
-    <a href="member4.html">Trainee</a>
+    <p>
+        18 Member
+    </p>
+
+</section>
+
+
+<!-- TOMBOL TIM -->
+
+<div class="pages">
+    
+
+    <a href="member.html">
+        Tim Love
+    </a>
+
+    <a href="member2.html">
+        Tim Dream
+    </a>
+
+        <a href="member3.html">
+        Tim Passion
+    </a>
+
+      <a href="member4.html" class="Trainee-active">
+      Trainee
+  </a>
 
 </div>
 
 
-<section class="title">
-
-    <h2>👥 Traine JKT48</h2>
-
-    <p> 18 Member</p>
-
-</section>
-
+<!-- DAFTAR MEMBER TRAINEE -->
 
 <section class="members">
 
 
-    <a class="member" href="member-detail.html?id=41">
-        <img src="images/members/member41.jpg">
+    <a class="member"
+       href="member-detail.html?id=41">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member41.jpg"
+                alt="Afera Thalia">
+        </div>
+
         <h3>Afera Thalia</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=42">
-        <img src="images/members/member42.jpg">
+    <a class="member"
+       href="member-detail.html?id=42">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member42.jpg"
+                alt="Astrella Virgiananda">
+        </div>
+
         <h3>Astrella Virgiananda</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=43">
-        <img src="images/members/member43.jpg">
-        <h3>Bong Aprili</h3>
+    <a class="member"
+       href="member-detail.html?id=43">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member43.jpg"
+                alt="Bong Aprilli">
+        </div>
+
+        <h3>Bong Aprilli</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=44">
-        <img src="images/members/member44.jpg">
+    <a class="member"
+       href="member-detail.html?id=44">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member44.jpg"
+                alt="Carissa Dini">
+        </div>
+
         <h3>Carissa Dini</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=45">
-        <img src="images/members/member45.jpg">
+    <a class="member"
+       href="member-detail.html?id=45">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member45.jpg"
+                alt="Christabella Bonita">
+        </div>
+
         <h3>Christabella Bonita</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=46">
-        <img src="images/members/member46.jpg">
+    <a class="member"
+       href="member-detail.html?id=46">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member46.jpg"
+                alt="Fahira Putri">
+        </div>
+
         <h3>Fahira Putri</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=47">
-        <img src="images/members/member47.jpg">
-        <h3>Farimah Azzahra</h3>
+    <a class="member"
+       href="member-detail.html?id=47">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member47.jpg"
+                alt="Fatimah Azzahra">
+        </div>
+
+        <h3>Fatimah Azzahra</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=48">
-        <img src="images/members/member48.jpg">
+    <a class="member"
+       href="member-detail.html?id=48">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member48.jpg"
+                alt="Hagia Sophia">
+        </div>
+
         <h3>Hagia Sophia</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=49">
-        <img src="images/members/member49.jpg">
+    <a class="member"
+       href="member-detail.html?id=49">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member49.jpg"
+                alt="Heidi Suyangga">
+        </div>
+
         <h3>Heidi Suyangga</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=50">
-        <img src="images/members/member50.jpg">
+    <a class="member"
+       href="member-detail.html?id=50">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member50.jpg"
+                alt="Humaira Ramadhani">
+        </div>
+
         <h3>Humaira Ramadhani</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=51">
-        <img src="images/members/member51.jpg">
-        <h3>Jacqueline Imanuela</h3>
+    <a class="member"
+       href="member-detail.html?id=51">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member51.jpg"
+                alt="Jacqueline Imanuel">
+        </div>
+
+        <h3>Jacqueline Imanuel</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=52">
-        <img src="images/members/member52.jpg">
+    <a class="member"
+       href="member-detail.html?id=52">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member52.jpg"
+                alt="Jemima Evodie">
+        </div>
+
         <h3>Jemima Evodie</h3>
+
+    </a>
+    
+        <a class="member"
+       href="member-detail.html?id=53">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member53.jpg"
+                alt="Maxine Fayee">
+        </div>
+
+        <h3>Maxine Fayee</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=53">
-        <img src="images/members/member53.jpg">
-        <h3>Maxine Faye</h3>
-    </a>
+    <a class="member"
+       href="member-detail.html?id=54">
 
+        <div class="photo-frame">
+            <img
+                src="images/members/member54.jpg"
+                alt="Mikaela Kusjanto">
+        </div>
 
-    <a class="member" href="member-detail.html?id=54">
-        <img src="images/members/member54.jpg">
         <h3>Mikaela Kusjanto</h3>
+
     </a>
 
 
-    <a class="member" href="member-detail.html?id=55">
-        <img src="images/members/member55.jpg">
+    <a class="member"
+       href="member-detail.html?id=55">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member55.jpg"
+                alt="Nur Intan">
+        </div>
+
         <h3>Nur Intan</h3>
+
+    </a>
+    
+            <a class="member"
+       href="member-detail.html?id=56">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member56.jpg"
+                alt="Putry Jazzyta">
+        </div>
+
+        <h3>Putry Jazyta</h3>
+
     </a>
 
- <a class="member" href="member-detail.html?id=56">
-        <img src="images/members/member56.jpg">
-        <h3>Purty Jazzyta</h3>
+
+    <a class="member"
+       href="member-detail.html?id=57">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member57.jpg"
+                alt="Ralyne Van Irwan">
+        </div>
+
+        <h3>Ralyne Van Irwan</h3>
+
     </a>
 
- <a class="member" href="member-detail.html?id=57">
-        <img src="images/members/member57.jpg">
-        <h3>Ralyn Van Irwan</h3>
-    </a>
 
- <a class="member" href="member-detail.html?id=58">
-        <img src="images/members/member58.jpg">
+    <a class="member"
+       href="member-detail.html?id=58">
+
+        <div class="photo-frame">
+            <img
+                src="images/members/member58.jpg"
+                alt="Sona Kalyana">
+        </div>
+
         <h3>Sona Kalyana</h3>
+
     </a>
-
-
 
 
 </section>
 
+
+<footer>
+
+     Visioner48
+
+</footer>
 
 
 </body>
