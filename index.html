@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -14,160 +14,681 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: #0b0b0b;
-    color: white;
+    color: #fff;
+    min-height: 100vh;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 .header {
-    background: linear-gradient(135deg, #000000, #180000, #b00000);
-    padding: 25px 15px;
-    text-align: center;
-    border-bottom: 3px solid #d00000;
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.25);
+    height: 76px;
+    background: linear-gradient(135deg, #e50914, #b00008);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,.35);
 }
 
 .logo {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 12px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #ff2020;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-}
-
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.header h1 {
     font-size: 28px;
-    margin-bottom: 7px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.header p {
-    color: #dddddd;
-    font-size: 14px;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* CONTAINER */
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+.icon-button {
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,.20);
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* WELCOME */
-.welcome {
-    background: linear-gradient(145deg, #171717, #0d0d0d);
-    border: 1px solid #3a0000;
-    border-radius: 18px;
-    padding: 22px;
-    margin-bottom: 25px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.5);
+.icon-button:active {
+    transform: scale(.94);
 }
 
-.welcome h2 {
-    color: #ff3030;
-    margin-bottom: 10px;
-}
-
-.welcome p {
-    color: #cfcfcf;
-    line-height: 1.6;
-}
-
-/* MENU */
-.menu-title {
-    font-size: 21px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    border-left: 4px solid #e00000;
-    padding-left: 10px;
-}
+/* ================= MENU DRAWER ================= */
 
 .menu {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 92%;
+    max-width: 500px;
+    height: 100vh;
+
+    padding: 85px 28px 25px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(229, 9, 20, 0.28),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #250000,
+            #111111 55%,
+            #080808
+        );
+
+    z-index: 2000;
+
+    overflow-y: auto;
+
+    transform: translateX(105%);
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        transform .38s cubic-bezier(.22,.61,.36,1),
+        opacity .25s ease;
+
+    box-shadow: -15px 0 45px rgba(0,0,0,.65);
 }
 
-.menu-card {
-    background: linear-gradient(145deg, #191919, #0d0d0d);
-    border: 1px solid #3d0000;
-    border-radius: 17px;
-    padding: 22px 15px;
-    text-align: center;
+.menu.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* ================= TOMBOL CLOSE ================= */
+
+.menu-close {
+    position: absolute;
+
+    top: 22px;
+    right: 22px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    font-size: 25px;
+
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     transition: .2s;
-    box-shadow: 0 4px 15px rgba(0,0,0,.4);
 }
 
-.menu-card:hover {
-    transform: translateY(-3px);
-    border-color: #d00000;
-    box-shadow: 0 5px 20px rgba(255,0,0,.2);
+.menu-close:hover {
+    background: #e50914;
+    transform: rotate(90deg);
 }
 
-.menu-card:active {
-    transform: scale(.97);
+
+/* ================= JUDUL MENU ================= */
+
+.menu-title {
+    padding: 0 0 22px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    border-bottom: 1px solid rgba(255,255,255,.15);
+
+    margin-bottom: 5px;
+}
+
+
+/* ================= LINK MENU ================= */
+
+.menu a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 17px 10px;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    transition:
+        background .2s,
+        color .2s,
+        padding-left .2s;
+}
+
+.menu a:hover {
+    color: #ff3543;
+    padding-left: 18px;
+}
+
+.menu a:active {
+    background: rgba(229,9,20,.15);
 }
 
 .menu-icon {
-    font-size: 35px;
-    margin-bottom: 10px;
-}
+    width: 30px;
 
-.menu-card h3 {
-    font-size: 17px;
-    margin-bottom: 6px;
-    color: white;
-}
-
-.menu-card p {
-    color: #999;
-    font-size: 12px;
-}
-
-/* SECTION */
-.section {
-    background: linear-gradient(145deg, #171717, #0c0c0c);
-    border: 1px solid #3a0000;
-    border-radius: 18px;
-    padding: 20px;
-    margin-top: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.4);
-}
-
-.section h2 {
-    color: #ff3030;
-    margin-bottom: 10px;
-}
-
-.section p {
-    color: #cfcfcf;
-    line-height: 1.6;
-}
-
-/* FOOTER */
-.footer {
     text-align: center;
-    color: #777;
+
+    font-size: 20px;
+}
+
+
+/* ================= BAGIAN BAWAH ================= */
+
+.menu-bottom {
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255,255,255,.2);
+}
+
+
+/* ================= YOUTUBE + TIKTOK ================= */
+
+.menu-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+}
+
+.language-button,
+.login-button {
+    flex: 1;
+
+    height: 54px;
+
+    border-radius: 30px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.language-button {
+    background: #fff;
+
+    color: #111;
+
+    border: none;
+}
+
+.login-button {
+    background: #e50914;
+
+    color: white;
+
+    border: 1px solid #ff4b55;
+}
+
+
+/* ================= SOSIAL MEDIA ================= */
+
+.menu-social {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-bottom: 10px;
+}
+
+.menu-social a {
+    width: auto;
+
+    padding: 0;
+
+    border: none;
+
+    font-size: 21px;
+
+    color: #ddd;
+}
+
+.menu-social a:hover {
+    color: #ff3543;
+
+    padding-left: 0;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 600px) {
+
+    .menu {
+        width: 92%;
+
+        padding:
+            82px
+            22px
+            25px;
+    }
+
+    .menu a {
+        font-size: 19px;
+
+        padding: 16px 7px;
+    }
+
+    .menu-title {
+        font-size: 11px;
+    }
+
+    .menu-bottom {
+        margin-top: 30px;
+    }
+
+    .menu-actions {
+        gap: 10px;
+    }
+}
+
+.menu.active {
+    display: block;
+}
+
+.menu-title {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-decoration: none;
+    color: white;
+    padding: 13px 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.menu a:hover {
+    background: #e50914;
+}
+
+.menu-icon {
+    width: 25px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* ================= MAIN ================= */
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 18px 15px 50px;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    background:
+        radial-gradient(circle at top right, rgba(229,9,20,.25), transparent 35%),
+        linear-gradient(145deg, #181818, #101010);
+    border-radius: 28px;
+    padding: 45px 25px 38px;
+    text-align: center;
+    border: 1px solid #252525;
+    box-shadow: 0 12px 35px rgba(0,0,0,.35);
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(229,9,20,.14);
+    color: #ff4752;
+    border: 1px solid rgba(229,9,20,.35);
+    padding: 7px 13px;
+    border-radius: 30px;
     font-size: 12px;
-    padding: 30px 10px;
-    border-top: 1px solid #250000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(31px, 8vw, 55px);
+    line-height: 1.08;
+    font-weight: 800;
+    margin-bottom: 17px;
+}
+
+.hero h1 span {
+    color: #ff3543;
+}
+
+.hero p {
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* ================= SOCIAL ================= */
+
+.social {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
     margin-top: 30px;
 }
 
-/* DESKTOP */
-@media (min-width: 700px) {
+.social a {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    background: #202020;
+    border: 1px solid #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 19px;
+    transition: .2s;
+}
+
+.social a:hover {
+    background: #e50914;
+    transform: translateY(-3px);
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    margin-top: 35px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 7px;
+}
+
+.section-heading .symbol {
+    color: #ff2636;
+    font-size: 26px;
+}
+
+.section-heading h2 {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.section-heading h2 span {
+    color: #ff2636;
+}
+
+.section-description {
+    color: #929292;
+    font-size: 14px;
+    margin-left: 38px;
+    margin-bottom: 20px;
+}
+
+/* ================= BIRTHDAY ================= */
+
+.birthday-list {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.birthday-card {
+    background: #171717;
+    border: 1px solid #282828;
+    border-radius: 23px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.birthday-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18px;
+    bottom: 18px;
+    width: 4px;
+    background: #e50914;
+    border-radius: 0 5px 5px 0;
+}
+
+.birthday-photo {
+    width: 145px;
+    height: 145px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 20px;
+    background: #242424;
+}
+
+.birthday-info {
+    min-width: 0;
+}
+
+.birthday-name {
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.birthday-fullname {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.birthday-date {
+    color: #ff3343;
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.birthday-age {
+    color: #ddd;
+    font-size: 14px;
+    margin-bottom: 11px;
+}
+
+.tags {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: #292929;
+    color: #ddd;
+    padding: 5px 10px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.tag.red {
+    background: rgba(229,9,20,.20);
+    color: #ff5964;
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+    background: #151515;
+    border: 1px dashed #333;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    color: #888;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+    text-align: center;
+    padding: 35px 15px;
+    color: #666;
+    font-size: 12px;
+}
+
+.footer strong {
+    color: #e50914;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 70px;
+        padding: 0 17px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
     .menu {
-        grid-template-columns: repeat(4, 1fr);
+        top: 70px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+    }
+
+    .container {
+        padding: 12px 10px 40px;
+    }
+
+    .hero {
+        border-radius: 24px;
+        padding: 40px 18px 30px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .birthday-card {
+        padding: 10px;
+        gap: 13px;
+        min-height: 145px;
+    }
+
+    .birthday-photo {
+        width: 125px;
+        height: 145px;
+        border-radius: 17px;
+    }
+
+    .birthday-name {
+        font-size: 21px;
+    }
+
+    .birthday-fullname {
+        font-size: 13px;
+    }
+
+    .birthday-date {
+        font-size: 15px;
+    }
+
+    .birthday-age {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 390px) {
+
+    .birthday-photo {
+        width: 105px;
+        height: 125px;
+    }
+
+    .birthday-card {
+        min-height: 125px;
+    }
+
+    .birthday-name {
+        font-size: 18px;
+    }
+
+    .birthday-fullname {
+        font-size: 12px;
+    }
+
+    .birthday-date {
+        font-size: 14px;
+    }
+
+    .tag {
+        padding: 4px 7px;
+        font-size: 10px;
     }
 }
 </style>
@@ -175,170 +696,336 @@ body {
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header class="header">
 
-    <!-- FOTO LOGO -->
     <div class="logo">
-        <img src="image/Visioner48.jpg" alt="Visioner48">
+        Visioner48
     </div>
 
-    <h1>Visioner48</h1>
-    <p>Jelajahi dunia JKT48 dalam satu aplikasi</p>
+    <div class="header-right">
+        <button class="icon-button" onclick="toggleMenu()" aria-label="Menu">
+            ☰
+        </button>
+    </div>
 
 </header>
 
-<main class="container">
 
-    <!-- WELCOME -->
-    <section class="welcome">
-        <h2>Selamat Datang di Visioner48</h2>
+<div class="menu" id="menu">
 
-        <p>
-            Selamat datang di Visioner48.
-            Jelajahi berbagai informasi, member,
-            game, berita, dan konten menarik seputar JKT48.
-        </p>
-    </section>
+    <!-- TOMBOL CLOSE -->
+    <button class="menu-close" onclick="toggleMenu()">
+        ×
+    </button>
 
-    <!-- MENU -->
+
     <div class="menu-title">
         Menu Visioner48
     </div>
 
-    <section class="menu">
 
-        <!-- MEMBER -->
-        <div class="menu-card"
-             onclick="location.href='member.html'">
+    <a href="index.html">
+        <span class="menu-icon">⌂</span>
+        HOME
+    </a>
 
-            <div class="menu-icon">👥</div>
+    <a href="member.html">
+        <span class="menu-icon">♙</span>
+        MEMBER
+    </a>
 
-            <h3>Member JKT48</h3>
+    <a href="news.html">
+        <span class="menu-icon">▤</span>
+        NEWS
+    </a>
 
-            <p>
-                Lihat daftar dan biodata member
-            </p>
+    <a href="schedule.html">
+        <span class="menu-icon">◷</span>
+        EVENTS
+    </a>
 
-        </div>
+    <a href="replay.html">
+        <span class="menu-icon">▶</span>
+        REPLAY LIVE
+    </a>
 
-        <!-- GAME -->
-        <div class="menu-card"
-             onclick="location.href='game.html'">
+    <a href="game.html">
+        <span class="menu-icon">♟</span>
+        GAME
+    </a>
 
-            <div class="menu-icon">🎮</div>
+    <a href="question.html">
+        <span class="menu-icon">?</span>
+        KRITIK, SARAN & PERTANYAAN
+    </a>
+    
+    <a href="donate.html">
+        <span class="menu-icon">$</span>
+        DONATE
+    </a>
 
-            <h3>Game</h3>
 
-            <p>
-                Main berbagai game JKT48
-            </p>
+    <!-- BAGIAN BAWAH -->
 
-        </div>
+   <div class="menu-actions">
 
-        <!-- NEWS -->
-        <div class="menu-card"
-             onclick="location.href='news.html'">
+    <button
+        class="language-button"
+        onclick="window.open('https://www.tiktok.com/@visioncrew48?_r=1&_t=ZS-99r977Weqjy', '_blank')">
+        ◉ &nbsp; TikTok
+    </button>
 
-            <div class="menu-icon">📰</div>
+    <button
+        class="login-button"
+        onclick="window.open('https://youtube.com/@massno919?si=G-cGoUn2KQ7bZKrk')">
+        ▶ &nbsp; YouTube
+    </button>
 
-            <h3>News</h3>
+</div>
 
-            <p>
-                Berita dan informasi terbaru
-            </p>
 
-        </div>
-
-        <!-- REPLAY LIVE -->
-        <div class="menu-card"
-             onclick="location.href='replay.html'">
-
-            <div class="menu-icon">🎥</div>
-
-            <h3>Replay Live</h3>
-
-            <p>
-                Replay Live/IDN
-            </p>
-
-        </div>
-        
-                <!-- BIRTHDAY -->
-        <div class="menu-card"
-             onclick="location.href='birtday.html'">
-
-            <div class="menu-icon">🎂</div>
-
-            <h3>Birthday</h3>
-
-            <p>
-                Ulang Tahun Member JKT48
-            </p>
+            <a
+                href="https://chat.whatsapp.com/BPm3OfT05uf94X2JMXCPXq?s=cl&p=a&mlu=4&ilr=4/"
+                target="_blank">
+                Grup Whatsapp
+            </a>
 
         </div>
-        
-                        <!-- SCHEDULE -->
-        <div class="menu-card"
-             onclick="location.href='schedule.html'">
 
-            <div class="menu-icon">📅</div>
+    </div>
 
-            <h3>Schedule</h3>
+</div>
 
-            <p>
-                Jadwal JKT48
-            </p>
 
+<!-- ================= CONTENT ================= -->
+
+<main class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            VISIONER48
         </div>
-        
-                                <!-- SCHEDULE -->
-        <div class="menu-card"
-             onclick="location.href='donate.html'">
 
-            <div class="menu-icon">🏧</div>
+        <h1>
+            Jelajahi Dunia<br>
+            <span>JKT48</span> Bersama Visioner48
+        </h1>
 
-            <h3>Donate</h3>
-
-            <p>
-                Donate ini untuk dikasih buat orang yang membutuhkan
-            </p>
-
-        </div>
-        
-                <!-- QUESTION -->
-        <div class="menu-card"
-             onclick="location.href='question.html'">
-
-            <div class="menu-icon">📩</div>
-
-            <h3>Question</h3>
-
-            <p>
-                Punya pertanyaan, kritik, saran, atau ingin menyampaikan sesuatu? Tulis di sini dan sampaikan pendapatmu untuk Visioner48.
-            </p>
-
-        </div>
+        <p>
+            Temukan berbagai informasi, member, berita,
+            jadwal, game, replay live dan berbagai fitur
+            Visioner48 dalam satu tempat.
+        </p>
 
     </section>
 
-    <!-- ABOUT -->
+
+    <!-- ================= BIRTHDAY ================= -->
+
     <section class="section">
 
-        <h2>Tentang Visioner48</h2>
+        <div class="section-heading">
 
-        <p>
-            Visioner48 merupakan fan project bertema JKT48
-            yang menyediakan berbagai informasi,
-            permainan, berita, dan fitur menarik lainnya.
-        </p>
+            <div class="symbol">🎂</div>
+
+            <h2>
+                Upcoming <span>Birthday</span>
+            </h2>
+
+        </div>
+
+        <div class="section-description">
+            Rayakan momen spesial member JKT48 mendatang
+        </div>
+
+
+        <div class="birthday-list">
+
+            <!-- JESSI -->
+
+            <div class="birthday-card">
+
+                <img
+                    class="birthday-photo"
+                    src="birthday-image/jessi.jpg"
+                    alt="Jessi"
+                    onerror="this.src='image/birthday/default.jpg'">
+
+                <div class="birthday-info">
+
+                    <div class="birthday-name">
+                        Jessi
+                    </div>
+
+                    <div class="birthday-fullname">
+                        Jessica Chandra
+                    </div>
+
+                    <div class="birthday-date">
+                        23 Sep 2026
+                    </div>
+
+                    <div class="birthday-age">
+                        Ulang tahun ke-21
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">
+                            Gen 7
+                        </span>
+
+                        <span class="tag red">
+                            4 hari lagi
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RALYNE -->
+
+            <div class="birthday-card">
+
+                <img
+                    class="birthday-photo"
+                    src="birthday-image/ralyne.jpg"
+                    alt="Ralyne"
+                    onerror="this.src='image/birthday/default.jpg'">
+
+                <div class="birthday-info">
+
+                    <div class="birthday-name">
+                        Ralyne
+                    </div>
+
+                    <div class="birthday-fullname">
+                        Ralyne Van Irwan
+                    </div>
+
+                    <div class="birthday-date">
+                        15 Okt 2026
+                    </div>
+
+                    <div class="birthday-age">
+                        Ulang tahun ke-15
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">
+                            Gen 14
+                        </span>
+
+                        <span class="tag red">
+                            26 hari lagi
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NACHIA -->
+
+            <div class="birthday-card">
+
+                <img
+                    class="birthday-photo"
+                    src="birthday-image/nachia.jpg"
+                    alt="Nachia"
+                    onerror="this.src='image/birthday/default.jpg'">
+
+                <div class="birthday-info">
+
+                    <div class="birthday-name">
+                        Nachia
+                    </div>
+
+                    <div class="birthday-fullname">
+                        Nina Tutachia
+                    </div>
+
+                    <div class="birthday-date">
+                        20 Okt 2026
+                    </div>
+
+                    <div class="birthday-age">
+                        Ulang tahun ke-20
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">
+                            Gen 11
+                        </span>
+
+                        <span class="tag red">
+                            Segera
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </section>
 
 </main>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer class="footer">
-    © 2026 Visioner48
+
+    <strong>Visioner48</strong>
+
+    <br><br>
+
+    Jelajahi dunia JKT48 dalam satu aplikasi.
+
 </footer>
+
+
+<script>
+
+/* ================= MENU ================= */
+
+function toggleMenu() {
+
+    const menu = document.getElementById("menu");
+
+    menu.classList.toggle("active");
+
+}
+
+
+/* Tutup menu jika klik di luar */
+
+document.addEventListener("click", function(event) {
+
+    const menu = document.getElementById("menu");
+
+    const button = document.querySelector(".icon-button");
+
+    if (
+        menu.classList.contains("active") &&
+        !menu.contains(event.target) &&
+        !button.contains(event.target)
+    ) {
+        menu.classList.remove("active");
+    }
+
+});
+
+</script>
 
 </body>
 </html>
