@@ -1,304 +1,433 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<title>Replay Live - Visioner48</title>
 
-<title>Replay Live</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <style>
-
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    background: #080808;
-    color: white;
-    font-family: Arial, sans-serif;
+body{
+    font-family:Arial,sans-serif;
+    background:#080808;
+    color:#fff;
+    min-height:100vh;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
+/* HEADER */
+.header{
+    background:linear-gradient(135deg,#000000,#180000,#b00000);
+    padding:24px 15px;
+    text-align:center;
+    border-bottom:2px solid #e00020;
 }
 
-h1 {
-    text-align: center;
-    color: #ff1a1a;
-    margin-bottom: 25px;
+.header h1{
+    font-size:27px;
 }
 
-.replay-box {
-    background: #151515;
-    border: 1px solid #e00000;
-    border-radius: 18px;
-    padding: 20px;
+.header p{
+    margin-top:6px;
+    color:#ccc;
+    font-size:14px;
 }
 
-.judul {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
+/* CONTAINER */
+.container{
+    width:92%;
+    max-width:850px;
+    margin:25px auto;
 }
 
-iframe {
-    width: 100%;
-    height: 450px;
-    border: none;
-    border-radius: 15px;
+/* LOADING */
+.loading{
+    text-align:center;
+    color:#aaa;
+    padding:35px 10px;
 }
 
-.kosong {
-    text-align: center;
-    padding: 40px 20px;
-    color: #aaa;
+/* LIST */
+#daftarReplay{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
 }
 
-.kembali {
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-    padding: 14px;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid #e00000;
-    border-radius: 10px;
-    color: white;
+/* CARD */
+.replay-card{
+    background:#151515;
+    border:1px solid #333;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.35);
 }
 
-@media (max-width: 600px) {
-
-    body {
-        padding: 12px;
-    }
-
-    iframe {
-        height: 230px;
-    }
-
-    .judul {
-        font-size: 18px;
-    }
-
+.video{
+    width:100%;
+    aspect-ratio:16/9;
+    background:#000;
 }
 
+.video iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+}
+
+.info{
+    padding:17px;
+}
+
+.info h2{
+    font-size:18px;
+    margin-bottom:9px;
+    color:#fff;
+}
+
+.info p{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.tanggal{
+    margin-top:10px;
+    color:#777 !important;
+    font-size:12px !important;
+}
+
+/* KOSONG */
+.kosong{
+    text-align:center;
+    background:#151515;
+    border:1px solid #333;
+    border-radius:16px;
+    padding:35px 15px;
+    color:#888;
+}
+
+/* KEMBALI */
+.kembali{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#222;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    margin:25px 0;
+}
+
+.kembali:hover{
+    background:#333;
+}
 </style>
-
 </head>
 
 <body>
 
+<div class="header">
+    <h1>Visioner48</h1>
+    <p>Replay Live</p>
+</div>
+
 <div class="container">
 
-<h1>
-    Replay Live
-</h1>
-
-<div
-    id="replay"
-    class="replay-box">
-    
-    <div class="kosong">
-        Memuat Replay Live...
+    <div id="daftarReplay">
+        <div class="loading">
+            Memuat Replay Live...
+        </div>
     </div>
 
-</div>
-
-<a
-    href="index.html"
-    class="kembali"
->
-    Kembali
-</a>
+    <a href="index.html" class="kembali">
+        ← Kembali ke Home
+    </a>
 
 </div>
-
-
-<!-- FIREBASE -->
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 
 <script>
 
 /* =========================
-   FIREBASE CONFIG
+   FIREBASE
 ========================= */
 
 const firebaseConfig = {
-
-    apiKey: "ISI_API_KEY_KAMU",
-
+    apiKey: "GANTI_DENGAN_API_KEY_KAMU",
     authDomain: "visioner48-9b51e.firebaseapp.com",
-
     databaseURL: "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
-
     projectId: "visioner48-9b51e",
-
-    storageBucket: "visioner48-9b51e.appspot.com",
-
-    messagingSenderId: "ISI_MESSAGING_SENDER_ID",
-
-    appId: "ISI_APP_ID"
-
+    storageBucket: "visioner48-9b51e.firebasestorage.app",
+    messagingSenderId: "GANTI_DENGAN_MESSAGING_SENDER_ID",
+    appId: "GANTI_DENGAN_APP_ID"
 };
-
-
-/* =========================
-   INIT FIREBASE
-========================= */
 
 firebase.initializeApp(firebaseConfig);
 
-const database = firebase.database();
+const db = firebase.database();
+
+const replayRef =
+    db.ref("visioner48_replay");
 
 
 /* =========================
-   TAMPILKAN REPLAY
+   AMBIL DATA
 ========================= */
 
-function tampilkanReplay() {
+replayRef.on("value", function(snapshot){
 
-    const replay =
-        document.getElementById("replay");
+    const daftar =
+        document.getElementById("daftarReplay");
 
-
-    database
-        .ref("visioner48_replay")
-        .on("value", function(snapshot) {
-
-            const item = snapshot.val();
+    daftar.innerHTML = "";
 
 
-            if (!item) {
+    if(!snapshot.exists()){
 
-                replay.innerHTML = `
+        daftar.innerHTML = `
+            <div class="kosong">
+                Belum ada Replay Live.
+            </div>
+        `;
 
-                    <div class="kosong">
-
-                        Belum ada Replay Live.
-
-                    </div>
-
-                `;
-
-                return;
-            }
+        return;
+    }
 
 
-            if (!item.embedUrl) {
-
-                replay.innerHTML = `
-
-                    <div class="kosong">
-
-                        Replay tidak tersedia.
-
-                    </div>
-
-                `;
-
-                return;
-            }
+    const data = [];
 
 
-            replay.innerHTML = `
+    snapshot.forEach(function(child){
 
-                <div class="judul">
-
-                    ${escapeHtml(
-                        item.judul || "Replay Live"
-                    )}
-
-                </div>
-
-
-                <iframe
-
-                    src="${escapeAttribute(
-                        item.embedUrl
-                    )}"
-
-                    title="Replay Live"
-
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-
-                    allowfullscreen>
-
-                </iframe>
-
-            `;
-
-        }, function(error) {
-
-            console.error(error);
-
-            replay.innerHTML = `
-
-                <div class="kosong">
-
-                    Gagal membaca Replay Live.
-
-                </div>
-
-            `;
-
+        data.push({
+            key:child.key,
+            ...child.val()
         });
 
+    });
+
+
+    /* Terbaru di atas */
+    data.sort(function(a,b){
+
+        return (b.waktu || 0) -
+               (a.waktu || 0);
+
+    });
+
+
+    data.forEach(function(item){
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "replay-card";
+
+
+        card.innerHTML = `
+
+            <div class="video">
+                ${buatVideo(item.embed)}
+            </div>
+
+            <div class="info">
+
+                <h2>
+                    ${aman(item.judul || "Replay Live")}
+                </h2>
+
+                ${
+                    item.deskripsi
+                    ?
+                    `<p>${aman(item.deskripsi)}</p>`
+                    :
+                    ""
+                }
+
+                ${
+                    item.waktu
+                    ?
+                    `<p class="tanggal">
+                        ${formatTanggal(item.waktu)}
+                    </p>`
+                    :
+                    ""
+                }
+
+            </div>
+
+        `;
+
+
+        daftar.appendChild(card);
+
+    });
+
+}, function(error){
+
+    document.getElementById("daftarReplay").innerHTML = `
+        <div class="kosong">
+            Gagal memuat Replay Live.<br><br>
+            ${aman(error.message)}
+        </div>
+    `;
+
+});
+
+
+/* =========================
+   VIDEO
+========================= */
+
+function buatVideo(link){
+
+    if(!link){
+        return "";
+    }
+
+
+    link = link.trim();
+
+
+    /* Kalau sudah iframe */
+    if(link.includes("<iframe")){
+
+        return link;
+    }
+
+
+    let videoID = "";
+
+
+    /* youtube.com/watch?v= */
+    let match =
+        link.match(/[?&]v=([^&#]+)/);
+
+    if(match){
+
+        videoID = match[1];
+
+    }
+
+
+    /* youtu.be/ */
+    if(!videoID){
+
+        match =
+            link.match(/youtu\.be\/([^?&#]+)/);
+
+        if(match){
+
+            videoID = match[1];
+
+        }
+
+    }
+
+
+    /* youtube.com/live/ */
+    if(!videoID){
+
+        match =
+            link.match(/youtube\.com\/live\/([^?&#]+)/);
+
+        if(match){
+
+            videoID = match[1];
+
+        }
+
+    }
+
+
+    /* youtube.com/embed/ */
+    if(!videoID){
+
+        match =
+            link.match(/youtube\.com\/embed\/([^?&#]+)/);
+
+        if(match){
+
+            videoID = match[1];
+
+        }
+
+    }
+
+
+    if(videoID){
+
+        return `
+            <iframe
+                src="https://www.youtube.com/embed/${encodeURIComponent(videoID)}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        `;
+
+    }
+
+
+    /* Kalau bukan link YouTube,
+       coba langsung sebagai embed */
+
+    return `
+        <iframe
+            src="${aman(link)}"
+            allowfullscreen>
+        </iframe>
+    `;
 }
 
 
 /* =========================
-   AMANKAN JUDUL
+   TANGGAL
 ========================= */
 
-function escapeHtml(teks) {
+function formatTanggal(waktu){
 
-    const div =
-        document.createElement("div");
+    const tanggal =
+        new Date(waktu);
 
-    div.textContent =
-        teks;
-
-    return div.innerHTML;
+    return tanggal.toLocaleDateString(
+        "id-ID",
+        {
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
 
 }
 
 
 /* =========================
-   AMANKAN URL
+   AMANKAN HTML
 ========================= */
 
-function escapeAttribute(teks) {
+function aman(teks){
 
     return String(teks)
-        .replace(/&/g, "&amp;")
-        .replace(/"/g, "&quot;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
-
-
-/* =========================
-   MULAI
-========================= */
-
-tampilkanReplay();
 
 </script>
 
 </body>
-
 </html>
