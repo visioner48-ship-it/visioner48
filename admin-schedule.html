@@ -295,6 +295,7 @@ button {
     <option value="SHOW">SHOW</option>
     <option value="STS">STS</option>
     <option value="LAST SHOW">LAST SHOW</option>
+     <option value="LAST SHOW">EXCLUSIVE</option>
 </select>
 
 <label>Tanggal</label>
@@ -855,13 +856,7 @@ async function saveSchedule() {
             );
 
         }
-
-
-        resetForm();
-
-        loadSchedules();
-
-    }
+}
 
     catch(error) {
 
