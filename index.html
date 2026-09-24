@@ -2,10 +2,14 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-
-<link rel="icon" type="image/png" href="logo.png">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ </style>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#8b0000">
 
 <title>Visioner48</title>
 
@@ -1030,6 +1034,14 @@ document.addEventListener("click", function(event) {
 });
 
 </script>
+
+ 
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+        .then(() => console.log("Service Worker aktif"))
+        .catch(err => console.log("SW gagal:", err));
+}
 
 </body>
 </html>
