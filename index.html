@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+
+<link rel="icon" type="image/png" href="logo.png">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- </style>
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
-
 <link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#8b0000">
+<meta name="theme-color" content="#b00008">
+<link rel="apple-touch-icon" href="logo.png">
 
 <title>Visioner48</title>
 
@@ -234,6 +233,24 @@ body {
 
 
 /* ================= YOUTUBE + TIKTOK ================= */
+
+.download-button {
+    width: 100%;
+    height: 54px;
+    margin-bottom: 12px;
+    border: 1px solid #ff4b55;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #e50914, #b00008);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(229,9,20,.25);
+}
+
+.download-button:active {
+    transform: scale(.97);
+}
 
 .menu-actions {
     display: flex;
@@ -698,6 +715,166 @@ body {
         font-size: 10px;
     }
 }
+
+/* ================= SCHEDULE HOME ================= */
+
+.schedule-home-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.schedule-home-card {
+    display: grid;
+    grid-template-columns: 135px 1fr;
+    gap: 15px;
+    background: #171717;
+    border: 1px solid #282828;
+    border-left: 4px solid #e50914;
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.schedule-home-card:hover {
+    background: #220000;
+    border-color: #e50914;
+    transform: translateY(-2px);
+}
+
+.schedule-home-poster {
+    width: 135px;
+    height: 105px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #242424;
+}
+
+.schedule-home-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.schedule-home-info {
+    min-width: 0;
+    padding: 3px 4px 3px 0;
+}
+
+.schedule-home-title {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 7px;
+    line-height: 1.25;
+}
+
+.schedule-home-team {
+    color: #ff3543;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+
+.schedule-home-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 7px;
+}
+
+.schedule-home-meta span {
+    background: #292929;
+    border-radius: 8px;
+    padding: 5px 8px;
+    color: #ddd;
+    font-size: 11px;
+}
+
+.schedule-home-lineup {
+    color: #999;
+    font-size: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.schedule-home-more {
+    display: block;
+    margin-top: 14px;
+    text-align: center;
+    background: #b00008;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.schedule-home-more:hover {
+    background: #e50914;
+}
+
+.schedule-home-loading,
+.schedule-home-empty {
+    background: #151515;
+    border: 1px dashed #333;
+    border-radius: 18px;
+    padding: 24px;
+    text-align: center;
+    color: #888;
+}
+
+@media (max-width: 600px) {
+    .schedule-home-card {
+        grid-template-columns: 110px 1fr;
+        gap: 12px;
+    }
+
+    .schedule-home-poster {
+        width: 110px;
+        height: 100px;
+    }
+
+    .schedule-home-title {
+        font-size: 15px;
+    }
+
+    .schedule-home-team {
+        font-size: 11px;
+    }
+
+    .schedule-home-lineup {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 390px) {
+    .schedule-home-card {
+        grid-template-columns: 95px 1fr;
+        gap: 10px;
+        padding: 8px;
+    }
+
+    .schedule-home-poster {
+        width: 95px;
+        height: 95px;
+    }
+
+    .schedule-home-title {
+        font-size: 14px;
+    }
+
+    .schedule-home-meta span {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+}
+
 </style>
 </head>
 
@@ -750,7 +927,7 @@ body {
 
     <a href="schedule.html">
         <span class="menu-icon">◷</span>
-        EVENTS
+        SCHEDULE
     </a>
 
     <a href="replay.html">
@@ -828,6 +1005,35 @@ body {
             jadwal, game, replay live dan berbagai fitur
             Visioner48 dalam satu tempat.
         </p>
+
+    </section>
+
+
+
+    <!-- ================= SCHEDULE ================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+            <div class="symbol">◷</div>
+            <h2>
+                Upcoming <span>Schedule</span>
+            </h2>
+        </div>
+
+        <div class="section-description">
+            Jadwal pertunjukan JKT48 mendatang
+        </div>
+
+        <div id="homeScheduleList" class="schedule-home-list">
+            <div class="schedule-home-loading">
+                Memuat schedule...
+            </div>
+        </div>
+
+        <a href="schedule.html" class="schedule-home-more">
+            Lihat Semua Schedule →
+        </a>
 
     </section>
 
@@ -1004,6 +1210,232 @@ body {
 
 <script>
 
+
+/* ================= HOME SCHEDULE ================= */
+
+const HOME_FIREBASE_URL =
+    "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app";
+
+const HOME_SCHEDULE_PATH = "visioner48_schedule";
+
+function homeEscapeHTML(value) {
+    if (value === null || value === undefined) return "";
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function homeFormatDate(dateString) {
+    if (!dateString) return "-";
+
+    const parts = String(dateString).split("-");
+    if (parts.length !== 3) return dateString;
+
+    const date = new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+
+    return date.toLocaleDateString("id-ID", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+}
+
+function homeGetLineup(item) {
+    if (!item || !item.lineup) return [];
+
+    const lineup = Array.isArray(item.lineup)
+        ? item.lineup
+        : Object.values(item.lineup);
+
+    return lineup.map(member => {
+        if (typeof member === "string") return member;
+
+        if (member && typeof member === "object") {
+            return member.name || member.member || "";
+        }
+
+        return "";
+    }).filter(Boolean);
+}
+
+async function loadHomeSchedule() {
+
+    const box = document.getElementById("homeScheduleList");
+
+    if (!box) return;
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    try {
+
+        const response = await fetch(
+            HOME_FIREBASE_URL +
+            "/" +
+            HOME_SCHEDULE_PATH +
+            ".json",
+            {
+                signal: controller.signal,
+                cache: "no-store"
+            }
+        );
+
+        clearTimeout(timeout);
+
+        if (!response.ok) {
+            throw new Error("Firebase schedule gagal");
+        }
+
+        const data = await response.json();
+
+        const items = Object.entries(data || {});
+
+        items.sort((a, b) => {
+
+            const aValue =
+                (a[1].date || "9999-99-99") +
+                " " +
+                (a[1].time || "99:99");
+
+            const bValue =
+                (b[1].date || "9999-99-99") +
+                " " +
+                (b[1].time || "99:99");
+
+            return aValue.localeCompare(bValue);
+        });
+
+        const upcoming = items.slice(0, 5);
+
+        if (!upcoming.length) {
+
+            box.innerHTML = `
+                <div class="schedule-home-empty">
+                    Belum ada schedule.
+                </div>
+            `;
+
+            return;
+        }
+
+        box.innerHTML = upcoming.map(([id, item]) => {
+
+            const lineup = homeGetLineup(item);
+
+            const lineupText = lineup.length
+                ? "Line Up: " + lineup.join(", ")
+                : "Line Up belum ditambahkan";
+
+            const image = item.image || "";
+
+            return `
+                <div
+                    class="schedule-home-card"
+                    onclick="window.location.href='schedule.html'"
+                >
+
+                    <div class="schedule-home-poster">
+                        ${
+                            image
+                            ? `
+                                <img
+                                    src="${homeEscapeHTML(image)}"
+                                    alt="${homeEscapeHTML(item.title || "Schedule")}"
+                                    onerror="this.style.display='none'"
+                                >
+                            `
+                            : ""
+                        }
+                    </div>
+
+                    <div class="schedule-home-info">
+
+                        <div class="schedule-home-title">
+                            ${homeEscapeHTML(item.title || "Pertunjukan")}
+                        </div>
+
+                        <div class="schedule-home-team">
+                            ${homeEscapeHTML(item.team || "JKT48")}
+                        </div>
+
+                        <div class="schedule-home-meta">
+
+                            <span>
+                                📅 ${homeEscapeHTML(homeFormatDate(item.date))}
+                            </span>
+
+                            <span>
+                                ⏰ ${homeEscapeHTML(item.time ? item.time + " WIB" : "-")}
+                            </span>
+
+                        </div>
+
+                        <div class="schedule-home-lineup">
+                            ${homeEscapeHTML(lineupText)}
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+    } catch (error) {
+
+        clearTimeout(timeout);
+
+        console.error("Home schedule:", error);
+
+        box.innerHTML = `
+            <div class="schedule-home-empty">
+                Schedule belum dapat dimuat.
+                <br>
+                <small style="color:#666;">
+                    Coba buka lagi beberapa saat kemudian.
+                </small>
+            </div>
+        `;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadHomeSchedule);
+
+
+/* ================= MENU ================= */
+
+let deferredPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+});
+
+async function installVisioner48() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const result = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        return;
+    }
+
+    alert("Jika tombol instalasi tidak muncul, buka menu Chrome (⋮) lalu pilih 'Tambahkan ke layar utama' atau 'Instal aplikasi'.");
+}
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+}
+
 /* ================= MENU ================= */
 
 function toggleMenu() {
@@ -1034,14 +1466,6 @@ document.addEventListener("click", function(event) {
 });
 
 </script>
-
- 
-<script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
-        .then(() => console.log("Service Worker aktif"))
-        .catch(err => console.log("SW gagal:", err));
-}
 
 </body>
 </html>
