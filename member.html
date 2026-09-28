@@ -1,898 +1,507 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Visioner48 - Member JKT48</title>
-
+<title>Visioner48 - All Member JKT48</title>
 <style>
-
-/* =========================
-   RESET
-========================= */
-
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;color:#fff;min-height:100vh;
+  background:radial-gradient(circle at 50% 0%,#3a0000 0%,#160000 35%,#050505 75%);
 }
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            #3a0000 0%,
-            #160000 35%,
-            #050505 75%
-        );
-
-    color: white;
-    min-height: 100vh;
+header{
+  text-align:center;padding:25px 15px 22px;
+  background:linear-gradient(135deg,#000,#180000,#9b0000);
+  border-bottom:2px solid #d00000;box-shadow:0 5px 20px rgba(255,0,0,.25)
 }
-
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-    text-align: center;
-
-    padding: 25px 15px 22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #000000,
-            #180000,
-            #9b0000
-        );
-
-    border-bottom: 2px solid #d00000;
-
-    box-shadow:
-        0 5px 20px rgba(255, 0, 0, 0.25);
+.logo{font-size:34px;font-weight:900;letter-spacing:1px}
+.logo span{color:#ff1d35}
+.subtitle{margin-top:7px;color:#d8d8d8;font-size:13px}
+.home{
+  display:inline-block;margin-top:15px;padding:9px 20px;border-radius:25px;
+  border:1px solid #ff2945;background:linear-gradient(90deg,#7d0000,#d00000);
+  color:#fff;text-decoration:none;font-size:13px;font-weight:bold;transition:.25s
 }
-
-.logo {
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: 1px;
+.home:hover{transform:translateY(-2px);background:#f00020}
+.title{text-align:center;padding:30px 15px 20px}
+.title small{display:block;color:#d0d0d0;letter-spacing:4px;font-size:11px;margin-bottom:8px}
+.title h2{
+  margin:0;font-size:32px;background:linear-gradient(90deg,#ff3155,#ff8a9b,#ff3155);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent
 }
-
-.logo span {
-    color: #ff1d35;
+.title p{margin-top:8px;color:#aaa;font-size:13px}
+.pages{
+  max-width:1200px;margin:0 auto 25px;padding:0 15px;display:flex;
+  justify-content:center;gap:10px;overflow-x:auto;scrollbar-width:none
 }
-
-.subtitle {
-    margin-top: 7px;
-
-    color: #d8d8d8;
-
-    font-size: 13px;
+.pages::-webkit-scrollbar{display:none}
+.pages button{
+  flex:0 0 auto;min-width:145px;padding:10px 22px;border-radius:30px;
+  border:1.5px solid #d00030;background:#080808;color:#fff;text-align:center;
+  font-size:14px;font-weight:bold;cursor:pointer;transition:.25s
 }
-
-
-/* =========================
-   HOME
-========================= */
-
-.home {
-    display: inline-block;
-
-    margin-top: 15px;
-
-    padding: 9px 20px;
-
-    border-radius: 25px;
-
-    border: 1px solid #ff2945;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7d0000,
-            #d00000
-        );
-
-    color: white;
-
-    text-decoration: none;
-
-    font-size: 13px;
-    font-weight: bold;
-
-    transition: 0.25s;
+.pages button.active,.pages button:hover{
+  background:linear-gradient(90deg,#e40035,#c50025);
+  border-color:#ff6b82;transform:translateY(-2px)
 }
-
-.home:hover {
-    transform: translateY(-2px);
-
-    background: #f00020;
-
-    box-shadow:
-        0 5px 15px rgba(255, 0, 40, 0.35);
+.count{text-align:center;color:#aaa;font-size:12px;margin:-8px 0 18px}
+.members{
+  max-width:1200px;margin:0 auto;padding:10px 20px 40px;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:28px 18px
 }
-
-
-/* =========================
-   JUDUL
-========================= */
-
-.title {
-    text-align: center;
-
-    padding: 30px 15px 20px;
+.member{display:block;color:#fff;text-decoration:none;text-align:center;transition:.25s}
+.member:hover{transform:translateY(-5px)}
+.photo-frame{
+  position:relative;width:100%;aspect-ratio:3/4;padding:5px;
+  background:linear-gradient(145deg,#ff526b,#b90022,#65000e);
+  border-radius:8px;box-shadow:0 7px 18px rgba(0,0,0,.55);overflow:hidden
 }
-
-.title small {
-    display: block;
-
-    color: #d0d0d0;
-
-    letter-spacing: 4px;
-
-    font-size: 11px;
-
-    margin-bottom: 8px;
+.photo-frame:before{
+  content:"✦";position:absolute;top:7px;left:8px;z-index:3;color:#ffe66d;font-size:15px
 }
-
-.title h2 {
-    margin: 0;
-
-    font-size: 32px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff3155,
-            #ff8a9b,
-            #ff3155
-        );
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.photo-frame:after{
+  content:"✦";position:absolute;right:8px;bottom:6px;z-index:3;color:#ffe66d;font-size:15px
 }
-
-.title p {
-    margin-top: 8px;
-
-    color: #aaa;
-
-    font-size: 13px;
+.photo-frame img{
+  width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;background:#eee
 }
-
-
-/* =========================
-   TOMBOL TIM
-========================= */
-
-.pages {
-    max-width: 1100px;
-
-    margin: 0 auto 25px;
-
-    padding: 0 15px;
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    overflow-x: auto;
-
-    scrollbar-width: none;
+.member h3{margin:9px 2px 0;font-size:14px;line-height:1.25;color:#fff;font-weight:bold}
+.member:hover .photo-frame{box-shadow:0 10px 25px rgba(255,0,40,.35);transform:scale(1.02)}
+footer{
+  margin-top:20px;padding:30px 20px 40px;text-align:center;border-top:1px solid #610000;
+  background:linear-gradient(135deg,#080000,#1b0000,#050505);color:#777;font-size:12px;letter-spacing:3px
 }
-
-.pages::-webkit-scrollbar {
-    display: none;
+@media(max-width:900px){
+  .members{grid-template-columns:repeat(4,1fr);gap:22px 14px}
 }
-
-
-/* tombol */
-
-.pages a {
-    flex: 0 0 auto;
-
-    min-width: 145px;
-
-    padding: 10px 22px;
-
-    border-radius: 30px;
-
-    border: 1.5px solid #d00030;
-
-    background: #080808;
-
-    color: white;
-
-    text-decoration: none;
-
-    text-align: center;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    transition: 0.25s;
+@media(max-width:700px){
+  .logo{font-size:29px}
+  .title{padding-top:25px}
+  .title h2{font-size:30px}
+  .pages{justify-content:flex-start;gap:8px;padding-left:15px;padding-right:15px}
+  .pages button{min-width:auto;padding:9px 17px;font-size:13px}
+  .members{grid-template-columns:repeat(2,1fr);padding:8px 15px 35px;gap:25px 22px}
+  .member h3{font-size:14px}
 }
-
-
-/* Love aktif */
-
-.pages a:first-child {
-    background:
-        linear-gradient(
-            90deg,
-            #e40035,
-            #c50025
-        );
-
-    border-color: #ff6b82;
-
-    box-shadow:
-        0 4px 15px rgba(255, 0, 50, 0.25);
+@media(max-width:380px){
+  .pages button{padding:8px 13px;font-size:12px}
+  .members{gap:20px 12px}
+  .member h3{font-size:13px}
 }
-
-
-/* hover */
-
-.pages a:hover {
-    background:
-        linear-gradient(
-            90deg,
-            #a50020,
-            #e00035
-        );
-
-    border-color: #ff506d;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   GRID MEMBER
-========================= */
-
-.members {
-    max-width: 1200px;
-
-    margin: 0 auto;
-
-    padding: 10px 20px 40px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(5, 1fr);
-
-    gap: 28px 18px;
-}
-
-
-/* =========================
-   KARTU MEMBER
-========================= */
-
-.member {
-    display: block;
-
-    color: white;
-
-    text-decoration: none;
-
-    text-align: center;
-
-    transition: 0.25s;
-}
-
-.member:hover {
-    transform: translateY(-5px);
-}
-
-
-/* =========================
-   FRAME FOTO
-========================= */
-
-.photo-frame {
-    position: relative;
-
-    width: 100%;
-
-    aspect-ratio: 3 / 4;
-
-    padding: 5px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ff526b,
-            #b90022,
-            #65000e
-        );
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.55);
-
-    overflow: hidden;
-}
-
-
-/* sudut dekorasi */
-
-.photo-frame::before {
-    content: "✦";
-
-    position: absolute;
-
-    top: 7px;
-    left: 8px;
-
-    z-index: 3;
-
-    color: #ffe66d;
-
-    font-size: 15px;
-}
-
-.photo-frame::after {
-    content: "✦";
-
-    position: absolute;
-
-    right: 8px;
-    bottom: 6px;
-
-    z-index: 3;
-
-    color: #ffe66d;
-
-    font-size: 15px;
-}
-
-
-/* foto */
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    border-radius: 4px;
-
-    background: #eee;
-}
-
-
-/* =========================
-   NAMA MEMBER
-========================= */
-
-.member h3 {
-    margin: 9px 2px 0;
-
-    font-size: 14px;
-
-    line-height: 1.25;
-
-    color: white;
-
-    font-weight: bold;
-}
-
-
-/* =========================
-   EFEK HOVER FOTO
-========================= */
-
-.member:hover .photo-frame {
-    box-shadow:
-        0 10px 25px rgba(255, 0, 40, 0.35);
-
-    transform: scale(1.02);
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    margin-top: 20px;
-
-    padding: 30px 20px 40px;
-
-    text-align: center;
-
-    border-top: 1px solid #610000;
-
-    background:
-        linear-gradient(
-            135deg,
-            #080000,
-            #1b0000,
-            #050505
-        );
-
-    color: #777;
-
-    font-size: 12px;
-
-    letter-spacing: 3px;
-}
-
-
-/* =========================
-   TABLET
-========================= */
-
-@media (max-width: 900px) {
-
-    .members {
-        grid-template-columns:
-            repeat(4, 1fr);
-
-        gap: 22px 14px;
-    }
-
-}
-
-
-/* =========================
-   HP
-========================= */
-
-@media (max-width: 700px) {
-
-    .logo {
-        font-size: 29px;
-    }
-
-    .title {
-        padding-top: 25px;
-    }
-
-    .title h2 {
-        font-size: 30px;
-    }
-
-
-    /* tombol tetap 1 baris */
-    .pages {
-        justify-content: flex-start;
-
-        gap: 8px;
-
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .pages a {
-        min-width: auto;
-
-        padding: 9px 17px;
-
-        font-size: 13px;
-    }
-
-
-    /* FOTO 2 KOLOM */
-    .members {
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        padding:
-            8px 15px 35px;
-
-        gap:
-            25px 22px;
-    }
-
-
-    .member h3 {
-        font-size: 14px;
-    }
-
-}
-
-
-/* =========================
-   HP KECIL
-========================= */
-
-@media (max-width: 380px) {
-
-    .pages a {
-        padding: 8px 13px;
-
-        font-size: 12px;
-    }
-
-    .members {
-        gap: 20px 12px;
-    }
-
-    .member h3 {
-        font-size: 13px;
-    }
-
-}
-
 </style>
 </head>
-
-
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
-
-    <div class="logo">
-        Visioner<span>48</span>
-    </div>
-
-    <div class="subtitle">
-        Jelajahi dunia JKT48 dalam satu aplikasi
-    </div>
-
-    <a href="index.html" class="home">
-        🏠 HOME
-    </a>
-
+  <div class="logo">Visioner<span>48</span></div>
+  <div class="subtitle">Jelajahi dunia JKT48 dalam satu aplikasi</div>
+  <a href="index.html" class="home">🏠 HOME</a>
 </header>
 
-
-<!-- =========================
-     JUDUL
-========================= -->
-
 <section class="title">
-
-    <small>MEMBER JKT48</small>
-
-    <h2>Tim Love</h2>
-
-    <p>
-        13 Member
-    </p>
-
+  <small>MEMBER JKT48</small>
+  <h2 id="title">Semua Member</h2>
+  <p id="subtitle">58 Member</p>
 </section>
-
-
-<!-- =========================
-     TOMBOL TIM
-========================= -->
 
 <div class="pages">
-    
-
-    <a href="member.html">
-        Tim Love
-    </a>
-
-    <a href="member2.html">
-        Tim Dream
-    </a>
-
-    <a href="member3.html">
-        Tim Passion
-    </a>
-
-    <a href="member4.html">
-        Trainee
-    </a>
-
+  <button class="active" data-filter="all">All Member</button>
+  <button data-filter="Tim Love">Team Love</button>
+  <button data-filter="Tim Dream">Team Dream</button>
+  <button data-filter="Tim Passion">Team Passion</button>
+  <button data-filter="Trainee">Trainee</button>
 </div>
 
-
-<!-- =========================
-     DAFTAR MEMBER
-========================= -->
+<div class="count" id="count"></div>
 
 <section class="members">
-
-
-    <!-- MEMBER 1 -->
-
-    <a class="member"
-       href="member-detail.html?id=1">
-
+      <a class="member" href="member-detail.html?id=1" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member1.jpg"
-                alt="Anindya Ramadhani"
-            >
-
+          <img src="images/members/member1.jpg" alt="Anindya Ramadhani" loading="lazy">
         </div>
-
-        <h3>
-            Anindya Ramadhani
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 2 -->
-
-    <a class="member"
-       href="member-detail.html?id=2">
-
+        <h3>Anindya Ramadhani</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=2" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member2.jpg"
-                alt="Aurellia"
-            >
-
+          <img src="images/members/member2.jpg" alt="Aurellia" loading="lazy">
         </div>
-
-        <h3>
-            Aurellia
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 3 -->
-
-    <a class="member"
-       href="member-detail.html?id=3">
-
+        <h3>Aurellia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=3" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member3.jpg"
-                alt="Aurhel Alana"
-            >
-
+          <img src="images/members/member3.jpg" alt="Aurhel Alana" loading="lazy">
         </div>
-
-        <h3>
-            Aurhel Alana
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 4 -->
-
-    <a class="member"
-       href="member-detail.html?id=4">
-
+        <h3>Aurhel Alana</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=4" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member4.jpg"
-                alt="Celline Thefani"
-            >
-
+          <img src="images/members/member4.jpg" alt="Celline Thefani" loading="lazy">
         </div>
-
-        <h3>
-            Celline Thefani
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 5 -->
-
-    <a class="member"
-       href="member-detail.html?id=5">
-
+        <h3>Celline Thefani</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=5" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member5.jpg"
-                alt="Cynthia Yaputera"
-            >
-
+          <img src="images/members/member5.jpg" alt="Cynthia Yaputera" loading="lazy">
         </div>
-
-        <h3>
-            Cynthia Yaputera
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 6 -->
-
-    <a class="member"
-       href="member-detail.html?id=6">
-
+        <h3>Cynthia Yaputera</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=6" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member6.jpg"
-                alt="Fiony Alveria"
-            >
-
+          <img src="images/members/member6.jpg" alt="Fiony Alveria" loading="lazy">
         </div>
-
-        <h3>
-            Fiony Alveria
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 7 -->
-
-    <a class="member"
-       href="member-detail.html?id=7">
-
+        <h3>Fiony Alveria</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=7" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member7.jpg"
-                alt="Fritzy Rosmerian"
-            >
-
+          <img src="images/members/member7.jpg" alt="Fritzy Rosmerian" loading="lazy">
         </div>
-
-        <h3>
-            Fritzy Rosmerian
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 8 -->
-
-    <a class="member"
-       href="member-detail.html?id=8">
-
+        <h3>Fritzy Rosmerian</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=8" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member8.jpg"
-                alt="Grace Octaviani"
-            >
-
+          <img src="images/members/member8.jpg" alt="Grace Octaviani" loading="lazy">
         </div>
-
-        <h3>
-            Grace Octaviani
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 9 -->
-
-    <a class="member"
-       href="member-detail.html?id=9">
-
+        <h3>Grace Octaviani</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=9" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member9.jpg"
-                alt="Hillary Abigail"
-            >
-
+          <img src="images/members/member9.jpg" alt="Hillary Abigail" loading="lazy">
         </div>
-
-        <h3>
-            Hillary Abigail
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 10 -->
-
-    <a class="member"
-       href="member-detail.html?id=10">
-
+        <h3>Hillary Abigail</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=10" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member10.jpg"
-                alt="Indah Cahya"
-            >
-
+          <img src="images/members/member10.jpg" alt="Indah Cahya" loading="lazy">
         </div>
-
-        <h3>
-            Indah Cahya
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 11 -->
-
-    <a class="member"
-       href="member-detail.html?id=11">
-
+        <h3>Indah Cahya</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=11" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member11.jpg"
-                alt="Jazzlyn Trisha"
-            >
-
+          <img src="images/members/member11.jpg" alt="Jazzlyn Trisha" loading="lazy">
         </div>
-
-        <h3>
-            Jazzlyn Trisha
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 12 -->
-
-    <a class="member"
-       href="member-detail.html?id=12">
-
+        <h3>Jazzlyn Trisha</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=12" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member12.jpg"
-                alt="Michelle Alexandra"
-            >
-
+          <img src="images/members/member12.jpg" alt="Michelle Alexandra" loading="lazy">
         </div>
-
-        <h3>
-            Michelle Alexandra
-        </h3>
-
-    </a>
-
-
-    <!-- MEMBER 13 -->
-
-    <a class="member"
-       href="member-detail.html?id=13">
-
+        <h3>Michelle Alexandra</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=13" data-team="Tim Love">
         <div class="photo-frame">
-
-            <img
-                src="images/members/member13.jpg"
-                alt="Nayla Suji"
-            >
-
+          <img src="images/members/member13.jpg" alt="Nayla Suji" loading="lazy">
         </div>
-
-        <h3>
-            Nayla Suji
-        </h3>
-
-    </a>
-
-
+        <h3>Nayla Suji</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=14" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member14.jpg" alt="Adeline Wijaya" loading="lazy">
+        </div>
+        <h3>Adeline Wijaya</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=15" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member15.jpg" alt="Febriola Sinambela" loading="lazy">
+        </div>
+        <h3>Febriola Sinambela</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=16" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member16.jpg" alt="Freya Jayawardana" loading="lazy">
+        </div>
+        <h3>Freya Jayawardana</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=17" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member17.jpg" alt="Gabriella Abigail" loading="lazy">
+        </div>
+        <h3>Gabriella Abigail</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=18" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member18.jpg" alt="Gita Sekar" loading="lazy">
+        </div>
+        <h3>Gita Sekar</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=19" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member19.jpg" alt="Greesella Adhalia" loading="lazy">
+        </div>
+        <h3>Greesella Adhalia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=20" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member20.jpg" alt="Helisma Putri" loading="lazy">
+        </div>
+        <h3>Helisma Putri</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=21" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member21.jpg" alt="Jesslyn Elly" loading="lazy">
+        </div>
+        <h3>Jesslyn Elly</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=22" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member22.jpg" alt="Marsha Lenathea" loading="lazy">
+        </div>
+        <h3>Marsha Lenathea</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=23" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member23.jpg" alt="Nina Tutachia" loading="lazy">
+        </div>
+        <h3>Nina Tutachia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=24" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member24.jpg" alt="Oline Manuel" loading="lazy">
+        </div>
+        <h3>Oline Manuel</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=25" data-team="Tim Dream">
+        <div class="photo-frame">
+          <img src="images/members/member25.jpg" alt="Shabilqis Naila" loading="lazy">
+        </div>
+        <h3>Shabilqis Naila</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=26" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member26.jpg" alt="Abigail Rachel" loading="lazy">
+        </div>
+        <h3>Abigail Rachel</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=27" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member27.jpg" alt="Angelina Christy" loading="lazy">
+        </div>
+        <h3>Angelina Christy</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=28" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member28.jpg" alt="Catherina Vallencia" loading="lazy">
+        </div>
+        <h3>Catherina Vallencia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=29" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member29.jpg" alt="Cornelia Vanisa" loading="lazy">
+        </div>
+        <h3>Cornelia Vanisa</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=30" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member30.jpg" alt="Dena Natalia" loading="lazy">
+        </div>
+        <h3>Dena Natalia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=31" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member31.jpg" alt="Desy Natalia" loading="lazy">
+        </div>
+        <h3>Desy Natalia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=32" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member32.jpg" alt="Feni Fitriyanti" loading="lazy">
+        </div>
+        <h3>Feni Fitriyanti</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=33" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member33.jpg" alt="Jessica Chandra" loading="lazy">
+        </div>
+        <h3>Jessica Chandra</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=34" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member34.jpg" alt="Kathrina Irene" loading="lazy">
+        </div>
+        <h3>Kathrina Irene</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=35" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member35.jpg" alt="Lulu Salsabila" loading="lazy">
+        </div>
+        <h3>Lulu Salsabila</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=36" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member36.jpg" alt="Michelle Levia" loading="lazy">
+        </div>
+        <h3>Michelle Levia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=37" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member37.jpg" alt="Mutiara Azzahra" loading="lazy">
+        </div>
+        <h3>Mutiara Azzahra</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=38" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member38.jpg" alt="Raisha Syifa" loading="lazy">
+        </div>
+        <h3>Raisha Syifa</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=39" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member39.jpg" alt="Ribka Budiman" loading="lazy">
+        </div>
+        <h3>Ribka Budiman</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=40" data-team="Tim Passion">
+        <div class="photo-frame">
+          <img src="images/members/member40.jpg" alt="Victoria Kimberly" loading="lazy">
+        </div>
+        <h3>Victoria Kimberly</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=41" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member41.jpg" alt="Astrella Virgiananda" loading="lazy">
+        </div>
+        <h3>Astrella Virgiananda</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=42" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member42.jpg" alt="Bong Aprilli" loading="lazy">
+        </div>
+        <h3>Bong Aprilli</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=43" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member43.jpg" alt="Hagia Sopia" loading="lazy">
+        </div>
+        <h3>Hagia Sopia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=44" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member44.jpg" alt="Humaira Ramadhani" loading="lazy">
+        </div>
+        <h3>Humaira Ramadhani</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=45" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member45.jpg" alt="Jacqueline Immanuela" loading="lazy">
+        </div>
+        <h3>Jacqueline Immanuela</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=46" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member46.jpg" alt="Jemima Evodie" loading="lazy">
+        </div>
+        <h3>Jemima Evodie</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=47" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member47.jpg" alt="Mikaela Kusjanto" loading="lazy">
+        </div>
+        <h3>Mikaela Kusjanto</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=48" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member48.jpg" alt="Nur Intan" loading="lazy">
+        </div>
+        <h3>Nur Intan</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=49" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member49.jpg" alt="Afera Thalia" loading="lazy">
+        </div>
+        <h3>Afera Thalia</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=50" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member50.jpg" alt="Carissa Dini" loading="lazy">
+        </div>
+        <h3>Carissa Dini</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=51" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member51.jpg" alt="Christabella Bonita" loading="lazy">
+        </div>
+        <h3>Christabella Bonita</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=52" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member52.jpg" alt="Fahira Putri" loading="lazy">
+        </div>
+        <h3>Fahira Putri</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=53" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member53.jpg" alt="Fatimah Azzahra" loading="lazy">
+        </div>
+        <h3>Fatimah Azzahra</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=54" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member54.jpg" alt="Heidi Suyangga" loading="lazy">
+        </div>
+        <h3>Heidi Suyangga</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=55" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member55.jpg" alt="Maxine Faye Lee" loading="lazy">
+        </div>
+        <h3>Maxine Faye Lee</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=56" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member56.jpg" alt="Putry Jazyta" loading="lazy">
+        </div>
+        <h3>Putry Jazyta</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=57" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member57.jpg" alt="Ralyne Van Irwan" loading="lazy">
+        </div>
+        <h3>Ralyne Van Irwan</h3>
+      </a>
+      <a class="member" href="member-detail.html?id=58" data-team="Trainee">
+        <div class="photo-frame">
+          <img src="images/members/member58.jpg" alt="Sona Kalyana" loading="lazy">
+        </div>
+        <h3>Sona Kalyana</h3>
+      </a>
 </section>
 
+<footer>Visioner48</footer>
 
-<!-- =========================
-     FOOTER
-========================= -->
+<script>
+const buttons = document.querySelectorAll(".pages button");
+const members = document.querySelectorAll(".member");
+const title = document.getElementById("title");
+const subtitle = document.getElementById("subtitle");
+const count = document.getElementById("count");
 
-<footer>
+const labels = {
+  all: ["Semua Member","58 Member"],
+  "Tim Love": ["Tim Love","13 Member"],
+  "Tim Dream": ["Tim Dream","12 Member"],
+  "Tim Passion": ["Tim Passion","15 Member"],
+  "Trainee": ["Trainee","18 Member"]
+};
 
-    Visioner48
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    buttons.forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
 
-</footer>
+    const filter = button.dataset.filter;
+    let total = 0;
 
+    members.forEach(member => {
+      const show = filter === "all" || member.dataset.team === filter;
+      member.style.display = show ? "block" : "none";
+      if (show) total++;
+    });
 
+    title.textContent = labels[filter][0];
+    subtitle.textContent = labels[filter][1];
+    window.scrollTo({top: 0, behavior: "smooth"});
+  });
+});
+</script>
 </body>
 </html>
