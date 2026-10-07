@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Detail Schedule - Visioner48</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #000,
+            #180000,
+            #b00000
+        );
+
+    color:white;
+    min-height:100vh;
+}
+
+.container{
+    width:94%;
+    max-width:900px;
+    margin:auto;
+    padding:20px 0 50px;
+}
+
+.home-btn{
+    display:inline-block;
+
+    padding:11px 17px;
+
+    background:#d60029;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+.detail{
+    display:none;
+
+    background:#090909;
+
+    border:1px solid #ff3048;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.photo{
+    width:100%;
+    max-height:450px;
+
+    object-fit:cover;
+
+    display:block;
+}
+
+.no-photo{
+    height:300px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#151515;
+
+    color:#777;
+}
+
+.content{
+    padding:22px;
+}
+
+.title{
+    color:#ff3048;
+
+    font-size:30px;
+
+    margin:
+        0 0 20px;
+}
+
+.info-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+}
+
+.info-box{
+    background:#151515;
+
+    border-radius:12px;
+
+    padding:14px;
+}
+
+.label{
+    color:#ff6375;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+}
+
+.value{
+    font-weight:bold;
+}
+
+.section-title{
+    color:#ff3048;
+
+    margin-top:28px;
+}
+
+
+/* ===============================
+   LINE UP 2 KOLOM
+================================ */
+
+.lineup{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+}
+
+.member{
+    display:block;
+
+    padding:13px;
+
+    background:#151515;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:.2s;
+}
+
+.member:hover{
+    background:#d60029;
+
+    border-color:#ff3048;
+}
+
+
+/* EVENT LINK */
+
+.event-link{
+    display:inline-block;
+
+    padding:12px 17px;
+
+    background:#d60029;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:bold;
+}
+
+
+#loading,
+#error{
+    text-align:center;
+
+    padding:40px;
+}
+
+#error{
+    color:#ff6375;
+}
+
+
+@media(max-width:600px){
+
+    .title{
+        font-size:25px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lineup{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <a
+        href="index.html"
+        class="home-btn">
+        ← Kembali ke Home
+    </a>
+
+
+    <div id="loading">
+        Memuat detail schedule...
+    </div>
+
+    <div id="error"></div>
+
+
+    <div
+        id="detail"
+        class="detail">
+
+        <div id="photoContainer"></div>
+
+
+        <div class="content">
+
+            <h1
+                id="title"
+                class="title">
+                -
+            </h1>
+
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <div class="label">
+                        TEAM
+                    </div>
+
+                    <div
+                        id="team"
+                        class="value">
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="label">
+                        TYPE
+                    </div>
+
+                    <div
+                        id="type"
+                        class="value">
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="label">
+                        TANGGAL
+                    </div>
+
+                    <div
+                        id="date"
+                        class="value">
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="label">
+                        WAKTU
+                    </div>
+
+                    <div
+                        id="time"
+                        class="value">
+                        -
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <h2 class="section-title">
+                Line Up
+            </h2>
+
+
+            <div
+                id="lineup"
+                class="lineup">
+            </div>
+
+
+            <div
+                id="eventSection"
+                style="display:none;">
+
+                <h2 class="section-title">
+                    Link Event
+                </h2>
+
+                <a
+                    id="eventLink"
+                    class="event-link"
+                    target="_blank"
+                    rel="noopener">
+                    Buka Link Event →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+
+    apiKey:"ISI_API_KEY",
+
+    authDomain:
+        "visioner48-9b51e.firebaseapp.com",
+
+    databaseURL:
+        "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
+
+    projectId:
+        "visioner48-9b51e",
+
+    storageBucket:
+        "visioner48-9b51e.appspot.com",
+
+    messagingSenderId:
+        "ISI_MESSAGING_SENDER_ID",
+
+    appId:
+        "ISI_APP_ID"
+
+};
+
+firebase.initializeApp(
+    firebaseConfig
+);
+
+const db =
+    firebase.database();
+
+const DATABASE_PATH =
+    "visioner48_schedule";
+
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const scheduleId =
+    params.get("id");
+
+
+const loading =
+    document.getElementById(
+        "loading"
+    );
+
+const error =
+    document.getElementById(
+        "error"
+    );
+
+const detail =
+    document.getElementById(
+        "detail"
+    );
+
+const title =
+    document.getElementById(
+        "title"
+    );
+
+const team =
+    document.getElementById(
+        "team"
+    );
+
+const type =
+    document.getElementById(
+        "type"
+    );
+
+const date =
+    document.getElementById(
+        "date"
+    );
+
+const time =
+    document.getElementById(
+        "time"
+    );
+
+const lineup =
+    document.getElementById(
+        "lineup"
+    );
+
+const photoContainer =
+    document.getElementById(
+        "photoContainer"
+    );
+
+const eventSection =
+    document.getElementById(
+        "eventSection"
+    );
+
+const eventLink =
+    document.getElementById(
+        "eventLink"
+    );
+
+
+/* ===============================
+   CEK ID
+================================ */
+
+if(!scheduleId){
+
+    loading.style.display =
+        "none";
+
+    error.textContent =
+        "Schedule ID tidak ditemukan.";
+
+}else{
+
+    loadDetail();
+
+}
+
+
+/* ===============================
+   LOAD DETAIL
+================================ */
+
+function loadDetail(){
+
+    db.ref(
+        DATABASE_PATH +
+        "/" +
+        scheduleId
+    )
+    .once("value")
+    .then(snapshot => {
+
+        loading.style.display =
+            "none";
+
+
+        if(!snapshot.exists()){
+
+            error.textContent =
+                "Schedule tidak ditemukan.";
+
+            return;
+        }
+
+
+        const data =
+            snapshot.val();
+
+
+        detail.style.display =
+            "block";
+
+
+        /* TITLE */
+
+        title.textContent =
+            data.title ||
+            "Schedule";
+
+
+        /* INFO */
+
+        team.textContent =
+            data.team || "-";
+
+        type.textContent =
+            data.type || "-";
+
+        date.textContent =
+            data.date || "-";
+
+        time.textContent =
+            data.time || "-";
+
+
+        /* =========================
+           FOTO LOKAL
+        ========================= */
+
+        if(data.photo){
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+            img.className =
+                "photo";
+
+            img.src =
+                data.photo;
+
+            img.alt =
+                data.title ||
+                "Schedule";
+
+
+            img.onerror =
+                function(){
+
+                    photoContainer.innerHTML =
+                        '<div class="no-photo">' +
+                        'Foto tidak ditemukan' +
+                        '</div>';
+
+                };
+
+
+            photoContainer.appendChild(
+                img
+            );
+
+        }else{
+
+            photoContainer.innerHTML =
+                '<div class="no-photo">' +
+                'Tidak ada foto' +
+                '</div>';
+
+        }
+
+
+        /* =========================
+           LINE UP
+        ========================= */
+
+        lineup.innerHTML = "";
+
+
+        if(
+            Array.isArray(data.lineup) &&
+            data.lineup.length
+        ){
+
+            data.lineup.forEach(
+                member => {
+
+                    const a =
+                        document.createElement(
+                            "a"
+                        );
+
+                    a.className =
+                        "member";
+
+
+                    /*
+                     * ID TIDAK DITAMPILKAN
+                     *
+                     * ID HANYA DIPAKAI
+                     * UNTUK LINK MEMBER
+                     */
+
+                    a.href =
+                        "member-detail.html?id=" +
+                        encodeURIComponent(
+                            member.id
+                        );
+
+
+                    a.textContent =
+                        member.name || "";
+
+
+                    lineup.appendChild(
+                        a
+                    );
+
+                }
+            );
+
+        }else{
+
+            lineup.innerHTML =
+                '<div style="color:#888;">' +
+                'Belum ada Line Up.' +
+                '</div>';
+
+        }
+
+
+        /* =========================
+           LINK EVENT
+        ========================= */
+
+        if(data.link){
+
+            eventSection.style.display =
+                "block";
+
+            eventLink.href =
+                data.link;
+
+        }
+
+    })
+    .catch(err => {
+
+        loading.style.display =
+            "none";
+
+        error.textContent =
+            "Gagal memuat detail: " +
+            err.message;
+
+        console.error(err);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
