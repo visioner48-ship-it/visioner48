@@ -1334,8 +1334,7 @@ async function loadHomeSchedule() {
                 ? "Line Up: " + lineup.join(", ")
                 : "Line Up belum ditambahkan";
 
-            const image = item.image || "";
-
+           const image = item.photo || "";
             return `
                 <div
                     class="schedule-home-card"
@@ -1348,7 +1347,7 @@ async function loadHomeSchedule() {
                             ? `
                                 <img
                                     src="${homeEscapeHTML(image)}"
-                                    alt="${homeEscapeHTML(item.title || "Schedule")}"
+                                    alt="${homeEscapeHTML(item.setlist || item.title || "Schedule")}"
                                     onerror="this.style.display='none'"
                                 >
                             `
@@ -1359,7 +1358,7 @@ async function loadHomeSchedule() {
                     <div class="schedule-home-info">
 
                         <div class="schedule-home-title">
-                            ${homeEscapeHTML(item.title || "Pertunjukan")}
+                            ${homeEscapeHTML(item.setlist || item.title || "Pertunjukan")}
                         </div>
 
                         <div class="schedule-home-team">
@@ -1373,7 +1372,7 @@ async function loadHomeSchedule() {
                             </span>
 
                             <span>
-                                ⏰ ${homeEscapeHTML(item.time ? item.time + " WIB" : "-")}
+                                ⏰ ${homeEscapeHTML(item.time || "-")}
                             </span>
 
                         </div>
