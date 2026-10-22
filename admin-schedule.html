@@ -1,1058 +1,415 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Schedule - Visioner48</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111111">
+<title>Admin Schedule - Sieshin48</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#000,#180000,#b00000);
-    color:white;
-    min-height:100vh;
-}
-
-.container{
-    width:94%;
-    max-width:900px;
-    margin:auto;
-    padding:20px 0 50px;
-}
-
-.header,
-.form-box,
-.schedule-item{
-    background:#090909;
-    border:1px solid #ff3048;
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-h1,h2{
-    color:#ff3048;
-}
-
-h1{
-    margin-top:0;
-}
-
-label{
-    display:block;
-    margin:15px 0 7px;
-    font-weight:bold;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:13px;
-    border-radius:10px;
-    border:1px solid #444;
-    background:#181818;
-    color:white;
-    font-size:15px;
-}
-
-textarea{
-    min-height:140px;
-    resize:vertical;
-}
-
-.help{
-    color:#aaa;
-    font-size:13px;
-    margin-top:6px;
-    line-height:1.5;
-}
-
-button,
-.home-btn{
-    border:0;
-    border-radius:10px;
-    padding:12px 17px;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    text-decoration:none;
-    display:inline-block;
-    margin-top:15px;
-    margin-right:5px;
-}
-
-.home-btn{
-    background:#d60029;
-}
-
-.save-btn{
-    background:#d60029;
-}
-
-.cancel-btn{
-    background:#555;
-}
-
-.edit-btn{
-    background:#d88900;
-}
-
-.delete-btn{
-    background:#a90022;
-}
-
-.status{
-    display:none;
-    background:#151515;
-    border-radius:10px;
-    padding:12px;
-    margin-top:15px;
-}
-
-.schedule-item h3{
-    color:#ff3048;
-    margin-top:0;
-}
-
-.info{
-    line-height:1.8;
-    color:#ddd;
-}
-
-.lineup{
-    white-space:pre-line;
-    background:#151515;
-    padding:12px;
-    border-radius:10px;
-    margin-top:10px;
-}
-
-.preview{
-    width:100%;
-    max-height:300px;
-    object-fit:cover;
-    border-radius:12px;
-    margin-top:12px;
-    display:none;
-}
-
-.limit{
-    background:#250008;
-    border:1px solid #8d001e;
-    padding:12px;
-    border-radius:10px;
-    color:#ffb2bd;
-    margin-bottom:15px;
-}
-
-@media(max-width:600px){
-    .container{
-        width:92%;
-    }
+*{box-sizing:border-box}
+:root{--red:#df001b;--bg:#101010;--panel:#1b1b1b;--text:#f5f5f5;--muted:#aaa;--border:#353535}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+header{padding:20px 16px;background:#181818;border-bottom:2px solid var(--red)}
+header h1{font-size:23px;margin:0 0 7px}
+header p{font-size:13px;color:var(--muted);margin:0}
+main{max-width:850px;margin:auto;padding:17px 14px 45px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:13px;padding:17px;margin-bottom:20px}
+.panel h2{font-size:19px;margin:0 0 18px}
+label{display:block;font-size:13px;color:#ddd;margin-bottom:7px}
+input,select,textarea{display:block;width:100%;background:#101010;color:white;border:1px solid #454545;border-radius:8px;padding:12px;font:inherit;font-size:15px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#ed2440}
+textarea{min-height:100px;resize:vertical}
+.field{margin-bottom:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.btn{border:0;border-radius:8px;padding:12px 15px;font-size:14px;font-weight:bold;cursor:pointer}
+.primary{background:var(--red);color:white}
+.secondary{background:#333;color:white}
+.danger{background:#9e1020;color:white}
+.success{background:#087b55;color:white}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions .btn{flex:1}
+.hint{font-size:12px;color:var(--muted);line-height:1.6;margin-top:7px}
+#status{display:none;padding:12px;border-radius:8px;margin-bottom:15px;font-size:14px;line-height:1.5}
+#status.show{display:block}
+#status.ok{background:#123b2c;color:#a6ffcf}
+#status.error{background:#481a21;color:#ffb4bc}
+.schedule-row{border:1px solid var(--border);border-radius:10px;padding:13px;margin-top:11px}
+.schedule-row h3{font-size:16px;margin:0 0 7px;overflow-wrap:anywhere}
+.schedule-row p{font-size:13px;color:#bbb;line-height:1.6;margin:0 0 12px}
+.row-actions{display:flex;gap:8px}
+.row-actions button{flex:1}
+.empty{color:#aaa;text-align:center;padding:22px 0}
+hr{border:0;border-top:1px solid var(--border);margin:20px 0}
+@media(max-width:450px){
+ .grid{grid-template-columns:1fr;gap:0}
+ .panel{padding:14px}
+ header h1{font-size:21px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
+ <h1>Admin Schedule</h1>
+ <p>Sieshin48 · Kelola Show dan Event</p>
+</header>
 
-    <div class="header">
-        <h1>Visioner48 Admin Schedule</h1>
+<main>
+ <div id="status"></div>
 
-        <p>
-            Tambah, edit, dan hapus schedule.
-        </p>
+ <section class="panel">
+  <h2 id="formTitle">Tambah Schedule</h2>
 
-        <a href="index.html" class="home-btn">
-            ← Kembali ke Home
-        </a>
+  <form id="scheduleForm">
+   <div class="field">
+    <label for="title">Nama Show / Event *</label>
+    <input id="title" required maxlength="150"
+      placeholder="Contoh: ITADAKI♥LOVE">
+   </div>
+
+   <div class="grid">
+    <div class="field">
+     <label for="date">Tanggal *</label>
+     <input id="date" type="date" required>
     </div>
-
-
-    <div class="form-box">
-
-        <h2 id="formTitle">
-            Tambah Schedule
-        </h2>
-
-        <div class="limit">
-            Maksimal 6 show/acara.
-            Foto menggunakan file lokal dari folder
-            <b>images</b> di SPCK.
-        </div>
-
-
-        <label>Nama Show / Acara</label>
-
-        <input
-            type="text"
-            id="title"
-            placeholder="Contoh: Pajama Drive">
-
-
-        <label>Team</label>
-
-        <input
-            type="text"
-            id="team"
-            placeholder="Contoh: Team Love">
-
-
-        <label>Type</label>
-
-        <select id="type">
-            <option value="">Pilih Type</option>
-            <option value="Show">Show</option>
-            <option value="STS">STS</option>
-            <option value="Last Show">Last Show</option>
-            <option value="Event">Event</option>
-        </select>
-
-
-        <label>Tanggal</label>
-
-        <input
-            type="date"
-            id="date">
-
-
-        <label>Waktu</label>
-
-        <input
-            type="time"
-            id="time">
-
-
-        <!-- FOTO LOKAL -->
-
-        <label>Foto Show</label>
-
-        <select id="photo">
-
-            <option value="">
-                Pilih foto
-            </option>
-
-            <option value="images/show1.jpg">
-                show1.jpg
-            </option>
-
-            <option value="images/show2.jpg">
-                show2.jpg
-            </option>
-
-            <option value="images/show3.jpg">
-                show3.jpg
-            </option>
-
-            <option value="images/show4.jpg">
-                show4.jpg
-            </option>
-
-            <option value="images/show5.jpg">
-                show5.jpg
-            </option>
-
-            <option value="images/show6.jpg">
-                show6.jpg
-            </option>
-
-        </select>
-
-        <div class="help">
-            File harus sudah ada di folder
-            <b>images</b> pada project SPCK.
-        </div>
-
-        <img
-            id="photoPreview"
-            class="preview">
-
-
-        <label>Link Event</label>
-
-        <input
-            type="url"
-            id="link"
-            placeholder="Opsional">
-
-
-        <label>Line Up</label>
-
-        <textarea
-            id="lineup"
-            placeholder="10|Anindya
-11|Fiony
-12|Freya
-13|Gracia"></textarea>
-
-        <div class="help">
-            Format:
-            <b>ID|Nama</b><br><br>
-
-            Contoh:<br>
-            10|Anindya<br>
-            11|Fiony<br>
-            12|Freya
-        </div>
-
-
-        <button
-            class="save-btn"
-            onclick="saveSchedule()">
-            Simpan Schedule
-        </button>
-
-
-        <button
-            id="cancelBtn"
-            class="cancel-btn"
-            onclick="cancelEdit()"
-            style="display:none;">
-            Batal Edit
-        </button>
-
-
-        <div
-            id="status"
-            class="status">
-        </div>
-
+    <div class="field">
+     <label for="time">Jam (WIB)</label>
+     <input id="time" maxlength="40" placeholder="19:00 – 21:00">
     </div>
+   </div>
 
+   <div class="grid">
+    <div class="field">
+     <label for="team">Tim</label>
+     <select id="team">
+      <option>Team Love</option>
+      <option>Team Dream</option>
+      <option>Team Passion</option>
+      <option>Trainee</option>
+      <option>JKT48</option>
+     </select>
+    </div>
+    <div class="field">
+     <label for="type">Jenis Schedule</label>
+     <select id="type">
+      <option>Show</option>
+      <option>Event</option>
+     </select>
+    </div>
+   </div>
 
-    <h2>Daftar Schedule</h2>
+   <div class="field">
+    <label for="lineup">Anggota yang tampil</label>
+    <textarea id="lineup" placeholder="Anindya Ramadhani&#10;Aurellia&#10;Aurhel Alana"></textarea>
+    <div class="hint">Tulis satu nama per baris. Nama akan tampil sebagai chip pada halaman detail.</div>
+   </div>
 
-    <div id="scheduleList"></div>
+   <hr>
+   <h2>Periode Pembelian Tiket</h2>
 
-</div>
+   <div class="field">
+    <label for="far">FAR — Mulai</label>
+    <input id="far" type="datetime-local">
+   </div>
+   <div class="field">
+    <label for="farEnd">FAR — Selesai</label>
+    <input id="farEnd" type="datetime-local">
+   </div>
 
+   <div class="field">
+    <label for="ofc">OFC — Mulai</label>
+    <input id="ofc" type="datetime-local">
+   </div>
+   <div class="field">
+    <label for="ofcEnd">OFC — Selesai</label>
+    <input id="ofcEnd" type="datetime-local">
+   </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+   <div class="field">
+    <label for="general">General — Mulai</label>
+    <input id="general" type="datetime-local">
+   </div>
+   <div class="field">
+    <label for="generalEnd">General — Selesai</label>
+    <input id="generalEnd" type="datetime-local">
+   </div>
+
+   <div class="hint">
+    Kosongkan periode yang belum diumumkan. Waktu mengikuti zona waktu lokal perangkat, misalnya WIB.
+   </div>
+
+   <div class="actions" style="margin-top:20px">
+    <button class="btn primary" type="submit" id="saveBtn">Simpan Schedule</button>
+    <button class="btn secondary" type="button" id="cancelBtn" hidden>Batal Edit</button>
+   </div>
+  </form>
+ </section>
+
+ <section class="panel">
+  <h2>Daftar Schedule</h2>
+  <p class="hint">Gunakan Edit untuk mengubah jadwal dan Hapus untuk menghapusnya.</p>
+  <div id="scheduleList"></div>
+ </section>
+
+ <section class="panel">
+  <h2>Cadangan Data</h2>
+  <p class="hint">Simpan cadangan sebelum mengganti perangkat atau membersihkan data browser.</p>
+  <div class="actions">
+   <button class="btn secondary" id="exportBtn" type="button">Ekspor JSON</button>
+   <button class="btn secondary" id="importBtn" type="button">Impor JSON</button>
+  </div>
+  <input id="importFile" type="file" accept=".json,application/json" hidden>
+ </section>
+
+ <button class="btn secondary" style="width:100%" onclick="location.href='schedule.html'">
+  Lihat Halaman Schedule
+ </button>
+</main>
 
 <script>
+"use strict";
 
-const firebaseConfig = {
+const KEY="sieshin48_schedules";
+const $=id=>document.getElementById(id);
 
-    /* PAKAI CONFIG FIREBASE KAMU */
-    apiKey: "ISI_API_KEY",
-    authDomain: "visioner48-9b51e.firebaseapp.com",
-    databaseURL:
-    "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "visioner48-9b51e",
-    storageBucket: "visioner48-9b51e.appspot.com",
-    messagingSenderId: "ISI_MESSAGING_SENDER_ID",
-    appId: "ISI_APP_ID"
+let schedules=[];
+let editingId=null;
 
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const db =
-    firebase.database();
-
-const DATABASE_PATH =
-    "visioner48_schedule";
-
-
-const titleInput =
-    document.getElementById("title");
-
-const teamInput =
-    document.getElementById("team");
-
-const typeInput =
-    document.getElementById("type");
-
-const dateInput =
-    document.getElementById("date");
-
-const timeInput =
-    document.getElementById("time");
-
-const photoInput =
-    document.getElementById("photo");
-
-const linkInput =
-    document.getElementById("link");
-
-const lineupInput =
-    document.getElementById("lineup");
-
-const statusBox =
-    document.getElementById("status");
-
-const scheduleList =
-    document.getElementById("scheduleList");
-
-const photoPreview =
-    document.getElementById("photoPreview");
-
-
-let editingId = null;
-
-
-/* ===============================
-   FOTO PREVIEW
-================================ */
-
-photoInput.addEventListener(
-    "change",
-    function(){
-
-        if(!this.value){
-
-            photoPreview.style.display =
-                "none";
-
-            return;
-
-        }
-
-        photoPreview.src =
-            this.value;
-
-        photoPreview.style.display =
-            "block";
-
-    }
-);
-
-
-/* ===============================
-   PARSE LINE UP
-================================ */
-
-function parseLineup(text){
-
-    const lines =
-        text
-        .split("\n")
-        .map(line => line.trim())
-        .filter(Boolean);
-
-    const result = [];
-
-    lines.forEach(line => {
-
-        const separator =
-            line.indexOf("|");
-
-        if(separator === -1){
-            return;
-        }
-
-        const id =
-            line
-            .substring(0,separator)
-            .trim();
-
-        const name =
-            line
-            .substring(separator + 1)
-            .trim();
-
-        if(id && name){
-
-            result.push({
-                id:id,
-                name:name
-            });
-
-        }
-
-    });
-
-    return result;
+function newId(){
+ return "sch-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8);
 }
 
-
-/* ===============================
-   STATUS
-================================ */
-
-function showStatus(message){
-
-    statusBox.style.display =
-        "block";
-
-    statusBox.textContent =
-        message;
-
+function showStatus(message,type="ok"){
+ const box=$("status");
+ box.textContent=message;
+ box.className="show "+type;
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
-
-/* ===============================
-   SAVE
-================================ */
-
-async function saveSchedule(){
-
-    const title =
-        titleInput.value.trim();
-
-    const team =
-        teamInput.value.trim();
-
-    const type =
-        typeInput.value.trim();
-
-    const date =
-        dateInput.value;
-
-    const time =
-        timeInput.value;
-
-    const photo =
-        photoInput.value;
-
-    const link =
-        linkInput.value.trim();
-
-    const lineup =
-        parseLineup(
-            lineupInput.value
-        );
-
-
-    if(!title){
-
-        showStatus(
-            "Nama show wajib diisi."
-        );
-
-        return;
-    }
-
-
-    if(!date){
-
-        showStatus(
-            "Tanggal wajib diisi."
-        );
-
-        return;
-    }
-
-
-    if(!time){
-
-        showStatus(
-            "Waktu wajib diisi."
-        );
-
-        return;
-    }
-
-
-    if(!photo){
-
-        showStatus(
-            "Pilih foto show."
-        );
-
-        return;
-    }
-
-
-    if(lineup.length === 0){
-
-        showStatus(
-            "Line Up minimal 1 member."
-        );
-
-        return;
-    }
-
-
-    try{
-
-        /* CEK MAKSIMAL 6 */
-
-        if(!editingId){
-
-            const snapshot =
-                await db
-                .ref(DATABASE_PATH)
-                .once("value");
-
-            let jumlah = 0;
-
-            if(snapshot.exists()){
-
-                jumlah =
-                    Object.keys(
-                        snapshot.val()
-                    ).length;
-
-            }
-
-
-            if(jumlah >= 6){
-
-                showStatus(
-                    "Maksimal 6 show sudah tercapai."
-                );
-
-                return;
-            }
-
-        }
-
-
-        const data = {
-
-            title:title,
-
-            team:team,
-
-            type:type,
-
-            date:date,
-
-            time:time,
-
-            photo:photo,
-
-            link:link,
-
-            lineup:lineup,
-
-            updatedAt:Date.now()
-
-        };
-
-
-        if(editingId){
-
-            await db
-            .ref(
-                DATABASE_PATH +
-                "/" +
-                editingId
-            )
-            .update(data);
-
-            showStatus(
-                "Schedule berhasil diedit."
-            );
-
-        }else{
-
-            data.createdAt =
-                Date.now();
-
-            await db
-            .ref(DATABASE_PATH)
-            .push(data);
-
-            showStatus(
-                "Schedule berhasil ditambahkan."
-            );
-
-        }
-
-
-        clearForm();
-
-        loadSchedules();
-
-    }catch(error){
-
-        console.error(error);
-
-        showStatus(
-            "Gagal menyimpan: " +
-            error.message
-        );
-
-    }
-
+function readData(){
+ try{
+  const raw=localStorage.getItem(KEY);
+  if(!raw)return [];
+  const data=JSON.parse(raw);
+  return Array.isArray(data)?data:[];
+ }catch(e){
+  showStatus("Gagal membaca data lokal. Periksa data browser.", "error");
+  return [];
+ }
 }
 
-
-/* ===============================
-   LOAD
-================================ */
-
-function loadSchedules(){
-
-    scheduleList.innerHTML =
-        "<p>Memuat...</p>";
-
-
-    db.ref(DATABASE_PATH)
-    .once("value")
-    .then(snapshot => {
-
-        scheduleList.innerHTML = "";
-
-
-        if(!snapshot.exists()){
-
-            scheduleList.innerHTML =
-                "<p>Belum ada schedule.</p>";
-
-            return;
-        }
-
-
-        const schedules = [];
-
-
-        snapshot.forEach(child => {
-
-            schedules.push({
-
-                id:child.key,
-
-                ...child.val()
-
-            });
-
-        });
-
-
-        schedules.sort(
-            (a,b) => {
-
-                const A =
-                    (a.date || "") +
-                    " " +
-                    (a.time || "");
-
-                const B =
-                    (b.date || "") +
-                    " " +
-                    (b.time || "");
-
-                return A.localeCompare(B);
-
-            }
-        );
-
-
-        schedules.forEach(
-            renderSchedule
-        );
-
-    })
-    .catch(error => {
-
-        scheduleList.innerHTML =
-            "Gagal memuat: " +
-            error.message;
-
-    });
-
+function saveData(){
+ try{
+  localStorage.setItem(KEY,JSON.stringify(schedules));
+  return true;
+ }catch(e){
+  showStatus("Gagal menyimpan data. Penyimpanan browser mungkin penuh atau diblokir.", "error");
+  return false;
+ }
 }
 
-
-/* ===============================
-   RENDER ADMIN
-================================ */
-
-function renderSchedule(item){
-
-    const box =
-        document.createElement("div");
-
-    box.className =
-        "schedule-item";
-
-
-    const lineup =
-        Array.isArray(item.lineup)
-        ?
-        item.lineup
-        .map(
-            member =>
-                member.id +
-                "|" +
-                member.name
-        )
-        .join("\n")
-        :
-        "-";
-
-
-    box.innerHTML = `
-
-        <h3>
-            ${escapeHTML(
-                item.title || "-"
-            )}
-        </h3>
-
-        <div class="info">
-
-            <b>Team:</b>
-            ${escapeHTML(item.team || "-")}
-            <br>
-
-            <b>Type:</b>
-            ${escapeHTML(item.type || "-")}
-            <br>
-
-            <b>Tanggal:</b>
-            ${escapeHTML(item.date || "-")}
-            <br>
-
-            <b>Waktu:</b>
-            ${escapeHTML(item.time || "-")}
-            <br>
-
-            <b>Foto:</b>
-            ${escapeHTML(item.photo || "-")}
-
-        </div>
-
-        <div class="lineup">
-
-            <b>Line Up:</b><br>
-
-            ${escapeHTML(lineup)}
-
-        </div>
-
-        <button
-            class="edit-btn"
-            onclick="editSchedule('${item.id}')">
-            Edit
-        </button>
-
-        <button
-            class="delete-btn"
-            onclick="deleteSchedule('${item.id}')">
-            Hapus
-        </button>
-
-    `;
-
-
-    scheduleList.appendChild(box);
-
+function esc(value){
+ return String(value??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
 }
 
+function renderList(){
+ const root=$("scheduleList");
 
-/* ===============================
-   EDIT
-================================ */
+ const sorted=[...schedules].sort((a,b)=>
+  String(a.date||"").localeCompare(String(b.date||""))
+ );
+
+ if(!sorted.length){
+  root.innerHTML='<div class="empty">Belum ada schedule.</div>';
+  return;
+ }
+
+ root.innerHTML=sorted.map(s=>`
+  <article class="schedule-row">
+   <h3>${esc(s.title||"Tanpa judul")}</h3>
+   <p>
+    ${esc(s.date||"Tanggal belum ditentukan")} · ${esc(s.time||"Waktu menyusul")} WIB<br>
+    ${esc(s.team||"JKT48")} · ${esc(s.type||"Show")}<br>
+    ${Array.isArray(s.lineup)?s.lineup.length:0} anggota
+   </p>
+   <div class="row-actions">
+    <button type="button" class="btn secondary" data-edit="${esc(s.id)}">Edit</button>
+    <button type="button" class="btn danger" data-delete="${esc(s.id)}">Hapus</button>
+   </div>
+  </article>
+ `).join("");
+}
+
+function resetForm(){
+ editingId=null;
+ $("scheduleForm").reset();
+ $("formTitle").textContent="Tambah Schedule";
+ $("saveBtn").textContent="Simpan Schedule";
+ $("cancelBtn").hidden=true;
+}
+
+function fieldValue(id){
+ return $(id).value.trim();
+}
+
+function submitForm(event){
+ event.preventDefault();
+
+ const title=fieldValue("title");
+ const date=fieldValue("date");
+
+ if(!title||!date){
+  showStatus("Nama show dan tanggal wajib diisi.","error");
+  return;
+ }
+
+ const item={
+  id:editingId||newId(),
+  title,
+  date,
+  time:fieldValue("time"),
+  team:$("team").value,
+  type:$("type").value,
+  lineup:fieldValue("lineup")
+   .split(/\n/)
+   .map(name=>name.trim())
+   .filter(Boolean),
+  far:fieldValue("far"),
+  farEnd:fieldValue("farEnd"),
+  ofc:fieldValue("ofc"),
+  ofcEnd:fieldValue("ofcEnd"),
+  general:fieldValue("general"),
+  generalEnd:fieldValue("generalEnd")
+ };
+
+ if(item.lineup.length>100){
+  showStatus("Maksimal 100 nama anggota untuk satu jadwal.","error");
+  return;
+ }
+
+ const previous=schedules;
+ if(editingId){
+  schedules=schedules.map(s=>String(s.id)===String(editingId)?item:s);
+ }else{
+  schedules.push(item);
+ }
+
+ if(!saveData()){
+  schedules=previous;
+  return;
+ }
+
+ resetForm();
+ renderList();
+ showStatus(editingId?"Schedule berhasil diperbarui.":"Schedule berhasil ditambahkan.");
+}
 
 function editSchedule(id){
+ const s=schedules.find(x=>String(x.id)===String(id));
+ if(!s)return;
 
-    db.ref(
-        DATABASE_PATH +
-        "/" +
-        id
-    )
-    .once("value")
-    .then(snapshot => {
+ editingId=s.id;
 
-        if(!snapshot.exists()){
+ $("title").value=s.title||"";
+ $("date").value=s.date||"";
+ $("time").value=s.time||"";
+ $("team").value=s.team||"JKT48";
+ $("type").value=s.type||"Show";
+ $("lineup").value=Array.isArray(s.lineup)?s.lineup.join("\n"):"";
 
-            showStatus(
-                "Schedule tidak ditemukan."
-            );
+ ["far","farEnd","ofc","ofcEnd","general","generalEnd"].forEach(k=>{
+  $(k).value=s[k]||"";
+ });
 
-            return;
-        }
+ $("formTitle").textContent="Edit Schedule";
+ $("saveBtn").textContent="Simpan Perubahan";
+ $("cancelBtn").hidden=false;
 
-
-        const data =
-            snapshot.val();
-
-        editingId = id;
-
-
-        titleInput.value =
-            data.title || "";
-
-        teamInput.value =
-            data.team || "";
-
-        typeInput.value =
-            data.type || "";
-
-        dateInput.value =
-            data.date || "";
-
-        timeInput.value =
-            data.time || "";
-
-        photoInput.value =
-            data.photo || "";
-
-        linkInput.value =
-            data.link || "";
-
-
-        if(Array.isArray(data.lineup)){
-
-            lineupInput.value =
-                data.lineup
-                .map(
-                    member =>
-                        member.id +
-                        "|" +
-                        member.name
-                )
-                .join("\n");
-
-        }else{
-
-            lineupInput.value = "";
-
-        }
-
-
-        document.getElementById(
-            "formTitle"
-        ).textContent =
-            "Edit Schedule";
-
-
-        document.getElementById(
-            "cancelBtn"
-        ).style.display =
-            "inline-block";
-
-
-        if(data.photo){
-
-            photoPreview.src =
-                data.photo;
-
-            photoPreview.style.display =
-                "block";
-
-        }
-
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    });
-
+ window.scrollTo({top:0,behavior:"smooth"});
 }
 
+function deleteSchedule(id){
+ const s=schedules.find(x=>String(x.id)===String(id));
+ if(!s)return;
 
-/* ===============================
-   DELETE
-================================ */
+ if(!confirm('Hapus schedule "'+s.title+'"?'))return;
 
-async function deleteSchedule(id){
+ const previous=schedules;
+ schedules=schedules.filter(x=>String(x.id)!==String(id));
 
-    if(!confirm(
-        "Yakin ingin menghapus schedule ini?"
-    )){
-        return;
-    }
+ if(!saveData()){
+  schedules=previous;
+  return;
+ }
 
+ if(String(editingId)===String(id))resetForm();
 
-    try{
-
-        await db
-        .ref(
-            DATABASE_PATH +
-            "/" +
-            id
-        )
-        .remove();
-
-        showStatus(
-            "Schedule berhasil dihapus."
-        );
-
-        loadSchedules();
-
-    }catch(error){
-
-        showStatus(
-            "Gagal menghapus: " +
-            error.message
-        );
-
-    }
-
+ renderList();
+ showStatus("Schedule berhasil dihapus.");
 }
 
+$("scheduleForm").addEventListener("submit",submitForm);
+$("cancelBtn").addEventListener("click",resetForm);
 
-/* ===============================
-   CLEAR
-================================ */
+$("scheduleList").addEventListener("click",event=>{
+ const edit=event.target.closest("[data-edit]");
+ const del=event.target.closest("[data-delete]");
 
-function clearForm(){
+ if(edit)editSchedule(edit.dataset.edit);
+ if(del)deleteSchedule(del.dataset.delete);
+});
 
-    editingId = null;
+$("exportBtn").addEventListener("click",()=>{
+ const blob=new Blob([JSON.stringify(schedules,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="sieshin48-schedule-backup.json";
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ showStatus("Cadangan JSON dibuat. Simpan file tersebut di perangkat.");
+});
 
-    titleInput.value = "";
-    teamInput.value = "";
-    typeInput.value = "";
-    dateInput.value = "";
-    timeInput.value = "";
-    photoInput.value = "";
-    linkInput.value = "";
-    lineupInput.value = "";
+$("importBtn").addEventListener("click",()=>$("importFile").click());
 
-    photoPreview.style.display =
-        "none";
+$("importFile").addEventListener("change",async event=>{
+ const file=event.target.files[0];
+ if(!file)return;
 
-    document.getElementById(
-        "formTitle"
-    ).textContent =
-        "Tambah Schedule";
+ try{
+  const parsed=JSON.parse(await file.text());
+  if(!Array.isArray(parsed)||parsed.some(s=>
+    !s||typeof s!=="object"||!s.id||!s.title||!s.date
+  )){
+   throw new Error("Format data tidak sesuai.");
+  }
 
-    document.getElementById(
-        "cancelBtn"
-    ).style.display =
-        "none";
+  if(!confirm("Impor akan mengganti seluruh daftar schedule saat ini. Lanjutkan?"))return;
 
-}
+  const previous=schedules;
+  schedules=parsed;
 
+  if(!saveData()){
+   schedules=previous;
+   return;
+  }
 
-/* ===============================
-   CANCEL
-================================ */
+  resetForm();
+  renderList();
+  showStatus("Data schedule berhasil diimpor.");
+ }catch(e){
+  showStatus("Gagal impor: file JSON tidak valid atau strukturnya salah.","error");
+ }finally{
+  event.target.value="";
+ }
+});
 
-function cancelEdit(){
-
-    clearForm();
-
-}
-
-
-/* ===============================
-   ESCAPE
-================================ */
-
-function escapeHTML(value){
-
-    return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* START */
-
-loadSchedules();
-
+schedules=readData();
+renderList();
 </script>
-
 </body>
 </html>

@@ -1,469 +1,204 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Schedule - Visioner48</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Schedule - Sieshin48</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:
-        linear-gradient(
-            180deg,
-            #000 0%,
-            #180000 50%,
-            #000 100%
-        );
-    color:#fff;
-}
-
-.header{
-    background:#050505;
-    border-bottom:1px solid #700000;
-    padding:15px;
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-
-.back-home{
-    display:inline-block;
-    text-decoration:none;
-    color:#fff;
-    background:#b00000;
-    border:1px solid #ff3333;
-    padding:10px 15px;
-    border-radius:10px;
-    font-size:14px;
-    font-weight:bold;
-}
-
-.back-home:hover{
-    background:#e00000;
-}
-
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:20px 15px 40px;
-}
-
-.page-title{
-    margin:0 0 20px;
-    font-size:25px;
-    border-left:5px solid #d00000;
-    padding-left:12px;
-}
-
-.schedule-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.schedule-card{
-    display:block;
-    text-decoration:none;
-    color:#fff;
-    background:#090909;
-    border:1px solid #650000;
-    border-radius:16px;
-    overflow:hidden;
-    transition:.2s;
-}
-
-.schedule-card:hover{
-    transform:translateY(-3px);
-    border-color:#e00000;
-    box-shadow:0 8px 25px rgba(150,0,0,.3);
-}
-
-.schedule-photo{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    display:block;
-    background:#180000;
-}
-
-.schedule-content{
-    padding:14px;
-}
-
-.schedule-title{
-    margin:0 0 10px;
-    font-size:18px;
-}
-
-.info{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-}
-
-.badge{
-    background:#260000;
-    border:1px solid #650000;
-    border-radius:7px;
-    padding:6px 8px;
-    font-size:11px;
-    color:#ddd;
-}
-
-.lineup-title{
-    margin-top:12px;
-    font-size:11px;
-    color:#888;
-}
-
-.lineup-preview{
-    color:#fff;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.loading{
-    text-align:center;
-    padding:40px 10px;
-    color:#aaa;
-}
-
-.empty{
-    display:none;
-    text-align:center;
-    padding:40px 10px;
-    color:#999;
-}
-
-.error{
-    display:none;
-    text-align:center;
-    padding:25px;
-    color:#ff7777;
-}
-
-@media(max-width:600px){
-
-    .container{
-        padding:15px 10px 30px;
-    }
-
-    .schedule-grid{
-        grid-template-columns:1fr;
-        gap:12px;
-    }
-
-    .schedule-photo{
-        height:210px;
-    }
-
-    .schedule-title{
-        font-size:17px;
-    }
+*{box-sizing:border-box}
+:root{--red:rgba(112, 4, 4, 1)(113, 22, 33, 1);--ink:#fff;--muted:#df001b;--blue:#111522}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#111}
+button,select{font:inherit}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#b00000;position:sticky;top:0;z-index:5;border-bottom:1px solid #b00000}
+.menu{font-size:27px;border:0;background:none;cursor:pointer}
+.head-title{font-size:23px;font-weight:700}
+.banner{height:82px;background:linear-gradient(115deg,#111,#111,#111);position:relative;overflow:hidden}
+.banner:after{content:"✦      ✧         ✦       ✧";position:absolute;color:#fff;opacity:.8;font-size:27px;letter-spacing:23px;top:24px;left:15px}
+main{max-width:900px;margin:auto;padding:26px 20px 50px}
+.filters{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:22px 0 32px}
+.field label,.filter-title{display:block;color:#;font-weight:700;font-size:17px;margin-bottom:8px}
+select{width:100%;height:54px;border:1px solid #bbb;background:#fff;padding:0 14px;font-size:18px;color:#111}
+.filter-title{margin-bottom:8px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:36px}
+.tab{border:0;background:#e6f5fa;color:#rgba(152, 16, 16, 1);padding:17px 5px;font-size:17px;cursor:pointer}
+.tab.active{background:#f20;color:white}
+.schedule-item{display:grid;grid-template-columns:72px minmax(0,1fr) 48px;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid #e8aab4}
+.date{align-self:center;text-align:left}
+.day{font-size:36px;font-weight:700;color:var(--red);line-height:1.05}
+.month{font-size:16px;margin-top:6px;text-transform:uppercase}
+.labels{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:11px}
+.team{border:1px solid currentColor;border-radius:25px;padding:5px 12px;font-size:14px;white-space:nowrap}
+.team-love{color:#d51b83}.team-passion{color:#ed9b31}.team-dream{color:#068DC9}.team-trainee{color:#b78383}.team-jkt{color:#d51b36}
+.type{background:#b00000;color:#ff2020(23, 93, 108, 1);padding:6px 12px;font-size:14px}
+.show-name{font-size:20px;line-height:1.35;overflow-wrap:anywhere;margin-bottom:7px}
+.time{font-size:15px;color:#b00000}
+.arrow{width:44px;height:44px;border:0;border-radius:50%;background:var(--red);color:#fff;font-size:22px;font-weight:bold;cursor:pointer}
+.empty{text-align:center;padding:35px 10px;color:#777}
+footer{text-align:center;color:#777;padding:25px;font-size:13px}
+@media(max-width:480px){
+ header{height:68px;padding:0 16px}
+ .head-title{font-size:21px}
+ main{padding:23px 15px 40px}
+ .filters{gap:12px}
+ .field label,.filter-title{font-size:16px}
+ select{font-size:16px;padding:0 8px}
+ .tabs{gap:8px}
+ .tab{font-size:16px;padding:16px 2px}
+ .schedule-item{grid-template-columns:64px minmax(0,1fr) 42px;gap:8px;padding:18px 0}
+ .day{font-size:34px}
+ .show-name{font-size:18px}
+ .team{font-size:13px;padding:5px 10px}
+ .type{font-size:13px;padding:6px 9px}
+ .arrow{width:40px;height:40px}
+ .time{font-size:14px}
 }
 </style>
 </head>
 
 <body>
-
-<header class="header">
-
-    <a href="index.html" class="back-home">
-        ← Kembali ke Home
-    </a>
-
+<header>
+  <button class="menu" aria-label="Kembali ke beranda" onclick="location.href='index.html'"></button>
+  <div class="head-title">Schedule</div>
+  <button class="login" onclick="alert('Fitur login belum diaktifkan.')"></button>
 </header>
 
-<main class="container">
+<div class="banner"></div>
 
-    <h1 class="page-title">
-        Schedule
-    </h1>
-
-    <div id="loading" class="loading">
-        Memuat Schedule...
+<main>
+  <div class="filters">
+    <div class="field">
+      <label for="month">Pilih Bulan</label>
+      <select id="month"></select>
     </div>
-
-    <div id="error" class="error"></div>
-
-    <div id="empty" class="empty">
-        Belum ada schedule.
+    <div class="field">
+      <label for="year">Pilih Tahun</label>
+      <select id="year"></select>
     </div>
+  </div>
 
-    <div id="scheduleGrid" class="schedule-grid"></div>
+  <div class="filter-title">Jenis Schedule</div>
+  <div class="tabs">
+    <button class="tab active" data-type="Semua">Semua</button>
+    <button class="tab" data-type="Show">Show</button>
+    <button class="tab" data-type="Event">Event</button>
+  </div>
 
+  <div id="scheduleList"></div>
 </main>
 
+<div style="text-align:center;padding:20px">
+  <button
+    onclick="location.href='index.html'"
+    style="background:#df001b;color:white;border:0;
+    border-radius:25px;padding:13px 25px;font-size:16px">
+    ← Kembali ke Home
+  </button>
+</div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<footer>Visioner48 · Jadwal Show dan Event</footer>
 
 <script>
+const KEY = "sieshin48_schedules";
+const months = ["Januari","Februari","Maret","April","Mei","Juni",
+"Juli","Agustus","September","Oktober","November","Desember"];
 
-const firebaseConfig = {
-    apiKey: "ISI_API_KEY_KAMU",
-    authDomain: "visioner48-9b51e.firebaseapp.com",
-    databaseURL: "https://visioner48-9b51e-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "visioner48-9b51e",
-    storageBucket: "visioner48-9b51e.firebasestorage.app",
-    messagingSenderId: "ISI_MESSAGING_SENDER_ID",
-    appId: "ISI_APP_ID"
-};
+const sampleSchedules = [
+ {id:"show-love",date:"2026-10-02",team:"Team Love",type:"Show",title:"ITADAKI♥LOVE",time:"19:00 – 21:00",lineup:["Anindya Ramadhani","Aurellia","Aurhel Alana","Cynthia Yaputera"],far:"2026-09-27T21:45",farEnd:"2026-09-28T18:00",ofc:"2026-09-27T21:45",ofcEnd:"2026-09-29T18:00",general:"2026-09-28T18:00",generalEnd:"2026-09-30T18:00"},
+ {id:"passion-200",date:"2026-10-03",team:"Team Passion",type:"Show",title:"PASSION 200%",time:"16:00 – 18:00",lineup:["Fiony Alveria","Fritzy Rosmerian","Grace Octaviani"]},
+ {id:"dream-ramune",date:"2026-10-04",team:"Team Dream",type:"Show",title:"Cara Meminum Ramune",time:"14:00 – 16:00",lineup:["Indah Cahya","Jazlyn Trisha","Michelle Alexandra"]},
+ {id:"pajama-drive",date:"2026-10-04",team:"Trainee",type:"Show",title:"Pajama Drive",time:"19:00 – 21:00",lineup:["Nayla Suji","Aurellia","Cynthia Yaputera"]},
+ {id:"love-show-2",date:"2026-10-08",team:"Team Love",type:"Show",title:"Sambil Menggandeng Erat Tanganku",time:"19:00 – 21:00",lineup:["Anindya Ramadhani","Aurhel Alana"]},
+ {id:"pertaruhan-cinta",date:"2026-10-09",team:"JKT48",type:"Show",title:"Pertaruhan Cinta",time:"19:00 – 21:00",lineup:["Fiony Alveria","Grace Octaviani"]},
+ {id:"dream-show-2",date:"2026-10-10",team:"Team Dream",type:"Show",title:"Sambil Menggandeng Erat Tanganku",time:"14:00 – 16:00",lineup:["Indah Cahya","Michelle Alexandra"]},
+ {id:"fan-event",date:"2026-10-18",team:"JKT48",type:"Event",title:"Fan Meeting JKT48",time:"15:00 – 17:00",lineup:["JKT48"]}
+];
 
-firebase.initializeApp(firebaseConfig);
-
-const db =
-    firebase.database();
-
-const DATABASE_PATH =
-    "visioner48_schedule";
-
-const loading =
-    document.getElementById("loading");
-
-const error =
-    document.getElementById("error");
-
-const empty =
-    document.getElementById("empty");
-
-const scheduleGrid =
-    document.getElementById("scheduleGrid");
-
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
+function getSchedules(){
+ try {
+   const saved = localStorage.getItem(KEY);
+   if(saved) return JSON.parse(saved);
+ } catch(e){}
+ localStorage.setItem(KEY,JSON.stringify(sampleSchedules));
+ return sampleSchedules;
 }
+let schedules=getSchedules(), activeType="Semua";
 
+const monthSelect=document.getElementById("month");
+const yearSelect=document.getElementById("year");
+const list=document.getElementById("scheduleList");
 
-function loadSchedules(){
-
-    db.ref(DATABASE_PATH)
-        .once("value")
-        .then(snapshot => {
-
-            loading.style.display =
-                "none";
-
-            const raw =
-                snapshot.val();
-
-            if(!raw){
-
-                empty.style.display =
-                    "block";
-
-                return;
-
-            }
-
-
-            const schedules =
-                Object.keys(raw).map(key => {
-
-                    return {
-                        key:key,
-                        ...raw[key]
-                    };
-
-                });
-
-
-            renderSchedules(schedules);
-
-        })
-        .catch(err => {
-
-            loading.style.display =
-                "none";
-
-            error.textContent =
-                "Gagal memuat Schedule: " +
-                err.message;
-
-            error.style.display =
-                "block";
-
-        });
-
+months.forEach((m,i)=>{
+ const o=document.createElement("option");
+ o.value=i;o.textContent=m;
+ if(i===9)o.selected=true;
+ monthSelect.appendChild(o);
+});
+for(let y=2026;y<=2032;y++){
+ const o=document.createElement("option");
+ o.value=y;o.textContent=y;
+ yearSelect.appendChild(o);
 }
+yearSelect.value="2026";
 
-
-function renderSchedules(schedules){
-
-    scheduleGrid.innerHTML = "";
-
-    schedules.forEach(item => {
-
-        /*
-         * INI YANG MENGHUBUNGKAN
-         * SCHEDULE.HTML
-         * DENGAN
-         * SCHEDULE-DETAIL.HTML
-         */
-
-        const detailURL =
-            "schedule-detail.html?id=" +
-            encodeURIComponent(item.key);
-
-
-        const card =
-            document.createElement("a");
-
-        card.className =
-            "schedule-card";
-
-        card.href =
-            detailURL;
-
-
-        let photoHTML = "";
-
-        if(item.photo){
-
-            photoHTML = `
-                <img
-                    class="schedule-photo"
-                    src="${escapeHTML(item.photo)}"
-                    alt="${escapeHTML(item.title || "Schedule")}"
-                >
-            `;
-
-        }else{
-
-            photoHTML = `
-                <div
-                    class="schedule-photo"
-                    style="
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        color:#777;
-                    "
-                >
-                    Tidak ada foto
-                </div>
-            `;
-
-        }
-
-
-        let lineupText =
-            "Belum ada Line Up";
-
-
-        if(
-            Array.isArray(item.lineup) &&
-            item.lineup.length
-        ){
-
-            lineupText =
-                item.lineup
-                .map(member => {
-
-                    return member.name || "";
-
-                })
-                .filter(Boolean)
-                .join(", ");
-
-        }
-
-
-        card.innerHTML = `
-
-            ${photoHTML}
-
-            <div class="schedule-content">
-
-                <h2 class="schedule-title">
-                    ${escapeHTML(
-                        item.title ||
-                        "Schedule"
-                    )}
-                </h2>
-
-                <div class="info">
-
-                    ${
-                        item.team
-                        ? `
-                        <span class="badge">
-                            ${escapeHTML(item.team)}
-                        </span>
-                        `
-                        : ""
-                    }
-
-                    ${
-                        item.type
-                        ? `
-                        <span class="badge">
-                            ${escapeHTML(item.type)}
-                        </span>
-                        `
-                        : ""
-                    }
-
-                    ${
-                        item.date
-                        ? `
-                        <span class="badge">
-                            ${escapeHTML(item.date)}
-                        </span>
-                        `
-                        : ""
-                    }
-
-                    ${
-                        item.time
-                        ? `
-                        <span class="badge">
-                            ${escapeHTML(item.time)}
-                        </span>
-                        `
-                        : ""
-                    }
-
-                </div>
-
-                <div class="lineup-title">
-                    LINE UP
-                </div>
-
-                <div class="lineup-preview">
-                    ${escapeHTML(lineupText)}
-                </div>
-
-            </div>
-
-        `;
-
-
-        scheduleGrid.appendChild(card);
-
-    });
-
+function esc(s){
+ return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
+function teamClass(team){
+ if(team.includes("Love"))return "team-love";
+ if(team.includes("Passion"))return "team-passion";
+ if(team.includes("Dream"))return "team-dream";
+ if(team.includes("Trainee"))return "team-trainee";
+ return "team-jkt";
+}
+function render(){
+ schedules=getSchedules();
+ const filtered=schedules.filter(s=>{
+   const d=new Date(s.date+"T12:00:00");
+   return d.getMonth()===Number(monthSelect.value)
+   &&d.getFullYear()===Number(yearSelect.value)
+   &&(activeType==="Semua"||s.type===activeType);
+ }).sort((a,b)=>a.date.localeCompare(b.date));
 
-
-loadSchedules();
-
+ if(!filtered.length){
+   list.innerHTML='<div class="empty">Belum ada schedule pada bulan ini.</div>';
+   return;
+ }
+ list.innerHTML=filtered.map(s=>{
+   const d=new Date(s.date+"T12:00:00");
+   const day=String(d.getDate()).padStart(2,"0");
+   const mon=months[d.getMonth()].slice(0,3);
+   return `
+    <article class="schedule-item">
+      <div class="date"><div class="day">${day}</div><div class="month">${mon}</div></div>
+      <div>
+        <div class="labels">
+          <span class="team ${teamClass(s.team)}">♟ ${esc(s.team)}</span>
+          <span class="type">${esc(s.type)}</span>
+        </div>
+        <div class="show-name">${esc(s.title)}</div>
+        <div class="time">● &nbsp;${esc(s.time||"Waktu menyusul")} (WIB)</div>
+      </div>
+      <button class="arrow" aria-label="Lihat detail ${esc(s.title)}"
+        onclick="openDetail('${esc(s.id)}')">➜</button>
+    </article>`;
+ }).join("");
+}
+function openDetail(id){
+ location.href="schedule-detail.html?id="+encodeURIComponent(id);
+}
+document.querySelectorAll(".tab").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+   document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+   btn.classList.add("active");
+   activeType=btn.dataset.type;
+   render();
+ });
+});
+monthSelect.addEventListener("change",render);
+yearSelect.addEventListener("change",render);
+render();
 </script>
-
 </body>
 </html>
